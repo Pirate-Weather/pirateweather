@@ -1,8 +1,8 @@
-﻿# Pirate Weather V1.0
+﻿# Pirate Weather
 Weather forecasts are primarily found using models run by government agencies, but the [outputs](https://weather.gc.ca/grib/what_is_GRIB_e.html) aren't easy to use or in formats built for the web.
 To try to address this, I've put together a service that reads weather forecasts and serves it following the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs) style. Key details about setup/ usage of the API are on the main website <https://pirateweather.net/>, but I also wanted to give an overview of how I assembled all the pieces. I used many online guides during this process, so wanted to try to help someone else here! 
 
-Before going any farther, I wanted to add a link to support this project. Running this on AWS means that it scales beautifully and is incredibly reliable, but also costs real money. I'd love to keep this project going long-term, but I'm still paying back my student loans and my AWS credits won't last forever, which limits how much I can spend on this! Anything helps, and a $2 monthly donation lets me raise your API limit from 20,000 calls/ month to 50,000 calls per month.
+Before going any farther, I wanted to add a link to support this project. Running this on AWS means that it scales beautifully and is much more reliable than if I was trying to host this, but also costs real money. I'd love to keep this project going long-term, but I'm still paying back my student loans, which limits how much I can spend on this! Anything helps, and a $2 monthly donation lets me raise your API limit from 20,000 calls/ month to 50,000 calls per month.
 
 <a href="https://www.buymeacoffee.com/pirateweather" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
@@ -10,39 +10,27 @@ Alternatively, I also have a GitHub Sponsorship page setup on my [profile](https
 
 This project (especially the free tier) wouldn't be possibile without the ongoing support from the project sponsors, so they're the [heros here](https://github.com/sponsors/alexander0042/)! 
 
+## Recent Updates- Winter 2022
+Official V1.0 release! These docs have been updated to reflect the current version, but I'll leave the previous version up for reference under the [v0.1 header](https://pirateweather.readthedocs.io/en/latest/indexv01/). Some of the highlights of this release are:
 
-## Recent Updates- Spring 2021
-1. Implemented historic data retrieval (Dark Sky's Time Machine function).
-2. Added a front-end viewer <https://weather.pirateweather.net/>.
-3. Improved the precipitation probabilities (ensemble members with accumulations greater than 1 mm, instead of 0 mm).
-4. Fixed things that broke due to the new version of the GFS/ GEFS models.
-5. Several other small bug fixes, including improving the icon selection logic and UV index. 
+1. Changed the data ingest pipeline to use AWS Fargate (thanks sponsors!) improving the resolution by 4x!
+2. Added short term historic data via the `time` parameter.
+3. Fixed a long standing issue with wind speeds.
+4. Added support for the `exclude` flag.
+5. Moved the documentation over to ReadTheDocs.
+6. Published the [processing scripts](https://github.com/alexander0042/pirateweather/tree/main/scripts) and [docker image](https://gallery.ecr.aws/j9v4j3c7/pirate-wgrib2).
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
 
-Spoiler alert, but it was much, much more difficult than I thought, but learned a lot throughout the process, and I think the end result turned out really well! 
-
-### First Attempt- Microsoft Azure
-My first attempt at setting this up was on [Microsoft Azure](https://azure.microsoft.com/en-ca/). They had a great [student credit offer](https://azure.microsoft.com/en-ca/free/students/), and running docker containers worked really well. 
-
-However, I ran into issues with data ingest, and couldn't figure out a good way to store the files in a way that I could easily read them later. There is probably a solution to this, but I got distracted with other work and my student credit ran out. Of the three clouds that I tried, I loved the interface, and it had the least complex networking and permission setup! 
-
-### Second Attempt- Google Cloud
-My next attempt was to try [Google's Cloud](https://cloud.google.com/). Their BigQuery GIS product looked really interesting, since it handled large georeferenced datasets naturally. Google also stored the weather model data in their cloud already, simplifying data transfer.
-
-What I found was that BigQuery works with point or feature data, and not particularly well with raster (gridded) data. However, it [can be done](https://medium.com/google-cloud/how-to-query-geographic-raster-data-in-bigquery-efficiently-b178b1a5e723) by treating each grid node as a separate point! Then, by running the [st_distance](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_distance) function against each point, it's very easy to find the nearest one. I also optimized this method by [partitioning](https://cloud.google.com/bigquery/docs/partitioned-tables) the globe into sections based on latitude and longitude, which made searches very fast. 
-
-This was all working well, but where this approach broke down was on data ingest. The best way I could find to load data into BigQuery was by saving each grid node as a line on a csv file and importing that. The easiest way was to do this for each forecast time step and then import each step separately and merging them in BigQuery. However, this didn't work, since the [order of the points](https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-csv) does not stay the same. I also tried this with spatial joins, but the costs quickly get prohibitive.
-
-What ended up "working" was merging the csv files, and then uploading that file. This required an incredibly messy bash script, and meant spinning up a VM with a ton of memory and processing in order to make it reasonably fast. So despite this approach almost working, and being very cool (weather maps would have been very easy), I ended up abandoning it. 
+Spoiler alert, but it was way more difficult than I thought, but learned a lot throughout the process, and I think the end result turned out really well! 
 
 ## Current Process- AWS 
-What ended up working here was discovering the AWS Elastic File System [(EFS)](https://aws.amazon.com/efs/). I wanted to avoid "reinventing the wheel" as much as possible, and there is already a great tool for extracting data from forecast files- [WGRIB2](https://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/)! Moreover, NOAA data was [already being stored](https://registry.opendata.aws/collab/noaa/) on AWS. This meant that, from the 10,000 ft perspective, data could be downloaded and stored on a filesystem that could then be easily accessed by a serverless function, instead of trying to move it to a database.
+The key to everything here is AWS's Elastic File System [(EFS)](https://aws.amazon.com/efs/). I wanted to avoid "reinventing the wheel" as much as possible, and there is already a great tool for extracting data from forecast files- [WGRIB2](https://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/)! Moreover, NOAA data was [already being stored](https://registry.opendata.aws/collab/noaa/) on AWS. This meant that, from the 10,000 ft perspective, data could be downloaded and stored on a filesystem that could then be easily accessed by a serverless function, instead of trying to move it to a database.
 
 That is the "one-sentence" explanation of how this is set up, but for more details, read on!
 
-<iframe src="https://app.cloudcraft.co/view/a7efdf8d-2e5d-42aa-a4af-f2580ed530a0?key=reaYW5VNqfox1POlY7AwQw&interactive=true&embed=true" width="375" height="500">
+<iframe src="hhttps://app.cloudcraft.co/view/a876ff25-455c-4efd-8f7e-12b8a1c2153c?key=55b1925d-b2c4-4a54-8fec-16fbd00af0ef&interactive=true&embed=true" width="375" height="500">
 </iframe>
 
 ### Data Sources
