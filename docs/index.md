@@ -1,14 +1,14 @@
 ﻿# Pirate Weather V1.0
-Weather forecasts are primarily found using models run by government agencies, but the outputs aren't easy to use or in formats built for the web.
+Weather forecasts are primarily found using models run by government agencies, but the [outputs](https://weather.gc.ca/grib/what_is_GRIB_e.html) aren't easy to use or in formats built for the web.
 To try to address this, I've put together a service that reads weather forecasts and serves it following the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs) style. Key details about setup/ usage of the API are on the main website <https://pirateweather.net/>, but I also wanted to give an overview of how I assembled all the pieces. I used many online guides during this process, so wanted to try to help someone else here! 
 
-Before going any farther, I wanted to add a link to support this project. Running this on AWS means that it scales beautifully and is incredibly reliable, but also costs real money. I'd love to keep this project going long-term, but I'm still paying back my student loans and my AWS credits won't last forever, which limits how much I can spend on this! Anything helps, and a $2 monthly donation lets me raise your API limit from 20,000 calls/ month to 25,000 calls per month.
+Before going any farther, I wanted to add a link to support this project. Running this on AWS means that it scales beautifully and is incredibly reliable, but also costs real money. I'd love to keep this project going long-term, but I'm still paying back my student loans and my AWS credits won't last forever, which limits how much I can spend on this! Anything helps, and a $2 monthly donation lets me raise your API limit from 20,000 calls/ month to 50,000 calls per month.
 
 <a href="https://www.buymeacoffee.com/pirateweather" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 Alternatively, I also have a GitHub Sponsorship page setup on my [profile](https://github.com/sponsors/alexander0042/)!
 
-This project (especially the free tier) wouldn't be possibile without the ongoing support from the project sponsors, so they're the [heros](https://github.com/SJV83) [here](https://github.com/matthewj301)! 
+This project (especially the free tier) wouldn't be possibile without the ongoing support from the project sponsors, so they're the [heros here](https://github.com/sponsors/alexander0042/)! 
 
 
 ## Recent Updates- Spring 2021
