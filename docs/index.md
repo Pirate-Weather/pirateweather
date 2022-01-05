@@ -30,7 +30,7 @@ The key to everything here is AWS's Elastic File System [(EFS)](https://aws.amaz
 
 That is the "one-sentence" explanation of how this is set up, but for more details, read on!
 
-<iframe src="hhttps://app.cloudcraft.co/view/a876ff25-455c-4efd-8f7e-12b8a1c2153c?key=55b1925d-b2c4-4a54-8fec-16fbd00af0ef&interactive=true&embed=true" width="375" height="500">
+<iframe src="https://app.cloudcraft.co/view/a876ff25-455c-4efd-8f7e-12b8a1c2153c?key=55b1925d-b2c4-4a54-8fec-16fbd00af0ef&interactive=true&embed=true" width="375" height="500">
 </iframe>
 
 ### Data Sources
