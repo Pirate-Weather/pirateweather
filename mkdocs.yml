@@ -3,3 +3,8 @@ site_url: https://pirateweather.net
 repo_url: https://github.com/alexander0042/pirateweather/
 repo_name: 'GitHub'
 theme: readthedocs 
+
+nav:
+    - Introduction: 'index.md'
+    - 'Issue Tracker': 'https://github.com/alexander0042/pirateweather/issues/'
+    - 'Previous Versions- v0.1': 'indexv01.md'

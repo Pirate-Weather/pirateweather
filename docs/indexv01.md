@@ -1,4 +1,4 @@
-﻿# Pirate Weather V1.0
+﻿# Pirate Weather v0.1
 Weather forecasts are primarily found using models run by government agencies, but the outputs aren't easy to use or in formats built for the web.
 To try to address this, I've put together a service that reads weather forecasts and serves it following the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs) style. Key details about setup/ usage of the API are on the main website <https://pirateweather.net/>, but I also wanted to give an overview of how I assembled all the pieces. I used many online guides during this process, so wanted to try to help someone else here! 
 
