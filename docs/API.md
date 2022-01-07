@@ -2,7 +2,7 @@
 
 This page serves as the documentation for the Pirate Weather API call and responce format. Since this service is designed to be a drop in replacement for the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs), the goal is to match that as closely as possibile, and any disagrement between their service and Pirate Weather will be treated as a bug. However, as Pirate Weather continues to evolve, I plan on adding small, non-breaking additions where I can, and they will be documented here! Plus, always better to have my own (open source and editable) version of the docs!
 
-## Forecast Request
+## Request
 The minimum structure for every request to this service is the same:
 ```
       https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude]
@@ -18,16 +18,20 @@ The forecast request can be extended in several ways by adding parameters to the
       https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]
 ```	
 
+
 #### API Key
 The API key needs to be requested from <https://pirateweather.net/>. After signing up for the service, the forecast API needs to be subscribed to, by logging in and clicking subscribe. Once subscribed to the API, it can take up to 20 minutes for the change to propogate to the gateway to allow requests, so go grab a coffee and it should be ready shortly after. 
 
 As a reminder, this key is secret, and unique to each user. Keep it secret, and do not have it hard coded into the your appplication's source, and definitly don't commit it to a git repo!
 
+
 #### Location
 The location is specified by a latitude (1st) and longitude (2nd) in decimal degrees (ex. `45.42,-75.69`). An unlimited number of decimal places are allowed; however, the API only returns data to the closest 13 km model square, so there's no benifit after 3 digits. While the recomended way to format this field is with positive (North/ West) and negative (South/ East) degrees, results should be valid when submitting longitudes from 0 to 360, instead of -180 to 180. 
 
+
 #### Time
 The time field is optional for the forecast request, but mandatory for a historic request. If present, time can be specified in one of three different ways:
+
 1. UNIX timstamp, or the number of seconds since midnight GMT on 1 Jan 1970 (This is the prefered way).
 2. A datestring in the local time zone of the location being requested: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]`.
 3. A datestring in UTC time: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]Z`
@@ -37,8 +41,28 @@ It's worth noting that Dark Sky also allows strings with a specified time zone (
 Results are always returned in UTC time using UNIX timestamps, and internailly UNIX time is used for everything, with the exception of calculating where to begin and end the daily data. Also, for checking time format conversions, I found <https://www.silisoftware.com/tools/date.php> to be an invaluable resource.
 
 #### Units
+Specifies the requested unit for the weather conditions. Options are:
 
+* `ca`: SI, with Wind Speed and Wind Gust in kilometers per hour.
+* `uk`: SI, with Wind Speed and Wind Gust in miles per hour and visibility are in miles.
+* `us`: Imperial units
+* `si`: SI units
 
+For compatability with Dark Sky, `us` (Imperial units) are the defult if nothing is specified. For reference, the SI units are:
+
+* `summary`: Temperatures in degrees Celsius or accumilation in centimeters .
+* `precipIntensity`: Millimeters per hour.
+* `precipIntensityMax`: Millimeters per hour.
+* `precipAccumulation`: Centimeters.
+* `temperature`: Degrees Celsius.
+* `temperatureMin`: Degrees Celsius.
+* `temperatureMax`: Degrees Celsius.
+* `apparentTemperature`: Degrees Celsius.
+* `dewPoint`: Degrees Celsius.
+* `windSpeed`: Meters per second.
+* `windGust`: Meters per second.
+* `pressure`: Hectopascals.
+* `visibility`: Kilometers.
 
 #### Exclude
 
