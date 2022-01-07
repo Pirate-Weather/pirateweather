@@ -119,7 +119,7 @@ While the process is simple, the details here are tricky. The chunking and compr
 3. For most variables, the `least significant digit` [parameter](https://unidata.github.io/netcdf4-python/#efficient-compression-of-netcdf-variables) is set to 1, and the compression level is also set to 1. There is probably some room for further optimization here. 
 
 ### Retrieval
-When a request comes in, a Lambda function is triggered and is passed the URL parameters (latitude/ longitude/ extended forecast/ units) as a JSON payload. These are extracted, and then the [nearest grid cell ](https://kbkb-wx-python.blogspot.com/2016/08/find-nearest-latitude-and-longitude.html)to the lat/long is found from the pickle files created from the model results. Weather variables are then iteratively extracted from the NetCDF4 files and saved to a 2-dimensional numpy arrays. This is then repeated for each model, skipping the HRRR results the requested location is outside of the HRRR domain. For the GFS model, precipitation accumulation is adjusted from the varying time step in the grib file to a standard 1-hour time step. 
+When a request comes in, a Lambda function is triggered and is passed the URL parameters (latitude/ longitude/ time/ extended forecast/ units) as a JSON payload. These are extracted, and then the [nearest grid cell ](https://kbkb-wx-python.blogspot.com/2016/08/find-nearest-latitude-and-longitude.html)to the lat/long is found from the pickle files created from the model results. Using the time parameter (if availible, otherwise the current time), the latest completed model runs are identified. Weather variables are then iteratively extracted from the NetCDF4 files and saved to a 2-dimensional numpy arrays. This is then repeated for each model, skipping the HRRR results the requested location is outside of the HRRR domain. For the GFS model, precipitation accumulation is adjusted from the varying time step in the grib file to a standard 1-hour time step. 
 
 Once the data has been read in, arrays area created for the minutely and hourly forecasts, and the data series from the model results is interpolated into these new output arrays. This process worked incredibly well, since NetCDF files natively save timestamps, so the same method could be followed for each data source. 
 
@@ -154,23 +154,3 @@ While this service currently covers almost everything that the Dark Sky API does
 1. Text Summaries. First and foremost, this is the largest missing piece. Dark Sky [open-sourced](https://github.com/darkskyapp/translations) their translation library, so my plan is to build off that to get this working. All the data is there, but it's a matter of writing the logics required to go from numerical forecasts to weather summaries. 
 2. Documentation. While the archived Dark Sky API [documentation](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs) is great for now, the AWS API Gateway has a number of tools for adding my own documentation, which would make everything clearer and more accessible.
 3. Additional sources. The method developed here is largely source agnostic. Any weather forecast service that delivers data using grib files that wgrib2 can understand (all the primary ones) is theoretically capable of being added in. The NOAA North American Mesoscale [NAM](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/north-american-mesoscale-forecast-system-nam) model would provide higher resolution forecasts out to 4 days (instead of the 2 days from HRRR). The [Canadian HRDPS Model](https://weather.gc.ca/grib/grib2_HRDPS_HR_e.html) is another tempting addition, since it provides data at a resolution even higher than HRRR (2.5 km vs. 3.5 km)! The [European model](https://www.ecmwf.int/en/forecasts/datasets/catalogue-ecmwf-real-time-products) would be fantastic to add in, since it often outperforms the GFS model; however, the data is not open, which would add a significant cost.
-
-## Changelog
-* October 4, 2021
-  * Still working on bringing the NBM datasource online, but in the meantime I fixed a couple issues with [cloud cover](https://github.com/alexander0042/pirate-weather-ha/issues/18) and [pressure](https://github.com/alexander0042/pirate-weather-ha/issues/14) data responses.
-  * The back end of this service is also getting more stable and predictable, so I've raised the free tier to 20,000 API calls/ month.
-* August 17, 2021
-  * Fixed how the API returns calls for locations at the edge of the grid, identified [here](https://github.com/alexander0042/pirate-weather-ha/issues/9)
-* July 26, 2021:
-  * Fixed an issue with the uk2 units. 
-* June 22, 2021:
-  * Major rework of the alerts setup. The old method had more detail about the alerts, but missed any that didn't include coordinate data (which was about half!). These missing alerts were just associated with a NWS region. Luckily, the amazing [Iowa State Mesonet](https://mesonet.agron.iastate.edu/request/gis/watchwarn.phtml) has a geojson source for current alerts, and every alert has a polygon attached! The alerts data (still US only) is now pulled from here.
-* June 9, 2021:
-  * Added several new variables to the front end website
-  * Changed the UV processing factor from 0.25 to 0.4
-  * Corrected a sunrise/ sunset timing issue
-* May 25, 2021:
-  * Corrected an icon issue, identified [here](https://github.com/alexander0042/pirate-weather-hacs/issues/2)
-* May 20, 2021:
-  * Changed the GFS retrieval to interpolate between a weighted average (by 1/distance) of the 9 closest grid cells, instead of just taking the nearest cell. This will help to smooth out some of the sudden jumps in the results. 
-  
