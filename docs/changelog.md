@@ -1,7 +1,6 @@
 # Changelog
 * Recent Updates- Winter 2022
-    * Official V1.0 release! These docs have been updated to reflect the current version, but I'll leave the previous version up for reference under the [v0.1 header](https://pirateweather.readthedocs.io/en/latest/indexv01/). Some of the highlights of this release are:
-
+    * Official V1.0 release! These docs have been updated to reflect the current version, but I'll leave the previous version up for reference under the [v0.1 header](https://pirateweather.readthedocs.io/en/latest/indexv01/).
     * Changed the data ingest pipeline to use AWS Fargate (thanks sponsors!) improving the resolution by 4x!
     * Added short term historic data via the `time` parameter.
     * Fixed a long standing issue with wind speeds.
@@ -9,7 +8,6 @@
     * Moved the documentation over to ReadTheDocs.
     * Published the [processing scripts](https://github.com/alexander0042/pirateweather/tree/main/scripts) and [docker image](https://gallery.ecr.aws/j9v4j3c7/pirate-wgrib2).
     * Added a version tag to the flags field
-
 * October 4, 2021
     * Still working on bringing the NBM datasource online, but in the meantime I fixed a couple issues with [cloud cover](https://github.com/alexander0042/pirate-weather-ha/issues/18) and [pressure](https://github.com/alexander0042/pirate-weather-ha/issues/14) data responses.
     * The back end of this service is also getting more stable and predictable, so I've raised the free tier to 20,000 API calls/ month.
