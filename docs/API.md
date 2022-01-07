@@ -50,7 +50,7 @@ Results are always returned in UTC time using UNIX timestamps, and internailly U
 
 ### Example
 ```
-GET https://api.pirateweather.net/forecast/QqOWEnMw0W33rb6yXRXeq2c6m3a2Hfjg4l5RRzwW/45.42,-74.30,2022-01-06T12:00:00Z?&units=ca
+GET https://api.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/45.42,-74.30,2022-01-06T12:00:00Z?&units=ca
 
 {
    "latitude":45.42,
