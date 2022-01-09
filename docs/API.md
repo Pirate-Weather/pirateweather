@@ -65,12 +65,16 @@ For compatability with Dark Sky, `us` (Imperial units) are the defult if nothing
 * `visibility`: Kilometers.
 
 #### Exclude
+Newly added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Excludabe paramters can be added as a comma seperated list, with the options being:
 
-
+* `currently`
+* `minutely`
+* `hourly`
+* `daily`
+* `alerts`
 
 #### Extend
-
-
+Finally, if `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48!
 
 ### Example
 ```
