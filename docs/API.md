@@ -1,59 +1,50 @@
-# API Docs
-
-This page serves as the documentation for the Pirate Weather API call and responce format. Since this service is designed to be a drop in replacement for the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs), the goal is to match that as closely as possibile, and any disagrement between their service and Pirate Weather will be treated as a bug. However, as Pirate Weather continues to evolve, I plan on adding small, non-breaking additions where I can, and they will be documented here! Plus, always better to have my own (open source and editable) version of the docs!
+﻿# API Docs
+This page serves as the documentation for the Pirate Weather API call and response format. Since this service is designed to be a drop in replacement for the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs), the goal is to match that as closely as possible, and any disagreement between their service and Pirate Weather will be treated as a bug. However, as Pirate Weather continues to evolve, I plan on adding small, non-breaking additions where I can, and they will be documented here! Plus, always better to have my own (open source and editable) version of the docs!
 
 ## Request
 The minimum structure for every request to this service is the same:
 ```
       https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude]
-```	
-
-This specifies the service (either `api` or `timemachine`), root url (`pirateweather.net/forecast`), the api key used in the request (`[apikey]`), and the location (`[latitude],[longitude]`). There are many other ways to customise this request, but this is the minimum requirement! Calling the API with this request will return a JSON data structure (described below) with the requested weather information!
-
+``` 
+This specifies the service (either `api` or `timemachine`), root url (`pirateweather.net/forecast`), the api key used in the request (`[apikey]`), and the location (`[latitude],[longitude]`). There are many other ways to customize this request, but this is the minimum requirement! Calling the API with this request will return a JSON data structure (described below) with the requested weather information!
 All request attributes are contained within the URL. Request headers are not parsed by the API, and returned headers only contain debugging information, with all the data contained in the JSON payload. 
 
 ### Request Parameters
 The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 ```
       https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]
-```	
-
+``` 
 
 #### API Key
-The API key needs to be requested from <https://pirateweather.net/>. After signing up for the service, the forecast API needs to be subscribed to, by logging in and clicking subscribe. Once subscribed to the API, it can take up to 20 minutes for the change to propogate to the gateway to allow requests, so go grab a coffee and it should be ready shortly after. 
-
-As a reminder, this key is secret, and unique to each user. Keep it secret, and do not have it hard coded into the your appplication's source, and definitly don't commit it to a git repo!
-
+The API key needs to be requested from <https://pirateweather.net/>. After signing up for the service, the forecast API needs to be subscribed to, by logging in and clicking subscribe. Once subscribed to the API, it can take up to 20 minutes for the change to propagate to the gateway to allow requests, so go grab a coffee and it should be ready shortly after. 
+As a reminder, this key is secret, and unique to each user. Keep it secret, and do not have it hard-coded into an application's source, and definitely don't commit it to a git repo!
 
 #### Location
-The location is specified by a latitude (1st) and longitude (2nd) in decimal degrees (ex. `45.42,-75.69`). An unlimited number of decimal places are allowed; however, the API only returns data to the closest 13 km model square, so there's no benifit after 3 digits. While the recomended way to format this field is with positive (North/ West) and negative (South/ East) degrees, results should be valid when submitting longitudes from 0 to 360, instead of -180 to 180. 
-
+The location is specified by a latitude (1st) and longitude (2nd) in decimal degrees (ex. `45.42,-75.69`). An unlimited number of decimal places are allowed; however, the API only returns data to the closest 13 km model square, so there's no benefit after 3 digits. While the recommended way to format this field is with positive (North/ West) and negative (South/ East) degrees, results should be valid when submitting longitudes from 0 to 360, instead of -180 to 180. 
 
 #### Time
 The time field is optional for the forecast request, but mandatory for a historic request. If present, time can be specified in one of three different ways:
 
-1. UNIX timstamp, or the number of seconds since midnight GMT on 1 Jan 1970 (This is the prefered way).
+1. UNIX timestamp, or the number of seconds since midnight GMT on 1 Jan 1970 (this is the preferred way).
 2. A datestring in the local time zone of the location being requested: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]`.
 3. A datestring in UTC time: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]Z`
 
 It's worth noting that Dark Sky also allows strings with a specified time zone (ex. `+[HH][MM]`). Right now this isn't supported, but if it's important for a workflow I can try to get it working.
-
-Results are always returned in UTC time using UNIX timestamps, and internailly UNIX time is used for everything, with the exception of calculating where to begin and end the daily data. Also, for checking time format conversions, I found <https://www.silisoftware.com/tools/date.php> to be an invaluable resource.
-
+If the time variable is not included, then the current time is used for the request. If a time variable is included, the request is treated as if it was requested at that time. This means that the API will return the forecast data that would have been returned then- so not quite observations, but the last forecast for that date. Results are always returned in UTC time using UNIX timestamps, and internally UNIX time is used for everything, with the exception of calculating where to begin and end the daily data. Also, for checking time format conversions, I found <https://www.silisoftware.com/tools/date.php> to be an invaluable resource.
 #### Units
-Specifies the requested unit for the weather conditions. Options are:
+Specifies the requested unit for the weather conditions. Options are
 
-* `ca`: SI, with Wind Speed and Wind Gust in kilometers per hour.
+* `ca`: SI, with Wind Speed and Wind Gust in kilometres per hour.
 * `uk`: SI, with Wind Speed and Wind Gust in miles per hour and visibility are in miles.
 * `us`: Imperial units
 * `si`: SI units
 
-For compatability with Dark Sky, `us` (Imperial units) are the defult if nothing is specified. For reference, the SI units are:
+For compatibility with Dark Sky, `us` (Imperial units) are the default if nothing is specified. For reference, the SI units are
 
-* `summary`: Temperatures in degrees Celsius or accumilation in centimeters .
-* `precipIntensity`: Millimeters per hour.
-* `precipIntensityMax`: Millimeters per hour.
-* `precipAccumulation`: Centimeters.
+* `summary`: Temperatures in degrees Celsius or accumulation in centimetres .
+* `precipIntensity`: Millimetres per hour.
+* `precipIntensityMax`: Millimetres per hour.
+* `precipAccumulation`: Centimetres.
 * `temperature`: Degrees Celsius.
 * `temperatureMin`: Degrees Celsius.
 * `temperatureMax`: Degrees Celsius.
@@ -62,10 +53,10 @@ For compatability with Dark Sky, `us` (Imperial units) are the defult if nothing
 * `windSpeed`: Meters per second.
 * `windGust`: Meters per second.
 * `pressure`: Hectopascals.
-* `visibility`: Kilometers.
+* `visibility`: Kilometres.
 
 #### Exclude
-Newly added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Excludabe paramters can be added as a comma seperated list, with the options being:
+Newly added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Excludabe parameters can be added as a comma-separated list, with the options being:
 
 * `currently`
 * `minutely`
@@ -79,7 +70,6 @@ Finally, if `extend=hourly` is included, hourly data for the next 168 hours will
 ### Example
 ```
 GET https://api.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/45.42,-74.30,2022-01-06T12:00:00Z?&units=ca
-
 {
    "latitude":45.42,
    "longitude":-74.30,
@@ -119,7 +109,7 @@ GET https://api.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/
             "precipIntensityError":0.0011,
             "precipType":"none"
          },
-		 ...
+   ...
       ]
    },
    "hourly":{
@@ -148,7 +138,7 @@ GET https://api.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/
             "visibility":19.5,
             "ozone":401.15
          },
-		 ...
+   ...
       ]
    },
    "daily":{
@@ -194,7 +184,7 @@ GET https://api.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/
             "apparentTemperatureMax":-8.73,
             "apparentTemperatureMaxTime":1641538800
          },
-		...
+  ...
       ]
    },
    "flags":{
@@ -209,23 +199,18 @@ GET https://api.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/
 }
 ```
 
-
 ### Time Machine Request
-
-
+In progress.
 ## Response
-
+In progress.
 ### Data Block
-
+In progress.
 
 ### Data Point
-
+In progress.
 
 ### Alerts
-
+In progress.
 
 ### Flags
-
-
-
-
+In progress.
