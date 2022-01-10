@@ -12,6 +12,7 @@ To sign up, a free API key can be requested at <https://pirateweather.net>. Docu
 In this repository, I've included:
     * The Docker image for processing:
      * <https://github.com/alexander0042/pirateweather/tree/main/wgrib2>
+	 * <https://gallery.ecr.aws/j9v4j3c7/pirate-wgrib2>
  * The processing scripts:
      * <https://github.com/alexander0042/pirateweather/tree/main/scripts>
  * API Documentation:
