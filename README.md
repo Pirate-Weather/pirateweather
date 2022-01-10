@@ -18,5 +18,4 @@ In this repository, I've included:
      * <https://github.com/alexander0042/pirateweather/tree/main/docs>
 
 ## Support
-Keeping this free and running isn't free, so donations to support this project are greatly appreciated!
-  <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
+Keeping this free and running isn't free, so [donations to support this project](https://github.com/sponsors/alexander0042) are greatly appreciated! Plus, recurring monthly donations let me raise a API limit, allowing more frequent weather refreshes! 
