@@ -1,5 +1,13 @@
 # Changelog
-* Recent Updates- Winter 2022
+* Febuary 1, 2022: API version 1.1
+    * Bugfix and performance release to clean up some things that didn't make it into V1.0.
+    * Much (30%) faster API response times by changing how the nearest grid cell lookup is performed. The grid cell is now calculated directly using the HRRR/ GFS grid math, as opposed to reading from an index file. The time zone lookup has also been optimized to only call the lookup function once. 
+    * Fixed the implementation of the "exclude" option.
+    * Fixed the US NWS alerts parser.
+    * Per [this issue](https://github.com/alexander0042/pirate-weather-ha/issues/30#issuecomment-1014959232), precipitation intensity is now always returned in mm of water equivalent per hour. 
+    * Per [this issue](https://github.com/alexander0042/pirate-weather-ha/issues/30#issuecomment-1009379064), the precipitation icon is now trigged by 0.25 mm/h of precipitation, instead of 1 mm/h.
+    * Corrected a small bug where a negative precipitation rate could be returned.
+* Winter 2022
     * Official V1.0 release! These docs have been updated to reflect the current version, but I'll leave the previous version up for reference under the [v0.1 header](https://pirateweather.readthedocs.io/en/latest/indexv01/).
     * Changed the data ingest pipeline to use AWS Fargate (thanks sponsors!) improving the resolution by 4x!
     * Added short term historic data via the `time` parameter.
