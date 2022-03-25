@@ -5,7 +5,7 @@
 * March 22, 2022: API version 1.1.4
 	* Fix a bug when requesting data at the edges of the domain [per issue #41](https://github.com/alexander0042/pirate-weather-ha/issues/41).
 * March 16, 2022: API version 1.1.3
-	* Small performance increase (~0.3s) by changing the way time zones are calculated to use [TimeZoneFinderL](https://timezonefinder.readthedocs.io/en/latest/). This could result in incorrect time zones sometimes, but since this isn't used as part of the weather details, shouldn't pose a major issue. If highly accurate time zones are required, a new tz=precise url parameter is available.
+	* Small performance increase (~0.3 s) by changing the way time zones are calculated to use [TimeZoneFinderL](https://timezonefinder.readthedocs.io/en/latest/). This could result in incorrect time zones sometimes, but since this isn't used as part of the weather details, shouldn't pose a major issue. If highly accurate time zones are required, a new tz=precise url parameter is available.
 	* Return elevation data from [ETPOP1](https://www.ngdc.noaa.gov/mgg/global/).
 * February 18, 2022: API version 1.1.2	
 	* Fix for missing alerts that were missing an issued time.
