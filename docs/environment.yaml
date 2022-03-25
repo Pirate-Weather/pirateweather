@@ -1,0 +1,10 @@
+# File: docs/environment.yaml
+
+name: docs
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - mkdocs==1.2.3
+  - pip:
+    - jinja2==3.0.0
