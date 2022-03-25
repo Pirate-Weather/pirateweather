@@ -9,4 +9,5 @@ nav:
     - 'API': 'API.md'    
     - 'Issue Tracker': 'https://github.com/alexander0042/pirateweather/issues/'
     - 'Changelog': 'changelog.md'
+    - 'Roadmap': 'roadmap.md'
     - 'Previous Versions- v0.1': 'indexv01.md'

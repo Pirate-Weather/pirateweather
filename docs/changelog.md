@@ -1,4 +1,17 @@
 # Changelog
+* March 25, 2022: API version 1.1.5
+    * Changed the visibility threshold for the fog icon to 1 km per [OFCM](https://web.archive.org/web/20110521015053/http://www.ofcm.gov/fmh-1/pdf/H-CH8.pdf).
+	* Part of [issue #30](https://github.com/alexander0042/pirate-weather-ha/issues/30).
+* March 22, 2022: API version 1.1.4
+	* Fix a bug when requesting data at the edges of the domain [per issue #41](https://github.com/alexander0042/pirate-weather-ha/issues/41).
+* March 16, 2022: API version 1.1.3
+	* Small performance increase (~0.3s) by changing the way time zones are calculated to use [TimeZoneFinderL](https://timezonefinder.readthedocs.io/en/latest/). This could result in incorrect time zones sometimes, but since this isn't used as part of the weather details, shouldn't pose a major issue. If highly accurate time zones are required, a new tz=precise url parameter is available.
+	* Return elevation data from [ETPOP1](https://www.ngdc.noaa.gov/mgg/global/).
+* February 18, 2022: API version 1.1.2	
+	* Fix for missing alerts that were missing an issued time.
+	* Corrected the accumulation when sleet was forecasted (part of [issue #30](https://github.com/alexander0042/pirate-weather-ha/issues/30)).  
+* February 4, 2022: API version 1.1.1	
+	* Fix for missing alert description.
 * Febuary 1, 2022: API version 1.1
     * Bugfix and performance release to clean up some things that didn't make it into V1.0.
     * Much (30%) faster API response times by changing how the nearest grid cell lookup is performed. The grid cell is now calculated directly using the HRRR/ GFS grid math, as opposed to reading from an index file. The time zone lookup has also been optimized to only call the lookup function once. 
