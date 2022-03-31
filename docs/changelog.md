@@ -1,4 +1,9 @@
 # Changelog
+* March 30, 2022: API version 1.1.6
+    * Updated the fog icon to allow it to display at night.
+	* Aligned the cloud cover icon with NOAA definitions.
+	* Capped the visibility at 10 miles to avoid HRRR/ GFS inconsistency.
+	* Corrected a bug causing "-0" to be returned when very small accumulations were forecasted.
 * March 25, 2022: API version 1.1.5
     * Changed the visibility threshold for the fog icon to 1 km per [OFCM](https://web.archive.org/web/20110521015053/http://www.ofcm.gov/fmh-1/pdf/H-CH8.pdf).
 	* Part of [issue #30](https://github.com/alexander0042/pirate-weather-ha/issues/30).
