@@ -4,16 +4,18 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 * March 30, 2022: API version 1.1.6
     * Updated the fog icon to allow it to display at night.
-	* Aligned the cloud cover icon with NOAA definitions.
+	* Aligned the cloud cover icon with [NOAA definitions](https://weather.com/science/weather-explainers/news/common-weather-terms-used-incorrectly).
 	* Capped the visibility at 10 miles to avoid HRRR/ GFS inconsistency.
 	* Corrected a bug causing "-0" to be returned when very small accumulations were forecasted.
+	* Corrected the wind icon threshold.
+	* Resolves [Issue #3](https://github.com/alexander0042/pirateweather/issues/3).
 * March 25, 2022: API version 1.1.5
     * Changed the visibility threshold for the fog icon to 1 km per [OFCM](https://web.archive.org/web/20110521015053/http://www.ofcm.gov/fmh-1/pdf/H-CH8.pdf).
 	* Part of [issue #30](https://github.com/alexander0042/pirate-weather-ha/issues/30).
 * March 22, 2022: API version 1.1.4
 	* Fix a bug when requesting data at the edges of the domain [per issue #41](https://github.com/alexander0042/pirate-weather-ha/issues/41).
 * March 16, 2022: API version 1.1.3
-	* Small performance increase (~0.3 s) by changing the way time zones are calculated to use [TimeZoneFinderL](https://timezonefinder.readthedocs.io/en/latest/). This could result in incorrect time zones sometimes, but since this isn't used as part of the weather details, shouldn't pose a major issue. If highly accurate time zones are required, a new tz=precise url parameter is available.
+	* Small performance increase (~0.3 s) by changing the way time zones are calculated to use [TimeZoneFinderL](https://timezonefinder.readthedocs.io/en/latest/). This could result in incorrect time zones sometimes, but since this isn't used as part of the weather details, shouldn't pose a major issue. If highly accurate time zones are required, a new `tz=precise` url parameter is available.
 	* Return elevation data from [ETPOP1](https://www.ngdc.noaa.gov/mgg/global/).
 * February 18, 2022: API version 1.1.2	
 	* Fix for missing alerts that were missing an issued time.
