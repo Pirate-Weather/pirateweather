@@ -1,4 +1,7 @@
 # Changelog
+
+For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
+
 * March 30, 2022: API version 1.1.6
     * Updated the fog icon to allow it to display at night.
 	* Aligned the cloud cover icon with NOAA definitions.
