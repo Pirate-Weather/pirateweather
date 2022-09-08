@@ -1,7 +1,8 @@
 # Changelog
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
-
+* September 7, 2022: API Version 1.1.7
+    * Update the logic when model data is missing per [this issue](https://github.com/alexander0042/pirate-weather-ha/issues/30#issuecomment-1227640161).
 * March 30, 2022: API version 1.1.6
     * Updated the fog icon to allow it to display at night.
 	* Aligned the cloud cover icon with [NOAA definitions](https://weather.com/science/weather-explainers/news/common-weather-terms-used-incorrectly).
