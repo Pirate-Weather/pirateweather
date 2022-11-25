@@ -2,6 +2,8 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
+* November 25, 2022: API Version 1.1.9
+    * Add in a daily average precipitation intensity for compatibility with Dark Sky. Note that this value will always be in either mm or inches, so may not align with accumulation during days with mixed rain and snow.
 * October 28, 2022: API Version 1.1.8
     * Change the interpolation weighting function for GFS/ GEFS model data from inverse distance (1/distance) to inverse distance squared (1/distance^2). This increases the weight of the nearest grid cell, particularly when a forecast point is near the centre of a cell. The goal for this change is to make results more accurate in coastal areas where there can be large differences between land and water cells while keeping the smooth transition from one grid point to the next.
 * September 7, 2022: API Version 1.1.7
