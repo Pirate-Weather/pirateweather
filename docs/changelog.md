@@ -2,6 +2,8 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
+* December 1, 2022: API Version 1.1.10
+    * Quick fix to address a server error when requesting a point on the edge of the HRRR grid.
 * November 25, 2022: API Version 1.1.9
     * Add in a daily average precipitation intensity for compatibility with Dark Sky. Note that this value will always be in either mm or inches, so may not align with accumulation during days with mixed rain and snow.
 * October 28, 2022: API Version 1.1.8
