@@ -3,8 +3,8 @@
 2. Major change to weather alerts.
     * Using [WMO data](https://severeweather.wmo.int/v2/), I'm planning on returning alerts for all jurisdictions, not just the US! 
 	* Alerts are also the slowest part of the API response now, since each polygon is checked. The plan is to interpolate alerts onto a grid as a processing step, letting the API function quickly check a NetCDF file instead.
-3. GUI flow for the Home Assistant integration.
-    * Following [this process](https://developers.home-assistant.io/docs/data_entry_flow_index).
+3. Investigate using radar data.
+    *  Investigate if it's feasible to use radar data for the currently conditions. This is a suggestion in [issue #10](https://github.com/alexander0042/pirateweather/issues/10).
 4. Text summaries and translations.	
 	* Based on the [existing repository](https://github.com/darkskyapp/translations).
 5. Improve source data.
