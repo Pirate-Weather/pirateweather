@@ -1,6 +1,6 @@
 ---
 title: Pirate Weather
-header: An Open Weather Forcast API
+header: An Open Weather Forecast API
 tagline: A weather forecast API, built as an alternative to the Dark Sky API.
 gettingStartedButton: Get Started
 apiListButton: Our APIs

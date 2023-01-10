@@ -6,7 +6,7 @@ title: Getting Started
 ### Create an account and subscribe to APIs
 To use this API an account is required, which provides an API key. The account provides a way to assign API keys, as well as keep track of usage. Create or sign in using the buttons in the top right.
 
-After you create a new account, you will have a new API Key but it won't be linked to the forecast API. To do this, navigate to [APIs](/apis) and **click subscribe** under the PirateForcast heading. There is also a Try it out! feature; however, it doesn't seem to be working! 
+After you create a new account, you will have a new API Key but it won't be linked to the forecast API. To do this, navigate to [APIs](/apis) and **click subscribe** under the PirateForecast heading. There is also a Try it out! feature; however, it doesn't seem to be working! 
 
 <img src="https://pirateweather.net/custom-content/Subscribe2.png" width="325">
 
