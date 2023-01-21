@@ -233,28 +233,28 @@ In progress.
 #### apparentTemperature
 In progress.
 
-#### apparentTemperatureMax, only on `daily`<br>
+#### apparentTemperatureMax, only on `daily`
 In progress.
 
-#### apparentTemperatureMaxTime, only on `daily`<br>
+#### apparentTemperatureMaxTime, only on `daily`
 In progress.
 
-#### apparentTemperatureMin, only on `daily`<br>
+#### apparentTemperatureMin, only on `daily`
 In progress.
 
-#### apparentTemperatureMinTime, only on `daily`<br>
+#### apparentTemperatureMinTime, only on `daily`
 In progress.
 
-#### apparentTemperatureHigh, only on `daily`<br>
+#### apparentTemperatureHigh, only on `daily`
 In progress.
 
-#### apparentTemperatureHighTime, only on `daily`<br>
+#### apparentTemperatureHighTime, only on `daily`
 In progress.
 
-#### apparentTemperatureLow, only on `daily`<br>
+#### apparentTemperatureLow, only on `daily`
 In progress.
 
-#### apparentTemperatureLowTime, only on `daily`<br>
+#### apparentTemperatureLowTime, only on `daily`
 In progress.
 
 #### cloudCover
@@ -292,34 +292,34 @@ The algorithm here is straightforward, coming from this [NOAA resource](https://
 
 For additional details, see [issue #3](https://github.com/alexander0042/pirateweather/issues/3).
 
-#### moonPhase, only on `daily`<br>
+#### moonPhase, only on `daily`
 In progress.
 
-#### nearestStormBearing, only on `currently`<br>
+#### nearestStormBearing, only on `currently`
 In progress.
 
-#### nearestStormDistance, only on `currently`<br>
+#### nearestStormDistance, only on `currently`
 In progress.
 
 #### ozone
 In progress.
 
-#### precipAccumulation, only on `hourly` and `daily`<br>
+#### precipAccumulation, only on `hourly` and `daily`
 In progress.
 
 #### precipIntensity
 The rate in which liquid precipitation is falling. This value is expressed in millimeters per hour or inches per hour depending on the requested units.
 
-#### precipIntensityMax, only on `daily`<br>
+#### precipIntensityMax, only on `daily`
 In progress.
 
-#### precipIntensityMaxTime, only on `daily`<br>
+#### precipIntensityMaxTime, only on `daily`
 In progress.
 
-#### precipIntensityMin, only on `daily`<br>
+#### precipIntensityMin, only on `daily`
 In progress.
 
-#### precipIntensityMinTime, only on `daily`<br>
+#### precipIntensityMinTime, only on `daily`
 In progress.
 
 #### precipIntensityProbablity
@@ -334,37 +334,37 @@ In progress.
 #### summary
 In progress.
 
-#### sunriseTime, only on `daily`<br>
+#### sunriseTime, only on `daily`
 In progress.
 
-#### sunsetTime, only on `daily`<br>
+#### sunsetTime, only on `daily`
 In progress.
 
 #### temperature
 The air temperature in degrees celsius or degrees farenheit depending on the requested `units`
 
-#### temperatureHigh, only on `daily`<br>
+#### temperatureHigh, only on `daily`
 The daytime high temperature calculated between 6am and 6am local time.
 
-#### temperatureHighTime, only on `daily`<br>
+#### temperatureHighTime, only on `daily`
 The time in which the high temperature occurs represented in UNIX time.
 
-#### temperatureLow, only on `daily`<br>
+#### temperatureLow, only on `daily`
 The overnight low temperature calculated between 6am and 6am local time.
 
-#### temperatureLowTime, only on `daily`<br>
+#### temperatureLowTime, only on `daily`
 The time in which the low temperature occurs represented in UNIX time.
 
-#### temperatureMax, only on `daily`<br>
+#### temperatureMax, only on `daily`
 The maximum temperature calculated between 12am and 12am local time.
 
-#### temperatureMaxTime, only on `daily`<br>
+#### temperatureMaxTime, only on `daily`
 The time in which the maximum temperature occurs represented in UNIX time.
 
-#### temperatureMin, only on `daily`<br>
+#### temperatureMin, only on `daily`
 The minimum temperature calculated between 12am and 12am local time.
 
-#### temperatureMinTime, only on `daily`<br>
+#### temperatureMinTime, only on `daily`
 The time in which the minimum temperature occurs represented in UNIX time.
 
 #### time
@@ -373,7 +373,7 @@ In progress.
 #### unIndex
 The UV index.
 
-#### uvIndexTime, only on `daily`<br>
+#### uvIndexTime, only on `daily`
 The time in which the maximum `uvIndex` occurs during the day.
 
 #### visibility
