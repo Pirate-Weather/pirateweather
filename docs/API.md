@@ -123,101 +123,101 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 	   },
 	   "hourly":{
 	      "summary": "Cloudy",
-		  "icon": "cloudy",
-		  "data": [
-		     {
-			"time": 1674316800.0,
-			"icon": "partly-cloudy-day",
-			"summary": "Partly Cloudy",
-			"precipIntensity": 0.0033,
-			"precipProbability": 0.0,
-			"precipIntensityError": 0.0026,
-			"precipAccumulation": 0.0033,
-			"precipType": "snow",
-			"temperature": -5.4,
-			"apparentTemperature": -8.63,
-			"dewPoint": -7.02,
-			"humidity": 0.9,
-			"pressure": 1014.4,
-			"windSpeed": 6.88,
-			"windGust": 15.08,
-			"windBearing": 258.69,
-			"cloudCover": 0.49,
-			"uvIndex": 1.74,
-			"visibility": 14.8,
-			"ozone": 405.38
-		     },
+	      "icon": "cloudy",
+	      "data": [
+	         {
+	            "time": 1674316800.0,
+	            "icon": "partly-cloudy-day",
+	            "summary": "Partly Cloudy",
+	            "precipIntensity": 0.0033,
+	            "precipProbability": 0.0,
+	            "precipIntensityError": 0.0026,
+	            "precipAccumulation": 0.0033,
+	            "precipType": "snow",
+	            "temperature": -5.4,
+	            "apparentTemperature": -8.63,
+	            "dewPoint": -7.02,
+	            "humidity": 0.9,
+	            "pressure": 1014.4,
+	            "windSpeed": 6.88,
+	            "windGust": 15.08,
+	            "windBearing": 258.69,
+	            "cloudCover": 0.49,
+	            "uvIndex": 1.74,
+	            "visibility": 14.8,
+	            "ozone": 405.38
+	         },
 	   ...
 	      ]
 	   },
 	   "daily": {
-		 "summary": "Snow",
-		 "icon": "cloudy",
-		 "data": [
-		   {
-			"time": 1674277200,
-			"icon": "cloudy",
-			"summary": "Cloudy",
-			"sunriseTime": 1674304502,
-			"sunsetTime": 1674338008,
-			"moonPhase": 0.9848795204636577,
-			"precipIntensity": 0.0179,
-			"precipIntensityMax": 0.0362,
-			"precipIntensityMaxTime": 1674356400,
-			"precipProbability": 0.0,
-			"precipAccumulation": 0.2861,
-			"precipType": "none",
-			"temperatureHigh": -2.59,
-			"temperatureHighTime": 1674331200,
-			"temperatureLow": -5.4,
-			"temperatureLowTime": 1674316800,
-			"apparentTemperatureHigh": -2.89,
-			"apparentTemperatureHighTime": 1674342000,
-			"apparentTemperatureLow": -8.63,
-			"apparentTemperatureLowTime": 1674316800,
-			"dewPoint": -5.6,
-			"humidity": 0.848,
-			"pressure": 1013.11,
-			"windSpeed": 5.92,
-			"windGust": 14.4,
-			"windBearing": 210.18,
-			"cloudCover": 0.768,
-			"uvIndex": 2.38,
-			"uvIndexTime": 1674320400,
-			"visibility": 15.1,
-			"temperatureMin": -5.4,
-			"temperatureMinTime": 1674316800,
-			"temperatureMax": -2.59,
-			"temperatureMaxTime": 1674331200,
-			"apparentTemperatureMin": -8.63,
-			"apparentTemperatureMinTime": 1674316800,
-			"apparentTemperatureMax": -2.89,
-			"apparentTemperatureMaxTime": 1674342000
-		   },
+	      "summary": "Snow",
+	      "icon": "cloudy",
+	      "data": [
+	         {
+	            "time": 1674277200,
+	            "icon": "cloudy",
+	            "summary": "Cloudy",
+	            "sunriseTime": 1674304502,
+	            "sunsetTime": 1674338008,
+	            "moonPhase": 0.9848795204636577,
+	            "precipIntensity": 0.0179,
+	            "precipIntensityMax": 0.0362,
+	            "precipIntensityMaxTime": 1674356400,
+	            "precipProbability": 0.0,
+	            "precipAccumulation": 0.2861,
+	            "precipType": "none",
+	            "temperatureHigh": -2.59,
+	            "temperatureHighTime": 1674331200,
+	            "temperatureLow": -5.4,
+	            "temperatureLowTime": 1674316800,
+	            "apparentTemperatureHigh": -2.89,
+	            "apparentTemperatureHighTime": 1674342000,
+	            "apparentTemperatureLow": -8.63,
+	            "apparentTemperatureLowTime": 1674316800,
+	            "dewPoint": -5.6,
+	            "humidity": 0.848,
+	            "pressure": 1013.11,
+	            "windSpeed": 5.92,
+	            "windGust": 14.4,
+	            "windBearing": 210.18,
+	            "cloudCover": 0.768,
+	            "uvIndex": 2.38,
+	            "uvIndexTime": 1674320400,
+	            "visibility": 15.1,
+	            "temperatureMin": -5.4,
+	            "temperatureMinTime": 1674316800,
+	            "temperatureMax": -2.59,
+	            "temperatureMaxTime": 1674331200,
+	            "apparentTemperatureMin": -8.63,
+	            "apparentTemperatureMinTime": 1674316800,
+	            "apparentTemperatureMax": -2.89,
+	            "apparentTemperatureMaxTime": 1674342000
+	         },
 	  ...
-	      ]
-	       "alerts": [
+	   ]
+	   "alerts": [
         
-	      ],
-	      "flags": {
-	    	    "sources": [
-		    "ETOPO1",
-		    "gfs",
-		    "gefs",
-		    "hrrrsubh",
-		    "hrrr"
+	   ],
+	   "flags": {
+	      "sources": [
+	         "ETOPO1",
+	         "gfs",
+	         "gefs",
+	         "hrrrsubh",
+	         "hrrr"
 	    ],
-	        "sourceTimes": {
-		    "hrrr_0-18": "2023-01-21 14:00:00",
-		    "hrrr_subh": "2023-01-21 14:00:00",
-		    "hrrr_18-48": "2023-01-21 12:00:00",
-		    "gfs": "2023-01-21 06:00:00",
-		    "gefs": "2023-01-21 06:00:00"
+	   "sourceTimes": {
+	         "hrrr_0-18": "2023-01-21 14:00:00",
+	         "hrrr_subh": "2023-01-21 14:00:00",
+	         "hrrr_18-48": "2023-01-21 12:00:00",
+	         "gfs": "2023-01-21 06:00:00",
+	         "gefs": "2023-01-21 06:00:00"
 	    },
-		"nearest-station": 0,
-		"units": "ca",
-		"version": "V1.1.10"
-	    }
+	   "nearest-station": 0,
+	   "units": "ca",
+	   "version": "V1.1.10"
+	   }
 	}
 ```
 
