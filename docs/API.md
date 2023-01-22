@@ -60,7 +60,7 @@ For compatibility with Dark Sky, `us` (Imperial units) are the default if nothin
 * `visibility`: Kilometres.
 
 #### Exclude
-Newly added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Exclude parameters can be added as a comma-separated list, with the options being:
+Added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Exclude parameters can be added as a comma-separated list, with the options being:
 
 * `currently`
 * `minutely`
@@ -344,28 +344,28 @@ In progress.
 The air temperature in degrees celsius or degrees farenheit depending on the requested `units`
 
 #### temperatureHigh, only on `daily`
-The daytime high temperature calculated between 6am and 6am local time.
+In progress.
 
 #### temperatureHighTime, only on `daily`
-The time in which the high temperature occurs represented in UNIX time.
+In progress.
 
 #### temperatureLow, only on `daily`
-The overnight low temperature calculated between 6am and 6am local time.
+In progress.
 
 #### temperatureLowTime, only on `daily`
-The time in which the low temperature occurs represented in UNIX time.
+In progress.
 
 #### temperatureMax, only on `daily`
-The maximum temperature calculated between 12am and 12am local time.
+In progress.
 
 #### temperatureMaxTime, only on `daily`
-The time in which the maximum temperature occurs represented in UNIX time.
+In progress.
 
 #### temperatureMin, only on `daily`
-The minimum temperature calculated between 12am and 12am local time.
+In progress.
 
 #### temperatureMinTime, only on `daily`
-The time in which the minimum temperature occurs represented in UNIX time.
+In progress.
 
 #### time
 In progress.
