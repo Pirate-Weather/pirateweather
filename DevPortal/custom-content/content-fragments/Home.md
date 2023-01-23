@@ -1,19 +1,24 @@
 ---
 title: Pirate Weather
-header: An Open Weather Forecast API
-tagline: A weather forecast API, built as an alternative to the Dark Sky API.
+header: A Free, Open, and Documented Forecast API 
+tagline: An unprocessed weather forecast API, built to be fully Dark Sky compatible.
 gettingStartedButton: Get Started
 apiListButton: Our APIs
 ---
 # Quick Links
-* To check to weather using this service: <https://weather.pirateweather.net>
-* For the technical blog describing the setup: <https://docs.pirateweather.net>
-* For the Home Assistant Integration: <https://github.com/alexander0042/pirate-weather-hacs>
-* To register for the API (make sure to **click subscribe** on the API page after signing up!): <https://pirateweather.net/getting-started>
-* Processing code is available in the repo: <https://github.com/alexander0042/pirateweather>
-* For the changelog: <https://docs.pirateweather.net/en/latest/changelog/>
+* [Get a weather forecast in the Dark Sky style](https://merrysky.net/)
+* [Technical blog](https://docs.pirateweather.net)
+* [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
+* [Processing code repo](https://github.com/alexander0042/pirateweather)
+* [Change log](https://docs.pirateweather.net/en/latest/changelog/)
 
-# PirateWeather API
+#### Publications and Press
+* [AWS blog post](https://aws.amazon.com/blogs/publicsector/making-weather-forecasts-accessible-serverless-infrastructure-open-data-aws/)
+* [TLDR Newsletter](https://tldr.tech/tech/2023-01-11)
+* [BoingBoing](https://boingboing.net/2023/01/10/pirate-weather-api-has-more-features.html)
+* [Hacker News Front Page](https://news.ycombinator.com/item?id=34329988)
+
+# Pirate Weather API
         
 Weather forecasts are primarily determined using models run by government agencies, but the outputs aren't easy to use or in [formats](https://weather.gc.ca/grib/what_is_GRIB_e.html) built for applications.
 To try to address this, I've put together a service (built on AWS Lambda) that reads public weather forecasts and serves it following the Dark Sky API style. It is **not** a reverse engineering of the API, since their implementation relies on radar forecasts for minutely results, as well as a few additional features. The API aims to return data using the same json structure as what Dark Sky uses, available here: [https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs). Feel free to register, subscribe to this API (navigate to [APIs](/apis) and **click subscribe**!), and let me know how it works at <api@alexanderrey.ca>.
@@ -59,7 +64,9 @@ I would love to get some comments on this service- if it's useful, how it's work
 1. Text summaries 
     * I would like to the official (and open-source) [Dark Sky package](https://github.com/darkskyapp/translations), but it's written in Node.js, not Python.
     * For now, the text summary just returns the icon text.
-2. Nearest storm data. I would love to add this, but have no idea how to calculate what a storm.
+2. More detailed weather alerts and global coverage.
+3. Nearest storm data. I would love to add this, but have no idea how to calculate what a storm.
+4. Maps!
 
 ## Technical details
 I've made a more comprehensive document with implementation details at <https://blog.pirateweather.net>. The big picture outline of this project is relatively straightforward. As new forecasts are posted to S3 buckets, an AWS Lambda function (in Python) downloads the grib files and extracts the relevant fields using [pywgrib2](https://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/pywgrib2.html). The crucial step to this project is that this NetCDF file is then "chunked" to allow for quick access to one point via the [NetCDF4-Python library](https://unidata.github.io/netcdf4-python/). This dramatically speeds up the access times, making quick retrieval of data when the API is called possible. The AWS API gateway handles the front of the API calls, and the [AWS API Developer Portal](https://github.com/awslabs/aws-api-gateway-developer-portal) covers API signups. 
@@ -68,9 +75,20 @@ For ensemble data, there is an extra step of running the wgrib2 [ens_processing]
 
 Historic requests (aka Time Machine) are provided using the [AWS ERA5 Dataset](https://registry.opendata.aws/ecmwf-era5/). This dataset is stored in the [Zarr](https://zarr.readthedocs.io/en/stable/), which makes it possible for me to grab a specific time step without having to store the entire dataset myself. 
 
-The [front-end webpage](https://weather.pirateweather.net) is a pretty basic vue.js app based on the excellent [weather-vue repository](https://github.com/krestaino/weather-vue). It relies on a tiny back-end API server to handle the geocoding, but otherwise just visualizes the returned weather data.
+### Architecture overview
+<img src="https://pirateweather.net/custom-content/Arch_Diagram_2023.png" width="325">
 
-<a href="https://app.cloudcraft.co/view/a876ff25-455c-4efd-8f7e-12b8a1c2153c?key=55b1925d-b2c4-4a54-8fec-16fbd00af0ef" target="_blank"><img src="https://pirateweather.net/custom-content/PirateWeather+API.png" width="370" height="457" alt="AWS Visualization" ></a>
+1. EventBridge timers launch Step Function to trigger Fargate
+2. WGRIB2 Image pulled from repo
+3. Fargate Cluster launched
+4. Task to: Download, Merge, Chunk GRB files
+5. Data saved to EFS
+6. NWS alerts saved to EFS as GeoJSON
+7. Lambda reads forecast data, processes and interpolates, returns JSON
+8. Expose JSON forecast data via API Gateway
+9. Distribute API endpoint via CloudFront
+10. Monitor API key usage
+
 
 ## Weather Data Sources
 All weather data comes from the AWS open data program <https://registry.opendata.aws/collab/noaa/>. This is a fantastic program, since it is more reliable than the NOAA distribution, and means there are no data transfer changes!
@@ -86,4 +104,4 @@ I would love to add more data sources some day, and while it would not be too te
 1. While this API will give minutely forecasts for anywhere in the world, they are calculated using the HRRR-subhourly forecasts, so only accurate to 15-minute periods. Outside of the HRRR domain, they are calculated using the GFS hourly forecasts, so really not adding much value! 
 2. Precipitation probabilities are a tricky problem to solve- weather models don't give a range of outcomes, just one answer. To get probabilities, this implementation relies on the Global Ensemble Forecast System [(GEFS)](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs). This is a 30-member ensemble, so if 1 member predicts precipitation, the probability will be 1/30. GEFS data is also used to predict precipitation type and accumulation. A 1:10 snow-water ratio is assumed. 
 3. Current conditions are based on model results (from HRRR-subhourly), which assimilates observations, but not direct observations. 
-4. Why "PirateWeather"? I've always thought that the HRRR model was pronounced the same way as the classic pirate "ARRR". Also, there is [one company](https://arstechnica.com/tech-policy/2020/10/google-asks-supreme-court-to-overrule-disastrous-ruling-on-api-copyrights/) out there that thinks APIs can be copyrighted, which might apply here. 
+4. Why "Pirate Weather"? I've always thought that the HRRR model was pronounced the same way as the classic pirate "ARRR". Plus, compared to the range of commercial APIs with mystery processing steps, this service focuses on providing direct model data, which is just a little bit disruptive. I still think there's room for improvement with the name, so send suggestions my way!
