@@ -22,7 +22,7 @@ As a reminder, this key is secret, and unique to each user. Keep it secret, and 
 #### Location
 The location is specified by a latitude (1st) and longitude (2nd) in decimal degrees (ex. `45.42,-75.69`). An unlimited number of decimal places are allowed; however, the API only returns data to the closest 13 km model square, so there's no benefit after 3 digits. While the recommended way to format this field is with positive (North/ West) and negative (South/ East) degrees, results should be valid when submitting longitudes from 0 to 360, instead of -180 to 180. 
 
-If you are looking for a place to figure out the latitude and longitude, https://www.latlong.net/ is a good starting point.
+If you are looking for a place to figure out the latitude and longitude, [https://www.latlong.net/](https://www.latlong.net/) is a good starting point.
 
 #### Time
 The time field is optional for the forecast request, but mandatory for a historic request. If present, time can be specified in one of three different ways:
@@ -60,7 +60,7 @@ For compatibility with Dark Sky, `us` (Imperial units) are the default if nothin
 * `visibility`: Kilometres.
 
 #### Exclude
-Newly added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Exclude parameters can be added as a comma-separated list, with the options being:
+Added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Exclude parameters can be added as a comma-separated list, with the options being:
 
 * `currently`
 * `minutely`
@@ -76,136 +76,150 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 
 
 ### Example
-	```
+```
 	GET https://api.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/45.42,-74.30?&units=ca
 	{
-	   "latitude":45.42,
-	   "longitude":-74.30,
-	   "timezone":"America/Toronto",
-	   "offset":-5.0,
-	   "currently":{
-	      "time":1641470400,
-	      "summary":"Clear",
-	      "icon":"clear-night",
-	      "nearestStormDistance":0,
-	      "nearestStormBearing":0,
-	      "precipIntensity":0.0,
-	      "precipProbability":0.0,
-	      "precipIntensityError":0.0,
-	      "precipType":"none",
-	      "temperature":-4.48,
-	      "apparentTemperature":-12.06,
-	      "dewPoint":-6.87,
-	      "humidity":0.84,
-	      "pressure":992.89,
-	      "windSpeed":27.918,
-	      "windGust":55.44,
-	      "windBearing":242.11,
-	      "cloudCover":0,
-	      "uvIndex":0.0,
-	      "visibility":19.5,
-	      "ozone":401.15
-	   },
+	  "latitude": 45.42,
+	  "longitude": -75.69,
+	  "timezone": "America/Toronto",
+	  "offset": -5.0,
+	  "elevation": 69,
+	  "currently": {
+		"time": 1674318840,
+		"summary": "Clear",
+		"icon": "clear-day",
+		"nearestStormDistance": 0,
+		"nearestStormBearing": 0,
+		"precipIntensity": 0.0,
+		"precipProbability": 0.0,
+		"precipIntensityError": 0.0,
+		"precipType": "none",
+		"temperature": -4.59,
+		"apparentTemperature": -7.82,
+		"dewPoint": -6.21,
+		"humidity": 0.88,
+		"pressure": 1014.3,
+		"windSpeed": 7.204,
+		"windGust": 14.18,
+		"windBearing": 255.53,
+		"cloudCover": 0.14,
+		"uvIndex": 2.38,
+		"visibility": 14.7,
+		"ozone": 402.2
+	  },
 	   "minutely":{
 	      "summary":"Clear",
 	      "icon":"clear",
 	      "data":[
 	         {
-	            "time":1641470400,
-	            "precipIntensity":0.0,
-	            "precipProbability":0.07,
-	            "precipIntensityError":0.0011,
-	            "precipType":"none"
+	            "time": 1674318840,
+		    "precipIntensity": 0.0,
+		    "precipProbability": 0.0,
+		    "precipIntensityError": 0.0,
+		    "precipType": "none"
 	         },
 	   ...
 	      ]
 	   },
 	   "hourly":{
-	      "summary":"Cloudy",
-	      "icon":"cloudy",
-	      "data":[
+	      "summary": "Cloudy",
+	      "icon": "cloudy",
+	      "data": [
 	         {
-	            "time":1641470400,
-	            "icon":"clear-night",
-	            "summary":"Clear",
-	            "precipIntensity":0.365,
-	            "precipProbability":0.07,
-	            "precipIntensityError":0.4044,
-	            "precipAccumulation":0.365,
-	            "precipType":"snow",
-	            "temperature":-4.48,
-	            "apparentTemperature":-12.06,
-	            "dewPoint":-6.87,
-	            "humidity":0.84,
-	            "pressure":992.89,
-	            "windSpeed":27.92,
-	            "windGust":55.44,
-	            "windBearing":242.11,
-	            "cloudCover":0,
-	            "uvIndex":0.0,
-	            "visibility":19.5,
-	            "ozone":401.15
+	            "time": 1674316800.0,
+	            "icon": "partly-cloudy-day",
+	            "summary": "Partly Cloudy",
+	            "precipIntensity": 0.0033,
+	            "precipProbability": 0.0,
+	            "precipIntensityError": 0.0026,
+	            "precipAccumulation": 0.0033,
+	            "precipType": "snow",
+	            "temperature": -5.4,
+	            "apparentTemperature": -8.63,
+	            "dewPoint": -7.02,
+	            "humidity": 0.9,
+	            "pressure": 1014.4,
+	            "windSpeed": 6.88,
+	            "windGust": 15.08,
+	            "windBearing": 258.69,
+	            "cloudCover": 0.49,
+	            "uvIndex": 1.74,
+	            "visibility": 14.8,
+	            "ozone": 405.38
 	         },
 	   ...
 	      ]
 	   },
-	   "daily":{
-	      "summary":"Partly Cloudy",
-	      "icon":"partly-cloudy-day",
-	      "data":[
+	   "daily": {
+	      "summary": "Snow",
+	      "icon": "cloudy",
+	      "data": [
 	         {
-	            "time":1641445200,
-	            "icon":"cloudy",
-	            "summary":"Cloudy",
-	            "sunriseTime":1641472616,
-	            "sunsetTime":1641504573,
-	            "moonPhase":0.14013338096939384,
-	            "precipIntensityMax":0.0441,
-	            "precipIntensityMaxTime":1641538800,
-	            "precipProbability":0.071,
-	            "precipAccumulation":0.3479,
-	            "precipType":"snow",
-	            "temperatureHigh":-3.59,
-	            "temperatureHighTime":1641484800,
-	            "temperatureLow":-10.27,
-	            "temperatureLowTime":1641524400,
-	            "apparentTemperatureHigh":-8.73,
-	            "apparentTemperatureHighTime":1641538800,
-	            "apparentTemperatureLow":-14.54,
-	            "apparentTemperatureLowTime":1641524400,
-	            "dewPoint":-8.74,
-	            "humidity":0.901,
-	            "pressure":998.27,
-	            "windSpeed":14.74,
-	            "windGust":26.68,
-	            "windBearing":256.84,
-	            "cloudCover":0.943,
-	            "uvIndex":1.91,
-	            "uvIndexTime":1641492000,
-	            "visibility":17.35,
-	            "temperatureMin":-10.27,
-	            "temperatureMinTime":1641524400,
-	            "temperatureMax":-3.59,
-	            "temperatureMaxTime":1641484800,
-	            "apparentTemperatureMin":-14.54,
-	            "apparentTemperatureMinTime":1641524400,
-	            "apparentTemperatureMax":-8.73,
-	            "apparentTemperatureMaxTime":1641538800
+	            "time": 1674277200,
+	            "icon": "cloudy",
+	            "summary": "Cloudy",
+	            "sunriseTime": 1674304502,
+	            "sunsetTime": 1674338008,
+	            "moonPhase": 0.9848795204636577,
+	            "precipIntensity": 0.0179,
+	            "precipIntensityMax": 0.0362,
+	            "precipIntensityMaxTime": 1674356400,
+	            "precipProbability": 0.0,
+	            "precipAccumulation": 0.2861,
+	            "precipType": "none",
+	            "temperatureHigh": -2.59,
+	            "temperatureHighTime": 1674331200,
+	            "temperatureLow": -5.4,
+	            "temperatureLowTime": 1674316800,
+	            "apparentTemperatureHigh": -2.89,
+	            "apparentTemperatureHighTime": 1674342000,
+	            "apparentTemperatureLow": -8.63,
+	            "apparentTemperatureLowTime": 1674316800,
+	            "dewPoint": -5.6,
+	            "humidity": 0.848,
+	            "pressure": 1013.11,
+	            "windSpeed": 5.92,
+	            "windGust": 14.4,
+	            "windBearing": 210.18,
+	            "cloudCover": 0.768,
+	            "uvIndex": 2.38,
+	            "uvIndexTime": 1674320400,
+	            "visibility": 15.1,
+	            "temperatureMin": -5.4,
+	            "temperatureMinTime": 1674316800,
+	            "temperatureMax": -2.59,
+	            "temperatureMaxTime": 1674331200,
+	            "apparentTemperatureMin": -8.63,
+	            "apparentTemperatureMinTime": 1674316800,
+	            "apparentTemperatureMax": -2.89,
+	            "apparentTemperatureMaxTime": 1674342000
 	         },
 	  ...
-	      ]
-	   },
-	   "flags":{
-	      "sources":[
+	   ]
+	   "alerts": [
+        
+	   ],
+	   "flags": {
+	      "sources": [
+	         "ETOPO1",
 	         "gfs",
-	         "gfes"
-	      ],
-	      "nearest-station":0,
-	      "units":"ca",
-	      "verson":"V1.0"
+	         "gefs",
+	         "hrrrsubh",
+	         "hrrr"
+	    ],
+	   "sourceTimes": {
+	         "hrrr_0-18": "2023-01-21 14:00:00",
+	         "hrrr_subh": "2023-01-21 14:00:00",
+	         "hrrr_18-48": "2023-01-21 12:00:00",
+	         "gfs": "2023-01-21 06:00:00",
+	         "gefs": "2023-01-21 06:00:00"
+	    },
+	   "nearest-station": 0,
+	   "units": "ca",
+	   "version": "V1.1.10"
 	   }
 	}
-	```
+```
 
 ### Time Machine Request
 In progress.
@@ -215,9 +229,44 @@ In progress.
 In progress.
 
 ### Data Point
+
+#### apparentTemperature
 In progress.
 
-#### Icon
+#### apparentTemperatureMax, only on `daily`
+In progress.
+
+#### apparentTemperatureMaxTime, only on `daily`
+In progress.
+
+#### apparentTemperatureMin, only on `daily`
+In progress.
+
+#### apparentTemperatureMinTime, only on `daily`
+In progress.
+
+#### apparentTemperatureHigh, only on `daily`
+In progress.
+
+#### apparentTemperatureHighTime, only on `daily`
+In progress.
+
+#### apparentTemperatureLow, only on `daily`
+In progress.
+
+#### apparentTemperatureLowTime, only on `daily`
+In progress.
+
+#### cloudCover
+Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive.
+
+#### dewPoint
+In progress.
+
+#### humidity
+Relative humidity expressed as a value between 0 and 1 inclusive.<br>
+
+#### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
 `clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, partly-cloudy-night`.
 
@@ -243,9 +292,120 @@ The algorithm here is straightforward, coming from this [NOAA resource](https://
 
 For additional details, see [issue #3](https://github.com/alexander0042/pirateweather/issues/3).
 
+#### moonPhase, only on `daily`
+In progress.
+
+#### nearestStormBearing, only on `currently`
+In progress.
+
+#### nearestStormDistance, only on `currently`
+In progress.
+
+#### ozone
+In progress.
+
+#### precipAccumulation, only on `hourly` and `daily`
+In progress.
+
+#### precipIntensity
+The rate in which liquid precipitation is falling. This value is expressed in millimeters per hour or inches per hour depending on the requested units.
+
+#### precipIntensityMax, only on `daily`
+In progress.
+
+#### precipIntensityMaxTime, only on `daily`
+In progress.
+
+#### precipIntensityMin, only on `daily`
+In progress.
+
+#### precipIntensityMinTime, only on `daily`
+In progress.
+
+#### precipIntensityProbablity
+The probablity of precipitation occuring expressed as a value between 0 and 1 inclusive.
+
+#### precipType
+The type of precipitation occuring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`.
+
+#### pressure
+In progress.
+
+#### summary
+In progress.
+
+#### sunriseTime, only on `daily`
+In progress.
+
+#### sunsetTime, only on `daily`
+In progress.
+
+#### temperature
+The air temperature in degrees celsius or degrees farenheit depending on the requested `units`
+
+#### temperatureHigh, only on `daily`
+In progress.
+
+#### temperatureHighTime, only on `daily`
+In progress.
+
+#### temperatureLow, only on `daily`
+In progress.
+
+#### temperatureLowTime, only on `daily`
+In progress.
+
+#### temperatureMax, only on `daily`
+In progress.
+
+#### temperatureMaxTime, only on `daily`
+In progress.
+
+#### temperatureMin, only on `daily`
+In progress.
+
+#### temperatureMinTime, only on `daily`
+In progress.
+
+#### time
+In progress.
+
+#### unIndex
+The UV index.
+
+#### uvIndexTime, only on `daily`
+The time in which the maximum `uvIndex` occurs during the day.
+
+#### visibility
+The visibility in kilometres or miles depending on the requested units. In the `daily` block the visibility is the average visibility for the day. This value is capped at 16 kilometres or 10 miles depending on the requested units.
+
+#### windBearing
+In progress.
+
+#### windGust
+The wind gust in kilometres per hour or miles per hour depending on the requested units.
+
+#### windGustTime, only on `daily`
+The time in which the maximum wind gust occurs during the day represented in UNIX time.
+
+#### windSpeed
+The current wind speed in kilometres per hour or miles per hour depending on the requested units.
 
 ### Alerts
 In progress.
 
 ### Flags
-In progress.
+#### sources
+The models used to generate the forecast.
+
+#### sourceTimes
+The time in UTC when the model was last updated.
+
+#### nearest-station
+The distance in miles or kilometres to the closest station used in the request.
+
+#### units
+Indicates which units were used in the forecasts.
+
+#### version
+The version of PirateWeather used to generate the forecast.
