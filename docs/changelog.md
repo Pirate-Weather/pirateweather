@@ -2,6 +2,8 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
+* January 23, 2023: API Version 1.2
+	* Alerts! Finally wrote a processing script to save weather alerts as a NetCDF file, which provides much more detail as well as much faster response times. 
 * December 1, 2022: API Version 1.1.10
     * Quick fix to address a server error when requesting a point on the edge of the HRRR grid.
 * November 25, 2022: API Version 1.1.9
