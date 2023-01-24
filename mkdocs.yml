@@ -2,7 +2,7 @@ site_name: Pirate Weather
 site_url: https://pirateweather.net
 repo_url: https://github.com/alexander0042/pirateweather/
 repo_name: 'GitHub'
-theme: readthedocs 
+theme: material 
 
 nav:
     - Introduction: 'index.md'
