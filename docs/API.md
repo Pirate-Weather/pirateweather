@@ -241,39 +241,46 @@ In progress.
 
 #### apparentTemperature
 "Feels like" temperature, including either humidex if the temperature is greater than 10C or wind chill if less than 10C. Humidex is calculated using:
-$$ h = (0.5555)*(e - 10.0) $$
+$$
+h = (0.5555)*(e - 10.0)
+$$
+
 where $e$ is the vapor pressure in hPa, given by:
-$$e = 6.11 * exp[5417.7530 * ( (1/273.15) - (1/dewpoint) ) ]$$
+$$
+e = 6.11 * exp[5417.7530 * ( (1/273.15) - (1/dewpoint) )]
+$$
 from: <https://en.wikipedia.org/wiki/Humidex>. Wind chill is calculated using the Environment Canada Model from <https://en.wikipedia.org/wiki/Wind_chill>:
-$$ 13.12 + 0.6215T – 11.37 (V^{0.16}) + 0.3965T (V^{0.16})$$
+$$
+13.12 + 0.6215T – 11.37 (V^{0.16}) + 0.3965T (V^{0.16})
+$$
 where $T$ is the temperature in Celsius and $V$ is the Wind velocity in kilometres per hour. 
 
 #### apparentTemperatureMax, only on `daily`
-In progress.
+The maximum "feels like" temperature during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
 #### apparentTemperatureMaxTime, only on `daily`
-In progress.
+The time (in UTC) that the maximum "feels like" temperature occurs during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
 #### apparentTemperatureMin, only on `daily`
-In progress.
+The minimum "feels like" temperature during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
 #### apparentTemperatureMinTime, only on `daily`
-In progress.
+The time (in UTC) that the minimum "feels like" temperature occurs during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
 #### apparentTemperatureHigh, only on `daily`
-In progress.
+The maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current temperature. 
 
 #### apparentTemperatureHighTime, only on `daily`
-In progress.
+The time of the maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the time of the highest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current time. 
 
 #### apparentTemperatureLow, only on `daily`
-In progress.
+The minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the lowest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current temperature. 
 
 #### apparentTemperatureLowTime, only on `daily`
-In progress.
+The time of the minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the time of the lowest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current time. 
 
 #### cloudCover
-Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive.
+Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
 
 #### dewPoint
 In progress.
