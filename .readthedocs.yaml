@@ -14,9 +14,6 @@ build:
 mkdocs:
   configuration: mkdocs.yml
 
-theme:
-    name: material
-
 # Optionally declare the Python requirements required to build your docs
 python:
    install:
