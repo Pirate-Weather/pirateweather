@@ -2,6 +2,12 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
+* January 24, 2023: API Version 1.3
+	* Rapid update here- implemented the `temperatureHigh` and `TemperatureLow` parameters to match Dark Sky, by using the daily high and nighttime low data. 
+	* Added the missing `windGuestTime`.
+	* Corrected a bug on all the max/min times for days 2-7.
+	* Changed all daily parameters except icon/ summary to be calculated over a 24 hour period from 12:00 am to 12:00 am, instead of 4:00 to 4:00.
+	* Fixed a bug with sunrise and sunset times in UTC+x time zones.
 * January 23, 2023: API Version 1.2
 	* Alerts! Finally wrote a processing script to save weather alerts as a NetCDF file, which provides much more detail as well as much faster response times. 
 * December 1, 2022: API Version 1.1.10

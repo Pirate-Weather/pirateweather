@@ -180,6 +180,7 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 	            "pressure": 1013.11,
 	            "windSpeed": 5.92,
 	            "windGust": 14.4,
+				"windGustTime": 1674320400,
 	            "windBearing": 210.18,
 	            "cloudCover": 0.768,
 	            "uvIndex": 2.38,
@@ -197,8 +198,16 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 	  ...
 	   ]
 	   "alerts": [
-        
-	   ],
+			{
+				"title": "Wind Advisory issued January 24 at 9:25AM CST until January 24 at 6:00PM CST by NWS Corpus Christi TX",
+				"regions": ["Live Oak", " Bee", " Goliad", " Victoria", " Jim Wells", " Inland Kleberg", " Inland Nueces", " Inland San Patricio", " Coastal Aransas", " Inland Refugio", " Inland Calhoun", " Coastal Kleberg", " Coastal Nueces", " Coastal San Patricio", " Aransas Islands", " Coastal Refugio", " Coastal Calhoun", " Kleberg Islands", " Nueces Islands", " Calhoun Islands"],
+				"severity": "Moderate",
+				"time": 1674573900,
+				"expires": 1674604800,
+				"description": "* WHAT...Southwest winds 25 to 30 mph with gusts up to 40 mph.  * WHERE...Portions of South Texas.  * WHEN...Until 6 PM CST this evening.  * IMPACTS...Gusty winds could blow around unsecured objects. Tree limbs could be blown down and a few power outages may result.",
+				"uri": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.492c55233ef16d7a98a3337298c828b0f358ea34.001.1"
+			},
+		]
 	   "flags": {
 	      "sources": [
 	         "ETOPO1",
@@ -231,7 +240,13 @@ In progress.
 ### Data Point
 
 #### apparentTemperature
-In progress.
+"Feels like" temperature, including either humidex if the temperature is greater than 10C or wind chill if less than 10C. Humidex is calculated using:
+$$ h = (0.5555)*(e - 10.0) $$
+where $e$ is the vapor pressure in hPa, given by:
+$$e = 6.11 * exp[5417.7530 * ( (1/273.15) - (1/dewpoint) ) ]$$
+from: <https://en.wikipedia.org/wiki/Humidex>. Wind chill is calculated using the Environment Canada Model from <https://en.wikipedia.org/wiki/Wind_chill>:
+$$ 13.12 + 0.6215T – 11.37 (V^{0.16}) + 0.3965T (V^{0.16})$$
+where $T$ is the temperature in Celsius and $V$ is the Wind velocity in kilometres per hour. 
 
 #### apparentTemperatureMax, only on `daily`
 In progress.
