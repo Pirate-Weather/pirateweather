@@ -2,6 +2,11 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
+* January 27, 2023: API Version 1.3.2
+	* Fixed an issue created when fixing the HRRR grid point issue that resulted in the HRRR model not being used per [this issue](https://github.com/alexander0042/pirateweather/issues/22).
+* January 26, 2023: API Version 1.3.1
+	* Fixed an issue with the time parameter not showing up as an integer per [this issue](https://github.com/alexander0042/pirateweather/issues/4).
+	* Fixed an issue where the HRRR model would grab results for the incorrect grid cell when a point very near the edge was requested.
 * January 24, 2023: API Version 1.3
 	* Rapid update here- implemented the `temperatureHigh` and `TemperatureLow` parameters to match Dark Sky, by using the daily high and nighttime low data. 
 	* Added the missing `windGuestTime`.
