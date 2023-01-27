@@ -367,25 +367,25 @@ In progress.
 The air temperature in degrees celsius or degrees farenheit depending on the requested `units`
 
 #### temperatureHigh
-**Only on `daily`**. The daytime high temperature calculated between 6am and 6am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
+**Only on `daily`**. The daytime high temperature calculated between 6am and 6pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
 
 #### temperatureHighTime
 **Only on `daily`**. The time in which the high temperature occurs represented in UNIX time.
 
 #### temperatureLow
-**Only on `daily`**. The overnight low temperature calculated between 6am and 6am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
+**Only on `daily`**. The overnight low temperature calculated between 6pm and 6am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
 
 #### temperatureLowTime
 **Only on `daily`**. The time in which the low temperature occurs represented in UNIX time.
 
 #### temperatureMax
-**Only on `daily`**. The maximum temperature calculated between 12am and 12am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
+**Only on `daily`**. The maximum temperature calculated between 12am and 12pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
 
 #### temperatureMaxTime
 **Only on `daily`**. The time in which the maximum temperature occurs represented in UNIX time.
 
 #### temperatureMin
-**Only on `daily`**. The minimum temperature calculated between 12am and 12am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
+**Only on `daily`**. The minimum temperature calculated between 12pm and 12am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
 
 #### temperatureMinTime
 **Only on `daily`**. 
