@@ -255,28 +255,29 @@ $$
 $$
 where $T$ is the temperature in Celsius and $V$ is the Wind velocity in kilometres per hour. 
 
-#### apparentTemperatureMax, only on `daily`
-The maximum "feels like" temperature during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+#### apparentTemperatureMax
+**Only on `daily`**. The maximum "feels like" temperature during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
-#### apparentTemperatureMaxTime, only on `daily`
-The time (in UTC) that the maximum "feels like" temperature occurs during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+#### apparentTemperatureMaxTime
+**Only on `daily`**. The time (in UTC) that the maximum "feels like" temperature occurs during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
-#### apparentTemperatureMin, only on `daily`
-The minimum "feels like" temperature during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+#### apparentTemperatureMin
+**Only on `daily`**. The minimum "feels like" temperature during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
-#### apparentTemperatureMinTime, only on `daily`
-The time (in UTC) that the minimum "feels like" temperature occurs during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+#### apparentTemperatureMinTime
+**Only on `daily`**. The time (in UTC) that the minimum "feels like" temperature occurs during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
-#### apparentTemperatureHigh, only on `daily`
-The maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current temperature. 
+#### apparentTemperatureHigh
+**Only on `daily`**. The maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current temperature. 
 
-#### apparentTemperatureHighTime, only on `daily`
-The time of the maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the time of the highest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current time. 
+#### apparentTemperatureHighTime
+**Only on `daily`**. The time of the maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the time of the highest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current time. 
 
-#### apparentTemperatureLow, only on `daily`
-The minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the lowest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current temperature. 
+#### apparentTemperatureLow
+**Only on `daily`**. The minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the lowest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current temperature. 
 
-#### apparentTemperatureLowTime, only on `daily`
+#### apparentTemperatureLowTime
+**Only on `daily`**. 
 The time of the minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the time of the lowest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current time. 
 
 #### cloudCover
@@ -286,7 +287,7 @@ Percentage of the sky that is covered in clouds. This value will be between 0 an
 In progress.
 
 #### humidity
-Relative humidity expressed as a value between 0 and 1 inclusive.<br>
+Relative humidity expressed as a value between 0 and 1 inclusive.
 
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
@@ -314,35 +315,35 @@ The algorithm here is straightforward, coming from this [NOAA resource](https://
 
 For additional details, see [issue #3](https://github.com/alexander0042/pirateweather/issues/3).
 
-#### moonPhase, only on `daily`
-In progress.
+#### moonPhase
+**Only on `daily`**. In progress.
 
-#### nearestStormBearing, only on `currently`
-In progress.
+#### nearestStormBearing
+**Only on `currently`**. In progress.
 
-#### nearestStormDistance, only on `currently`
-In progress.
+#### nearestStormDistance
+**Only on `currently`**. In progress.
 
 #### ozone
 In progress.
 
-#### precipAccumulation, only on `hourly` and `daily`
-In progress.
+#### precipAccumulation
+**Only on `hourly` and `daily`**. In progress.
 
 #### precipIntensity
-The rate in which liquid precipitation is falling. This value is expressed in millimeters per hour or inches per hour depending on the requested units.
+The rate in which liquid precipitation is falling. This value is expressed in millimeters per hour or inches per hour depending on the requested `units`.
 
-#### precipIntensityMax, only on `daily`
-In progress.
+#### precipIntensityMax
+**Only on `daily`**. In progress.
 
-#### precipIntensityMaxTime, only on `daily`
-In progress.
+#### precipIntensityMaxTime
+**Only on `daily`**. In progress.
 
-#### precipIntensityMin, only on `daily`
-In progress.
+#### precipIntensityMin
+**Only on `daily`**. In progress.
 
-#### precipIntensityMinTime, only on `daily`
-In progress.
+#### precipIntensityMinTime
+**Only on `daily`**. In progress.
 
 #### precipIntensityProbablity
 The probablity of precipitation occuring expressed as a value between 0 and 1 inclusive.
@@ -356,38 +357,39 @@ In progress.
 #### summary
 In progress.
 
-#### sunriseTime, only on `daily`
-In progress.
+#### sunriseTime
+**Only on `daily`**. In progress.
 
-#### sunsetTime, only on `daily`
-In progress.
+#### sunsetTime
+**Only on `daily`**. In progress.
 
 #### temperature
 The air temperature in degrees celsius or degrees farenheit depending on the requested `units`
 
-#### temperatureHigh, only on `daily`
-In progress.
+#### temperatureHigh
+**Only on `daily`**. The daytime high temperature calculated between 6am and 6pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
 
-#### temperatureHighTime, only on `daily`
-In progress.
+#### temperatureHighTime
+**Only on `daily`**. The time in which the high temperature occurs represented in UNIX time.
 
-#### temperatureLow, only on `daily`
-In progress.
+#### temperatureLow
+**Only on `daily`**. The overnight low temperature calculated between 6pm and 6am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
 
-#### temperatureLowTime, only on `daily`
-In progress.
+#### temperatureLowTime
+**Only on `daily`**. The time in which the low temperature occurs represented in UNIX time.
 
-#### temperatureMax, only on `daily`
-In progress.
+#### temperatureMax
+**Only on `daily`**. The maximum temperature calculated between 12am and 12pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
 
-#### temperatureMaxTime, only on `daily`
-In progress.
+#### temperatureMaxTime
+**Only on `daily`**. The time in which the maximum temperature occurs represented in UNIX time.
 
-#### temperatureMin, only on `daily`
-In progress.
+#### temperatureMin
+**Only on `daily`**. The minimum temperature calculated between 12pm and 12am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
 
-#### temperatureMinTime, only on `daily`
-In progress.
+#### temperatureMinTime
+**Only on `daily`**. 
+The time in which the minimum temperature occurs represented in UNIX time.
 
 #### time
 In progress.
@@ -395,25 +397,44 @@ In progress.
 #### unIndex
 The UV index.
 
-#### uvIndexTime, only on `daily`
-The time in which the maximum `uvIndex` occurs during the day.
+#### uvIndexTime
+**Only on `daily`**. The time in which the maximum `uvIndex` occurs during the day.
 
 #### visibility
-The visibility in kilometres or miles depending on the requested units. In the `daily` block the visibility is the average visibility for the day. This value is capped at 16 kilometres or 10 miles depending on the requested units.
+The visibility in kilometres or miles depending on the requested units. In the `daily` block the visibility is the average visibility for the day. This value is capped at 16 kilometres or 10 miles depending on the requested `units`.
 
 #### windBearing
 In progress.
 
 #### windGust
-The wind gust in kilometres per hour or miles per hour depending on the requested units.
+The wind gust in kilometres per hour or miles per hour depending on the requested `units`.
 
-#### windGustTime, only on `daily`
-The time in which the maximum wind gust occurs during the day represented in UNIX time.
+#### windGustTime
+**Only on `daily`**. The time in which the maximum wind gust occurs during the day represented in UNIX time.
 
 #### windSpeed
-The current wind speed in kilometres per hour or miles per hour depending on the requested units.
+The current wind speed in kilometres per hour or miles per hour depending on the requested `units`.
 
 ### Alerts
+#### title
+In progress.
+
+#### regions
+In progress.
+
+#### severity
+In progress.
+
+#### time
+In progress.
+
+#### expires
+In progress.
+
+#### description
+In progress.
+
+#### uri
 In progress.
 
 ### Flags
