@@ -2,6 +2,9 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
+* February 28, 2023: API Version 1.4
+	* Fixed a long standing bug in the GEFS precipitation intensity for the currently and minutely blocks per [issue #24](https://github.com/alexander0042/pirateweather/issues/24). Outside of the HRRR area, precipitation intensities are now calculated using GEFS, instead of just returning zero!
+	* Corrected how midnight is calculated in the Eastern Hemisphere.
 * January 27, 2023: API Version 1.3.2
 	* Fixed an issue created when fixing the HRRR grid point issue that resulted in the HRRR model not being used per [this issue](https://github.com/alexander0042/pirateweather/issues/22).
 * January 26, 2023: API Version 1.3.1
@@ -43,7 +46,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 	* Corrected the accumulation when sleet was forecasted (part of [issue #30](https://github.com/alexander0042/pirate-weather-ha/issues/30)).  
 * February 4, 2022: API version 1.1.1	
 	* Fix for missing alert description.
-* Febuary 1, 2022: API version 1.1
+* February 1, 2022: API version 1.1
     * Bugfix and performance release to clean up some things that didn't make it into V1.0.
     * Much (30%) faster API response times by changing how the nearest grid cell lookup is performed. The grid cell is now calculated directly using the HRRR/ GFS grid math, as opposed to reading from an index file. The time zone lookup has also been optimized to only call the lookup function once. 
     * Fixed the implementation of the "exclude" option.
