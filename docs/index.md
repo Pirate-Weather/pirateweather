@@ -1,7 +1,7 @@
 ## Get an API key:
 <img src="" width="325">
  <a href="https://pirate-weather.apiable.io">
-  <img src="https://pirateweather.net/custom-content/PirateWeatherBanner.png" alt="Get an API key" style="width:325">
+  <img src="https://github.com/alexander0042/pirateweather/PirateWeatherBanner.png" alt="Get an API key" style="width:325">
 </a> 
 
 ## Quick Links
@@ -47,7 +47,7 @@ The key to everything here is AWS's Elastic File System [(EFS)](https://aws.amaz
 That is the "one-sentence" explanation of how this is set up, but for more details, read on!
 
 ### Architecture overview
-<img src="https://pirateweather.net/custom-content/Arch_Diagram_2023.png" width="325">
+<img src="https://github.com/alexander0042/pirateweather/Arch_Diagram_2023.png" width="325">
 
 1. EventBridge timers launch Step Function to trigger Fargate
 2. WGRIB2 Image pulled from repo
