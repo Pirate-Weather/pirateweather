@@ -25,5 +25,5 @@ extra_javascript:
 plugins:
    - swagger-ui-tag  
    
- extra_css:
+extra_css:
   - stylesheets/extra.css
