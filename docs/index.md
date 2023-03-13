@@ -1,9 +1,10 @@
 <div class="imageContainer">
   <div class="text-block">
     <h2>Pirate Weather</h2>
-    [Subscribe to our newsletter](#){ .md-button .md-button--primary }
   </div>
 </div>
+
+[Get an API key](https://pirate-weather.apiable.io/){ .md-button .md-button--primary }
 
 ## Quick Links
 * To [**register for the API**](https://pirate-weather.apiable.io/)
