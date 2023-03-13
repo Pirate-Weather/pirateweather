@@ -1,8 +1,3 @@
-<div class="container">
-  <img src="https://apiable.s3.eu-central-1.amazonaws.com/public/pirate-weather/f6d0a7e7-7ae5-4758-8ede-b0106edd8ade.png" alt="Get an API key" style="width:100%;">
-  <div class="centered">Pirate Weather</div>
-</div> 
-
 <div class="imageContainer">Pirate Weather</div>
 
 
