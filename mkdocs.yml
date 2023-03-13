@@ -9,14 +9,13 @@ nav:
     - 'API': 'API.md'    
     - 'Issue Tracker': 'https://github.com/alexander0042/pirateweather/issues/'
     - 'Changelog': 'changelog.md'
+    - 'API Specification': 'specification.md'
     - 'Roadmap': 'roadmap.md'
     - 'Previous Versions- v0.1': 'indexv01.md'
 
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
-  - attr_list
-  - md_in_html
   
 extra_javascript:
   - javascripts/mathjax.js
@@ -25,3 +24,6 @@ extra_javascript:
   
 plugins:
    - swagger-ui-tag  
+   
+ extra_css:
+  - stylesheets/extra.css

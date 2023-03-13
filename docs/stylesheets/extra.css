@@ -1,4 +1,7 @@
- .imageContainer {
-       width:325px; 
-       background-image: url(https://github.com/alexander0042/pirateweather/raw/main/PirateWeatherBanner.png");
- }
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} 
