@@ -2,6 +2,8 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
+* March 13, 2023: API Version 1.4.1
+	* Fixed a rounding bug introduced in 1.4 which sometimes created issues with the currently block precipitation intensity parameter over the HRRR grid per [issue #29](https://github.com/alexander0042/pirateweather/issues/29).
 * February 28, 2023: API Version 1.4
 	* Fixed a long standing bug in the GEFS precipitation intensity for the currently and minutely blocks per [issue #24](https://github.com/alexander0042/pirateweather/issues/24). Outside of the HRRR area, precipitation intensities are now calculated using GEFS, instead of just returning zero!
 	* Corrected how midnight is calculated in the Eastern Hemisphere.

@@ -8,7 +8,7 @@
 
 ## Quick Links
 * To [**register for the API**](https://pirate-weather.apiable.io/)
-* [Access the old portal](https://portal.pirateweather.net)
+* [Access the old portal for sign-ups before March 2023](https://portal.pirateweather.net)
 * [Get a weather forecast in the Dark Sky style](https://merrysky.net/)
 * [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
 * [Processing code repo](https://github.com/alexander0042/pirateweather)
@@ -23,23 +23,22 @@
 
 # Introduction 
 Weather forecasts are primarily found using models run by government agencies, but the [outputs](https://weather.gc.ca/grib/what_is_GRIB_e.html) aren't easy to use or in formats built for the web.
-To try to address this, I've put together a service that reads weather forecasts and serves it following the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs) style. Key details about setup/ usage of the API are on the main website <https://pirateweather.net/>, but I also wanted to give an overview of how I assembled all the pieces. I used many online guides during this process, so wanted to try to help someone else here! 
+To try to address this, I've put together a service that reads weather forecasts and serves it following the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs) style. 
 
-Before going any farther, I wanted to add a [link to support this project](https://pirate-weather.apiable.io/products/weather-data). Running this on AWS means that it scales beautifully and is much more reliable than if I was trying to host this, but also costs real money. I'd love to keep this project going long-term, but I'm still paying back my student loans, which limits how much I can spend on this! Anything helps, and a $2 monthly donation lets me raise your API limit from 10,000 calls/ month to 25,000 calls per month.
+Before going any farther, I wanted to add a [link to sign up and support this project](https://pirate-weather.apiable.io/products/weather-data)! Running this on AWS means that it scales beautifully and is much more reliable than if I was trying to host this, but also costs real money. I'd love to keep this project going long-term, but I'm still paying back my student loans, which limits how much I can spend on this! Anything helps, and a $2 monthly donation lets me raise your API limit from 10,000 calls/ month to 25,000 calls per month.
 
 Alternatively, I also have a GitHub Sponsorship page set up on my [profile](https://github.com/sponsors/alexander0042/)! This gives the option to make a one-time donation to contribute this project. This project (especially the free tier) wouldn't be possible without the ongoing support from the project sponsors, so they're the [heros here](https://github.com/sponsors/alexander0042/)! 
 
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
-## Recent Updates- Winter 2022
-Official V1.0 release! These docs have been updated to reflect the current version, but I'll leave the previous version up for reference under the [v0.1 header](https://pirateweather.readthedocs.io/en/latest/indexv01/). Some of the highlights of this release are:
+## Recent Updates- Spring 2023
+Up to version 1.4! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-1. Changed the data ingest pipeline to use AWS Fargate (thanks sponsors!) improving the resolution by 4x!
-2. Added short term historic data via the `time` parameter.
-3. Fixed a long-standing issue with wind speeds.
-4. Added support for the `exclude` flag.
-5. Moved the documentation over to ReadTheDocs.
-6. Published the [processing scripts](https://github.com/alexander0042/pirateweather/tree/main/scripts) and [docker image](https://gallery.ecr.aws/j9v4j3c7/pirate-wgrib2).
+1. New sign-up portal: <https://pirate-weather.apiable.io/>. This will let me spend way less time managing subscriptions, and more time data wrangling. Also addresses a ton of bugs related to the old developer portal. APIs requested via the old portal will continue to work though! 
+2. Much better alert support.
+3. A ton of assorted bug fixes.
+4. Published official [API specifications](http://docs.pirateweather.net/en/latest/Specification/).
+5. Major revamp of the Home Assistant Integration.
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
