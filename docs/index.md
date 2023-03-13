@@ -1,12 +1,25 @@
-﻿# Pirate Weather
+# Quick Links
+* To [**register for the API**](https://pirate-weather.apiable.io/products/weather-data)
+* [Get a weather forecast in the Dark Sky style](https://merrysky.net/)
+* [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
+* [Processing code repo](https://github.com/alexander0042/pirateweather)
+* [Changelog](https://pirateweather.net/en/latest/changelog/)
+
+#### Publications and Press
+* [AWS blog post](https://aws.amazon.com/blogs/publicsector/making-weather-forecasts-accessible-serverless-infrastructure-open-data-aws/)
+* [TLDR Newsletter](https://tldr.tech/tech/2023-01-11)
+* [BoingBoing](https://boingboing.net/2023/01/10/pirate-weather-api-has-more-features.html)
+* [Hacker News Front Page](https://news.ycombinator.com/item?id=34329988)
+
+# Introduction 
 Weather forecasts are primarily found using models run by government agencies, but the [outputs](https://weather.gc.ca/grib/what_is_GRIB_e.html) aren't easy to use or in formats built for the web.
 To try to address this, I've put together a service that reads weather forecasts and serves it following the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs) style. Key details about setup/ usage of the API are on the main website <https://pirateweather.net/>, but I also wanted to give an overview of how I assembled all the pieces. I used many online guides during this process, so wanted to try to help someone else here! 
-Before going any farther, I wanted to add a link to support this project. Running this on AWS means that it scales beautifully and is much more reliable than if I was trying to host this, but also costs real money. I'd love to keep this project going long-term, but I'm still paying back my student loans, which limits how much I can spend on this! Anything helps, and a $2 monthly donation lets me raise your API limit from 20,000 calls/ month to 50,000 calls per month.
 
-<a href="https://www.buymeacoffee.com/pirateweather" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+Before going any farther, I wanted to add a [link to support this project](https://pirate-weather.apiable.io/products/weather-data). Running this on AWS means that it scales beautifully and is much more reliable than if I was trying to host this, but also costs real money. I'd love to keep this project going long-term, but I'm still paying back my student loans, which limits how much I can spend on this! Anything helps, and a $2 monthly donation lets me raise your API limit from 10,000 calls/ month to 25,000 calls per month.
 
-Alternatively, I also have a GitHub Sponsorship page set up on my [profile](https://github.com/sponsors/alexander0042/)!
-This project (especially the free tier) wouldn't be possible without the ongoing support from the project sponsors, so they're the [heros here](https://github.com/sponsors/alexander0042/)! 
+Alternatively, I also have a GitHub Sponsorship page set up on my [profile](https://github.com/sponsors/alexander0042/)! This gives the option to make a one-time donation to contribute this project. This project (especially the free tier) wouldn't be possible without the ongoing support from the project sponsors, so they're the [heros here](https://github.com/sponsors/alexander0042/)! 
+
+<iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
 ## Recent Updates- Winter 2022
 Official V1.0 release! These docs have been updated to reflect the current version, but I'll leave the previous version up for reference under the [v0.1 header](https://pirateweather.readthedocs.io/en/latest/indexv01/). Some of the highlights of this release are:

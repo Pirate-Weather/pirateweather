@@ -76,7 +76,7 @@ For ensemble data, there is an extra step of running the wgrib2 [ens_processing]
 Historic requests (aka Time Machine) are provided using the [AWS ERA5 Dataset](https://registry.opendata.aws/ecmwf-era5/). This dataset is stored in the [Zarr](https://zarr.readthedocs.io/en/stable/), which makes it possible for me to grab a specific time step without having to store the entire dataset myself. 
 
 ### Architecture overview
-<img src="https://pirateweather.net/custom-content/Arch_Diagram_2023.png" width="325">
+<img src="https://github.com/alexander0042/pirateweather/Arch_Diagram_2023.png" width="325">
 
 1. EventBridge timers launch Step Function to trigger Fargate
 2. WGRIB2 Image pulled from repo
