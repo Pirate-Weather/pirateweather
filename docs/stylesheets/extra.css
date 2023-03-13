@@ -5,3 +5,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
 } 
+
+ .imageContainer {
+       width:200px; 
+       height:200px; 
+       background-image: url("https://apiable.s3.eu-central-1.amazonaws.com/public/pirate-weather/f6d0a7e7-7ae5-4758-8ede-b0106edd8ade.png");
+ }

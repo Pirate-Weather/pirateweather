@@ -3,6 +3,8 @@
   <div class="centered">Pirate Weather</div>
 </div> 
 
+<div class="imageContainer">Pirate Weather</div>
+
 
 ## Quick Links
 * To [**register for the API**](https://pirate-weather.apiable.io/)
