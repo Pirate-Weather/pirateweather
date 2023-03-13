@@ -5,7 +5,9 @@ repo_name: 'GitHub'
 theme: 
   name: 'material' 
   favicon: images/pw_favicon.png
-  
+  palette:
+    primary: 'deep orange'
+    
 nav:
     - Introduction: 'index.md'
     - 'API': 'API.md'    
