@@ -1,5 +1,12 @@
-# Quick Links
-* To [**register for the API**](https://pirate-weather.apiable.io/products/weather-data)
+## Get an API key:
+<img src="" width="325">
+ <a href="https://pirate-weather.apiable.io">
+  <img src="https://pirateweather.net/custom-content/PirateWeatherBanner.png" alt="Get an API key" style="width:325">
+</a> 
+
+## Quick Links
+* To [**register for the API**](https://pirate-weather.apiable.io/)
+* [Access the old portal](https://portal.pirateweather.net)
 * [Get a weather forecast in the Dark Sky style](https://merrysky.net/)
 * [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
 * [Processing code repo](https://github.com/alexander0042/pirateweather)
@@ -38,8 +45,21 @@ Spoiler alert, but it was way more difficult than I thought, but learned a lot t
 ## Current Process- AWS 
 The key to everything here is AWS's Elastic File System [(EFS)](https://aws.amazon.com/efs/). I wanted to avoid "reinventing the wheel" as much as possible, and there is already a great tool for extracting data from forecast files- [WGRIB2](https://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/)! Moreover, NOAA data was [already being stored](https://registry.opendata.aws/collab/noaa/) on AWS. This meant that, from the 10,000 ft perspective, data could be downloaded and stored on a file system that could then be easily accessed by a serverless function, instead of trying to move it to a database.
 That is the "one-sentence" explanation of how this is set up, but for more details, read on!
-<iframe src="https://app.cloudcraft.co/view/a876ff25-455c-4efd-8f7e-12b8a1c2153c?key=55b1925d-b2c4-4a54-8fec-16fbd00af0ef&interactive=true&embed=true" width="375" height="500">
-</iframe>
+
+### Architecture overview
+<img src="https://pirateweather.net/custom-content/Arch_Diagram_2023.png" width="325">
+
+1. EventBridge timers launch Step Function to trigger Fargate
+2. WGRIB2 Image pulled from repo
+3. Fargate Cluster launched
+4. Task to: Download, Merge, Chunk GRB files
+5. Data saved to EFS
+6. NWS alerts saved to EFS as GeoJSON
+7. Lambda reads forecast data, processes and interpolates, returns JSON
+8. Expose JSON forecast data via API Gateway
+9. Distribute API endpoint via CloudFront
+10. Monitor API key usage
+
 
 ### Data Sources
 Starting from the beginning, three NOAA models are used for the raw forecast data: HRRR, GFS, and the GEFS.
