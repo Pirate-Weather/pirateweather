@@ -3,7 +3,8 @@ site_url: https://pirateweather.net
 repo_url: https://github.com/alexander0042/pirateweather/
 repo_name: 'GitHub'
 theme: material 
-
+  favicon: images/pw_favicon.png
+  
 nav:
     - Introduction: 'index.md'
     - 'API': 'API.md'    
@@ -30,6 +31,3 @@ plugins:
    
 extra_css:
   - stylesheets/extra.css
-  
-theme:
-  favicon: images/favicon.png  
