@@ -1,8 +1,4 @@
-## Get an API key:
-<img src="" width="325">
- <a href="https://pirate-weather.apiable.io">
-  <img src="https://github.com/alexander0042/pirateweather/raw/main/PirateWeatherBanner.png" alt="Get an API key" style="width:325">
-</a> 
+<div class="imageContainer">Pirate Weather</div>
 
 ## Quick Links
 * To [**register for the API**](https://pirate-weather.apiable.io/)
@@ -181,3 +177,5 @@ While this service currently covers almost everything that the Dark Sky API does
 
 1. Text Summaries. This is the largest missing piece. Dark Sky [open-sourced](https://github.com/darkskyapp/translations) their translation library, so my plan is to build off that to get this working. All the data is there, but it's a matter of writing the logics required to go from numerical forecasts to weather summaries. 
 2. Additional sources. The method developed here is largely source agnostic. Any weather forecast service that delivers data using grib files that wgrib2 can understand (all the primary ones) is theoretically capable of being added in. The NOAA North American Mesoscale [NAM](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/north-american-mesoscale-forecast-system-nam) model would provide higher resolution forecasts out to 4 days (instead of the 2 days from HRRR). The [Canadian HRDPS Model](https://weather.gc.ca/grib/grib2_HRDPS_HR_e.html) is another tempting addition, since it provides data at a resolution even higher than HRRR (2.5 km vs. 3.5 km)! The [European model](https://www.ecmwf.int/en/forecasts/datasets/catalogue-ecmwf-real-time-products) would be fantastic to add in, since it often outperforms the GFS model; however, the data is not open, which would add a significant cost.
+
+<swagger-ui src="https://raw.githubusercontent.com/alexander0042/pirateweather/main/PW_OpenAPI.yaml"/>

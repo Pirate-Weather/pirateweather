@@ -2,3 +2,4 @@
 mkdocs==1.2.3
 jinja2==3.0.0
 mkdocs-material
+mkdocs-swagger-ui-tag
