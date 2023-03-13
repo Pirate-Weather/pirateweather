@@ -1,6 +1,6 @@
 <div class="imageContainer">
   <div class="text-block">
-    <h2>Pirate Weather</h2>
+    <h1 style="color: white;">Pirate Weather</h1>
   </div>
 </div>
 
@@ -45,12 +45,18 @@ Official V1.0 release! These docs have been updated to reflect the current versi
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
 Spoiler alert, but it was way more difficult than I thought, but learned a lot throughout the process, and I think the end result turned out really well! 
 
+## Why?
+This API is designed to be a drop in replacement/ alternative to the Dark Sky API, and as a tool for assessing GFS and HRRR forecasts via a JSON API. This solves two goals:
+
+1. It will also allow **legacy** applications to continue running after the Dark Sky shutdown, since as Home Assistant Integrations, Magic Mirror cards, and a whole host of other applications that have been developed over the years.
+2. For anyone that is interested in knowing **exactly** how your weather forecasts are generated, this is the "show me the numbers" approach, since the data returned is directly from NOAA models, and every processing step I do is [documented](https://blog.pirateweather.net/). There are [lots](https://openweathermap.org/) [of](https://www.theweathernetwork.com) [existing](https://weather.com) [services](https://www.accuweather.com/) that provide custom forecasts using their own unique technologies, which can definitely improve accuracy, but I'm an engineer, so I wanted to be able to know what's going into the forecasts I'm using. If you're the sort of person who wants a [dense 34-page PowerPoint](http://rapidrefresh.noaa.gov/pdf/Alexander_AMS_NWP_2020.pdf) about why it rained when the forecast said it wouldn't, then this might be for you.
+3. I wanted to provide a more **community focused** source of weather data. Weather is local, but I'm only in one spot, so I rely on people filing [issues](https://github.com/alexander0042/pirateweather/issues) to help improve the forecast!
 ## Current Process- AWS 
 The key to everything here is AWS's Elastic File System [(EFS)](https://aws.amazon.com/efs/). I wanted to avoid "reinventing the wheel" as much as possible, and there is already a great tool for extracting data from forecast files- [WGRIB2](https://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/)! Moreover, NOAA data was [already being stored](https://registry.opendata.aws/collab/noaa/) on AWS. This meant that, from the 10,000 ft perspective, data could be downloaded and stored on a file system that could then be easily accessed by a serverless function, instead of trying to move it to a database.
 That is the "one-sentence" explanation of how this is set up, but for more details, read on!
 
 ### Architecture overview
-<img src="https://github.com/alexander0042/pirateweather/blob/main/docs/Arch_Diagram_2023.png" width="325">
+<img src="https://github.com/alexander0042/pirateweather/raw/main/docs/Arch_Diagram_2023.png" width="325">
 
 1. EventBridge timers launch Step Function to trigger Fargate
 2. WGRIB2 Image pulled from repo
@@ -171,15 +177,14 @@ The trickiest part of this setup was, by far, getting the API Gateway to use an 
 
 After a few attempts, what ended up working was a custom Lambda Authorizer as described [here](https://stackoverflow.com/questions/39154723/api-gateway-possible-to-pass-api-key-in-url-instead-of-in-the-header). Essentially, what happens is that the API Gateway passes the request to this short Lambda function, which converts the URL path parameter into the API key. This is then passed back to the API Gateway for validation. For this to work, the `API Key Source` needs to be set to `AUTHORIZER` under the setting panel. 
 
-The developer portal is as close to a one-click deployment as possible! All that was required to click "Deploy" from the [serverless repository page](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:563878140293:applications~api-gateway-dev-portal), and a series of resources are created to handle the webpage, sign in, usage, and monitoring! The only issues I ran into were making sure that my S3 bucket names were not too long and using the CloudFront [Invalidate](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html) tool to check how new content looks!
-
-## Website Access
-To provide an easy front end to this API, I set up a vue.js website <https://weather.pirateweather.net> based on [weather-vue](https://github.com/krestaino/weather-vue). This project was the ideal framework, since it already relied on the Dark Sky API for forecast data, and was well documented and easy to work with. I [modified the source](https://github.com/alexander0042/weather-vue) to use Pirate Weather, as well as adding minutely and hourly forecast data! 
-
-The static webpage is built using vue and chart.js, integrated together following [this comment](https://stackoverflow.com/questions/55684836/how-to-update-a-chart-using-vuejs-and-chartjs) (check out the ForecastMinute.vue file in the repository for my implementation). The page relies on a [back-end server](https://github.com/alexander0042/weather-api), which didn't require any modifications beyond using a Dockerfile to run on Heroku. I added the line:`RUN sed -i 's/api.darksky.net/api.pirateweather.net/g' <file path>` to the Dockerfile, where `<file path>` is the path to the node.js Dark Sky module (ex. `/app/node_modules/dark-sky/dark-sky-api.js`. 
-
 ## Next Steps
 While this service currently covers almost everything that the Dark Sky API does, I have a few ideas for future improvements to this service! 
 
 1. Text Summaries. This is the largest missing piece. Dark Sky [open-sourced](https://github.com/darkskyapp/translations) their translation library, so my plan is to build off that to get this working. All the data is there, but it's a matter of writing the logics required to go from numerical forecasts to weather summaries. 
 2. Additional sources. The method developed here is largely source agnostic. Any weather forecast service that delivers data using grib files that wgrib2 can understand (all the primary ones) is theoretically capable of being added in. The NOAA North American Mesoscale [NAM](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/north-american-mesoscale-forecast-system-nam) model would provide higher resolution forecasts out to 4 days (instead of the 2 days from HRRR). The [Canadian HRDPS Model](https://weather.gc.ca/grib/grib2_HRDPS_HR_e.html) is another tempting addition, since it provides data at a resolution even higher than HRRR (2.5 km vs. 3.5 km)! The [European model](https://www.ecmwf.int/en/forecasts/datasets/catalogue-ecmwf-real-time-products) would be fantastic to add in, since it often outperforms the GFS model; however, the data is not open, which would add a significant cost.
+
+## Other Notes and Assumptions
+1. While this API will give minutely forecasts for anywhere in the world, they are calculated using the HRRR-subhourly forecasts, so only accurate to 15-minute periods. Outside of the HRRR domain, they are calculated using the GFS hourly forecasts, so really not adding much value! 
+2. Precipitation probabilities are a tricky problem to solve- weather models don't give a range of outcomes, just one answer. To get probabilities, this implementation relies on the Global Ensemble Forecast System [(GEFS)](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs). This is a 30-member ensemble, so if 1 member predicts precipitation, the probability will be 1/30. GEFS data is also used to predict precipitation type and accumulation. A 1:10 snow-water ratio is assumed. 
+3. Current conditions are based on model results (from HRRR-subhourly), which assimilates observations, but not direct observations. 
+4. Why "PirateWeather"? I've always thought that the HRRR model was pronounced the same way as the classic pirate "ARRR". Also, there is [one company](https://arstechnica.com/tech-policy/2020/10/google-asks-supreme-court-to-overrule-disastrous-ruling-on-api-copyrights/) out there that thinks APIs can be copyrighted, which might apply here. 
