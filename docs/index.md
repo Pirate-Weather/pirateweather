@@ -1,5 +1,9 @@
-<div class="imageContainer">Pirate Weather</div>
-
+<div class="imageContainer">
+  <div class="text-block">
+    <h2>Pirate Weather</h2>
+    [Subscribe to our newsletter](#){ .md-button .md-button--primary }
+  </div>
+</div>
 
 ## Quick Links
 * To [**register for the API**](https://pirate-weather.apiable.io/)
@@ -45,7 +49,7 @@ The key to everything here is AWS's Elastic File System [(EFS)](https://aws.amaz
 That is the "one-sentence" explanation of how this is set up, but for more details, read on!
 
 ### Architecture overview
-<img src="https://github.com/alexander0042/pirateweather/raw/main/Arch_Diagram_2023.png" width="325">
+<img src="https://github.com/alexander0042/pirateweather/blob/main/docs/Arch_Diagram_2023.png" width="325">
 
 1. EventBridge timers launch Step Function to trigger Fargate
 2. WGRIB2 Image pulled from repo

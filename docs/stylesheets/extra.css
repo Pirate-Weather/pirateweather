@@ -1,4 +1,14 @@
  .imageContainer {
-       width:100%; 
-       background-image: url("https://apiable.s3.eu-central-1.amazonaws.com/public/pirate-weather/f6d0a7e7-7ae5-4758-8ede-b0106edd8ade.png");
+		width: 100%;
+		background-image: url("https://github.com/alexander0042/pirateweather/raw/main/PirateWeatherBanner.png");
+		height: 250px;
+		background-size: cover;
  }
+ 
+ 
+ .text-block {
+  position: relative;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}

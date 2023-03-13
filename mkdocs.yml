@@ -16,6 +16,8 @@ nav:
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
+  - attr_list
+  - md_in_html
   
 extra_javascript:
   - javascripts/mathjax.js
