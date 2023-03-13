@@ -1,8 +1,8 @@
  .imageContainer {
 		width: 100%;
 		background-image: url("https://github.com/alexander0042/pirateweather/raw/main/PirateWeatherBanner.png");
-		height: 250px;
 		background-size: cover;
+		aspect-ratio: 3/1;
  }
  
  
@@ -10,5 +10,5 @@
   position: relative;
   color: white;
   padding-left: 20px;
-  padding-top: 20px;
+  padding-top: 10%;
 }
