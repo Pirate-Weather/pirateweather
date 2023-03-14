@@ -187,3 +187,10 @@ While this service currently covers almost everything that the Dark Sky API does
 2. Precipitation probabilities are a tricky problem to solve- weather models don't give a range of outcomes, just one answer. To get probabilities, this implementation relies on the Global Ensemble Forecast System [(GEFS)](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs). This is a 30-member ensemble, so if 1 member predicts precipitation, the probability will be 1/30. GEFS data is also used to predict precipitation type and accumulation. A 1:10 snow-water ratio is assumed. 
 3. Current conditions are based on model results (from HRRR-subhourly), which assimilates observations, but not direct observations. 
 4. Why "PirateWeather"? I've always thought that the HRRR model was pronounced the same way as the classic pirate "ARRR". Also, there is [one company](https://arstechnica.com/tech-policy/2020/10/google-asks-supreme-court-to-overrule-disastrous-ruling-on-api-copyrights/) out there that thinks APIs can be copyrighted, which might apply here. 
+
+# Who is using PirateWeather?
+
+- [MerrySky](https://merrysky.net) - Get a Forecast DarkSky Style
+- [PW-forecast](https://github.com/ktrue/PW-forecast) and [https://saratoga-weather.org/scripts-PWforecast.php](https://saratoga-weather.org/scripts-PWforecast.php)
+
+Do you use PirateWeather? Open a pull request to add it to the list.
