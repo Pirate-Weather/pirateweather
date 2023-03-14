@@ -1,7 +1,7 @@
 # Pirate Weather Repo
 This is the primary repository for the Pirate Weather API, a free and open API designed to serve weather forecast data using the same syntax as Dark Sky. 
 
-To sign up, a free API key can be requested at [https://pirateweather.net](https://pirateweather.net). API Documentation is at [http://pirateweather.net/en/latest/API/](http://pirateweather.net/en/latest/API/). A front end is available at [https://merrysky.net](https://merrysky.net).
+To sign up, a free API key can be requested at [https://pirateweather.net/](https://pirateweather.net/en/latest/). API Documentation is at [https://pirateweather.net/en/latest/API/](https://pirateweather.net/en/latest/API/). A front end is available at [https://merrysky.net](https://merrysky.net).
 
 ## Why
 
