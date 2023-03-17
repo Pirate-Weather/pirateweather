@@ -10,7 +10,9 @@ theme:
     
 nav:
     - Introduction: 'index.md'
-    - 'API': 'API.md'    
+    - 'Terms of Service' : 'https://pirate-weather.apiable.io/terms'
+    - 'API': 'API.md'
+    - 'Home Assistant': 'ha.md'
     - 'Issue Tracker': 'https://github.com/alexander0042/pirateweather/issues/'
     - 'Changelog': 'changelog.md'
     - 'API Specification': 'Specification.md'
