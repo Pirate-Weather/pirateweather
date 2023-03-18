@@ -225,17 +225,197 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V1.1.10"
+	   "version": "V1.4.1"
 	   }
 	}
 ```
 
 ### Time Machine Request
-In progress.
+The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
+```
+      https://timemachine.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
+```
+
+The Time Machine uses ERA5 dataset which is updated monthly but the API stores the last five days of model data and to get access to that data you query the forecast API using the time parameter like in the following URL:
+```
+      https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
+```
+
+The response format is the same as the forecast except:
+* The `currently` block will refer to the requested time and not the present time.
+* The `minutely` block is not present except when querying data from the last five days.
+* The `hourly` block will return data from midnight of the requested day to midnight the next day.
+* The `daily` block will return the data for the current day except when querying data from the last five days.
+* The `alerts` block is not included.
+* The `flags` block will not be included except when querying data from the last five days.
+
+#### API Key
+The API key needs to be requested from <https://pirateweather.net/>. After signing up for the service, the forecast API needs to be subscribed to, by logging in and clicking subscribe. Once subscribed to the API, it can take up to 20 minutes for the change to propagate to the gateway to allow requests, so go grab a coffee and it should be ready shortly after. 
+As a reminder, this key is secret, and unique to each user. Keep it secret, and do not have it hard-coded into an application's source, and definitely don't commit it to a git repo!
+
+#### Location
+The location is specified by a latitude (1st) and longitude (2nd) in decimal degrees (ex. `45.42,-75.69`). An unlimited number of decimal places are allowed; however, the API only returns data to the closest 13 km model square, so there's no benefit after 3 digits. While the recommended way to format this field is with positive (North/ West) and negative (South/ East) degrees, results should be valid when submitting longitudes from 0 to 360, instead of -180 to 180. 
+
+If you are looking for a place to figure out the latitude and longitude, [https://www.latlong.net/](https://www.latlong.net/) is a good starting point.
+
+#### Time
+This field is reqiored for the time machine request and it can be specified in one of three different ways:
+
+1. UNIX timestamp, or the number of seconds since midnight GMT on 1 Jan 1970 (this is the preferred way).
+2. A datestring in the local time zone of the location being requested: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]`.
+3. A datestring in UTC time: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]Z`
+4. A time delta (in seconds) from the current time (ex. to get results for the previous day): `-86400`.
+
+It's worth noting that Dark Sky also allows strings with a specified time zone (ex. `+[HH][MM]`). Right now this isn't supported, but if it's important for a workflow I can try to get it working.
+If the time variable is not included, then the current time is used for the request. If a time variable is included, the request is treated as if it was requested at that time. This means that the API will return the forecast data that would have been returned then- so not quite observations, but the last forecast for that date. Results are always returned in UTC time using UNIX timestamps, and internally UNIX time is used for everything, with the exception of calculating where to begin and end the daily data. Also, for checking time format conversions, I found <https://www.silisoftware.com/tools/date.php> to be an invaluable resource.
+
+#### Units
+Specifies the requested unit for the weather conditions. Options are
+
+* `ca`: SI, with Wind Speed and Wind Gust in kilometres per hour.
+* `uk`: SI, with Wind Speed and Wind Gust in miles per hour and visibility are in miles.
+* `us`: Imperial units
+* `si`: SI units
+
+For compatibility with Dark Sky, `us` (Imperial units) are the default if nothing is specified. For reference, the SI units are
+
+* `summary`: Temperatures in degrees Celsius or accumulation in centimetres .
+* `precipIntensity`: Millimetres per hour.
+* `precipIntensityMax`: Millimetres per hour.
+* `precipAccumulation`: Centimetres.
+* `temperature`: Degrees Celsius.
+* `temperatureMin`: Degrees Celsius.
+* `temperatureMax`: Degrees Celsius.
+* `apparentTemperature`: Degrees Celsius.
+* `dewPoint`: Degrees Celsius.
+* `windSpeed`: Meters per second.
+* `windGust`: Meters per second.
+* `pressure`: Hectopascals.
+* `visibility`: Kilometres.
+
+#### Exclude
+Added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Exclude parameters can be added as a comma-separated list, with the options being:
+
+* `currently`
+* `minutely`
+* `hourly`
+* `daily`
+* `alerts`
+
 ## Response
-In progress.
+```
+GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/45.42,-74.30,1654056000?&units=ca
+{
+  "latitude": 45.42,
+  "longitude": -74.30000000000001,
+  "timezone": "America/Toronto",
+  "offset": -4.0,
+  "currently": {
+    "time": 1654056000.0,
+    "summary": "clear-night",
+    "icon": "clear-night",
+    "precipIntensity": 0.004297839575262448,
+    "precipType": "none",
+    "temperature": 0.0,
+    "apparentTemperature": 0.0,
+    "dewPoint": 100626.40625,
+    "pressure": 0.0,
+    "windSpeed": 15.155382707144021,
+    "windBearing": 71.83404347077446,
+    "cloudCover": 0.0
+  },
+  "hourly": {
+    "data": [
+      {
+        "time": 1654056000.0,
+        "icon": "clear-night",
+        "summary": "clear-night",
+        "precipAccumulation": 0.0,
+        "precipType": "none",
+        "temperature": 15.225000000000023,
+        "apparentTemperature": 15.472222470944814,
+        "dewPoint": 7.600000000000023,
+        "pressure": 1006.2640625,
+        "windSpeed": 15.155382707144021,
+        "windBearing": 71.83404347077446,
+        "cloudCover": 0.0
+      },
+     ...
+    ]
+  },
+  "daily": {
+    "data": [
+      {
+        "time": 1654056000.0,
+        "icon": "rain",
+        "summary": "rain",
+        "sunriseTime": 1654074748.0,
+        "sunsetTime": 1654130288.0,
+        "moonPhase": 0.06510658568536382,
+        "precipAccumulation": 0.726318359375,
+        "precipType": "rain",
+        "temperatureHigh": 16.350000000000023,
+        "temperatureHighTime": 1654102800.0,
+        "temperatureLow": 12.412500000000023,
+        "temperatureLowTime": 1654092000.0,
+        "apparentTemperatureHigh": 18.945154173378285,
+        "apparentTemperatureHighTime": 1654120800.0,
+        "apparentTemperatureLow": 12.736014638445567,
+        "apparentTemperatureLowTime": 13.018278210795586,
+        "dewPoint": 9.745833333333357,
+        "pressure": 1002.41076171875,
+        "windSpeed": 15.194513142232859,
+        "windBearing": 0.3026326497395833,
+        "cloudCover": 0.38462293016675536,
+        "temperatureMin": 12.412500000000023,
+        "temperatureMinTime": 1654092000.0,
+        "temperatureMax": 16.350000000000023,
+        "temperatureMaxTime": 1654102800.0,
+        "apparentTemperatureMin": 12.736014638445567,
+        "apparentTemperatureMinTime": 13.018278210795586,
+        "apparentTemperatureMax": 18.945154173378285,
+        "apparentTemperatureMaxTime": 1654120800.0
+      }
+    ]
+  }
+}
+```
+
 ### Data Block
-In progress.
+The API returns a JSON object with the following properties
+
+### latitude
+The requested latitude.
+
+### longatude
+The requested longitude.
+
+### timezone
+Ex. `America/Toronto`. The timezone name for the requested location. This is used to determine when the `hourly` and `daily` blocks start and caculating the text summaries.
+
+### offset
+The timezone offset in hours.
+
+### elevation
+The height above sea level in meters the requested location is.
+
+### currently
+A block containing the current weather for the requested location.
+
+### minutely
+A block containing the minute-by-minute precipitation intensity for the 60 minutes.
+
+### hourly
+A block containing the hour-by-hour forecasted conditions for the next 48 hours.
+
+### daily
+A block containing the day-by-day forecasted conditions for the next 7 days.
+
+### alerts
+A block containing any severe weather alerts if any for the current location.
+
+### flags
+A block containing miscellaneous data for the API request.
 
 ### Data Point
 
@@ -284,10 +464,10 @@ The time of the minimum "feels like" temperature during the daytime, from 6:00 a
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
 
 #### dewPoint
-In progress.
+The point in which the air temperature needs (assuming constant pressure) in order to reach a relative humidity of 100%. This is value is represented in degrees Celcius or Farenheit depending on the requested `units`. [See this resource for more information.](https://www.weather.gov/arx/why_dewpoint_vs_humidity)
 
 #### humidity
-Relative humidity expressed as a value between 0 and 1 inclusive.
+Relative humidity expressed as a value between 0 and 1 inclusive. This is a percentage of the actual water vapor in the air compared to the total amount of water vapor that can exist at the current temperature. [See this resource for more information.](https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/relative-humidity)
 
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
@@ -316,86 +496,88 @@ The algorithm here is straightforward, coming from this [NOAA resource](https://
 For additional details, see [issue #3](https://github.com/alexander0042/pirateweather/issues/3).
 
 #### moonPhase
-**Only on `daily`**. In progress.
+**Only on `daily`**. The fractional [lunation number](https://en.wikipedia.org/wiki/New_moon#Lunation_number) for the given day. `0.00` represents a new moon, `0.25` represents the first quarter, `0.50` represents a full moon and `0.75` represents the last quarter.
 
 #### nearestStormBearing
-**Only on `currently`**. In progress.
+**Only on `currently`**. The approximate direction in degrees in which a storm is travelling with 0° representing true north.
 
 #### nearestStormDistance
-**Only on `currently`**. In progress.
+**Only on `currently`**. The approximate distance to the nearest storm in kilometers or miles depending on the requested `units`.
 
 #### ozone
-In progress.
+The density of total atmosheric ozone at a given time in Dobson units.
 
 #### precipAccumulation
-**Only on `hourly` and `daily`**. In progress.
+**Only on `hourly` and `daily`**. The amount of liquid precipitation expected to fall over an hour or a day expressed in millimeters per hour or inches per hour depending on the requested `units`
 
 #### precipIntensity
 The rate in which liquid precipitation is falling. This value is expressed in millimeters per hour or inches per hour depending on the requested `units`. For `currently` and `minutely` forecast blocks, the HRRR "Precipitation Rate" variable  is used where available, otherwise averaged GEFS data is returned. For `hourly` and `daily` forecast blocks, GEFS is always used. This is done so that the `precipIntensityProbablity` variable is aligned with the intensity.
 
+#### precipIntensityError
+The standard deviation of the `precipitationIntensity`.
+
 #### precipIntensityMax
-**Only on `daily`**. In progress.
+**Only on `daily`**. The maximum value of `precipitationIntensity` for the given day.
 
 #### precipIntensityMaxTime
-**Only on `daily`**. In progress.
+**Only on `daily`**. The point in which the maximum `precipitationIntensity` occurs represented in UNIX time.
 
 #### precipIntensityMin
-**Only on `daily`**. In progress.
+**Only on `daily`**. The minimum value of `precipitationIntensity` for the given day.
 
 #### precipIntensityMinTime
-**Only on `daily`**. In progress.
+**Only on `daily`**. The point in which the minimum `precipitationIntensity` occurs represented in UNIX time.
 
 #### precipIntensityProbablity
 The probablity of precipitation occuring expressed as a value between 0 and 1 inclusive.
 
 #### precipType
-The type of precipitation occuring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`.
+The type of precipitation occuring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow.
 
 #### pressure
-In progress.
+The sea-level pressure represented in hectopascals or milibars depending on the requested `units`.
 
 #### summary
-In progress.
+A human-readable summary describing the weather conditions for a given data point.
 
 #### sunriseTime
-**Only on `daily`**. In progress.
+**Only on `daily`**. The time when the sun rises for a given day represented in UNIX time.
 
 #### sunsetTime
-**Only on `daily`**. In progress.
+**Only on `daily`**. The time when the sun sets for a given day represented in UNIX time.
 
 #### temperature
 The air temperature in degrees celsius or degrees farenheit depending on the requested `units`
 
 #### temperatureHigh
-**Only on `daily`**. The daytime high temperature calculated between 6:00 am and 6:00 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
+**Only on `daily`**. The daytime high temperature calculated between 6:00 am and 6:00 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
 #### temperatureHighTime
 **Only on `daily`**. The time in which the high temperature occurs represented in UNIX time.
 
 #### temperatureLow
-**Only on `daily`**. The overnight low temperature calculated between 6:00 pm and 6:00 am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
+**Only on `daily`**. The overnight low temperature calculated between 6:00 pm and 6:00 am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
 #### temperatureLowTime
 **Only on `daily`**. The time in which the low temperature occurs represented in UNIX time.
 
 #### temperatureMax
-**Only on `daily`**. The maximum temperature calculated between 12:00 am and 11:59 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
+**Only on `daily`**. The maximum temperature calculated between 12:00 am and 11:59 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
 #### temperatureMaxTime
 **Only on `daily`**. The time in which the maximum temperature occurs represented in UNIX time.
 
 #### temperatureMin
-**Only on `daily`**. The minimum temperature calculated between 12:00 am and 11:59 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day
+**Only on `daily`**. The minimum temperature calculated between 12:00 am and 11:59 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
 
 #### temperatureMinTime
-**Only on `daily`**. 
-The time in which the minimum temperature occurs represented in UNIX time.
+**Only on `daily`**. The time in which the minimum temperature occurs represented in UNIX time.
 
 #### time
-In progress.
+The time in which the data point begins represented in UNIX time. The `currently` block represents the current time, the `minutely` block is aligned to the top of the minute, the `hourly` block the top of the hour and the `daily` block to midnight of the current day in the current time zone.
 
 #### unIndex
-The UV index.
+The measure of UV radation as represented as an index from 0 and above. `0` to `2` is Low, `3` to `5` is Moderate, `6` and `7` is High, `8` to `10` is Very High and `11+` is considered extreme. [See this resource for more information.](https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-(uv)-index#:~:text=What%20is%20the%20UV%20index,takes%20for%20harm%20to%20occur.)
 
 #### uvIndexTime
 **Only on `daily`**. The time in which the maximum `uvIndex` occurs during the day.
@@ -404,7 +586,7 @@ The UV index.
 The visibility in kilometres or miles depending on the requested units. In the `daily` block the visibility is the average visibility for the day. This value is capped at 16 kilometres or 10 miles depending on the requested `units`.
 
 #### windBearing
-In progress.
+The direction in which the wind is blowing in degrees with 0° representing true north. To convert degrees to a cardinal direction you can refer [to this table](http://snowfence.umn.edu/Components/winddirectionanddegrees.htm).
 
 #### windGust
 The wind gust in kilometres per hour or miles per hour depending on the requested `units`.
@@ -417,25 +599,25 @@ The current wind speed in kilometres per hour or miles per hour depending on the
 
 ### Alerts
 #### title
-In progress.
+A breif description of the alert.
 
 #### regions
-In progress.
+An array of strings containing all regions included in the weather alert.
 
 #### severity
-In progress.
+Indicates how severe the weather alert is.
 
 #### time
-In progress.
+The time in which the alert was issued represented in UNIX time.
 
 #### expires
-In progress.
+The time in which the alert expires represented in UNIX time.
 
 #### description
-In progress.
+A detailed description of the alert.
 
 #### uri
-In progress.
+A HTTP(S) url in which you can visit for more information about the alert.
 
 ### Flags
 #### sources
