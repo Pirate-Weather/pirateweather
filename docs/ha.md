@@ -1,3 +1,7 @@
+This integration is designed to replace the default [Dark Sky](https://www.home-assistant.io/integrations/darksky/) integration in [Home Assistant](https://github.com/home-assistant/core/tree/dev/homeassistant/components/darksky) with a modified and updated, but fully compatible version that relies on the [Pirate Weather API](https://pirateweather.net/) instead!
+
+While this integration is designed to be a drop in replacement for the Dark Sky integration, it is possible that small differences will occur. The underlying API should return similar results, but specific weather variables may be missing, and additional testing is needed to find and correct these edge cases. Please [document any issues](https://github.com/alexander0042/pirate-weather-ha/issues), and I can either update this integration or the weather API. 
+
 # Installation
 There are two methods to install this installation:
 
@@ -71,3 +75,10 @@ sensor:
       - precip_intensity
       - wind_speed
 ```
+
+## Documentation
+In Progress.
+
+## Frequently Asked Questions
+### Can I update my API key or update interval after the initial setup?
+No. the way HA stores the data and sets things up means that it's not possible to update the key/update interval after creation.
