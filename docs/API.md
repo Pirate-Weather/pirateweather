@@ -232,16 +232,19 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 
 ### Time Machine Request
 The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
+
 ```
       https://timemachine.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
 ```
 
 The Time Machine uses ERA5 dataset which is updated monthly but the API stores the last five days of model data and to get access to that data you query the forecast API using the time parameter like in the following URL:
+
 ```
       https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
 ```
 
 The response format is the same as the forecast except:
+
 * The `currently` block will refer to the requested time and not the present time.
 * The `minutely` block is not present except when querying data from the last five days.
 * The `hourly` block will return data from midnight of the requested day to midnight the next day.
