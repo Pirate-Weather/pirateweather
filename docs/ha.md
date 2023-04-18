@@ -28,7 +28,7 @@ The use to integration, click on the "Add Integration" button on the Integration
 
 ![Integration_Setup_A](https://github.com/alexander0042/pirate-weather-ha/blob/master/Integration_Setup_A.png?raw=true)
 
-- The *API key* can be received from [Apible](https://pirate-weather.apiable.io), and is only used to track usage and keep my AWS bills reasonable
+- The *API key* can be received from [Apiable](https://pirate-weather.apiable.io), and is only used to track usage and keep my AWS bills reasonable
 - The *Integration Name* is what this weather source will be called. If you want to track the weather at multiple locations, change this. 
 - The *Latitude* and *Longitude* for the forecast.
 - The update interval the forecast (in seconds). Anything below 15 minutes will likely lead to running out of quota.
