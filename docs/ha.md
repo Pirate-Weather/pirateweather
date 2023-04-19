@@ -1,6 +1,6 @@
-This integration is designed to replace the default [Dark Sky](https://www.home-assistant.io/integrations/darksky/) integration in [Home Assistant](https://github.com/home-assistant/core/tree/dev/homeassistant/components/darksky) with a modified and updated, but fully compatible version that relies on the [Pirate Weather API](https://pirateweather.net/) instead!
+This integration is designed to replace the defunct Dark Sky integration in Home Assistant with a modified and updated, but fully compatible version that relies on the [Pirate Weather API](https://pirateweather.net/en/latest/) instead!
 
-While this integration is designed to be a drop in replacement for the Dark Sky integration, it is possible that small differences will occur. The underlying API should return similar results, but specific weather variables may be missing, and additional testing is needed to find and correct these edge cases. Please [document any issues](https://github.com/alexander0042/pirate-weather-ha/issues), and I can either update this integration or the weather API. 
+While this integration is designed to be compatible with Dark Sky, the underlying code is significantly different. This version is designed to work with more modern versions of Home Assistant, and relies on asyncio, unified data update coordinators, and setup via the UI! A [legacy branch](https://github.com/alexander0042/pirate-weather-ha/tree/Legacy-Dark-Sky) that is a 1:1 replacement for the previous Dark Sky integration is also available, but is not recommended.
 
 # Installation
 There are two methods to install this installation:
@@ -8,8 +8,8 @@ There are two methods to install this installation:
 ## HACS Installation (easiest)
 1. Add `https://github.com/alexander0042/pirate-weather-ha` as a custom repository
 2. Restart Home Assistant
-3. Register for a Pirate Weather API Key here: [https://pirateweather.net/](https://pirateweather.net/en/latest)
-4. Log into the Pirate Weather API interface [https://pirate-weather.apiable.io/](https://pirate-weather.apiable.io/), select `PirateForecast Beta`, and **click Subscribe**!
+3. Register for a Pirate Weather API Key here: <https://pirate-weather.apiable.io>
+4. Log into the Pirate Weather API interface (<https://pirate-weather.apiable.io>) and subscribe to the API!
 5. Add the Pirate Weather on the Integrations page of your Home Assistant Installation following the steps below.
 
 ## Manual Installation 
@@ -19,8 +19,8 @@ There are two methods to install this installation:
 4. Download _all_ the files from the `custom_components/pirateweather/` directory (folder) in this repository.
 5. Place the files you downloaded in the new directory (folder) you created.
 6. Restart Home Assistant
-7. Register for a Pirate Weather API Key here: [https://pirateweather.net/](https://pirateweather.net/en/latest)
-8. Log into the Pirate Weather API interface [https://pirate-weather.apiable.io/](https://pirate-weather.apiable.io/), select `PirateForecast Beta`, and **click Subscribe**!
+7. Register for a Pirate Weather API Key here: <https://pirate-weather.apiable.io>
+8. Log into the Pirate Weather API interface (<https://pirate-weather.apiable.io>), and subscribe to the API!
 9. Add the Pirate Weather on the Integrations page of your Home Assistant Installation following the steps below.
 
 ## Configuration
@@ -28,7 +28,7 @@ The use to integration, click on the "Add Integration" button on the Integration
 
 ![Integration_Setup_A](https://github.com/alexander0042/pirate-weather-ha/blob/master/Integration_Setup_A.png?raw=true)
 
-- The *API key* can be received from the [Pirate Weather Site](https://pirateweather.net/en/latest), and is only used to track usage and keep my AWS bills reasonable
+- The *API key* can be received from [Apiable](https://pirate-weather.apiable.io), and is only used to track usage and keep my AWS bills reasonable
 - The *Integration Name* is what this weather source will be called. If you want to track the weather at multiple locations, change this. 
 - The *Latitude* and *Longitude* for the forecast.
 - The update interval the forecast (in seconds). Anything below 15 minutes will likely lead to running out of quota.
