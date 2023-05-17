@@ -390,7 +390,7 @@ The API returns a JSON object with the following properties
 ### latitude
 The requested latitude.
 
-### longatude
+### longitude
 The requested longitude.
 
 ### timezone
