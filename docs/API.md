@@ -262,7 +262,7 @@ The location is specified by a latitude (1st) and longitude (2nd) in decimal deg
 If you are looking for a place to figure out the latitude and longitude, [https://www.latlong.net/](https://www.latlong.net/) is a good starting point.
 
 #### Time
-This field is reqiored for the time machine request and it can be specified in one of three different ways:
+This field is required for the time machine request and it can be specified in one of three different ways:
 
 1. UNIX timestamp, or the number of seconds since midnight GMT on 1 Jan 1970 (this is the preferred way).
 2. A datestring in the local time zone of the location being requested: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]`.
