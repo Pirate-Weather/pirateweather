@@ -1,5 +1,6 @@
 # Roadmap
-1. Text summaries and translations.	
+1. Improve the ingest scripts to keep the forecast initialization model results. This will allow for much better daily high and low data, as well as more accurate short term historical results. 
+2. Text summaries and translations.	
 	* Based on the [existing repository](https://github.com/alexander0042/translations).
 2. Finish the API documentation.
 3. Add in alerts for Canada/ EU/ other.
