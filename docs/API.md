@@ -511,7 +511,7 @@ For additional details, see [issue #3](https://github.com/alexander0042/piratewe
 The density of total atmosheric ozone at a given time in Dobson units.
 
 #### precipAccumulation
-**Only on `hourly` and `daily`**. The amount of liquid precipitation expected to fall over an hour or a day expressed in millimeters per hour or inches per hour depending on the requested `units`
+**Only on `hourly` and `daily`**. The amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
 
 #### precipIntensity
 The rate in which liquid precipitation is falling. This value is expressed in millimeters per hour or inches per hour depending on the requested `units`. For `currently` and `minutely` forecast blocks, the HRRR "Precipitation Rate" variable  is used where available, otherwise averaged GEFS data is returned. For `hourly` and `daily` forecast blocks, GEFS is always used. This is done so that the `precipIntensityProbablity` variable is aligned with the intensity.
