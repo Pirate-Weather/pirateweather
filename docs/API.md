@@ -394,7 +394,7 @@ The requested latitude.
 The requested longitude.
 
 ### timezone
-Ex. `America/Toronto`. The timezone name for the requested location. This is used to determine when the `hourly` and `daily` blocks start and caculating the text summaries.
+Ex. `America/Toronto`. The timezone name for the requested location. This is used to determine when the `hourly` and `daily` blocks start and calculating the text summaries.
 
 ### offset
 The timezone offset in hours.
@@ -467,7 +467,7 @@ The time of the minimum "feels like" temperature during the daytime, from 6:00 a
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
 
 #### dewPoint
-The point in which the air temperature needs (assuming constant pressure) in order to reach a relative humidity of 100%. This is value is represented in degrees Celcius or Farenheit depending on the requested `units`. [See this resource for more information.](https://www.weather.gov/arx/why_dewpoint_vs_humidity)
+The point in which the air temperature needs (assuming constant pressure) in order to reach a relative humidity of 100%. This is value is represented in degrees Celsius or Fahrenheit depending on the requested `units`. [See this resource for more information.](https://www.weather.gov/arx/why_dewpoint_vs_humidity)
 
 #### humidity
 Relative humidity expressed as a value between 0 and 1 inclusive. This is a percentage of the actual water vapor in the air compared to the total amount of water vapor that can exist at the current temperature. [See this resource for more information.](https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/relative-humidity)
@@ -508,7 +508,7 @@ For additional details, see [issue #3](https://github.com/alexander0042/piratewe
 **Only on `currently`**. The approximate distance to the nearest storm in kilometers or miles depending on the requested `units`.
 
 #### ozone
-The density of total atmosheric ozone at a given time in Dobson units.
+The density of total atmospheric ozone at a given time in Dobson units.
 
 #### precipAccumulation
 **Only on `hourly` and `daily`**. The amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
@@ -531,14 +531,14 @@ The standard deviation of the `precipitationIntensity`.
 #### precipIntensityMinTime
 **Only on `daily`**. The point in which the minimum `precipitationIntensity` occurs represented in UNIX time.
 
-#### precipIntensityProbablity
-The probablity of precipitation occuring expressed as a value between 0 and 1 inclusive.
+#### precipIntensityProbability
+The probability of precipitation occurring expressed as a value between 0 and 1 inclusive.
 
 #### precipType
-The type of precipitation occuring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow.
+The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow.
 
 #### pressure
-The sea-level pressure represented in hectopascals or milibars depending on the requested `units`.
+The sea-level pressure represented in hectopascals or millibars depending on the requested `units`.
 
 #### summary
 A human-readable summary describing the weather conditions for a given data point.
@@ -550,7 +550,7 @@ A human-readable summary describing the weather conditions for a given data poin
 **Only on `daily`**. The time when the sun sets for a given day represented in UNIX time.
 
 #### temperature
-The air temperature in degrees celsius or degrees farenheit depending on the requested `units`
+The air temperature in degrees Celsius or degrees Fahrenheit depending on the requested `units`
 
 #### temperatureHigh
 **Only on `daily`**. The daytime high temperature calculated between 6:00 am and 6:00 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
@@ -580,7 +580,7 @@ The air temperature in degrees celsius or degrees farenheit depending on the req
 The time in which the data point begins represented in UNIX time. The `currently` block represents the current time, the `minutely` block is aligned to the top of the minute, the `hourly` block the top of the hour and the `daily` block to midnight of the current day in the current time zone.
 
 #### uvIndex
-The measure of UV radation as represented as an index starting from 0. `0` to `2` is Low, `3` to `5` is Moderate, `6` and `7` is High, `8` to `10` is Very High and `11+` is considered extreme. [See this resource for more information.](https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-(uv)-index#:~:text=What%20is%20the%20UV%20index,takes%20for%20harm%20to%20occur.)
+The measure of UV radiation as represented as an index starting from 0. `0` to `2` is Low, `3` to `5` is Moderate, `6` and `7` is High, `8` to `10` is Very High and `11+` is considered extreme. [See this resource for more information.](https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-(uv)-index#:~:text=What%20is%20the%20UV%20index,takes%20for%20harm%20to%20occur.)
 
 #### uvIndexTime
 **Only on `daily`**. The time in which the maximum `uvIndex` occurs during the day.
@@ -602,7 +602,7 @@ The current wind speed in kilometres per hour or miles per hour depending on the
 
 ### Alerts
 #### title
-A breif description of the alert.
+A brief description of the alert.
 
 #### regions
 An array of strings containing all regions included in the weather alert.
