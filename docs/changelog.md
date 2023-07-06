@@ -1,7 +1,10 @@
 # Changelog
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
-
+* July 6, 2023: API Version 1.5.3
+	* Fixed a glitch producing a "snow" precipitation type when very small amounts of precipitation were forecasted per issue [#78](https://github.com/alexander0042/pirateweather/issues/78).
+	* Fixed an issue with the icon field returning the night icons in areas with 24 hours of sun per [issue #79](https://github.com/alexander0042/pirateweather/issues/78).
+	* Fixed an parsing problem with small negative latitudes per [issue #67](https://github.com/alexander0042/pirateweather/issues/78).
 * May 26, 2023: API Version 1.5
 	* Least interesting point update ever, but important nevertheless! Migrated existing keys from using AWS API Gateway to Kong as the back-end layer. This will allow the service to grow past the 10,000 user limit imposed by the AWS Gateway, allows me to add a caching layer to improve performance, provides more AWS availability zone redundancy, and provides some more flexible routing options in the future. As a bonus, Kong returns the number of API requests remaining as a header, addressing [issue #54](https://github.com/alexander0042/pirateweather/issues/54).
 * March 13, 2023: API Version 1.4.1
