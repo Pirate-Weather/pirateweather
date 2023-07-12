@@ -2,7 +2,7 @@ name: Mark stale issues and pull requests
 
 on:
   schedule:
-  - cron: "0 0 * * *"
+  - cron: "0 0/6 * * *"
 
 jobs:
   stale:
@@ -14,13 +14,13 @@ jobs:
       with:
         exempt-issue-assignees: 'alexander0042'
         exempt-pr-assignees: 'alexander0042'
-        exempt-issue-labels: 'no-autoclose'
-        exempt-pr-labels: 'no-autoclose'
+        exempt-issue-labels: 'keep'
+        exempt-pr-labels: 'keep'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'There has been no activity on this issue for ninety days and unless you comment on the issue it will automatically close in seven days.'
-        stale-pr-message: 'There has been no activity on this pull request for ninety days and unless you comment on the pull request it will automatically close in seven days.'
-        close-issue-message: 'This issue was closed because it has been stalled for seven days with no activity.'
-        close-pr-message: 'This pull request was closed because it has been stalled for seven days with no activity.'
+        stale-issue-message: 'There has not been any activity on this issue in the last ninety and will automatically close in seven days. Comment on this issue to prevent this issue from closing automatically.'
+        stale-pr-message: 'There has not been any activity on this pull request in the last ninety and will automatically close in seven days. Comment on this issue to prevent this pull request from closing automatically.'
+        close-issue-message: 'This issue has been automatically closed since there has been no further activity after seven days.'
+        close-pr-message: 'This pull request has been automatically closed since there has been no further activity after seven days.'
         stale-issue-label: 'stale'
         stale-pr-label: 'stale'
         days-before-stale: 90
@@ -31,6 +31,6 @@ jobs:
     steps:
       - uses: dessant/lock-threads@v4
         with:
-          issue-inactive-days: '30'
-          pr-inactive-days: '30'
+          issue-inactive-days: '60'
+          pr-inactive-days: '60'
           issue-lock-reason: ''
