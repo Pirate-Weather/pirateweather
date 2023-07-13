@@ -1,6 +1,8 @@
 # Changelog
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
+* July 13, 2023: API Version 1.5.4
+	* Fixed a series of rounding issues: [#4](https://github.com/alexander0042/pirateweather/issues/4), [#36](https://github.com/alexander0042/pirateweather/issues/36), and [#77](https://github.com/alexander0042/pirateweather/issues/77).
 * July 6, 2023: API Version 1.5.3
 	* Fixed a glitch producing a "snow" precipitation type when very small amounts of precipitation were forecasted per issue [#78](https://github.com/alexander0042/pirateweather/issues/78).
 	* Fixed an issue with the icon field returning the night icons in areas with 24 hours of sun per [issue #79](https://github.com/alexander0042/pirateweather/issues/78).
