@@ -1,6 +1,7 @@
 # Changelog
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
+
 * July 13, 2023: API Version 1.5.4
 	* Fixed a series of rounding issues: [#4](https://github.com/alexander0042/pirateweather/issues/4), [#36](https://github.com/alexander0042/pirateweather/issues/36), and [#77](https://github.com/alexander0042/pirateweather/issues/77).
 * July 6, 2023: API Version 1.5.3
