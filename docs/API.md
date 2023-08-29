@@ -99,7 +99,7 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 		"dewPoint": -6.21,
 		"humidity": 0.88,
 		"pressure": 1014.3,
-		"windSpeed": 7.204,
+		"windSpeed": 7.20,
 		"windGust": 14.18,
 		"windBearing": 255.53,
 		"cloudCover": 0.14,
@@ -126,7 +126,7 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 	      "icon": "cloudy",
 	      "data": [
 	         {
-	            "time": 1674316800.0,
+	            "time": 1674316800,
 	            "icon": "partly-cloudy-day",
 	            "summary": "Partly Cloudy",
 	            "precipIntensity": 0.0033,
@@ -160,7 +160,7 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 	            "summary": "Cloudy",
 	            "sunriseTime": 1674304502,
 	            "sunsetTime": 1674338008,
-	            "moonPhase": 0.9848795204636577,
+	            "moonPhase": 0.99,
 	            "precipIntensity": 0.0179,
 	            "precipIntensityMax": 0.0362,
 	            "precipIntensityMaxTime": 1674356400,
@@ -180,9 +180,9 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 	            "pressure": 1013.11,
 	            "windSpeed": 5.92,
 	            "windGust": 14.4,
-				"windGustTime": 1674320400,
+	            "windGustTime": 1674320400,
 	            "windBearing": 210.18,
-	            "cloudCover": 0.768,
+	            "cloudCover": 0.77,
 	            "uvIndex": 2.38,
 	            "uvIndexTime": 1674320400,
 	            "visibility": 15.1,
@@ -225,7 +225,7 @@ Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneF
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V1.4.1"
+	   "version": "V1.5.5"
 	   }
 	}
 ```
@@ -314,17 +314,17 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
   "timezone": "America/Toronto",
   "offset": -4.0,
   "currently": {
-    "time": 1654056000.0,
+    "time": 1654056000,
     "summary": "clear-night",
     "icon": "clear-night",
-    "precipIntensity": 0.004297839575262448,
+    "precipIntensity": 0.0043,
     "precipType": "none",
-    "temperature": 0.0,
-    "apparentTemperature": 0.0,
-    "dewPoint": 100626.40625,
-    "pressure": 0.0,
-    "windSpeed": 15.155382707144021,
-    "windBearing": 71.83404347077446,
+    "temperature": 15.23,
+    "apparentTemperature": 15.47,
+    "dewPoint": 7.6,
+    "pressure": 1006.3,
+    "windSpeed": 15.15,
+    "windBearing": 72,
     "cloudCover": 0.0
   },
   "hourly": {
@@ -335,12 +335,12 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
         "summary": "clear-night",
         "precipAccumulation": 0.0,
         "precipType": "none",
-        "temperature": 15.225000000000023,
-        "apparentTemperature": 15.472222470944814,
-        "dewPoint": 7.600000000000023,
-        "pressure": 1006.2640625,
-        "windSpeed": 15.155382707144021,
-        "windBearing": 71.83404347077446,
+        "temperature": 15.23,
+        "apparentTemperature": 15.47,
+        "dewPoint": 7.6,
+        "pressure": 1006.3,
+        "windSpeed": 15.15,
+        "windBearing": 72,
         "cloudCover": 0.0
       },
      ...
@@ -352,32 +352,32 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
         "time": 1654056000.0,
         "icon": "rain",
         "summary": "rain",
-        "sunriseTime": 1654074748.0,
-        "sunsetTime": 1654130288.0,
-        "moonPhase": 0.06510658568536382,
-        "precipAccumulation": 0.726318359375,
+        "sunriseTime": 1654074748,
+        "sunsetTime": 1654130288,
+        "moonPhase": 0.07,
+        "precipAccumulation": 0.7263,
         "precipType": "rain",
-        "temperatureHigh": 16.350000000000023,
-        "temperatureHighTime": 1654102800.0,
-        "temperatureLow": 12.412500000000023,
-        "temperatureLowTime": 1654092000.0,
-        "apparentTemperatureHigh": 18.945154173378285,
-        "apparentTemperatureHighTime": 1654120800.0,
-        "apparentTemperatureLow": 12.736014638445567,
-        "apparentTemperatureLowTime": 13.018278210795586,
-        "dewPoint": 9.745833333333357,
-        "pressure": 1002.41076171875,
-        "windSpeed": 15.194513142232859,
-        "windBearing": 0.3026326497395833,
-        "cloudCover": 0.38462293016675536,
-        "temperatureMin": 12.412500000000023,
-        "temperatureMinTime": 1654092000.0,
-        "temperatureMax": 16.350000000000023,
-        "temperatureMaxTime": 1654102800.0,
-        "apparentTemperatureMin": 12.736014638445567,
-        "apparentTemperatureMinTime": 13.018278210795586,
-        "apparentTemperatureMax": 18.945154173378285,
-        "apparentTemperatureMaxTime": 1654120800.0
+        "temperatureHigh": 16.35,
+        "temperatureHighTime": 1654102800,
+        "temperatureLow": 12.41,
+        "temperatureLowTime": 1654092000,
+        "apparentTemperatureHigh": 18.95,
+        "apparentTemperatureHighTime": 1654120800,
+        "apparentTemperatureLow": 12.74,
+        "apparentTemperatureLowTime": 13.01,
+        "dewPoint": 9.74,
+        "pressure": 1002.41,
+        "windSpeed": 15.19,
+        "windBearing": 0,
+        "cloudCover": 0.38
+        "temperatureMin": 12.41,
+        "temperatureMinTime": 1654092000,
+        "temperatureMax": 16.35
+        "temperatureMaxTime": 1654102800,
+        "apparentTemperatureMin": 12.73,
+        "apparentTemperatureMinTime": 13.01,
+        "apparentTemperatureMax": 18.94,
+        "apparentTemperatureMaxTime": 1654120800
       }
     ]
   }
@@ -608,7 +608,13 @@ A brief description of the alert.
 An array of strings containing all regions included in the weather alert.
 
 #### severity
-Indicates how severe the weather alert is.
+Indicates how severe the weather alert is. Possible values are:
+
+* Extreme - Extraordinary threat to life or property
+* Severe - Significant threat to life or property
+* Moderate - Possible threat to life or property
+* Minor - Minimal threat to life or property
+* Unknown
 
 #### time
 The time in which the alert was issued represented in UNIX time.
