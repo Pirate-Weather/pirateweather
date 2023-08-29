@@ -1,6 +1,7 @@
 # Changelog
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
+
 * August 29, 2023: API Version 1.5.5
 	* Dull back-end update: added response compression to reduce a terrifyingly large AWS data transfer bill, and removed old logging statements.
 * July 13, 2023: API Version 1.5.4
