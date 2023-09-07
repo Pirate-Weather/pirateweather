@@ -531,8 +531,8 @@ The standard deviation of the `precipitationIntensity`.
 #### precipIntensityMinTime
 **Only on `daily`**. The point in which the minimum `precipitationIntensity` occurs represented in UNIX time.
 
-#### precipIntensityProbability
-The probability of precipitation occurring expressed as a value between 0 and 1 inclusive.
+#### precipProbability
+The probability of precipitation occurring expressed as a decimal between 0 and 1 inclusive.
 
 #### precipType
 The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow.
