@@ -17,7 +17,7 @@ body:
       label: Documentation URL
       description: A link to the section/page where the issue with the documentation is.
       placeholder: |
-        Example: "Ottawa, Ontario, Canada"
+        Example: "https://pirateweather.net/en/latest/API/"
     validations:
       required: true
 
