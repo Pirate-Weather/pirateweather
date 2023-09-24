@@ -1,0 +1,22 @@
+name: Apiable Issue
+description: Report an issue with APIable portal.
+labels: ["apiable" , "Needs Review"]
+body:
+
+  - type: textarea
+    id: describe-the-issue
+    attributes:
+      label: Describe the issue
+      description: Describe the issue with APIable.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: I have searched this repository to see if the issue has already been reported.
+          required: true
+        - label: I have written an informative title.
+          required: true
