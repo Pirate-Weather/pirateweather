@@ -1,0 +1,21 @@
+name: Feature Request
+description: Request a feature to be added to the PirateWeather API
+labels: ["enhancement", "Needs Review"]
+body:
+
+  - type: textarea
+    id: describe-the-feature
+    attributes:
+      label: Describe the feature
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: I have searched this repository and [Home Assistant Repository](https://github.com/alexander0042/pirate-weather-ha) to see if the feature has already been requested.
+          required: true
+        - label: I have written an informative title.
+          required: true
