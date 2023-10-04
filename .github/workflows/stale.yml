@@ -17,10 +17,10 @@ jobs:
         exempt-issue-labels: 'keep'
         exempt-pr-labels: 'keep'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'There has not been any activity on this issue in the last ninety and will automatically close in seven days. Comment on this issue to prevent this issue from closing automatically.'
-        stale-pr-message: 'There has not been any activity on this pull request in the last ninety and will automatically close in seven days. Comment on this issue to prevent this pull request from closing automatically.'
-        close-issue-message: 'This issue has been automatically closed since there has been no further activity after seven days.'
-        close-pr-message: 'This pull request has been automatically closed since there has been no further activity after seven days.'
+        stale-issue-message: 'There has been no activity on this issue in the last ninety days and will automatically close in seven days. Leave a comment on this issue to prevent it from closing automatically.'
+        stale-pr-message: 'There has not been any activity on this pull request in the last ninety days and will automatically close in seven days. Leave a comment on this pull request to prevent it from closing automatically.'
+        close-issue-message: 'This issue has been automatically closed since there has been no further activity after seven days and will be automatically locked in sixty days. During that time feel free to re-open the issue or you can create a new follow-up issue afterwards.'
+        close-pr-message: 'This pull request has been automatically closed since there has been no further activity after seven days and will be automatically locked in sixty days. During that time feel free to re-open the pull request or you can create a new follow-up pull request afterwards.'
         stale-issue-label: 'stale'
         stale-pr-label: 'stale'
         days-before-stale: 90
