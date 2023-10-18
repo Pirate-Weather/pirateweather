@@ -26,11 +26,3 @@ jobs:
         days-before-stale: 90
         days-before-close: 7
         enable-statistics: 'true'
-  #lock:
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - uses: dessant/lock-threads@v4
-  #      with:
-  #        issue-inactive-days: '60'
-  #        pr-inactive-days: '60'
-  #        issue-lock-reason: ''
