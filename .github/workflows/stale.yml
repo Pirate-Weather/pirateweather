@@ -19,18 +19,18 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         stale-issue-message: 'There has been no activity on this issue in the last ninety days and will automatically close in seven days. Leave a comment on this issue to prevent it from closing automatically.'
         stale-pr-message: 'There has not been any activity on this pull request in the last ninety days and will automatically close in seven days. Leave a comment on this pull request to prevent it from closing automatically.'
-        close-issue-message: 'This issue has been automatically closed since there has been no further activity after seven days and will be automatically locked in sixty days. During that time feel free to re-open the issue or you can create a new follow-up issue afterwards.'
-        close-pr-message: 'This pull request has been automatically closed since there has been no further activity after seven days and will be automatically locked in sixty days. During that time feel free to re-open the pull request or you can create a new follow-up pull request afterwards.'
+        close-issue-message: 'This issue has been automatically closed since there has been no further activity after seven days and will be automatically locked in sixty days. Feel free to re-open this issue or you can create a follow-up issue'
+        close-pr-message: 'This pull request has been automatically closed since there has been no further activity after seven days. Feel free to re-open the pull request or you can create a new follow-up pull request.'
         stale-issue-label: 'stale'
         stale-pr-label: 'stale'
         days-before-stale: 90
         days-before-close: 7
         enable-statistics: 'true'
-  lock:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: dessant/lock-threads@v4
-        with:
-          issue-inactive-days: '60'
-          pr-inactive-days: '60'
-          issue-lock-reason: ''
+  #lock:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: dessant/lock-threads@v4
+  #      with:
+  #        issue-inactive-days: '60'
+  #        pr-inactive-days: '60'
+  #        issue-lock-reason: ''
