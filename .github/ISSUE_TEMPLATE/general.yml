@@ -1,0 +1,23 @@
+name: General Issue
+description: Report an general issue with the API.
+labels: ["Needs Review"]
+body:
+
+  - type: textarea
+    id: describe-the-issue
+    attributes:
+      label: Describe the issue
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: I have searched this repository and [Home Assistant Repository](https://github.com/alexander0042/pirate-weather-ha) to see if the issue has already been reported.
+          required: true
+        - label: I have read through the [API documentation](https://pirateweather.net/en/latest/API/) before opening this issue.
+          required: true
+        - label: I have written an informative title.
+          required: true
