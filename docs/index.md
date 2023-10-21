@@ -8,7 +8,6 @@
 
 ## Quick Links
 * To [**register for the API**](https://pirate-weather.apiable.io/)
-* To [register for the API using the new, desktop only portal](https://pirate-weather2.apiable.io/)
 * [Get a weather forecast in the Dark Sky style](https://merrysky.net/)
 * [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
 * [Processing code repo](https://github.com/alexander0042/pirateweather)
