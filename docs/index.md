@@ -20,6 +20,14 @@
 * [BoingBoing](https://boingboing.net/2023/01/10/pirate-weather-api-has-more-features.html)
 * [Hacker News Front Page](https://news.ycombinator.com/item?id=34329988)
 
+# Who is using PirateWeather?
+
+- [MerrySky](https://merrysky.net) - Get a Forecast DarkSky Style
+- [PW-forecast](https://github.com/ktrue/PW-forecast) and [https://saratoga-weather.org/scripts-PWforecast.php](https://saratoga-weather.org/scripts-PWforecast.php)
+- [Breezy Weather](https://github.com/breezy-weather/breezy-weather)
+
+Do you use PirateWeather? Open a pull request to add it to the list.
+
 # Introduction 
 Weather forecasts are primarily found using models run by government agencies, but the [outputs](https://weather.gc.ca/grib/what_is_GRIB_e.html) aren't easy to use or in formats built for the web.
 To try to address this, I've put together a service that reads weather forecasts and serves it following the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs) style. 
@@ -186,10 +194,3 @@ While this service currently covers almost everything that the Dark Sky API does
 2. Precipitation probabilities are a tricky problem to solve- weather models don't give a range of outcomes, just one answer. To get probabilities, this implementation relies on the Global Ensemble Forecast System [(GEFS)](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs). This is a 30-member ensemble, so if 1 member predicts precipitation, the probability will be 1/30. GEFS data is also used to predict precipitation type and accumulation. A 1:10 snow-water ratio is assumed. 
 3. Current conditions are based on model results (from HRRR-subhourly), which assimilates observations, but not direct observations. 
 4. Why "PirateWeather"? I've always thought that the HRRR model was pronounced the same way as the classic pirate "ARRR". Also, there is [one company](https://arstechnica.com/tech-policy/2020/10/google-asks-supreme-court-to-overrule-disastrous-ruling-on-api-copyrights/) out there that thinks APIs can be copyrighted, which might apply here. 
-
-# Who is using PirateWeather?
-
-- [MerrySky](https://merrysky.net) - Get a Forecast DarkSky Style
-- [PW-forecast](https://github.com/ktrue/PW-forecast) and [https://saratoga-weather.org/scripts-PWforecast.php](https://saratoga-weather.org/scripts-PWforecast.php)
-
-Do you use PirateWeather? Open a pull request to add it to the list.
