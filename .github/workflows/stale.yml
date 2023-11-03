@@ -14,7 +14,7 @@ jobs:
       with:
         exempt-issue-assignees: 'alexander0042'
         exempt-pr-assignees: 'alexander0042'
-        exempt-issue-labels: 'keep'
+        exempt-issue-labels: 'keep, Needs Review'
         exempt-pr-labels: 'keep'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         stale-issue-message: 'There has been no activity on this issue in the last ninety days and will automatically close in seven days. Leave a comment on this issue to prevent it from closing automatically.'
