@@ -1,6 +1,6 @@
 name: Apiable Issue
 description: Report an issue with APIable portal.
-labels: ["apiable" , "Needs Review"]
+labels: ["Apiable" , "Needs Review"]
 body:
 
   - type: textarea

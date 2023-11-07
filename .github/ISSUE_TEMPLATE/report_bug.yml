@@ -16,6 +16,9 @@ body:
     attributes:
       label: Expected behavior
       description: A clear and concise description of what you expected to happen.
+      placeholder: |
+        Example:
+          "This happened..."
     validations:
       required: true
 

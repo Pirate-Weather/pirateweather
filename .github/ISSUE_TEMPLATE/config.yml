@@ -1,6 +1,6 @@
 blank_issues_enabled: false
 contact_links:
-  - name: GitHub Community Support
+  - name: Questions
     url: https://github.com/alexander0042/pirateweather/discussions
     about: Please ask and answer questions here.
   - name: Home Assistant Repository
