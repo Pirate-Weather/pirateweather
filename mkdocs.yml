@@ -7,6 +7,8 @@ theme:
   favicon: images/pw_favicon.png
   palette:
     primary: 'deep orange'
+  features:
+    - navigation.expand
     
 nav:
     - Introduction: 'index.md'
@@ -19,7 +21,10 @@ nav:
     - 'Previous Versions- v0.1': 'indexv01.md'
     - 'Issue Tracker': 'https://github.com/alexander0042/pirateweather/issues/'
     - 'Terms of Service' : 'https://pirate-weather.apiable.io/terms'
-
+  - Section:
+    - 'Kong Gateway': 'Blog/Kong Gateway Infrastructure.md'
+    
+    
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true

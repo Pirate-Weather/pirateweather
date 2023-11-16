@@ -44,9 +44,9 @@ With the AWS infrastructure in place, it was time to get to Kong. At the core, i
 <details> 
   <summary> ECS Task JSON </summary>
   
-  ```
+```
 		{
-		    "taskDefinitionArn": "arn:aws:ecs:us-east-1:703502995287:task-definition/pirate-kong:20",
+		    "taskDefinitionArn": "<AWS TASK ARN>",
 		    "containerDefinitions": [
 		        {
 		            "name": "pirate-kong",
@@ -170,7 +170,7 @@ With the AWS infrastructure in place, it was time to get to Kong. At the core, i
 		        }
 		    ],
 		    "family": "pirate-kong",
-		    "executionRoleArn": "arn:aws:iam::703502995287:role/ecsTaskExecutionRole",
+		    "executionRoleArn": "<AWS ROLE>",
 		    "networkMode": "awsvpc",
 		    "revision": 20,
 		    "volumes": [],
@@ -213,7 +213,7 @@ With the AWS infrastructure in place, it was time to get to Kong. At the core, i
 		        "operatingSystemFamily": "LINUX"
 		    },
 		    "registeredAt": "2023-08-29T13:50:15.622Z",
-		    "registeredBy": "arn:aws:iam::703502995287:root",
+		    "registeredBy": "<AWS ROLE>",
 		    "tags": []
 		}
 ```
