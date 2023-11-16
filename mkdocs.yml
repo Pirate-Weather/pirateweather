@@ -17,11 +17,12 @@ nav:
   - 'Changelog': 'changelog.md'
   - 'API Specification': 'Specification.md'
   - 'Roadmap': 'roadmap.md'
-  - 'Previous Versions- v0.1': 'indexv01.md'
   - 'Issue Tracker': 'https://github.com/alexander0042/pirateweather/issues/'
   - 'Terms of Service' : 'https://pirate-weather.apiable.io/terms'
   - Blog:
+    - 'Infrastructure Overview': 'Blog/Infrastructure Overview.md'
     - 'Kong Gateway': 'Blog/Kong Gateway Infrastructure.md'
+    - 'Previous Versions- v0.1': 'Blog/indexv01.md'
     
     
 markdown_extensions:
