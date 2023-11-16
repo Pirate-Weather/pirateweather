@@ -11,17 +11,16 @@ theme:
     - navigation.expand
     
 nav:
-    - Introduction: 'index.md'
-    - 'API': 'API.md'
-    - 'Kong Gateway': 'Kong Gateway Infrastructure.md'
-    - 'Home Assistant': 'ha.md'
-    - 'Changelog': 'changelog.md'
-    - 'API Specification': 'Specification.md'
-    - 'Roadmap': 'roadmap.md'
-    - 'Previous Versions- v0.1': 'indexv01.md'
-    - 'Issue Tracker': 'https://github.com/alexander0042/pirateweather/issues/'
-    - 'Terms of Service' : 'https://pirate-weather.apiable.io/terms'
-  - Section:
+  - Introduction: 'index.md'
+  - 'API': 'API.md'
+  - 'Home Assistant': 'ha.md'
+  - 'Changelog': 'changelog.md'
+  - 'API Specification': 'Specification.md'
+  - 'Roadmap': 'roadmap.md'
+  - 'Previous Versions- v0.1': 'indexv01.md'
+  - 'Issue Tracker': 'https://github.com/alexander0042/pirateweather/issues/'
+  - 'Terms of Service' : 'https://pirate-weather.apiable.io/terms'
+  - Blog:
     - 'Kong Gateway': 'Blog/Kong Gateway Infrastructure.md'
     
     
