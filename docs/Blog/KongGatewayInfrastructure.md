@@ -1,4 +1,4 @@
-# Deploying Kong Gateway (OSS) in Production on AWS Using serverless Tools
+# Deploying Kong Gateway (OSS) in Production on AWS Using Serverless Tools
 ## You can bring a data scientist to a database, but you can’t make them an administrator
 
 Weather APIs can be intricate, dealing with a myriad of data flowing in and out. At  [Pirate Weather](https://pirateweather.net), my background in data processing equipped me to handle file operations with Python, but delving into the realm of cloud infrastructure was an entirely new challenge. While I am familiar enough with the command line and know the basics of AWS, I started this without experience in networking or databases, and frankly, I wasn't eager to learn. This meant that serverless tools were an ideal solution, letting me abstract away the infrastructure complexities and focus on actual building.
@@ -17,7 +17,7 @@ Why Kong Gateway (OSS)? Five main reasons:
 ### Overview
 Implementing this was a significant undertaking, and I relied heavily on other published walkthroughs, so I wanted to take the time to explain the process here. At a high level, the architecture is straightforward: a network load balancer in front of a containerized Fargate service interacting with a cache, database, and Lambda function.
 
-<img src="https://github.com/Pirate-Weather/pirateweather/blob/main/docs/Pirate%20Kong.png?raw=true">
+![Architecture](img/PirateKong.png)
 
 ### Image
 The system starts with a lightly customized [Kong OSS image](https://gallery.ecr.aws/j9v4j3c7/pirate-kong), which is build using Docker on an EC2 ARM instant and a very simple dockerfile:
