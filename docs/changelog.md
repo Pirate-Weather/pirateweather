@@ -2,6 +2,10 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
+* December 11, 2023: API Version 1.5.6
+	* Added error handling for times in the future per issue [#122](https://github.com/Pirate-Weather/pirateweather/issues/122).
+ 	* Improved how short term historic forecasts (<3 days) and processed.
+  	* Not live yet, but significant progress on V2.0 has occurred, and ingest scripts for NBM + HRRR Smoke are complete, as well as updates to allow for previous observations to be used in processing.
 * August 29, 2023: API Version 1.5.5
 	* Dull back-end update: added response compression to reduce a terrifyingly large AWS data transfer bill, and removed old logging statements.
 * July 13, 2023: API Version 1.5.4
