@@ -40,6 +40,7 @@ body:
       options: 
         - TimeMachine
         - Development
+        - Development v2
         - Production
       default: 0
     validations:
