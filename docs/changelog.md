@@ -18,6 +18,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 	* Fixed an parsing problem with small negative latitudes per [issue #67](https://github.com/alexander0042/pirateweather/issues/78).
 * May 26, 2023: API Version 1.5
 	* Least interesting point update ever, but important nevertheless! Migrated existing keys from using AWS API Gateway to Kong as the back-end layer. This will allow the service to grow past the 10,000 user limit imposed by the AWS Gateway, allows me to add a caching layer to improve performance, provides more AWS availability zone redundancy, and provides some more flexible routing options in the future. As a bonus, Kong returns the number of API requests remaining as a header, addressing [issue #54](https://github.com/alexander0042/pirateweather/issues/54).
+   
 </details>
 <details>
 	<summary><strong>Version 1.4</strong></summary>
@@ -27,6 +28,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 * February 28, 2023: API Version 1.4
 	* Fixed a long standing bug in the GEFS precipitation intensity for the currently and minutely blocks per [issue #24](https://github.com/alexander0042/pirateweather/issues/24). Outside of the HRRR area, precipitation intensities are now calculated using GEFS, instead of just returning zero!
 	* Corrected how midnight is calculated in the Eastern Hemisphere.
+   
 </details>
 <details>
 	<summary><strong>Version 1.3</strong></summary>
@@ -42,12 +44,14 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 	* Corrected a bug on all the max/min times for days 2-7.
 	* Changed all daily parameters except icon/ summary to be calculated over a 24 hour period from 12:00 am to 12:00 am, instead of 4:00 to 4:00.
 	* Fixed a bug with sunrise and sunset times in UTC+x time zones.
+   
 </details>
 <details>
 	<summary><strong>Version 1.2</strong></summary>
 
 * January 23, 2023: API Version 1.2
 	* Alerts! Finally wrote a processing script to save weather alerts as a NetCDF file, which provides much more detail as well as much faster response times.
+   
 </details>
 <details>
 	<summary><strong>Version 1.1</strong></summary>
@@ -88,6 +92,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
     * Per [this issue](https://github.com/alexander0042/pirate-weather-ha/issues/30#issuecomment-1014959232), precipitation intensity is now always returned in mm of water equivalent per hour. 
     * Per [this issue](https://github.com/alexander0042/pirate-weather-ha/issues/30#issuecomment-1009379064), the precipitation icon is now trigged by 0.25 mm/h of precipitation, instead of 1 mm/h.
     * Corrected a small bug where a negative precipitation rate could be returned.
+      
 </details>
 <details>
 	<summary><strong>Winter 2022</strong></summary>
@@ -117,7 +122,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 * May 25, 2021:
     * Corrected an icon issue, identified [here](https://github.com/alexander0042/pirate-weather-hacs/issues/2)
 * May 20, 2021:
-    * Changed the GFS retrieval to interpolate between a weighted average (by 1/distance) of the 9 closest grid cells, instead of just taking the nearest cell. This will help to smooth out some of the sudden jumps in the results. 
+    * Changed the GFS retrieval to interpolate between a weighted average (by 1/distance) of the 9 closest grid cells, instead of just taking the nearest cell. This will help to smooth out some of the sudden jumps in the results.
+      
 </details>
 
 ## Version 2.0 Pre-Release Changelog
