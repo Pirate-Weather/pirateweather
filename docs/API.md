@@ -248,11 +248,11 @@ The Time Machine uses ERA5 dataset which is updated monthly but the API stores t
 The response format is the same as the forecast except:
 
 * The `currently` block will refer to the requested time and not the present time.
-* The `minutely` block is not present except when querying data from the last five days.
+* The `minutely` block is not present except when querying data from the last three days.
 * The `hourly` block will return data from midnight of the requested day to midnight the next day.
-* The `daily` block will return the data for the current day except when querying data from the last five days.
+* The `daily` block will return the data for the current day except when querying data from the last three days.
 * The `alerts` block is not included.
-* The `flags` block will not be included except when querying data from the last five days.
+* The `flags` block will not be included except when querying data from the last three days.
 
 #### API Key
 The API key needs to be requested from <https://pirateweather.net/>. After signing up for the service, the forecast API needs to be subscribed to, by logging in and clicking subscribe. Once subscribed to the API, it can take up to 20 minutes for the change to propagate to the gateway to allow requests, so go grab a coffee and it should be ready shortly after. 
