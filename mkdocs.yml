@@ -1,6 +1,6 @@
 site_name: Pirate Weather
 site_url: https://pirateweather.net
-repo_url: https://github.com/alexander0042/pirateweather/
+repo_url: https://github.com/Pirate-Weather/pirateweather
 repo_name: 'GitHub'
 theme: 
   name: 'material' 
@@ -17,7 +17,7 @@ nav:
   - 'Changelog': 'changelog.md'
   - 'API Specification': 'Specification.md'
   - 'Roadmap': 'roadmap.md'
-  - 'Issue Tracker': 'https://github.com/alexander0042/pirateweather/issues/'
+  - 'Issue Tracker': 'https://github.com/Pirate-Weather/pirateweather/issues'
   - 'Terms of Service' : 'https://pirate-weather.apiable.io/terms'
   - Blog:
     - 'Infrastructure Overview': 'Blog/InfrastructureOverview.md'
