@@ -2,7 +2,7 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
-???+ Version 1.5
+???+ note "Version 1.5"
 	
     * December 11, 2023: API Version 1.5.6
 	    * Added error handling for times in the future per issue [#122](https://github.com/Pirate-Weather/pirateweather/issues/122).
@@ -19,7 +19,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
     * May 26, 2023: API Version 1.5
 	    * Least interesting point update ever, but important nevertheless! Migrated existing keys from using AWS API Gateway to Kong as the back-end layer. This will allow the service to grow past the 10,000 user limit imposed by the AWS Gateway, allows me to add a caching layer to improve performance, provides more AWS availability zone redundancy, and provides some more flexible routing options in the future. As a bonus, Kong returns the number of API requests remaining as a header, addressing [issue #54](https://github.com/alexander0042/pirateweather/issues/54).
    
-??? Version 1.4
+??? note "Version 1.4"
 
 	* March 13, 2023: API Version 1.4.1
 		* Fixed a rounding bug introduced in 1.4 which sometimes created issues with the currently block precipitation intensity parameter over the HRRR grid per [issue #29](https://github.com/alexander0042/pirateweather/issues/29).
@@ -27,7 +27,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Fixed a long standing bug in the GEFS precipitation intensity for the currently and minutely blocks per [issue #24](https://github.com/alexander0042/pirateweather/issues/24). Outside of the HRRR area, precipitation intensities are now calculated using GEFS, instead of just returning zero!
 		* Corrected how midnight is calculated in the Eastern Hemisphere.
    
-??? Version 1.3
+??? note "Version 1.3"
 
 	* January 27, 2023: API Version 1.3.2
 		* Fixed an issue created when fixing the HRRR grid point issue that resulted in the HRRR model not being used per [this issue](https://github.com/alexander0042/pirateweather/issues/22).
@@ -41,12 +41,12 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Changed all daily parameters except icon/ summary to be calculated over a 24 hour period from 12:00 am to 12:00 am, instead of 4:00 to 4:00.
 		* Fixed a bug with sunrise and sunset times in UTC+x time zones.
    
-??? Version 1.2
+??? note "Version 1.2"
 
 	* January 23, 2023: API Version 1.2
 		* Alerts! Finally wrote a processing script to save weather alerts as a NetCDF file, which provides much more detail as well as much faster response times.
    
-??? Version 1.1
+??? note "Version 1.1"
 
 	* December 1, 2022: API Version 1.1.10
     	* Quick fix to address a server error when requesting a point on the edge of the HRRR grid.
@@ -85,7 +85,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
     	* Per [this issue](https://github.com/alexander0042/pirate-weather-ha/issues/30#issuecomment-1009379064), the precipitation icon is now trigged by 0.25 mm/h of precipitation, instead of 1 mm/h.
     	* Corrected a small bug where a negative precipitation rate could be returned.
       
-??? Winter 2022
+??? note "Winter 2022"
 
  	* Winter 2022
     	* Official V1.0 release! These docs have been updated to reflect the current version, but I'll leave the previous version up for reference under the [v0.1 header](https://pirateweather.readthedocs.io/en/latest/indexv01/).
