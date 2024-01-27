@@ -5,14 +5,18 @@ While this integration is designed to be compatible with Dark Sky, the underlyin
 # Installation
 There are two methods to install this installation:
 
-## HACS Installation (easiest)
+<div class="installation" markdown>
+
+=== "HACS Installation (easiest)"
+
 1. Add `https://github.com/alexander0042/pirate-weather-ha` as a custom repository
 2. Restart Home Assistant
 3. Register for a Pirate Weather API Key here: <https://pirate-weather.apiable.io>
 4. Log into the Pirate Weather API interface (<https://pirate-weather.apiable.io>) and subscribe to the API!
 5. Add the Pirate Weather on the Integrations page of your Home Assistant Installation following the steps below.
 
-## Manual Installation 
+=== "Manual Installation"
+
 1. Using the tool of choice open the directory (folder) for your HA configuration (where you find `configuration.yaml`).
 2. If you do not have a `custom_component` directory (folder) there, you need to create it.
 3. In the `custom_components` directory (folder) create a new folder called `pirateweather`.
@@ -23,7 +27,14 @@ There are two methods to install this installation:
 8. Log into the Pirate Weather API interface (<https://pirate-weather.apiable.io>), and subscribe to the API!
 9. Add the Pirate Weather on the Integrations page of your Home Assistant Installation following the steps below.
 
+</div>
+
 ## Configuration
+
+<div class="configuration" markdown>
+
+=== "HACS Configuration"
+
 The use to integration, click on the "Add Integration" button on the Integrations page in the Home Assistant Settings and search for Pirate Weather. This will open the add integration UI, shown below.
 
 ![Integration_Setup_A](https://github.com/alexander0042/pirate-weather-ha/blob/master/Integration_Setup_A.png?raw=true)
@@ -44,7 +55,8 @@ The use to integration, click on the "Add Integration" button on the Integration
 - If values should be rounded to the nearest integer.
 - And which units the forecast sensors should be in. This integration works with the built-in Home Assistant units; however, this option allows rounding to be used.
 
-### YAML Configuration
+=== "YAML Configuration"
+
 YAML configuration is still supported, but is depreciated and may be removed at some point in the future. If the integration detects an existing YAML integration, it will import and save it, allowing the yaml to be safely removed.
 
 To use the integration via this approach, either add or edit to your `configuration.yaml` file with this block, using the new API key:
@@ -76,9 +88,93 @@ sensor:
       - wind_speed
 ```
 
+</div>
+
 ## Documentation
 In Progress.
 
+## Sensors
+The available sensors for the integration are:
+
+* Summary
+* Icon
+* Precipitation Type
+* Precipitation Intensity
+* Precipitation Probability
+* Precipitation Accumulation
+* Temperature
+* Apparent Temperature
+* Dew Point
+* Humidity
+* Wind Speed
+* Wind Gust
+* Wind Bearing
+* Cloud Cover
+* Pressure
+* Visibility
+* Ozone
+* Minutely Summary
+* Hourly Summary
+* Daily Summary
+* Temperature High
+* Temperature Low
+* Apparent Temperature High
+* Apparent Temperature Low
+* Precip Intensity Max
+* UV Index
+* Moon Phase
+* Sunrise Time
+* Sunset Time
+* Nearest Storm Distance
+* Nearest Storm Bearing
+* Alerts
+* Time
+
+Full documentation of the different data points is available here https://pirateweather.net/en/latest/API/#data-point. A full list of conditions supported by HA is available here https://www.home-assistant.io/integrations/weather/#condition-mapping
+
 ## Frequently Asked Questions
+### How often should I set the update frequency?
+The default value of 1200 (20 minutes) is fine for most use cases and it's not recommended to go any lower than 900 seconds (15 minutes). The model data that underpins this whole thing has only provides data in 15 minute increments, so while the API interpolates this down to a minute-by-minute data, there isn't much benefit to requesting data faster than that.
+
 ### Can I update my API key or update interval after the initial setup?
-No. the way HA stores the data and sets things up means that it's not possible to update the key/update interval after creation.
+No. The way HA stores the data and sets things up means that it's not possible to update the key/update interval after creation.
+
+### After updating to V1.3 I can no longer access forecast attributes directly
+In release 2023.9 HA depreciated the forecast attribute and as a result you are not able to access the forecast attributes directly. In order to access them you need to create a template like the following:
+
+```yaml
+- trigger:
+    - platform: time_pattern
+      minutes: "/30"
+  action:
+    - service: weather.get_forecasts
+      data:
+        type: daily
+      target:
+        entity_id: weather.pirateweather
+      response_variable: daily
+  sensor:
+    - name: Pirate Weather Daily
+      unique_id: pirateweather_daily
+      state: "{{ daily['weather.pirateweather'].forecast[0].condition }}"
+      attributes:
+        forecast: "{{ daily['weather.pirateweather'].forecast }}"
+- trigger:
+    - platform: time_pattern
+      minutes: "/30"
+  action:
+    - service: weather.get_forecasts
+      data:
+        type: hourly
+      target:
+        entity_id: weather.pirateweather
+      response_variable: hourly
+  sensor:
+    - name: Pirate Weather Hourly
+      unique_id: pirateweather_hourly
+      state: "{{ hourly['weather.pirateweather'].forecast[0].condition }}"
+      attributes:
+        forecast: "{{ hourly['weather.pirateweather'].forecast[:24] }}"
+```
+
+For more information see [issue #157](https://github.com/Pirate-Weather/pirate-weather-ha/issues/157) and https://github.com/hg1337/homeassistant-dwd/blob/f47840bfade5ed21781843542674f7ccb6be0ba3/questions_and_answers.md#im-using-a-third-party-weather-card-that-doesnt-support-the-new-forecast-mechanism-can-i-continue-using-it
