@@ -9,7 +9,7 @@ There are two methods to install this installation:
 
 === "HACS Installation (easiest)"
 
-1. Add `https://github.com/alexander0042/pirate-weather-ha` as a custom repository
+1. Add `https://github.com/Pirate-Weather/pirate-weather-ha` as a custom repository
 2. Restart Home Assistant
 3. Register for a Pirate Weather API Key here: <https://pirate-weather.apiable.io>
 4. Log into the Pirate Weather API interface (<https://pirate-weather.apiable.io>) and subscribe to the API!
