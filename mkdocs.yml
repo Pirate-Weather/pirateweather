@@ -33,8 +33,6 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
-  - pymdownx.tabbed:
-    alternate_style: true  
   
 extra_javascript:
   - javascripts/extra.js

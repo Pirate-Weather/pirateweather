@@ -1,13 +1,13 @@
+# Home Assistant Integration Documentaion
+
 This integration is designed to replace the defunct Dark Sky integration in Home Assistant with a modified and updated, but fully compatible version that relies on the [Pirate Weather API](https://pirateweather.net/en/latest/) instead!
 
 While this integration is designed to be compatible with Dark Sky, the underlying code is significantly different. This version is designed to work with more modern versions of Home Assistant, and relies on asyncio, unified data update coordinators, and setup via the UI! A [legacy branch](https://github.com/alexander0042/pirate-weather-ha/tree/Legacy-Dark-Sky) that is a 1:1 replacement for the previous Dark Sky integration is also available, but is not recommended.
 
-# Installation
+## Installation
 There are two methods to install this installation:
 
-<div class="installation" markdown>
-
-=== "HACS Installation (easiest)"
+### HACS Installation (easiest)
 
 1. Add `https://github.com/alexander0042/pirate-weather-ha` as a custom repository
 2. Restart Home Assistant
@@ -15,7 +15,7 @@ There are two methods to install this installation:
 4. Log into the Pirate Weather API interface (<https://pirate-weather.apiable.io>) and subscribe to the API!
 5. Add the Pirate Weather on the Integrations page of your Home Assistant Installation following the steps below.
 
-=== "Manual Installation"
+### Manual Installation
 
 1. Using the tool of choice open the directory (folder) for your HA configuration (where you find `configuration.yaml`).
 2. If you do not have a `custom_component` directory (folder) there, you need to create it.
@@ -27,13 +27,9 @@ There are two methods to install this installation:
 8. Log into the Pirate Weather API interface (<https://pirate-weather.apiable.io>), and subscribe to the API!
 9. Add the Pirate Weather on the Integrations page of your Home Assistant Installation following the steps below.
 
-</div>
-
 ## Configuration
 
-<div class="configuration" markdown>
-
-=== "HACS Configuration"
+### HACS Configuration
 
 The use to integration, click on the "Add Integration" button on the Integrations page in the Home Assistant Settings and search for Pirate Weather. This will open the add integration UI, shown below.
 
@@ -55,7 +51,7 @@ The use to integration, click on the "Add Integration" button on the Integration
 - If values should be rounded to the nearest integer.
 - And which units the forecast sensors should be in. This integration works with the built-in Home Assistant units; however, this option allows rounding to be used.
 
-=== "YAML Configuration"
+### YAML Configuration
 
 YAML configuration is still supported, but is depreciated and may be removed at some point in the future. If the integration detects an existing YAML integration, it will import and save it, allowing the yaml to be safely removed.
 
