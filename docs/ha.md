@@ -84,8 +84,6 @@ sensor:
       - wind_speed
 ```
 
-</div>
-
 ## Documentation
 In Progress.
 
