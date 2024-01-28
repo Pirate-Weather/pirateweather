@@ -124,10 +124,10 @@ The available sensors for the integration are:
 * Alerts
 * Time
 
-Full documentation of the different data points is available here https://pirateweather.net/en/latest/API/#data-point. A full list of conditions supported by HA is available here https://www.home-assistant.io/integrations/weather/#condition-mapping
+Full documentation of the different data points is available here [https://pirateweather.net/en/latest/API/#data-point](https://pirateweather.net/en/latest/API/#data-point). A full list of conditions supported by HA is available here [https://www.home-assistant.io/integrations/weather/#condition-mapping](https://www.home-assistant.io/integrations/weather/#condition-mapping)
 
 ## Frequently Asked Questions
-### How often should I set the update frequency?
+### What is the recommended update frequency?
 The default value of 1200 (20 minutes) is fine for most use cases and it's not recommended to go any lower than 900 seconds (15 minutes). The model data that underpins this whole thing has only provides data in 15 minute increments, so while the API interpolates this down to a minute-by-minute data, there isn't much benefit to requesting data faster than that.
 
 ### Can I update my API key or update interval after the initial setup?
@@ -171,4 +171,4 @@ In release 2023.9 HA depreciated the forecast attribute and as a result you are 
         forecast: "{{ hourly['weather.pirateweather'].forecast[:24] }}"
 ```
 
-For more information see [issue #157](https://github.com/Pirate-Weather/pirate-weather-ha/issues/157) and https://github.com/hg1337/homeassistant-dwd/blob/f47840bfade5ed21781843542674f7ccb6be0ba3/questions_and_answers.md#im-using-a-third-party-weather-card-that-doesnt-support-the-new-forecast-mechanism-can-i-continue-using-it
+For more information see [issue #157](https://github.com/Pirate-Weather/pirate-weather-ha/issues/157) and [https://github.com/hg1337/homeassistant-dwd/blob/f47840bfade5ed21781843542674f7ccb6be0ba3/questions_and_answers.md#im-using-a-third-party-weather-card-that-doesnt-support-the-new-forecast-mechanism-can-i-continue-using-it](https://github.com/hg1337/homeassistant-dwd/blob/f47840bfade5ed21781843542674f7ccb6be0ba3/questions_and_answers.md#im-using-a-third-party-weather-card-that-doesnt-support-the-new-forecast-mechanism-can-i-continue-using-it)
