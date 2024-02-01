@@ -12,7 +12,7 @@
 * [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
 * [Processing code repo](https://github.com/alexander0042/pirateweather)
 * [Changelog](https://pirateweather.net/en/latest/changelog/)
-* [Status page](https://stats.uptimerobot.com/DRKqBCok2N)
+* [Status page](https://pirateweather.xitoring.io/)
 
 #### Publications and Press
 * [AWS blog post](https://aws.amazon.com/blogs/publicsector/making-weather-forecasts-accessible-serverless-infrastructure-open-data-aws/)
