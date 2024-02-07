@@ -117,6 +117,11 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ## Version 2.0 Pre-Release Changelog
 Changelog for the upcoming version 2.0 of the API currently available to those who have access to the development endpoint.
 
+* February 6, 2024
+	* [National Blend of Models](https://blend.mdl.nws.noaa.gov/) data is now being shown in the API.
+ 	* Querying by lat/long is now working
+  	* Nearest storm data and bearings now return data instead of always returning zero. This was reported in issues [#6](https://github.com/Pirate-Weather/pirateweather/issues/6), [#91](https://github.com/Pirate-Weather/pirateweather/issues/91) and [#121](https://github.com/Pirate-Weather/pirateweather/issues/121)
+  	* Development URL is now located at ` http://piratev2lb-a90c79daaddc2625.elb.us-east-1.amazonaws.com:8000/forecastv2/<APIKEY>/<LAT>,<LON>`
 * January 4, 2024 
 	* Right now, there's not much to look at, since it's only a testing endpoint to make sure that things were flowing; however, it represents a ton of key improvements:
 		1. ~100x faster responses
@@ -125,4 +130,4 @@ Changelog for the upcoming version 2.0 of the API currently available to those w
 		4. Short term historic data, fixing the daily high/ low issues.
 		5. Less interesting, but totally new ingest pipeline that's way more flexible/ maintainable.  
 	* To access it, check out: `https://dev.pirateweather.net/forecastv2/<APIKEY>/<X>,<Y>`
-	*  X and Y are raw grid indexes (I warned it was rough), so keep them between 0-700, and the only data that's returned right now is the -36 hour UTC time for the HRRR model. In the next couple days, I'm going to fix lat/long and expose some of the raw model data (probably current values for everything), so they'll be something to look at! 
+	* X and Y are raw grid indexes (I warned it was rough), so keep them between 0-700, and the only data that's returned right now is the -36 hour UTC time for the HRRR model. In the next couple days, I'm going to fix lat/long and expose some of the raw model data (probably current values for everything), so they'll be something to look at! 
