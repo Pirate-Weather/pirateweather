@@ -1,5 +1,10 @@
 name: Mark stale issues and pull requests
 
+permissions:
+  contents: write # only for delete-branch option
+  issues: write
+  pull-requests: write
+
 on:
   schedule:
   - cron: "0 0/6 * * *"
