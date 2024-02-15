@@ -21,7 +21,7 @@ jobs:
         exempt-pr-assignees: 'alexander0042'
         exempt-issue-labels: 'keep,Needs Review'
         exempt-pr-labels: 'keep'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ github.token }}
         stale-issue-message: 'There has been no activity on this issue in the last ninety days and will automatically close in seven days. Leave a comment on this issue to prevent it from closing automatically.'
         stale-pr-message: 'There has not been any activity on this pull request in the last ninety days and will automatically close in seven days. Leave a comment on this pull request to prevent it from closing automatically.'
         close-issue-message: 'This issue has been automatically closed since there has been no further activity after seven days and will be automatically locked in sixty days. Feel free to re-open this issue or you can create a follow-up issue'
