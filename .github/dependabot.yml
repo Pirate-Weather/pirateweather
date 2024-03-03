@@ -9,7 +9,7 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-      time: "9:00"
+      time: "09:00"
       timezone: "America/Toronto"
     open-pull-requests-limit: 100
 
@@ -17,6 +17,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "9:10"
+      time: "09:10"
       timezone: "America/Toronto"
     open-pull-requests-limit: 100
