@@ -115,8 +115,17 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
     	* Changed the GFS retrieval to interpolate between a weighted average (by 1/distance) of the 9 closest grid cells, instead of just taking the nearest cell. This will help to smooth out some of the sudden jumps in the results.
 
 ## Version 2.0 Pre-Release Changelog
-Changelog for the upcoming version 2.0 of the API currently available to those who have access to the development endpoint.
+Changelog for the upcoming version 2.0 of the API
 
+* March 8, 2024
+	* Currently block added which uses a mix of NBM/HRRR/GFS/GEFS data
+	* Daily block added
+ 	* Alerts block added 
+ 	* Icon and summary data points added to all blocks
+  	* Apparent Temperature now uses data from the GFS model instead of calculating it. This was reported in [issue #76](https://github.com/Pirate-Weather/pirateweather/issues/76) 
+ 	* Fix issues documented in [issue #155](https://github.com/Pirate-Weather/pirateweather/issues/155)  
+* February 18, 2024
+	* Hourly and minutely blocks have been added 
 * February 6, 2024
 	* [National Blend of Models](https://blend.mdl.nws.noaa.gov/) data is now being shown in the API.
  	* Querying by lat/long is now working
