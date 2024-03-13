@@ -117,6 +117,32 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ## Version 2.0 Pre-Release Changelog
 Changelog for the upcoming version 2.0 of the API
 
+* Version 2.0c
+	* March 13, 2024:
+ 	* Fixed the daily min/max timing issues (turns out there were several different things that weren't working)
+  	* Fixed most of the [#155](https://github.com/Pirate-Weather/pirateweather/issues/155) items
+  	* HRRR subhourly and HRRR 0-18 will always be 1-2 hours off now. I'm trying to ingest the subhourly data as fast as possible, so it gets read as soon as four timesteps are published. The hourly data waits until the 18 hour timestep is out, and then has to process the previous 36 hours of data to create a cohesive timeseries. 
+* Version 2.0b
+	* March 11, 2024:
+
+Excited to announce that the long awaited version 2.0 of the Pirate Weather API is ready for beta testing on the [dev.pirateweather.net](dev.pirateweather.net) endpoint! Ever since issue #5 was opened two years ago, I realized that eventually my back-end would need a rewrite to handle a wider range of cases, and this is the culmination of that effort. I'll have a more detailed write-up eventually, but for now, I wanted to start this thread to consolidate issues with the new API in one place for me to change, as well as announce some of the new features. 
+
+At a high level, there are four main improvements that will impact every request:
+
+1. Includes a fancy new model from NOAA called the National Blend of Models
+2. Does a way better job of calculating the daily high/ low/ accumulations for the current day
+3. Returns somewhere between 10 and 50 times faster than v1 (this was my favourite to work out). I can't say for sure that it's the fastest weather API out there, but it's definitely in contention now.
+4. Faster data ingest (~5 minutes).
+5. Improved US alert processing.
+6. Nearest storm distance and bearing!
+
+As well as several new optional improvements behind a new `version=2` querystring parameter, to avoid breaking Dark Sky compatibility:
+
+1. Short term (~36 hour) air quality forecasts (top requested feature!).
+2. Liquid, snow, and ice precipitation types.
+3. Model specific exclusions (`exclude=hrrr` or `exclude=nbm`), to facilitate performance comparisons between models.
+7. Returned grid indexes of model results (this seemed small, but since HRRR is in Lambert, it was fairly complex).
+
 * March 8, 2024
 	* Currently block added which uses a mix of NBM/HRRR/GFS/GEFS data
 	* Daily block added
