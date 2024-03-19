@@ -139,7 +139,7 @@ Changelog for the upcoming version 2.0 of the API
 * Version 2.0b
 	* March 11, 2024:
 
-Excited to announce that the long awaited version 2.0 of the Pirate Weather API is ready for beta testing on the [dev.pirateweather.net](dev.pirateweather.net) endpoint! Ever since issue #5 was opened two years ago, I realized that eventually my back-end would need a rewrite to handle a wider range of cases, and this is the culmination of that effort. I'll have a more detailed write-up eventually, but for now, I wanted to start this thread to consolidate issues with the new API in one place for me to change, as well as announce some of the new features. 
+Excited to announce that the long awaited version 2.0 of the Pirate Weather API is ready for beta testing on the [dev.pirateweather.net](dev.pirateweather.net) endpoint! Ever since issue [#5](https://github.com/Pirate-Weather/pirateweather/issues/5) was opened two years ago, I realized that eventually my back-end would need a rewrite to handle a wider range of cases, and this is the culmination of that effort. I'll have a more detailed write-up eventually, but for now, I wanted to start this thread to consolidate issues with the new API in one place for me to change, as well as announce some of the new features. 
 
 At a high level, there are four main improvements that will impact every request:
 
