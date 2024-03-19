@@ -117,6 +117,20 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ## Version 2.0 Pre-Release Changelog
 Changelog for the upcoming version 2.0 of the API
 
+* Version 2.0g
+	* March 19, 2024:
+ 	* Fixed an issue where the currently cloud cover would interpolate from the next hour data to the current hour data.
+* Version 2.0f
+	* March 19, 2024:
+ 	* Fixed an issue where the currently cloud cover would interpolate from the next hour data to the current hour data.
+* Version 2.0e
+	* March 18, 2024:
+ 	* Fixed an issue where the currently icon and summary would return None instead of an icon
+  	* Fixed an issue where the currently icon and summary would return clear instead of the correct icon 
+  	* Changed the logic for the currently and minutely `preciptiationIntensity` to return data even if `precipitationProbaility` is zero  
+* Version 2.0d
+	* March 15, 2024:
+ 	* Fixed the currently icon thresholds that occured after changing current cloud cover to a percentage 
 * Version 2.0c
 	* March 13, 2024:
  	* Fixed the daily min/max timing issues (turns out there were several different things that weren't working)
