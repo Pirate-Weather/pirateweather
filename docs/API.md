@@ -411,7 +411,7 @@ A block containing the current weather for the requested location.
 A block containing the minute-by-minute precipitation intensity for the 60 minutes.
 
 ### hourly
-A block containing the hour-by-hour forecasted conditions for the next 48 hours.
+A block containing the hour-by-hour forecasted conditions for the next 48 hours. If `extend=hourly` is used then the hourly block gives hour-by-hour forecasted conditions for the next 168 hours.
 
 ### daily
 A block containing the day-by-day forecasted conditions for the next 7 days.
@@ -535,6 +535,10 @@ The standard deviation of the `precipitationIntensity`.
 
 #### precipProbability
 The probability of precipitation occurring expressed as a decimal between 0 and 1 inclusive.
+
+- Currently `precipProbability` is the chance of precipitation occurring at the requested time.
+- Hourly `precipProbability` is the chance of precipitation occurring in that hour.
+- Daily `precipProbability` is the maxiumum chance of precipitation occurring in that day. If the maxium `precipProbability` for a day is 80% then the daily `precipProbability` would be 80%.
 
 #### precipType
 The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow.
