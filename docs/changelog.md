@@ -117,6 +117,13 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ## Version 2.0 Pre-Release Changelog
 Changelog for the upcoming version 2.0 of the API
 
+* Version 2.0i
+	* April 5, 2024:
+ 	* Fixed an issue where daylight savings time would offset the daily `time` parameter. This was reported in issue [#134](https://github.com/Pirate-Weather/pirateweather/issues/114)
+  	* Fixed an issue where the hourly `time` parameter would be offet for fractional TimeZones as reported in issue [#32](https://github.com/Pirate-Weather/pirateweather/issues/32)
+* Version 2.0h
+	* April 5, 2024:
+ 	* Fixed the remaining bugs from issues [#155](https://github.com/Pirate-Weather/pirateweather/issues/155) and [#180](https://github.com/Pirate-Weather/pirateweather/issues/180)
 * Version 2.0g
 	* March 19, 2024:
  	* Fixed an issue where the currently cloud cover would interpolate from the next hour data to the current hour data.
