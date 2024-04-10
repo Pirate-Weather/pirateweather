@@ -4,80 +4,74 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Pre-Release Version 2.0"
 
-* Version 2.0j
-	* April 9, 2024:
- 	* Changed the treshold to show the precipitaion icon in the currently block to 0.02 mm/h
-* Version 2.0i
-	* April 5, 2024:
- 	* Fixed an issue where daylight savings time would offset the daily `time` parameter. This was reported in issue [#134](https://github.com/Pirate-Weather/pirateweather/issues/114)
-  	* Fixed an issue where the hourly `time` parameter would be offet for fractional TimeZones as reported in issue [#32](https://github.com/Pirate-Weather/pirateweather/issues/32)
-  	* Added dawnTime and duskTime which is behind the `version=2` parameter. This was suggested in discussion [#144](https://github.com/Pirate-Weather/pirateweather/discussions/144) and issue [#154](https://github.com/Pirate-Weather/pirateweather/issues/154) which was created from the discussion
-* Version 2.0h
-	* April 5, 2024:
- 	* Fixed the remaining bugs from issues [#155](https://github.com/Pirate-Weather/pirateweather/issues/155) and [#180](https://github.com/Pirate-Weather/pirateweather/issues/180)
-* Version 2.0g
-	* March 19, 2024:
- 	* Fixed an issue where the currently cloud cover would interpolate from the next hour data to the current hour data.
-* Version 2.0f
-	* March 19, 2024:
- 	* Fixed an issue where the currently cloud cover would interpolate from the next hour data to the current hour data.
-* Version 2.0e
-	* March 18, 2024:
- 	* Fixed an issue where the currently icon and summary would return None instead of an icon
-  	* Fixed an issue where the currently icon and summary would return clear instead of the correct icon 
-  	* Changed the logic for the currently and minutely `preciptiationIntensity` to return data even if `precipitationProbaility` is zero  
-* Version 2.0d
-	* March 15, 2024:
- 	* Fixed the currently icon thresholds that occured after changing current cloud cover to a percentage 
-* Version 2.0c
-	* March 13, 2024:
- 	* Fixed the daily min/max timing issues (turns out there were several different things that weren't working)
-  	* Fixed most of the [#155](https://github.com/Pirate-Weather/pirateweather/issues/155) items
-  	* HRRR subhourly and HRRR 0-18 will always be 1-2 hours off now. I'm trying to ingest the subhourly data as fast as possible, so it gets read as soon as four timesteps are published. The hourly data waits until the 18 hour timestep is out, and then has to process the previous 36 hours of data to create a cohesive timeseries. 
-* Version 2.0b
-	* March 11, 2024:
-
-Excited to announce that the long awaited version 2.0 of the Pirate Weather API is ready for beta testing on the [dev.pirateweather.net](dev.pirateweather.net) endpoint! Ever since issue [#5](https://github.com/Pirate-Weather/pirateweather/issues/5) was opened two years ago, I realized that eventually my back-end would need a rewrite to handle a wider range of cases, and this is the culmination of that effort. I'll have a more detailed write-up eventually, but for now, I wanted to start this thread to consolidate issues with the new API in one place for me to change, as well as announce some of the new features. 
-
-At a high level, there are four main improvements that will impact every request:
-
-1. Includes a fancy new model from NOAA called the National Blend of Models
-2. Does a way better job of calculating the daily high/ low/ accumulations for the current day
-3. Returns somewhere between 10 and 50 times faster than v1 (this was my favourite to work out). I can't say for sure that it's the fastest weather API out there, but it's definitely in contention now.
-4. Faster data ingest (~5 minutes).
-5. Improved US alert processing.
-6. Nearest storm distance and bearing!
-
-As well as several new optional improvements behind a new `version=2` querystring parameter, to avoid breaking Dark Sky compatibility:
-
-1. Short term (~36 hour) air quality forecasts (top requested feature!).
-2. Liquid, snow, and ice precipitation types.
-3. Model specific exclusions (`exclude=hrrr` or `exclude=nbm`), to facilitate performance comparisons between models.
-7. Returned grid indexes of model results (this seemed small, but since HRRR is in Lambert, it was fairly complex).
-
-* March 8, 2024
-	* Currently block added which uses a mix of NBM/HRRR/GFS/GEFS data
-	* Daily block added
- 	* Alerts block added 
- 	* Icon and summary data points added to all blocks
-  	* Apparent Temperature now uses data from the GFS model instead of calculating it. This was reported in [issue #76](https://github.com/Pirate-Weather/pirateweather/issues/76) 
- 	* Fix issues documented in [issue #155](https://github.com/Pirate-Weather/pirateweather/issues/155)  
-* February 18, 2024
-	* Hourly and minutely blocks have been added 
-* February 6, 2024
-	* [National Blend of Models](https://blend.mdl.nws.noaa.gov/) data is now being shown in the API.
- 	* Querying by lat/long is now working
-  	* Nearest storm data and bearings now return data instead of always returning zero. This was reported in issues [#6](https://github.com/Pirate-Weather/pirateweather/issues/6), [#91](https://github.com/Pirate-Weather/pirateweather/issues/91) and [#121](https://github.com/Pirate-Weather/pirateweather/issues/121)
-  	* Development URL is now located at ` http://piratev2lb-a90c79daaddc2625.elb.us-east-1.amazonaws.com:8000/forecastv2/<APIKEY>/<LAT>,<LON>`
-* January 4, 2024 
-	* Right now, there's not much to look at, since it's only a testing endpoint to make sure that things were flowing; however, it represents a ton of key improvements:
-		1. ~100x faster responses
-		2. NBM data (although it's not shown yet, it's in there!)
-		3. Storm distances and directions
-		4. Short term historic data, fixing the daily high/ low issues.
-		5. Less interesting, but totally new ingest pipeline that's way more flexible/ maintainable.  
-	* To access it, check out: `https://dev.pirateweather.net/forecastv2/<APIKEY>/<X>,<Y>`
-	* X and Y are raw grid indexes (I warned it was rough), so keep them between 0-700, and the only data that's returned right now is the -36 hour UTC time for the HRRR model. In the next couple days, I'm going to fix lat/long and expose some of the raw model data (probably current values for everything), so they'll be something to look at! 
+	* Version 2.0j
+		* April 9, 2024:
+	 	* Changed the threshold to show the precipitaion icon in the currently block to 0.02 mm/h
+	* Version 2.0i
+		* April 5, 2024:
+	 	* Fixed an issue where daylight savings time would offset the daily `time` parameter. This was reported in issue [#134](https://github.com/Pirate-Weather/pirateweather/issues/114)
+	  	* Fixed an issue where the hourly `time` parameter would be offet for fractional TimeZones as reported in issue [#32](https://github.com/Pirate-Weather/pirateweather/issues/32)
+	  	* Added dawnTime and duskTime which is behind the `version=2` parameter. This was suggested in discussion [#144](https://github.com/Pirate-Weather/pirateweather/discussions/144) and issue [#154](https://github.com/Pirate-Weather/pirateweather/issues/154) which was created from the discussion
+	* Version 2.0h
+		* April 5, 2024:
+	 	* Fixed the remaining bugs from issues [#155](https://github.com/Pirate-Weather/pirateweather/issues/155) and [#180](https://github.com/Pirate-Weather/pirateweather/issues/180)
+	* Version 2.0g
+		* March 19, 2024:
+	 	* Fixed an issue where the currently cloud cover would interpolate from the next hour data to the current hour data.
+	* Version 2.0f
+		* March 19, 2024:
+	 	* Fixed an issue where the currently cloud cover would interpolate from the next hour data to the current hour data.
+	* Version 2.0e
+		* March 18, 2024:
+	 	* Fixed an issue where the currently icon and summary would return None instead of an icon
+	  	* Fixed an issue where the currently icon and summary would return clear instead of the correct icon 
+	  	* Changed the logic for the currently and minutely `preciptiationIntensity` to return data even if `precipitationProbaility` is zero  
+	* Version 2.0d
+		* March 15, 2024:
+	 	* Fixed the currently icon thresholds that occured after changing current cloud cover to a percentage 
+	* Version 2.0c
+		* March 13, 2024:
+	 	* Fixed the daily min/max timing issues (turns out there were several different things that weren't working)
+	  	* Fixed most of the [#155](https://github.com/Pirate-Weather/pirateweather/issues/155) items
+	  	* HRRR subhourly and HRRR 0-18 will always be 1-2 hours off now. I'm trying to ingest the subhourly data as fast as possible, so it gets read as soon as four timesteps are published. The hourly data waits until the 18 hour timestep is out, and then has to process the previous 36 hours of data to create a cohesive timeseries. 
+	* Version 2.0b
+		* March 11, 2024:
+		* Excited to announce that the long awaited version 2.0 of the Pirate Weather API is ready for beta testing on the [dev.pirateweather.net](dev.pirateweather.net) endpoint!
+	 	* At a high level, there are four main improvements that will impact every request:
+			1. Includes a fancy new model from NOAA called the National Blend of Models
+			2. Does a way better job of calculating the daily high/ low/ accumulations for the current day
+			3. Returns somewhere between 10 and 50 times faster than v1 (this was my favourite to work out). I can't say for sure that it's the fastest weather API out there, but it's definitely in contention now.
+			4. Faster data ingest (~5 minutes).
+			5. Improved US alert processing.
+			6. Nearest storm distance and bearing!
+	  	* As well as several new optional improvements behind a new `version=2` querystring parameter, to avoid breaking Dark Sky compatibility:
+			1. Short term (~36 hour) smoke forecasts.
+	  		2. Liquid, snow, and ice precipitation types.
+	  	 	3. Model specific exclusions (`exclude=hrrr` or `exclude=nbm`), to facilitate performance comparisons between models.
+	  	  	4. Returned grid indexes of model results (this seemed small, but since HRRR is in Lambert, it was fairly complex).
+	* March 8, 2024
+		* Currently block added which uses a mix of NBM/HRRR/GFS/GEFS data
+		* Daily block added
+	 	* Alerts block added 
+	 	* Icon and summary data points added to all blocks
+	  	* Apparent Temperature now uses data from the GFS model instead of calculating it. This was reported in [issue #76](https://github.com/Pirate-Weather/pirateweather/issues/76) 
+	 	* Fix issues documented in [issue #155](https://github.com/Pirate-Weather/pirateweather/issues/155)  
+	* February 18, 2024
+		* Hourly and minutely blocks have been added 
+	* February 6, 2024
+		* [National Blend of Models](https://blend.mdl.nws.noaa.gov/) data is now being shown in the API.
+	 	* Querying by lat/long is now working
+	  	* Nearest storm data and bearings now return data instead of always returning zero. This was reported in issues [#6](https://github.com/Pirate-Weather/pirateweather/issues/6), [#91](https://github.com/Pirate-Weather/pirateweather/issues/91) and [#121](https://github.com/Pirate-Weather/pirateweather/issues/121)
+	  	* Development URL is now located at ` http://piratev2lb-a90c79daaddc2625.elb.us-east-1.amazonaws.com:8000/forecastv2/<APIKEY>/<LAT>,<LON>`
+	* January 4, 2024 
+		* Right now, there's not much to look at, since it's only a testing endpoint to make sure that things were flowing; however, it represents a ton of key improvements:
+			1. ~100x faster responses
+			2. NBM data (although it's not shown yet, it's in there!)
+			3. Storm distances and directions
+			4. Short term historic data, fixing the daily high/ low issues.
+			5. Less interesting, but totally new ingest pipeline that's way more flexible/ maintainable.  
+		* To access it, check out: `https://dev.pirateweather.net/forecastv2/<APIKEY>/<X>,<Y>`
+		* X and Y are raw grid indexes (I warned it was rough), so keep them between 0-700, and the only data that's returned right now is the -36 hour UTC time for the HRRR model. In the next couple days, I'm going to fix lat/long and expose some of the raw model data (probably current values for everything), so they'll be something to look at! 
 
 ??? note "Version 1.5"
 	
