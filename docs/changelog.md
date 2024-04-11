@@ -4,6 +4,13 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Pre-Release Version 2.0"
 
+	* Version 2.0k
+		* April 11, 2024:
+	 	* Added `fireIndex`, `fireIndexMax` and `fireIndexMaxTime` which is behind the `version=2` parameter. Data is available in the US and parts of Canada. This was suggested in issue [#119](https://github.com/Pirate-Weather/pirateweather/issues/119)
+   		* Fixed the precipitation probability rounding
+   		* Added another icon check for no precipitation
+   		* Fixed negative precipitation intensity
+   		* Set the accumulation threshold to 0.02 mm for minutely/ hourly
 	* Version 2.0j
 		* April 9, 2024:
 	 	* Changed the threshold to show the precipitaion icon in the currently block to 0.02 mm/h
