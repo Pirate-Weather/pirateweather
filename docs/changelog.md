@@ -195,4 +195,22 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ## Time Machine Changelog
 
 * March 11, 2024
-	* Fixed an issue where using local time format returned an Invalid Time Specification error
+	* Fixed an issue where using local time format returned an Invalid Time Specification error as reported in issue [#162](https://github.com/Pirate-Weather/pirateweather/issues/162)
+* January 16, 2024
+	* Change the Time Machine to use ERA-5 model data from Google's dataset as AWS removed it. This was reported in [#130](https://github.com/Pirate-Weather/pirateweather/issues/130) 
+* August 29, 2023
+	* Fixed an issue where some legacy keys could not consume the Time Machine endpoint reported in [#98](https://github.com/Pirate-Weather/pirateweather/issues/98)
+* July 10, 2023
+	* Fixed an issue with the timing of a day that rolls over into the next month as reported in issue [#86](https://github.com/Pirate-Weather/pirateweather/issues/86) 
+* June 19, 2023
+	* Fixed an issue where locations in fractional timezones were not returning an error as reported in [#74](https://github.com/Pirate-Weather/pirateweather/issues/74)
+* May 27, 2023
+	* Fixed an issue where negative longatide and latitude would be parsed as positive. This was reported in [#67](https://github.com/Pirate-Weather/pirateweather/issues/67)
+* April 6, 2023
+	* Fixed an issue where `apparentTemperatureMinTime` and `apparentTemperatureLowTime` were not returning UNIX timestamps. This was reported in issue [#46](https://github.com/Pirate-Weather/pirateweather/issues/46)
+* March 20, 2023
+	* Fixed an issue where Time Machine data was returning an error for dates after June 30, 2022
+ 	* Fixed the data in the currently block
+  	* Integers are integered, floats are rounded to 2 decimal points
+  	* Text descriptions are now much better
+  	* These issues were reported in issue [#18](https://github.com/Pirate-Weather/pirateweather/issues/18)
