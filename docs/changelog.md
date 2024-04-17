@@ -197,7 +197,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 * March 11, 2024
 	* Fixed an issue where using local time format returned an Invalid Time Specification error as reported in issue [#162](https://github.com/Pirate-Weather/pirateweather/issues/162)
 * January 16, 2024
-	* Change the Time Machine to use ERA-5 model data from Google's dataset as AWS removed it. This was reported in [#130](https://github.com/Pirate-Weather/pirateweather/issues/130) 
+	* Change the Time Machine to use ERA-5 model data from Google's dataset as AWS removed it. This was reported in [#130](https://github.com/Pirate-Weather/pirateweather/issues/130)
+ 		* As a result of the change the Time Machine endpoint only has historical data until May 2023
 * August 29, 2023
 	* Fixed an issue where some legacy keys could not consume the Time Machine endpoint reported in [#98](https://github.com/Pirate-Weather/pirateweather/issues/98)
 * July 10, 2023
