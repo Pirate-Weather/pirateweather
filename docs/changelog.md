@@ -191,3 +191,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
     	* Corrected an icon issue, identified [here](https://github.com/alexander0042/pirate-weather-hacs/issues/2)
 	* May 20, 2021:
     	* Changed the GFS retrieval to interpolate between a weighted average (by 1/distance) of the 9 closest grid cells, instead of just taking the nearest cell. This will help to smooth out some of the sudden jumps in the results.
+
+## Time Machine Changelog
+
+* March 11, 2024
+	* Fixed an issue where using local time format returned an Invalid Time Specification error
