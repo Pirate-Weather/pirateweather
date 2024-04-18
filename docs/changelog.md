@@ -4,7 +4,14 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Pre-Release Version 2.0"
 
-	* Version 2.0k
+	* Version 2.0l
+		* April 18, 2024:
+  		* Added fire index to currently 
+		* Added fireIndexMaxTime to daily
+		* Fixed a bug where the source time for the HRRR model 0-18 model was incorrect
+		* Fixed a bug where the fire index wasn't ingesting
+		* Added model lat lon values
+ 	* Version 2.0k
 		* April 11, 2024:
 	 	* Added `fireIndex`, `fireIndexMax` and `fireIndexMaxTime` which is behind the `version=2` parameter. Data is available in the US and parts of Canada. This was suggested in issue [#119](https://github.com/Pirate-Weather/pirateweather/issues/119)
    		* Fixed the precipitation probability rounding
@@ -194,6 +201,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ## Time Machine Changelog
 
+* April 18, 2024
+	* Fixed an issue where locations in fractional timezones were not returning an error as reported in [#194](https://github.com/Pirate-Weather/pirateweather/issues/194)
 * March 11, 2024
 	* Fixed an issue where using local time format returned an Invalid Time Specification error as reported in issue [#162](https://github.com/Pirate-Weather/pirateweather/issues/162)
 * January 16, 2024
@@ -215,3 +224,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
   	* Integers are integered, floats are rounded to 2 decimal points
   	* Text descriptions are now much better
   	* These issues were reported in issue [#18](https://github.com/Pirate-Weather/pirateweather/issues/18)
+* December 23, 2021
+	* Fixed an issue where daylight savings time was being ignored as reported in [#4](https://github.com/alexander0042/alexander0042.github.io/issues/4)
+* August 3, 2021
+	* Fixed an issue where a combination of a time zone glitch and an issue with dates that were the last day of a month, since they required two separate calls to the archive.
+ 	* Fixed a couple other issues pertaining to rain/snow units
+  	* These issues were reported in [#3](https://github.com/alexander0042/alexander0042.github.io/issues/3) 
