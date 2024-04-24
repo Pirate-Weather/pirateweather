@@ -444,29 +444,29 @@ $$
 where $T$ is the temperature in Celsius and $V$ is the Wind velocity in kilometres per hour. 
 
 #### apparentTemperatureMax
-**Only on `daily`**. The maximum "feels like" temperature during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The maximum "feels like" temperature during a day, from midnight to midnight.
 
 #### apparentTemperatureMaxTime
-**Only on `daily`**. The time (in UTC) that the maximum "feels like" temperature occurs during a day, from 12:00 am and 11:59 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The time (in UTC) that the maximum "feels like" temperature occurs during a day, from 12:00 am and 11:59 pm.
 
 #### apparentTemperatureMin
-**Only on `daily`**. The minimum "feels like" temperature during a day, from from 12:00 am and 11:59 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The minimum "feels like" temperature during a day, from from 12:00 am and 11:59 pm.
 
 #### apparentTemperatureMinTime
-**Only on `daily`**. The time (in UTC) that the minimum "feels like" temperature occurs during a day, from from 12:00 am and 11:59 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The time (in UTC) that the minimum "feels like" temperature occurs during a day, from from 12:00 am and 11:59 pm.
 
 #### apparentTemperatureHigh
-**Only on `daily`**. The maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current temperature. 
+**Only on `daily`**. The maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
 
 #### apparentTemperatureHighTime
-**Only on `daily`**. The time of the maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the time of the highest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current time. 
+**Only on `daily`**. The time of the maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
 
 #### apparentTemperatureLow
-**Only on `daily`**. The minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the lowest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current temperature. 
+**Only on `daily`**. The minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
 
 #### apparentTemperatureLowTime
 **Only on `daily`**. 
-The time of the minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the time of the lowest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current time. 
+The time of the minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
 
 #### cloudCover
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
@@ -476,7 +476,6 @@ Percentage of the sky that is covered in clouds. This value will be between 0 an
 
 #### dewPoint
 The point in which the air temperature needs (assuming constant pressure) in order to reach a relative humidity of 100%. This is value is represented in degrees Celsius or Fahrenheit depending on the requested `units`. [See this resource for more information.](https://www.weather.gov/arx/why_dewpoint_vs_humidity)
-
 
 #### duskTime
 **Only on `daily`**. The time when the transition from day to night starts.
@@ -596,25 +595,25 @@ A human-readable summary describing the weather conditions for a given data poin
 The air temperature in degrees Celsius or degrees Fahrenheit depending on the requested `units`
 
 #### temperatureHigh
-**Only on `daily`**. The daytime high temperature calculated between 6:00 am and 6:00 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The daytime high temperature calculated between 6:00 am and 6:00 pm local time.
 
 #### temperatureHighTime
 **Only on `daily`**. The time in which the high temperature occurs represented in UNIX time.
 
 #### temperatureLow
-**Only on `daily`**. The overnight low temperature calculated between 6:00 pm and 6:00 am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The overnight low temperature calculated between 6:00 pm and 6:00 am local time.
 
 #### temperatureLowTime
 **Only on `daily`**. The time in which the low temperature occurs represented in UNIX time.
 
 #### temperatureMax
-**Only on `daily`**. The maximum temperature calculated between 12:00 am and 11:59 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The maximum temperature calculated between 12:00 am and 11:59 pm local time.
 
 #### temperatureMaxTime
 **Only on `daily`**. The time in which the maximum temperature occurs represented in UNIX time.
 
 #### temperatureMin
-**Only on `daily`**. The minimum temperature calculated between 12:00 am and 11:59 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The minimum temperature calculated between 12:00 am and 11:59 pm local time.
 
 #### temperatureMinTime
 **Only on `daily`**. The time in which the minimum temperature occurs represented in UNIX time.
