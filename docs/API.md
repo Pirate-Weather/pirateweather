@@ -501,9 +501,18 @@ One of a set of icons to provide a visual display of what's happening. This coul
 
 The algorithm here is straightforward, coming from this [NOAA resource](https://weather.com/science/weather-explainers/news/common-weather-terms-used-incorrectly):
 
+##### Currently:
+
+* If precipitation accumulation is greater than 0.02 mm, then the precipitation type.
+* If visibility is less than 1 km, then `fog`.
+* If winds are greater than 10 m/s, then `wind`.
+* If cloud cover is greater than 75%, then `cloudy`.
+* If cloud cover is greater than 37.5% and less than 75%, then `partly-cloudy-day` or `partly-cloudy-night`.
+* If cloud cover is less than 37.5%, then `clear`.
+  
 ##### Hourly:
 
-* If precipitation probability is greater than 30% and accumulation is greater than 0.25 mm, then the precipitation type.
+* If precipitation probability is greater than 30% and accumulation is greater than 0.02 mm, then the precipitation type.
 * If visibility is less than 1 km, then `fog`.
 * If winds are greater than 10 m/s, then `wind`.
 * If cloud cover is greater than 75%, then `cloudy`.
