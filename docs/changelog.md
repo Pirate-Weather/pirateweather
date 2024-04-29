@@ -2,7 +2,14 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
-???+ note "Pre-Release Version 2.0"
+???+ note "Version 2.0"
+
+	* April 24, 2024, API Version 2.0.1
+  		* Fixed a bug where cloud cover could go below zero
+  		* Fixed a bug in the sourceIDX section where negative longitude would display incorrectly.
+  		* Fixed a bug where `precipAccumulation` would sometimes show more than four decimal points
+
+??? note "Pre-Release Version 2.0"
 
 	* Version 2.0l
 		* April 18, 2024:

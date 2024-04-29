@@ -69,6 +69,7 @@ Added as part of the V1.0 release, this parameter removes some of the data block
 * `hourly`
 * `daily`
 * `alerts`
+* Individual models such as `hrrr` or `nbm`
 
 #### Extend
 If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.
@@ -76,6 +77,8 @@ If `extend=hourly` is included, hourly data for the next 168 hours will be inclu
 #### Time Zone
 Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneFinder](https://timezonefinder.readthedocs.io/en/latest/) is used in place of the rapid one. This also adds some time (~0.3s), and in most cases doesn't impact the results (since everything is reported in UTC, the only thing the timezone is used for is to determine the start and end point of the day), but is added as an option if you need an accurate zone.   
 
+#### Version
+If `version=2` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime` and `duskTime`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
 
 ### Example
 ```
@@ -441,38 +444,56 @@ $$
 where $T$ is the temperature in Celsius and $V$ is the Wind velocity in kilometres per hour. 
 
 #### apparentTemperatureMax
-**Only on `daily`**. The maximum "feels like" temperature during a day, from midnight to midnight. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The maximum "feels like" temperature during a day, from midnight to midnight.
 
 #### apparentTemperatureMaxTime
-**Only on `daily`**. The time (in UTC) that the maximum "feels like" temperature occurs during a day, from 12:00 am and 11:59 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The time (in UTC) that the maximum "feels like" temperature occurs during a day, from 12:00 am and 11:59 pm.
 
 #### apparentTemperatureMin
-**Only on `daily`**. The minimum "feels like" temperature during a day, from from 12:00 am and 11:59 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The minimum "feels like" temperature during a day, from from 12:00 am and 11:59 pm.
 
 #### apparentTemperatureMinTime
-**Only on `daily`**. The time (in UTC) that the minimum "feels like" temperature occurs during a day, from from 12:00 am and 11:59 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The time (in UTC) that the minimum "feels like" temperature occurs during a day, from from 12:00 am and 11:59 pm.
 
 #### apparentTemperatureHigh
-**Only on `daily`**. The maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current temperature. 
+**Only on `daily`**. The maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
 
 #### apparentTemperatureHighTime
-**Only on `daily`**. The time of the maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the time of the highest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current time. 
+**Only on `daily`**. The time of the maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
 
 #### apparentTemperatureLow
-**Only on `daily`**. The minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the lowest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current temperature. 
+**Only on `daily`**. The minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
 
 #### apparentTemperatureLowTime
 **Only on `daily`**. 
-The time of the minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm. Note that this value is always forward looking, so for day 0 (the current day), it will return the time of the lowest value of the remaining hours in the day. If the forecast start time is after 6:00 pm, it will return the current time. 
+The time of the minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
 
 #### cloudCover
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
 
+#### dawnTime
+**Only on `daily`**. The time when the transition from night to day starts.
+
 #### dewPoint
 The point in which the air temperature needs (assuming constant pressure) in order to reach a relative humidity of 100%. This is value is represented in degrees Celsius or Fahrenheit depending on the requested `units`. [See this resource for more information.](https://www.weather.gov/arx/why_dewpoint_vs_humidity)
 
+#### duskTime
+**Only on `daily`**. The time when the transition from day to night starts.
+
+#### fireIndex
+**Only available for the US and parts of Canada. Outside of these locations this will return -999** The Fosburg fire index.
+
+#### fireIndexMax
+**Only on `daily`.** The maxiumum `fireIndex` for the given day.
+
+#### fireIndexMaxTime
+**Only on `daily`.** the time in which the maxiumum `fireIndex` occurs represented in UNIX time.
+
 #### humidity
 Relative humidity expressed as a value between 0 and 1 inclusive. This is a percentage of the actual water vapor in the air compared to the total amount of water vapor that can exist at the current temperature. [See this resource for more information.](https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/relative-humidity)
+
+#### iceAccumulation
+**Only on `hourly` and `daily`**. The amount of ice precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
 
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
@@ -480,9 +501,18 @@ One of a set of icons to provide a visual display of what's happening. This coul
 
 The algorithm here is straightforward, coming from this [NOAA resource](https://weather.com/science/weather-explainers/news/common-weather-terms-used-incorrectly):
 
+##### Currently:
+
+* If precipitation accumulation is greater than 0.02 mm, then the precipitation type.
+* If visibility is less than 1 km, then `fog`.
+* If winds are greater than 10 m/s, then `wind`.
+* If cloud cover is greater than 75%, then `cloudy`.
+* If cloud cover is greater than 37.5% and less than 75%, then `partly-cloudy-day` or `partly-cloudy-night`.
+* If cloud cover is less than 37.5%, then `clear`.
+  
 ##### Hourly:
 
-* If precipitation probability is greater than 30% and accumulation is greater than 0.25 mm, then the precipitation type.
+* If precipitation probability is greater than 30% and accumulation is greater than 0.02 mm, then the precipitation type.
 * If visibility is less than 1 km, then `fog`.
 * If winds are greater than 10 m/s, then `wind`.
 * If cloud cover is greater than 75%, then `cloudy`.
@@ -500,6 +530,9 @@ The algorithm here is straightforward, coming from this [NOAA resource](https://
 
 For additional details, see [issue #3](https://github.com/alexander0042/pirateweather/issues/3).
 
+#### liquidAccumulation
+**Only on `hourly` and `daily`**. The amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
+
 #### moonPhase
 **Only on `daily`**. The fractional [lunation number](https://en.wikipedia.org/wiki/New_moon#Lunation_number) for the given day. `0.00` represents a new moon, `0.25` represents the first quarter, `0.50` represents a full moon and `0.75` represents the last quarter.
 
@@ -513,7 +546,7 @@ For additional details, see [issue #3](https://github.com/alexander0042/piratewe
 The density of total atmospheric ozone at a given time in Dobson units.
 
 #### precipAccumulation
-**Only on `hourly` and `daily`**. The amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
+**Only on `hourly` and `daily`**. The total amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
 
 #### precipIntensity
 The rate in which liquid precipitation is falling. This value is expressed in millimeters per hour or inches per hour depending on the requested `units`. For `currently` and `minutely` forecast blocks, the HRRR "Precipitation Rate" variable  is used where available, otherwise averaged GEFS data is returned. For `hourly` and `daily` forecast blocks, GEFS is always used. This is done so that the `precipIntensityProbablity` variable is aligned with the intensity.
@@ -546,6 +579,18 @@ The type of precipitation occurring. If `precipIntensity` is greater than zero t
 #### pressure
 The sea-level pressure represented in hectopascals or millibars depending on the requested `units`.
 
+#### snowAccumulation
+**Only on `hourly` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
+
+#### smoke
+**Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of surface smoke represented in ug/m<sup>3</sup>
+
+#### smokeMax
+**Only on `daily`.** The maxiumum `smoke` for the given day.
+
+#### smokeMaxTime
+**Only on `daily`.** the time in which the maxiumum `smoke` occurs represented in UNIX time.
+
 #### summary
 A human-readable summary describing the weather conditions for a given data point.
 
@@ -559,25 +604,25 @@ A human-readable summary describing the weather conditions for a given data poin
 The air temperature in degrees Celsius or degrees Fahrenheit depending on the requested `units`
 
 #### temperatureHigh
-**Only on `daily`**. The daytime high temperature calculated between 6:00 am and 6:00 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The daytime high temperature calculated between 6:00 am and 6:00 pm local time.
 
 #### temperatureHighTime
 **Only on `daily`**. The time in which the high temperature occurs represented in UNIX time.
 
 #### temperatureLow
-**Only on `daily`**. The overnight low temperature calculated between 6:00 pm and 6:00 am local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The overnight low temperature calculated between 6:00 pm and 6:00 am local time.
 
 #### temperatureLowTime
 **Only on `daily`**. The time in which the low temperature occurs represented in UNIX time.
 
 #### temperatureMax
-**Only on `daily`**. The maximum temperature calculated between 12:00 am and 11:59 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The maximum temperature calculated between 12:00 am and 11:59 pm local time.
 
 #### temperatureMaxTime
 **Only on `daily`**. The time in which the maximum temperature occurs represented in UNIX time.
 
 #### temperatureMin
-**Only on `daily`**. The minimum temperature calculated between 12:00 am and 11:59 pm local time. Note that this value is always forward looking, so for day 0 (the current day), it will return the highest value of the remaining hours in the day.
+**Only on `daily`**. The minimum temperature calculated between 12:00 am and 11:59 pm local time.
 
 #### temperatureMinTime
 **Only on `daily`**. The time in which the minimum temperature occurs represented in UNIX time.
@@ -640,6 +685,9 @@ The models used to generate the forecast.
 
 #### sourceTimes
 The time in UTC when the model was last updated.
+
+#### sourceIDX
+The X,Y coordinate and the lat, lon corrdinate for the grid cell used for each model used to generate the forecast.
 
 #### nearest-station
 The distance in miles or kilometres to the closest station used in the request.
