@@ -4,7 +4,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.0"
 
-	* April 24, 2024, API Version 2.0.1
+	* April 30, 2024, API Version 2.0.2
+  		* Fixed a bug where excluding data blocks broke as part of the 2.0 update as reported in [#108](https://github.com/Pirate-Weather/pirateweather/issues/108)
+ 	* April 24, 2024, API Version 2.0.1
   		* Fixed a bug where cloud cover could go below zero
   		* Fixed a bug in the sourceIDX section where negative longitude would display incorrectly.
   		* Fixed a bug where `precipAccumulation` would sometimes show more than four decimal points
