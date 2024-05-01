@@ -4,7 +4,12 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.0"
 
-	* April 30, 2024, API Version 2.0.2
+	* April 30, 2024 and May 1, 2024, API Version 2.0.3
+  		* Fixed a bug in the datetime rounding code failed because of the month rollover as reported in [#208](https://github.com/Pirate-Weather/pirateweather/issues/208)
+  		* Fixed a bug where `precipType` would sometimes not adjust for the temperature
+  		* Changed `precipProbability` to show the chance of precipitation for the rest of the day rather than the day as a whole.
+  		* These issues were reported in [#205](https://github.com/Pirate-Weather/pirateweather/issues/205)
+ 	* April 30, 2024, API Version 2.0.2
   		* Fixed a bug where excluding data blocks broke as part of the 2.0 update as reported in [#108](https://github.com/Pirate-Weather/pirateweather/issues/108)
  	* April 24, 2024, API Version 2.0.1
   		* Fixed a bug where cloud cover could go below zero
