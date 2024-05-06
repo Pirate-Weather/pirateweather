@@ -39,7 +39,7 @@ Now that I had a functioning image, the AWS infrastructure falls into place arou
 Kong can also rely on Redis for caching API calls or authentication. While I’m not caching any data yet, caching authentication quotas did produce a slight performance improvement, and allow for quotas to stay in sync when multiple instances of the Kong instance are running or if it gets restarted. For this, I spun up a simple, single node t4g instance, which provides a primary endpoint that Kong uses.
 
 ### Container
-With the AWS infrastructure in place, it was time to get to Kong. At the core, it is a ECS service calls a task definition that looks like this:
+With the AWS infrastructure in place, it was time to get to Kong. At the core, it is an ECS service that calls a task definition that looks like this:
 
 <details> 
   <summary> ECS Task JSON </summary>

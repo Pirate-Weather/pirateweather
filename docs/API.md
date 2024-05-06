@@ -69,7 +69,11 @@ Added as part of the V1.0 release, this parameter removes some of the data block
 * `hourly`
 * `daily`
 * `alerts`
-* Individual models such as `hrrr` or `nbm`
+
+Some models can also be excluded, which will force data from the fallback sources to be used:
+
+*  `hrrr`
+*  `nbm`
 
 #### Extend
 If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.
@@ -428,20 +432,7 @@ A block containing miscellaneous data for the API request.
 ### Data Point
 
 #### apparentTemperature
-"Feels like" temperature, including either humidex if the temperature is greater than 10C or wind chill if less than 10C. Humidex is calculated using:
-$$
-h = (0.5555)*(e - 10.0)
-$$
-
-where $e$ is the vapor pressure in hPa, given by:
-$$
-e = 6.11 * exp[5417.7530 * ( (1/273.15) - (1/dewpoint) )]
-$$
-from: <https://en.wikipedia.org/wiki/Humidex>. Wind chill is calculated using the Environment Canada Model from <https://en.wikipedia.org/wiki/Wind_chill>:
-$$
-13.12 + 0.6215T – 11.37 (V^{0.16}) + 0.3965T (V^{0.16})
-$$
-where $T$ is the temperature in Celsius and $V$ is the Wind velocity in kilometres per hour. 
+"Feels like" temperature. From NBM or GFS model Apparent Temperature parameters.
 
 #### apparentTemperatureMax
 **Only on `daily`**. The maximum "feels like" temperature during a day, from midnight to midnight.
@@ -472,16 +463,16 @@ The time of the minimum "feels like" temperature during the daytime, from 6:00 a
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
 
 #### dawnTime
-**Only on `daily`**. The time when the transition from night to day starts.
+**Only on `daily`**. The time when the the sun is a specific (6 degrees) height above the horizon after sunrise. Calculated from [Astal dawn defaults](https://astral.readthedocs.io/en/latest/package.html?highlight=dawn#astral.sun.dawn).
 
 #### dewPoint
 The point in which the air temperature needs (assuming constant pressure) in order to reach a relative humidity of 100%. This is value is represented in degrees Celsius or Fahrenheit depending on the requested `units`. [See this resource for more information.](https://www.weather.gov/arx/why_dewpoint_vs_humidity)
 
 #### duskTime
-**Only on `daily`**. The time when the transition from day to night starts.
+**Only on `daily`**. The time when the the sun is a specific (6 degrees) height above the horizon before sunset. Calculated from [Astal dusk defaults](https://astral.readthedocs.io/en/latest/package.html?highlight=dusk#astral.sun.dusk).
 
 #### fireIndex
-**Only available for the US and parts of Canada. Outside of these locations this will return -999** The Fosburg fire index.
+**Only available for the US and parts of Canada. Outside of these locations this will return -999** The [Fosburg fire index](https://www.spc.noaa.gov/exper/firecomp/INFO/fosbinfo.html). Notably, this 0-100 index deals only with conditions, not fuels, and so a high index area is not necessarily high risk for fires.
 
 #### fireIndexMax
 **Only on `daily`.** The maxiumum `fireIndex` for the given day.
@@ -537,10 +528,10 @@ For additional details, see [issue #3](https://github.com/alexander0042/piratewe
 **Only on `daily`**. The fractional [lunation number](https://en.wikipedia.org/wiki/New_moon#Lunation_number) for the given day. `0.00` represents a new moon, `0.25` represents the first quarter, `0.50` represents a full moon and `0.75` represents the last quarter.
 
 #### nearestStormBearing
-**Only on `currently`**. The approximate direction in degrees in which a storm is travelling with 0° representing true north.
+**Only on `currently`**. The approximate direction in degrees in which a storm is travelling with 0° representing true north. Calculated with the excellent [XArray-Spatial](https://github.com/makepath/xarray-spatial) package using a 0.2 mm/h water equivalent (so 2 mm/h of snow or 0.2 mm/h of rain) threshold for a storm. 
 
 #### nearestStormDistance
-**Only on `currently`**. The approximate distance to the nearest storm in kilometers or miles depending on the requested `units`.
+**Only on `currently`**. The approximate distance to the nearest storm in kilometers or miles depending on the requested `units`. Calculated with the excellent [XArray-Spatial](https://github.com/makepath/xarray-spatial) package using a 0.2 mm/h water equivalent (so 2 mm/h of snow or 0.2 mm/h of rain) threshold for a storm. 
 
 #### ozone
 The density of total atmospheric ozone at a given time in Dobson units.
@@ -583,7 +574,7 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 **Only on `hourly` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
 
 #### smoke
-**Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of surface smoke represented in ug/m<sup>3</sup>
+**Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of [near-surface (8 m) smoke represented in kg/m<sup>3</sup>](https://www.weather.gov/media/notification/pdf2/scn21-86rap_and_hrr_smoke_units_change_aab.pdf)
 
 #### smokeMax
 **Only on `daily`.** The maxiumum `smoke` for the given day.
