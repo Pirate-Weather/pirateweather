@@ -39,14 +39,19 @@ The use to integration, click on the "Add Integration" button on the Integration
 - The *Integration Name* is what this weather source will be called. If you want to track the weather at multiple locations, change this. 
 - The *Latitude* and *Longitude* for the forecast.
 - The update interval the forecast (in seconds). Anything below 15 minutes will likely lead to running out of quota.
-- Select if a *Weather Entity* and/or *Sensor Entity* is required. A Weather Entity creates the dashboard standard weather card, and can either provide a daily or hourly forecast. Selecting Sensor Entity will create separate sensors for each condition and forecast time. For example, a sensor for the temperature on day 0 (today), day 1, and day 2, for a total of three sensors. If unsure, start with leaving only the Weather Entity selected.
+- Select if a *Weather Entity* and/or *Sensor Entity* is required
+	- A **Weather Entity** creates the dashboard standard weather card, and can either provide a daily or hourly forecast. 
+	- A **Sensor Entity** will create separate sensors for each condition and forecast time. For example, a sensor for the temperature on hour/day 0 (today), hour/day 1, and hour/day 2, for a total of three sensors. If unsure, start with leaving only the Weather Entity selected.
+		- Note that for alerts to work, this needs to be selected, along with "alerts" under the monitored conditions. 
 
 ![Integration_Setup_B](https://github.com/alexander0042/pirate-weather-ha/blob/master/Integration_Setup_B.png?raw=true)
 
 - The *Forecast Mode* for the Weather Entity, either forecasts every hour or every day.
 - The language. At the moment, only English is supported.
 - The days forecast sensors should be created for, in a csv list.
+	- If daily sensor entities need to be created, this is required.
 - The hours forecast sensors should be created for, in a csv list.
+	- If hourly sensors need to be created, this is required.
 - The monitored conditions forecast sensors should be created for.
 - If values should be rounded to the nearest integer.
 - And which units the forecast sensors should be in. This integration works with the built-in Home Assistant units; however, this option allows rounding to be used.
@@ -83,9 +88,6 @@ sensor:
       - precip_intensity
       - wind_speed
 ```
-
-## Documentation
-In Progress.
 
 ## Sensors
 The available sensors for the integration are:

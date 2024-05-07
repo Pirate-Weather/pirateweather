@@ -26,64 +26,29 @@ To provide historic weather data, the [European Reanalysis 5 Dataset](https://re
 Every Pirate Weather forecast element for each time block (`currently`, `minutely`, `hourly`, or `daily`) is included in the table below, along with the primary, secondary, and tertiary data sources. Fallback sources are used if model data is intentionally excluded, the request point is outside of the primary model coverage area, or if there's some sort of data interruption. 
 
 
-|Parameter |Currently   |Minutely   |Hourly   |Daily   |
+|Parameter 	|Currently   |Minutely   |Hourly/ Daily   |
 |---|---|---|---|---|
-|cloudCover   |NBM > HRRR > GFS   |NBM > HRRR > GFS   |NBM > HRRR > GFS   |NBM > HRRR > GFS   |
-|dewPoint   |   |   |   |   |
-|fireIndex   |   |   |   |   |
-|humidity   |   |   |   |   |
-|iceAccumulation   |   |   |   |   |
-|liquidAccumulation   |   |   |   |   |
-|nearestStormBearing   |   |   |   |   |
-|nearestStormDistance   |   |   |   |   |
-|ozone   |   |   |   |   |
-|precipAccumulation   |   |   |   |   |
-|precipIntensity   |   |   |   |   |
-|precipProbability   |   |   |   |   |
-|precipType   |   |   |   |   |
-|pressure   |   |   |   |   |
-|snowAccumulation   |   |   |   |   |
-|smoke   |   |   |   |   |
-|temperature   |   |   |   |   |
-|temperatureHigh   |   |   |   |   |
-|uvIndex   |   |   |   |   |
-|visibility   |   |   |   |   |
-|windBearing   |   |   |   |   |
-|windGust   |   |   |   |   |
-|windSpeed   |   |   |   |   |
-
-
-#### 
-
-
-
-#### 
-
-
-#### 
-
-
-#### 
-
-
-#### 
-
-
-#### 
-
-
-#### 
-
-#### 
-
-#### 
-
-#### 
-
-
-#### 
-
-#### 
-
-#### windSpeed
-
+|apparentTemperature	|NBM > GFS				|N/A   	|NBM > GFS   			 	|
+|cloudCover   			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|		
+|dewPoint     			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
+|fireIndex    			|NBM   			  		|N/A   	|NBM   			 			|
+|humidity     			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
+|iceAccumulation   		|NBM > HRRR > GEFS > GFS|N/A   	|NBM > HRRR > GEFS > GFS	|
+|liquidAccumulation 	|NBM > HRRR > GEFS > GFS|N/A   	|NBM > HRRR > GEFS > GFS	|
+|nearestStormBearing	|GFS   					|N/A   	|GFS   						|
+|nearestStormDistance   |GFS   					|N/A   	|GFS   						|
+|ozone   				|GFS   					|N/A   	|GFS   						|
+|precipAccumulation 	|NBM > HRRR > GEFS > GFS|N/A   	|NBM > HRRR > GEFS > GFS	|
+|precipIntensity   		|NBM > HRRR > GEFS 		|HRRR	|NBM > HRRR > GEFS			|
+|precipIntensityError	|GEFS					|GEFS	|GEFS						|	
+|precipProbability  	|NBM > GEFS 			|NBM 	|NBM > GEFS					|
+|precipType   			|NBM > HRRR > GEFS 		|HRRR  	|NBM > HRRR > GEFS			|
+|pressure   			|HRRR > GFS   			|N/A	|HRRR > GFS 				|
+|snowAccumulation   	|NBM > HRRR > GEFS > GFS|N/A   	|NBM > HRRR > GEFS > GFS 	|
+|smoke   				|NBM   					|N/A   	|NBM   						|
+|temperature   			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
+|uvIndex   				|GFS   					|N/A   	|GFS   						|
+|visibility   			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
+|windBearing  			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
+|windGust   			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
+|windSpeed   			|NBM > HRRR > GFS   	|N/A	|NBM > HRRR > GFS   		|

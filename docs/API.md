@@ -12,7 +12,7 @@ All request attributes are contained within the URL. Request headers are not par
 ### Request Parameters
 The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 ```
-https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&tz=[precise]
+https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]
 ``` 
 
 #### API Key
@@ -76,10 +76,7 @@ Some models can also be excluded, which will force data from the fallback source
 *  `nbm`
 
 #### Extend
-If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.
-
-#### Time Zone
-Finally, if `tz=precise` is included, the high precision algorithm of [TimeZoneFinder](https://timezonefinder.readthedocs.io/en/latest/) is used in place of the rapid one. This also adds some time (~0.3s), and in most cases doesn't impact the results (since everything is reported in UTC, the only thing the timezone is used for is to determine the start and end point of the day), but is added as an option if you need an accurate zone.   
+If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.   
 
 #### Version
 If `version=2` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime` and `duskTime`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
@@ -475,13 +472,13 @@ The point in which the air temperature needs (assuming constant pressure) in ord
 **Only available for the US and parts of Canada. Outside of these locations this will return -999** The [Fosburg fire index](https://www.spc.noaa.gov/exper/firecomp/INFO/fosbinfo.html). Notably, this 0-100 index deals only with conditions, not fuels, and so a high index area is not necessarily high risk for fires.
 
 #### fireIndexMax
-**Only on `daily`.** The maxiumum `fireIndex` for the given day.
+**Only on `daily`.** The maximum `fireIndex` for the given day.
 
 #### fireIndexMaxTime
-**Only on `daily`.** the time in which the maxiumum `fireIndex` occurs represented in UNIX time.
+**Only on `daily`.** the time in which the maximum `fireIndex` occurs represented in UNIX time.
 
 #### humidity
-Relative humidity expressed as a value between 0 and 1 inclusive. This is a percentage of the actual water vapor in the air compared to the total amount of water vapor that can exist at the current temperature. [See this resource for more information.](https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/relative-humidity)
+Relative humidity expressed as a value between 0 and 1 inclusive. This is a percentage of the actual water vapor in the air compared to the total amount of water vapour that can exist at the current temperature. [See this resource for more information.](https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/relative-humidity)
 
 #### iceAccumulation
 **Only on `hourly` and `daily`**. The amount of ice precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
@@ -537,13 +534,13 @@ For additional details, see [issue #3](https://github.com/alexander0042/piratewe
 The density of total atmospheric ozone at a given time in Dobson units.
 
 #### precipAccumulation
-**Only on `hourly` and `daily`**. The total amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
+**Only on `hourly` and `daily`**. The total amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For day 0, this is the precipitation during the remaining hours of the day.
 
 #### precipIntensity
-The rate in which liquid precipitation is falling. This value is expressed in millimeters per hour or inches per hour depending on the requested `units`. For `currently` and `minutely` forecast blocks, the HRRR "Precipitation Rate" variable  is used where available, otherwise averaged GEFS data is returned. For `hourly` and `daily` forecast blocks, GEFS is always used. This is done so that the `precipIntensityProbablity` variable is aligned with the intensity.
+The rate in which liquid precipitation is falling. This value is expressed in millimetres per hour or inches per hour depending on the requested `units`. For `currently` and `minutely` forecast blocks, the HRRR "Precipitation Rate" variable  is used where available, otherwise averaged GEFS data is returned. For `hourly` and `daily` forecast blocks, GEFS is always used. This is done so that the `precipIntensityProbablity` variable is aligned with the intensity.
 
 #### precipIntensityError
-The standard deviation of the `precipitationIntensity`.
+The standard deviation of the `precipitationIntensity` from the GEFS model.
 
 #### precipIntensityMax
 **Only on `daily`**. The maximum value of `precipitationIntensity` for the given day.
@@ -562,7 +559,7 @@ The probability of precipitation occurring expressed as a decimal between 0 and 
 
 - Currently `precipProbability` is the chance of precipitation occurring at the requested time.
 - Hourly `precipProbability` is the chance of precipitation occurring in that hour.
-- Daily `precipProbability` is the maxiumum chance of precipitation occurring in that day. If the maxium `precipProbability` for a day is 80% then the daily `precipProbability` would be 80%.
+- Daily `precipProbability` is the maximum chance of precipitation occurring in that day. If the maximum `precipProbability` for a day is 80% then the daily `precipProbability` would be 80%. For day 0, this is the probability of precipitation during the remaining hours of the day.
 
 #### precipType
 The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow.
@@ -678,13 +675,13 @@ The models used to generate the forecast.
 The time in UTC when the model was last updated.
 
 #### sourceIDX
-The X,Y coordinate and the lat, lon corrdinate for the grid cell used for each model used to generate the forecast.
+The X,Y coordinate and the lat, lon coordinate for the grid cell used for each model used to generate the forecast.
 
 #### nearest-station
-The distance in miles or kilometres to the closest station used in the request.
+Not implemented, and will always return 0.
 
 #### units
 Indicates which units were used in the forecasts.
 
 #### version
-The version of PirateWeather used to generate the forecast.
+The version of Pirate Weather used to generate the forecast.
