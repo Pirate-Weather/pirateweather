@@ -5,7 +5,7 @@ This page serves as the documentation for the underlying data source algorithm f
 Several models are used to produce the forecast. They are all hosted on [AWS's Open Data Platform](https://registry.opendata.aws/collab/noaa/), and the fantastic [Herbie package](https://github.com/blaylockbk/Herbie) is used to download and perform initial processing for all of them.    
 
 #### NBM
-The National Blend of Models [(NBM)](https://vlab.noaa.gov/web/mdl/nbm) is a calibrated blend of both NOAA and non-NOAA weather models from around the world. Running every hour for about days, the NBM produces a forecast that aims to leverage strengths from each of the source models, as well as providing some probabilistic forecasts. For most weather elements in the US and Canada, this is the primary source. 
+The National Blend of Models [(NBM)](https://vlab.noaa.gov/web/mdl/nbm) is a calibrated blend of both NOAA and non-NOAA weather models from around the world. Running every hour for about 7 days, the NBM produces a forecast that aims to leverage strengths from each of the source models, as well as providing some probabilistic forecasts. For most weather elements in the US and Canada, this is the primary source. 
 
 #### HRRR
 The High Resolution Rapid Refresh [(HRRR)](https://rapidrefresh.noaa.gov/hrrr/) provides forecasts over all of the continental US, as well as most of the Canadian population. 15-minute forecasts every 3 km are provided every hour for 18 hours, and every 6 hours a 48-hour forecast is run, all at a 3 km resolution. This was perfect for this project, since Dark Sky provided a minute-by-minute forecast for 1 hour, which can be loosely approximated using the 15-minute HRRR forecasts.
@@ -25,30 +25,32 @@ To provide historic weather data, the [European Reanalysis 5 Dataset](https://re
 ## Forecast element sources
 Every Pirate Weather forecast element for each time block (`currently`, `minutely`, `hourly`, or `daily`) is included in the table below, along with the primary, secondary, and tertiary data sources. Fallback sources are used if model data is intentionally excluded, the request point is outside of the primary model coverage area, or if there's some sort of data interruption. 
 
+At a high level, the general approach is to use NBM first, then HRRR, then GEFS, the GFS. However, for Currently and minutely results data from the sub-hourly (15 minute) HRRR model is preferred when it is available (not all variables are included in sub hourly, notably cloud cover, which would be great to have).  
 
-|Parameter 	            |Currently              |Minutely   |Hourly/ Daily          |
-|-----------------------|-----------------------|-------|---------------------------|
-|apparentTemperature	|NBM > GFS				|N/A   	|NBM > GFS   			 	|
-|cloudCover   			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|		
-|dewPoint     			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
-|fireIndex    			|NBM   			  		|N/A   	|NBM   			 			|
-|humidity     			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
-|iceAccumulation   		|N/A                    |N/A   	|NBM > HRRR > GEFS > GFS	|
-|liquidAccumulation 	|N/A                    |N/A   	|NBM > HRRR > GEFS > GFS	|
-|nearestStormBearing	|GFS   					|N/A   	|GFS   						|
-|nearestStormDistance   |GFS   					|N/A   	|GFS   						|
-|ozone   				|GFS   					|N/A   	|GFS   						|
-|precipAccumulation 	|N/A                    |N/A   	|NBM > HRRR > GEFS > GFS	|
-|precipIntensity   		|NBM > HRRR > GEFS 		|HRRR	|NBM > HRRR > GEFS			|
-|precipIntensityError	|GEFS					|GEFS	|GEFS						|	
-|precipProbability  	|NBM > GEFS 			|NBM 	|NBM > GEFS					|
-|precipType   			|NBM > HRRR > GEFS 		|HRRR  	|NBM > HRRR > GEFS			|
-|pressure   			|HRRR > GFS   			|N/A	|HRRR > GFS 				|
-|snowAccumulation   	|NBM > HRRR > GEFS > GFS|N/A   	|NBM > HRRR > GEFS > GFS 	|
-|smoke   				|HRRR   				|N/A   	|HRRR  						|
-|temperature   			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
-|uvIndex   				|GFS   					|N/A   	|GFS   						|
-|visibility   			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
-|windBearing  			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
-|windGust   			|NBM > HRRR > GFS   	|N/A   	|NBM > HRRR > GFS   		|
-|windSpeed   			|NBM > HRRR > GFS   	|N/A	|NBM > HRRR > GFS   		|
+
+|Parameter 	            |Currently              |Minutely   		|Hourly/ Daily          	|
+|-----------------------|-----------------------|-------------------|---------------------------|
+|apparentTemperature	|NBM > GFS				|N/A   				|NBM > GFS   			 	|
+|cloudCover   			|NBM > HRRR > GFS   	|N/A   				|NBM > HRRR > GFS   		|
+|dewPoint     			|HRRR > NBM > GFS   	|N/A   				|NBM > HRRR > GFS   		|
+|fireIndex    			|NBM   			  		|N/A   				|NBM   			 			|
+|humidity     			|NBM > HRRR > GFS   	|N/A   				|NBM > HRRR > GFS   		|
+|iceAccumulation   		|N/A                    |N/A   				|NBM > HRRR > GEFS > GFS	|
+|liquidAccumulation 	|N/A                    |N/A   				|NBM > HRRR > GEFS > GFS	|
+|nearestStormBearing	|GFS   					|N/A   				|GFS   						|
+|nearestStormDistance   |GFS   					|N/A   				|GFS   						|
+|ozone   				|GFS   					|N/A   				|GFS   						|
+|precipAccumulation 	|N/A                    |N/A   				|NBM > HRRR > GEFS > GFS	|
+|precipIntensity   		|HRRR > NBM > GEFS 		|HRRR > NBM > GEFS	|NBM > HRRR > GEFS			|
+|precipIntensityError	|GEFS					|GEFS				|GEFS						|	
+|precipProbability  	|NBM > GEFS 			|NBM > GEFS 		|NBM > GEFS					|
+|precipType   			|HRRR > NBM > GEFS 		|HRRR > NBM > GEFS	|NBM > HRRR > GEFS			|
+|pressure   			|HRRR > GFS   			|N/A				|HRRR > GFS 				|
+|snowAccumulation   	|N/A					|N/A   				|NBM > HRRR > GEFS > GFS 	|
+|smoke   				|HRRR   				|N/A   				|HRRR  						|
+|temperature   			|HRRR > NBM > GFS   	|N/A   				|NBM > HRRR > GFS   		|
+|uvIndex   				|GFS   					|N/A   				|GFS   						|
+|visibility   			|NBM > HRRR > GFS   	|N/A   				|NBM > HRRR > GFS   		|
+|windBearing  			|HRRR > NBM > GFS   	|N/A   				|NBM > HRRR > GFS   		|
+|windGust   			|HRRR > NBM > GFS   	|N/A   				|NBM > HRRR > GFS   		|
+|windSpeed   			|HRRR > NBM > GFS   	|N/A				|NBM > HRRR > GFS   		|

@@ -4,6 +4,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.0"
 
+	* May 7, 2024, API Version 2.0.7
+  		* Change near surface smoke units to be ug/m3.
 	* May 6, 2024, API Version 2.0.4
   		* Fixed a bug in the grid index processing [#216](https://github.com/Pirate-Weather/pirateweather/issues/216)
   		* Enabled CORS support [#215](https://github.com/Pirate-Weather/pirateweather/issues/215)
