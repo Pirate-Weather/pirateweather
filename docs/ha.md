@@ -125,6 +125,13 @@ The available sensors for the integration are:
 * Nearest Storm Bearing
 * Alerts
 * Time
+* Fire Index
+* Fire Index Max
+* Smoke
+* Smoke Max
+* Liquid Accumulation
+* Snow Accumulation
+* Ice Accumulation
 
 Full documentation of the different data points is available here [https://pirateweather.net/en/latest/API/#data-point](https://pirateweather.net/en/latest/API/#data-point). A full list of conditions supported by HA is available here [https://www.home-assistant.io/integrations/weather/#condition-mapping](https://www.home-assistant.io/integrations/weather/#condition-mapping)
 
