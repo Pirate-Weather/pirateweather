@@ -13,15 +13,16 @@ theme:
 nav:
   - Introduction: 'index.md'
   - 'API': 'API.md'
+  - 'OpenAPI Specification': 'Specification.md'
   - 'Home Assistant': 'ha.md'
+  - 'Data Sources' : 'DataSources.md'
   - 'Changelog': 'changelog.md'
-  - 'API Specification': 'Specification.md'
   - 'Roadmap': 'roadmap.md'
   - 'Issue Tracker': 'https://github.com/Pirate-Weather/pirateweather/issues'
   - 'Terms of Service' : 'https://pirate-weather.apiable.io/terms'
   - Blog:
-    - 'Infrastructure Overview': 'Blog/InfrastructureOverview.md'
     - 'Kong Gateway': 'Blog/KongGatewayInfrastructure.md'
+    - 'Infrastructure Overview': 'Blog/InfrastructureOverview.md'
     - 'Previous Versions- v0.1': 'Blog/indexv01.md'
     
     
