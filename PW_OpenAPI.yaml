@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 1.4.0
+  version: 2.0.5
   title: Pirate Weather API
   termsOfService: https://pirate-weather.apiable.io/terms
   contact:
@@ -57,6 +57,11 @@ paths:
           description: Return the weather forecast data in the requested unit system.
           schema:
             type: string
+        - name: version
+          in: query
+          description: Includes fields which were not part of the Dark Sky API will be included which were introducted in API version 2.
+          schema:
+            type: integer
       responses:
         "200":
           description: success
@@ -131,24 +136,20 @@ components:
           type: string
           example: wind
         nearestStormDistance:
-          type: integer
-          format: int32
-          example: 0
+          type: number
+          example: 125.39
         nearestStormBearing:
           type: integer
           format: int32
-          example: 0
+          example: 27
         precipIntensity:
-          type: integer
-          format: int32
+          type: number
           example: 0
         precipProbability:
-          type: integer
-          format: int32
+          type: number
           example: 0
         precipIntensityError:
-          type: integer
-          format: int32
+          type: number
           example: 0
         precipType:
           type: string
@@ -175,22 +176,27 @@ components:
           type: number
           example: 43.56
         windBearing:
-          type: number
-          example: 293.71
-        cloudCover:
           type: integer
           format: int32
-          example: 1
+          example: 293
+        cloudCover:
+          type: number
+          example: 0.34
         uvIndex:
           type: number
           example: 1.9
         visibility:
-          type: integer
-          format: int32
+          type: number
           example: 10
         ozone:
           type: number
           example: 324.42
+        smoke:
+          type: number
+          example: 0.01
+        fireIndex:
+          type: number
+          example: 16.06
     minutely:
       type: object
       properties:
@@ -210,8 +216,7 @@ components:
                 format: int32
                 example: 1677876000
               precipIntensity:
-                type: integer
-                format: int32
+                type: number
                 example: 0
               precipProbability:
                 type: number
@@ -283,22 +288,42 @@ components:
                 type: number
                 example: 45.1
               windBearing:
-                type: number
-                example: 295.33
-              cloudCover:
                 type: integer
                 format: int32
-                example: 1
+                example: 295
+              cloudCover:
+                type: number
+                example: 0.33
               uvIndex:
                 type: number
                 example: 1.17
               visibility:
-                type: integer
-                format: int32
+                type: number
                 example: 10
               ozone:
                 type: number
                 example: 352.77
+              smoke:
+                type: number
+                example: 0.01
+              liquidAccumulation:
+                type: number
+                example: 0
+              snowAccumulation:
+                type: number
+                example: 0
+              iceAccumulation:
+                type: number
+                example: 0
+              nearestStormDistance:
+                type: number
+                example: 139.01
+              nearestStormBearing:
+                type: number
+                example: 172.87
+              fireIndex:
+                type: number
+                example: 15.03
     daily:
       type: object
       properties:
@@ -333,7 +358,7 @@ components:
                 example: 1677887618
               moonPhase:
                 type: number
-                example: 0.379107617800008
+                example: 0.37
               precipIntensity:
                 type: number
                 example: 0.0097
@@ -401,11 +426,12 @@ components:
                 format: int32
                 example: 1677873600
               windBearing:
-                type: number
-                example: 304.92
+                type: integer
+                format: int32
+                example: 304
               cloudCover:
                 type: number
-                example: 0.496
+                example: 0.49
               uvIndex:
                 type: number
                 example: 1.9
@@ -444,6 +470,29 @@ components:
                 type: integer
                 format: int32
                 example: 1677902400
+              smokeMax:
+                type: number
+                example: 0.03
+              smokeMaxTime:
+                type: integer
+                format: int32
+                example: 1715324400
+              liquidAccumulation:
+                type: number
+                example: 0.01
+              snowAccumulation:
+                type: number
+                example: 0
+              iceAccumulation:
+                type: number
+                example: 0
+              fireIndexMax:
+                type: number
+                example: 19.06
+              fireIndexMaxTime:
+                type: integer
+                format: int32
+                example: 1715378400
     alerts:
       type: array
       items:
@@ -451,30 +500,29 @@ components:
         properties:
           title:
             type: string
-            example: Wind Advisory issued March 3 at 12:55PM CST until March 3 at
-              9:00PM CST by NWS Paducah KY
+            example: Flood Warning issued May 10 at 11:07AM CDT until May 17 at 5:00AM CDT by NWS Paducah KY
           regions:
             type: array
             items:
               type: string
-              example: Jefferson
+              example: Alexander, IL
           severity:
             type: string
-            example: Moderate
+            example: Severe
           time:
             type: integer
             format: int32
-            example: 1677869700
+            example: 1715357220
           expires:
             type: integer
             format: int32
-            example: 1677898800
+            example: 1715451300
           description:
             type: string
-            example: "* WHAT...Northwest winds 20 to 30 mph with gusts up to 50 mph.  * WHERE...Portions of southern Illinois western Kentucky and southeast Missouri.  * WHEN...Until 9 PM CST this evening.  * IMPACTS...Gusty winds could blow around unsecured objects. Tree limbs could be blown down and a few power outages may result."
+            example: "...The Flood Warning is extended for the following river in Illinois...Missouri...Kentucky...  Mississippi River at Cape Girardeau, Thebes, and Hickman.  .With recent heavy rainfall, waters are rising on the Mississippi River with crests in minor flood at Cape Girardeau, Thebes, and Hickman early next week.  For the Mississippi River...including Cape Girardeau, Thebes, Hickman...Minor flooding is forecast.  * WHAT...Minor flooding is occurring and minor flooding is forecast.  * WHERE...Mississippi River at Cape Girardeau.  * WHEN...Until Friday, May 17.  * IMPACTS...At 36.0 feet, The flood gate on Themis Street closes.  * ADDITIONAL DETAILS... - At 11:00 AM CDT Friday the stage was 34.4 feet. - Forecast...The river is expected to rise to a crest of 36.0 feet Monday morning. It will then fall below flood stage late Thursday evening. - Flood stage is 32.0 feet."
           uri:
             type: string
-            example: https://alerts-v2.weather.gov/#/?id=urn%3Aoid%3A2.49.0.1.840.0.cee08d1b3c36dda1525fc273a7c5fd63d52dc895.002.1
+            example: https://alerts.weather.gov/search?id=urn:oid:2.49.0.1.840.0.f24c2a5f205f53c0f443861ac62244cc6aecfc9c.002.1
     flags:
       type: object
       properties:
@@ -488,19 +536,25 @@ components:
           properties:
             hrrr_0-18:
               type: string
-              example: 2023-03-03 18:00:00
+              example: 2023-03-03 18Z
             hrrr_subh:
               type: string
-              example: 2023-03-03 18:00:00
+              example: 2023-03-03 18Z
+            nbm:
+              type: string
+              example: 2023-03-03 18Z
+            nbm_fire:
+              type: string
+              example: 2023-03-03 12Z
             hrrr_18-48:
               type: string
-              example: 2023-03-03 18:00:00
+              example: 2023-03-03 18Z
             gfs:
               type: string
-              example: 2023-03-03 12:00:00
+              example: 2023-03-03 12Z
             gefs:
               type: string
-              example: 2023-03-03 12:00:00
+              example: 2023-03-03 12Z
         nearest-station:
           type: integer
           format: int32
@@ -510,4 +564,79 @@ components:
           example: us
         version:
           type: string
-          example: V1.4
+          example: V2.0.5
+        sourceIDX:
+          type: object
+          properties:
+            hrrr:
+              type: object
+              properties:
+                x:
+                  type: integer
+                  format: int32
+                  example: 1134
+                y:
+                  type: integer
+                  format: int32
+                  example: 495
+                lat:
+                  type: number
+                  example: 37.31
+                long:
+                  type: number
+                  example: -89.53
+            nbm:
+              type: object
+              properties:
+                x:
+                  type: integer
+                  format: int32
+                  example: 1483
+                y:
+                  type: integer
+                  format: int32
+                  example: 651
+                lat:
+                  type: number
+                  example: 37.31
+                long:
+                  type: number
+                  example: -89.53
+            gfs:
+              type: object
+              properties:
+                x:
+                  type: integer
+                  format: int32
+                  example: 1082
+                y:
+                  type: integer
+                  format: int32
+                  example: 509
+                lat:
+                  type: number
+                  example: 37.25
+                long:
+                  type: number
+                  example: -89.5
+            etopo:
+              type: object
+              properties:
+                x:
+                  type: integer
+                  format: int32
+                  example: 5429
+                y:
+                  type: integer
+                  format: int32
+                  example: 7638
+                lat:
+                  type: number
+                  example: 37.3
+                long:
+                  type: number
+                  example: -89.5166
+        processTime:
+          type: integer
+          format: int32
+          example: 6970

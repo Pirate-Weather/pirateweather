@@ -39,14 +39,19 @@ The use to integration, click on the "Add Integration" button on the Integration
 - The *Integration Name* is what this weather source will be called. If you want to track the weather at multiple locations, change this. 
 - The *Latitude* and *Longitude* for the forecast.
 - The update interval the forecast (in seconds). Anything below 15 minutes will likely lead to running out of quota.
-- Select if a *Weather Entity* and/or *Sensor Entity* is required. A Weather Entity creates the dashboard standard weather card, and can either provide a daily or hourly forecast. Selecting Sensor Entity will create separate sensors for each condition and forecast time. For example, a sensor for the temperature on day 0 (today), day 1, and day 2, for a total of three sensors. If unsure, start with leaving only the Weather Entity selected.
+- Select if a *Weather Entity* and/or *Sensor Entity* is required
+	- A **Weather Entity** creates the dashboard standard weather card, and can either provide a daily or hourly forecast. 
+	- A **Sensor Entity** will create separate sensors for each condition and forecast time. For example, a sensor for the temperature on hour/day 0 (today), hour/day 1, and hour/day 2, for a total of three sensors. If unsure, start with leaving only the Weather Entity selected.
+		- Note that for alerts to work, this needs to be selected, along with "alerts" under the monitored conditions. 
 
 ![Integration_Setup_B](https://github.com/alexander0042/pirate-weather-ha/blob/master/Integration_Setup_B.png?raw=true)
 
 - The *Forecast Mode* for the Weather Entity, either forecasts every hour or every day.
 - The language. At the moment, only English is supported.
 - The days forecast sensors should be created for, in a csv list.
+	- If daily sensor entities need to be created, this is required.
 - The hours forecast sensors should be created for, in a csv list.
+	- If hourly sensors need to be created, this is required.
 - The monitored conditions forecast sensors should be created for.
 - If values should be rounded to the nearest integer.
 - And which units the forecast sensors should be in. This integration works with the built-in Home Assistant units; however, this option allows rounding to be used.
@@ -84,9 +89,6 @@ sensor:
       - wind_speed
 ```
 
-## Documentation
-In Progress.
-
 ## Sensors
 The available sensors for the integration are:
 
@@ -123,6 +125,17 @@ The available sensors for the integration are:
 * Nearest Storm Bearing
 * Alerts
 * Time
+* Fire Index
+* Fire Index Max
+* Smoke
+* Smoke Max
+* Liquid Accumulation
+* Snow Accumulation
+* Ice Accumulation
+* Daytime High Apparent Temperature Time
+* Overnight Low Apparent Temperature Time
+* Daytime High Temperature Time
+* Daily Low Temperature Time
 
 Full documentation of the different data points is available here [https://pirateweather.net/en/latest/API/#data-point](https://pirateweather.net/en/latest/API/#data-point). A full list of conditions supported by HA is available here [https://www.home-assistant.io/integrations/weather/#condition-mapping](https://www.home-assistant.io/integrations/weather/#condition-mapping)
 
@@ -172,3 +185,130 @@ In release 2023.9 HA depreciated the forecast attribute and as a result you are 
 ```
 
 For more information see [issue #157](https://github.com/Pirate-Weather/pirate-weather-ha/issues/157) and [https://github.com/hg1337/homeassistant-dwd/blob/f47840bfade5ed21781843542674f7ccb6be0ba3/questions_and_answers.md#im-using-a-third-party-weather-card-that-doesnt-support-the-new-forecast-mechanism-can-i-continue-using-it](https://github.com/hg1337/homeassistant-dwd/blob/f47840bfade5ed21781843542674f7ccb6be0ba3/questions_and_answers.md#im-using-a-third-party-weather-card-that-doesnt-support-the-new-forecast-mechanism-can-i-continue-using-it)
+
+### Can I use a dynamic location with the integration?
+The integration uses a weather data coordinator that is based on the lat-lon of the setup location, and it sticks with that. What you can do is create a weather template using a rest sensor like so:
+
+````yaml
+# setup pirate weather dynamic location
+weather:
+  - platform: template
+    name: "Dynamic Weather Template"
+    unique_id: "pw_template"
+    attribution_template: "Powered by Pirate Weather"
+    temperature_template: "{{ state_attr('sensor.PW_Template_Currently', 'temperature') | int }}"
+    temperature_unit: "°F"
+    humidity_template: "{{ state_attr('sensor.PW_Template_Currently', 'humidity')*100 | int }}"
+    pressure_template: "{{ state_attr('sensor.PW_Template_Currently', 'pressure') }}"
+    pressure_unit: "hPa"
+    wind_speed_template: "{{ state_attr('sensor.PW_Template_Currently', 'windSpeed') | int}}"
+    wind_speed_unit: "mph"
+    ozone_template: "{{ state_attr('sensor.PW_Template_Currently', 'ozone') }}"
+    visibility_template: "{{ state_attr('sensor.PW_Template_Currently', 'visibility') }}"
+    visibility_unit: "mi"
+    precipitation_unit: "in"
+    condition_template: >-
+      {% if state_attr('sensor.PW_Template_Currently', 'icon') == "clear-night" %}
+        clear-night
+      {% elif state_attr('sensor.PW_Template_Currently', 'icon') == "clear-day" %}
+        sunny
+      {% elif state_attr('sensor.PW_Template_Currently', 'icon') == "cloudy" %}
+        cloudy
+      {% elif state_attr('sensor.PW_Template_Currently', 'icon') == "fog" %}
+        fog
+      {% elif state_attr('sensor.PW_Template_Currently', 'icon') == "partly-cloudy-day" %}
+        partlycloudy
+      {% elif state_attr('sensor.PW_Template_Currently', 'icon') == "partly-cloudy-night" %}
+        partlycloudy
+      {% elif state_attr('sensor.PW_Template_Currently', 'icon') == "rain" %}
+        rainy
+      {% elif state_attr('sensor.PW_Template_Currently', 'icon') == "snow" %}
+        snowy
+      {% elif state_attr('sensor.PW_Template_Currently', 'icon') == "sleet" %}
+        snowy        
+      {% elif state_attr('sensor.PW_Template_Currently', 'icon') == "wind" %}
+        windy                                              
+      {% endif %}
+    forecast_daily_template: >-
+      {%set return=namespace(data=[])%}
+      {%for datapoint in state_attr('sensor.forecast_daily', 'data')%}
+      {% set condition=datapoint.icon%}
+      {% if datapoint.icon == "clear-day" %}
+      {%set condition="sunny"%}
+      {% elif datapoint.icon == "partly-cloudy-day" or datapoint.icon == "partly-cloudy-night"%}
+      {%set condition="partlycloudy"%}
+      {% elif datapoint.icon == "rain" %}
+      {%set condition="rainy"%}
+      {% elif datapoint.icon == "snow" or datapoint.icon=="sleet"%}
+      {%set condition="snowy"%}
+      {% elif datapoint.icon == "wind" %}
+      {%set condition="windy"%}                                           
+      {% endif %}
+      {%set returnPoint=[{'datetime':as_local(as_datetime(datapoint.time)).strftime("%Y-%m-%dT%H:%M:%S")
+      ,'temperature':datapoint.temperatureHigh, 'templow':datapoint.temperatureLow, 'condition':condition,'precipitation':datapoint.precipAccumulation
+      , 'wind_bearing':datapoint.windBearing, 'wind_speed':datapoint.windSpeed}]%}
+      {% set return.data=return.data+returnPoint%}
+      {% endfor%}
+      {{return.data}}
+    forecast_hourly_template: >-
+      {%set return=namespace(data=[])%}
+      {%for datapoint in state_attr('sensor.forecast_hourly', 'data')%}
+      {% set condition=datapoint.icon%}
+      {% if datapoint.icon == "clear-day" %}
+      {%set condition="sunny"%}
+      {% elif datapoint.icon == "partly-cloudy-day" or datapoint.icon == "partly-cloudy-night"%}
+      {%set condition="partlycloudy"%}
+      {% elif datapoint.icon == "rain" %}
+      {%set condition="rainy"%}
+      {% elif datapoint.icon == "snow" or datapoint.icon=="sleet"%}
+      {%set condition="snowy"%}
+      {% elif datapoint.icon == "wind" %}
+      {%set condition="windy"%}                                           
+      {% endif %}
+      {%set returnPoint=[{'datetime':as_local(as_datetime(datapoint.time)).strftime("%Y-%m-%dT%H:%M:%S")
+      ,'temperature':datapoint.temperature,'condition':condition,'precipitation':datapoint.precipAccumulation
+      , 'wind_bearing':datapoint.windBearing, 'wind_speed':datapoint.windSpeed}]%}
+      {% set return.data=return.data+returnPoint%}
+      {% endfor%}
+      {{return.data}}
+
+rest:
+  resource_template: https://api.pirateweather.net/forecast/<API KEY>/{{ state_attr('sensor.gps', 'latitude') }},{{ state_attr('sensor.gps', 'longitude') }}?units=us&exclude=minutely&exclude=alerts&extend=hourly
+  scan_interval: 300
+  sensor:
+    - name: "PW_Template_Currently"
+      json_attributes_path: "$.currently"
+      value_template: "OK"
+      json_attributes:
+        - summary
+        - temperature
+        - precipProbability
+        - precipType
+        - humidity
+        - cloudCover
+        - nearestStormDistance
+        - precipIntensity
+        - windSpeed
+        - visibility
+        - ozone
+        - windBearing
+        - pressure
+        - icon
+        - time
+    - name: "Forecast Hourly"
+      json_attributes_path: "$.hourly"
+      value_template: "OK"
+      json_attributes:
+        - summary
+        - icon
+        - data
+    - name: "Forecast Daily"
+      json_attributes_path: "$.daily"
+      value_template: "OK"
+      json_attributes:
+        - summary
+        - icon
+        - data
+````
+
+Thanks to breel007 for posting the template [here](https://github.com/Pirate-Weather/pirate-weather-ha/issues/46#issuecomment-1987148981) and for more information see issues [#46](https://github.com/Pirate-Weather/pirate-weather-ha/issues/46) and [#149](https://github.com/Pirate-Weather/pirate-weather-ha/issues/149)

@@ -53,11 +53,11 @@ I initially had this setup using Lambda, but ran into the 500 MB temporary stora
 ### Trigger
 Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opendata.aws/collab/noaa/) into three buckets for the [HRRR](https://registry.opendata.aws/noaa-hrrr-pds/), [GFS](https://registry.opendata.aws/noaa-gfs-bdp-pds/), and [GEFS](https://registry.opendata.aws/noaa-gefs/ models. Since I couldn't find a good way to trigger processing tasks based on S3 events in a public buckled, the ingest system relies on timed events scheduled through [AWS EventBridge Rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html), with the timings shown in the table below:
 
-|                    | GFS        | GEFS      | HRRR- 48h             | HRRR- 18h/ SubHourly |
-|--------------------|------------|-----------|-----------------------|----------------------|
-| Run Times (UTC)    | 0,6,12,18  | 0,6,12,18 | 0,6,12,18             | 0-24                 |
-| Delay              | 5:00       | 7:00      | 2:30                  | 1:45                 |
-| Ingest Times (UTC) | 5,11,17,23 | 7,13,19,1 | 2:30,8:30,14:30,20:30 | 1:45-00:45           |
+|                    | GFS        | GEFS      |NBM			| HRRR- 48h            | HRRR- 18h/ SubHourly |
+|--------------------|------------|-----------|-------------|----------------------|----------------------|
+| Run Times (UTC)    | 0,6,12,18  | 0,6,12,18 |0-24 		|0,6,12,18             | 0-24                 |
+| Delay              | 5:00       | 7:00      |1:45			|2:30                  | 1:45                 |
+| Ingest Times (UTC) | 5,11,17,23 | 7,13,19,1 |1:45-00:45	|2:30,8:30,14:30,20:30 | 1:45-00:45           |
 
 Each rule calls a different [AWS Step Function](https://aws.amazon.com/step-functions/?step-functions.sort-by=item.additionalFields.postDateTime&step-functions.sort-order=desc), which is the tool that oversees the data pipeline. The step function takes the current time from the trigger, adds several other environmental parameters (like which bucket the data is saved in and which processing script to use), and then finally starts a Fargate Task using the WGRIB2/ Python Docker image! Step functions have the added perk that they can repeat the task if it fails for some reason. I spent some time optimizing the tasks to [maximize network speed](https://www.stormforge.io/blog/aws-fargate-network-performance/) and minimize the RAM requirements, settling on 1 CPU and 5 GB of RAM. The Fargate task is set up to have access to the NOAA S3 buckets, as well as an EFS file system to save the processed files. The python processing scripts are explained below, with the source code available on the [repository](https://github.com/alexander0042/pirateweather/tree/main/scripts).
 
