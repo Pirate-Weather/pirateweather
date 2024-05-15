@@ -1,7 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 2.0.5
+  version: 2.0.7
   title: Pirate Weather API
+  description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
   contact:
     email: mail@pirateweather.net
@@ -13,7 +14,7 @@ externalDocs:
   url: https://pirate-weather.apiable.io/full-api-reference
 tags:
   - name: Weather
-    description: Pirate Weather provides an open, free, and documented source of goverment weather data.
+    description: Pirate Weather provides an open, free, and documented source of government weather data.
       
 paths:
   "/forecast/{api_key}/{lat_and_long_or_time}":
@@ -22,29 +23,28 @@ paths:
         - Weather
       operationId: Weather
       summary: Make a request to Pirate Weather
-      description: Fetch a weather forecast or get historical weather data based of input latitude and longitude
+      description: Fetch a weather forecast or get historical weather data based on input latitude and longitude.
       parameters:
         - name: api_key
           in: path
-          description: Pirate Weather Authentication Token
+          description: Pirate Weather Authentication Token.
           required: true
           schema:
             type: string
         - name: lat_and_long_or_time
           in: path
-          description: A single comma delimited string containing Latitude and Longitude information. Optionally, either a UNIX timestamp, ISO 8601 date string, or number of seconds before present can be added.
+          description: A single comma-delimited string containing Latitude and Longitude information. Optionally, either a UNIX timestamp, ISO 8601 date string, or number of seconds before present can be added.
           required: true
           schema:
             type: string
         - name: exclude
           in: query
-          description: Exclude some keys from the Pirate Weather forecast response
+          description: Exclude some keys from the Pirate Weather forecast response.
           schema:
             type: string
         - name: extend
           in: query
-          description: Fetch the next 168 hours (7 days) worth of hourly data, instead of
-            the next 24.
+          description: Fetch the next 168 hours (7 days) worth of hourly data, instead of the next 24.
           schema:
             type: string
         - name: lang
@@ -59,12 +59,12 @@ paths:
             type: string
         - name: version
           in: query
-          description: Includes fields which were not part of the Dark Sky API will be included which were introducted in API version 2.
+          description: Include fields which were not part of the Dark Sky API but were introduced in API version 2.
           schema:
             type: integer
       responses:
         "200":
-          description: success
+          description: Success
           content:
             "*/*":
               schema:
@@ -102,7 +102,7 @@ components:
   schemas:
     latitude:
       type: number
-      description: The requested latitude
+      description: The requested latitude.
       example: 37.3034933
     longitude:
       type: number
@@ -110,101 +110,128 @@ components:
       example: -89.5230357
     timezone:
       type: string
-      description: The forecast timezone.
+      description: The timezone name for the requested location.
       example: America/Chicago
     offset:
       type: integer
       format: int32
-      description: The offset (in hours) of the timezone.
+      description: The timezone offset in hours.
       example: -6
     elevation:
       type: integer
       format: int32
-      description: The elevation (in meters) of the forecast point.
+      description: The elevation in meters of the forecast point.
       example: 344
     currently:
       type: object
+      description: A block containing the current weather for the requested location.
       properties:
         time:
           type: integer
           format: int32
+          description: The current time in UNIX format.
           example: 1677876000
         summary:
           type: string
+          description: A human-readable summary of the current weather.
           example: Windy
         icon:
           type: string
+          description: An icon representing the current weather.
           example: wind
         nearestStormDistance:
           type: number
+          description: The distance to the nearest storm in kilometers.
           example: 125.39
         nearestStormBearing:
           type: integer
           format: int32
+          description: The direction to the nearest storm in degrees.
           example: 27
         precipIntensity:
           type: number
+          description: The intensity of precipitation in millimeters per hour.
           example: 0
         precipProbability:
           type: number
+          description: The probability of precipitation occurring.
           example: 0
         precipIntensityError:
           type: number
+          description: The standard deviation of the precipitation intensity.
           example: 0
         precipType:
           type: string
+          description: The type of precipitation occurring.
           example: none
         temperature:
           type: number
+          description: The air temperature.
           example: 44.44
         apparentTemperature:
           type: number
+          description: The apparent temperature (feels like).
           example: 35.74
         dewPoint:
           type: number
+          description: The dew point temperature.
           example: 39.61
         humidity:
           type: number
+          description: The relative humidity.
           example: 0.83
         pressure:
           type: number
+          description: The sea-level pressure in hectopascals.
           example: 981.5
         windSpeed:
           type: number
+          description: The wind speed.
           example: 22.57
         windGust:
           type: number
+          description: The wind gust speed.
           example: 43.56
         windBearing:
           type: integer
           format: int32
+          description: The direction of the wind in degrees.
           example: 293
         cloudCover:
           type: number
+          description: The fraction of the sky covered by clouds.
           example: 0.34
         uvIndex:
           type: number
+          description: The UV index.
           example: 1.9
         visibility:
           type: number
+          description: The visibility in kilometers.
           example: 10
         ozone:
           type: number
+          description: The ozone concentration in Dobson units.
           example: 324.42
         smoke:
           type: number
+          description: The amount of near-surface smoke in ug/m^3. Only returned when version>2.
           example: 0.01
         fireIndex:
           type: number
+          description: The Fosburg fire index. Only returned when version>2.
           example: 16.06
     minutely:
       type: object
+      description: A block containing minute-by-minute precipitation intensity for the next 60 minutes.
       properties:
         summary:
           type: string
+          description: A summary of the minute-by-minute forecast.
           example: Clear
         icon:
           type: string
+          description: An icon representing the minute-by-minute forecast.
           example: clear
         data:
           type: array
@@ -214,27 +241,35 @@ components:
               time:
                 type: integer
                 format: int32
+                description: The time of the data point in UNIX format.
                 example: 1677876000
               precipIntensity:
                 type: number
+                description: The intensity of precipitation.
                 example: 0
               precipProbability:
                 type: number
+                description: The probability of precipitation.
                 example: 0.4
               precipIntensityError:
                 type: number
+                description: The standard deviation of the precipitation intensity.
                 example: 0.0299
               precipType:
                 type: string
+                description: The type of precipitation occurring.
                 example: none
     hourly:
       type: object
+      description: A block containing hour-by-hour forecasted conditions for the next 48 hours. If `extend=hourly` is used, the hourly block gives hour-by-hour forecasted conditions for the next 168 hours.
       properties:
         summary:
           type: string
+          description: A summary of the hourly forecast.
           example: Clear
         icon:
           type: string
+          description: An icon representing the hourly forecast.
           example: clear-night
         data:
           type: array
@@ -244,94 +279,124 @@ components:
               time:
                 type: integer
                 format: int32
+                description: The time of the data point in UNIX format.
                 example: 1677873600
               icon:
                 type: string
+                description: An icon representing the weather.
                 example: rain
               summary:
                 type: string
+                description: A summary of the weather.
                 example: Rain
               precipIntensity:
                 type: number
+                description: The intensity of precipitation.
                 example: 0.0501
               precipProbability:
                 type: number
+                description: The probability of precipitation.
                 example: 0.55
               precipIntensityError:
                 type: number
+                description: The standard deviation of the precipitation intensity.
                 example: 0.0294
               precipAccumulation:
                 type: number
+                description: The total amount of precipitation.
                 example: 0.0501
               precipType:
                 type: string
+                description: The type of precipitation occurring.
                 example: rain
               temperature:
                 type: number
+                description: The air temperature.
                 example: 44.11
               apparentTemperature:
                 type: number
+                description: The apparent temperature (feels like).
                 example: 35.18
               dewPoint:
                 type: number
+                description: The dew point temperature.
                 example: 39.72
               humidity:
                 type: number
+                description: The relative humidity.
                 example: 0.85
               pressure:
                 type: number
+                description: The air pressure.
                 example: 978.1
               windSpeed:
                 type: number
+                description: The wind speed.
                 example: 23.17
               windGust:
                 type: number
+                description: The wind gust speed.
                 example: 45.1
               windBearing:
-                type: integer
+                type: number
                 format: int32
+                description: The direction of the wind in degrees.
                 example: 295
               cloudCover:
                 type: number
+                description: The fraction of the sky covered by clouds.
                 example: 0.33
               uvIndex:
                 type: number
+                description: The UV index.
                 example: 1.17
               visibility:
                 type: number
+                description: The visibility in kilometers.
                 example: 10
               ozone:
                 type: number
+                description: The ozone concentration in Dobson units.
                 example: 352.77
               smoke:
                 type: number
+                description: The amount of near-surface smoke in ug/m3. Only returned when version>2.
                 example: 0.01
               liquidAccumulation:
                 type: number
+                description: The amount of liquid precipitation expected. Only returned when version>2.
                 example: 0
               snowAccumulation:
                 type: number
+                description: The amount of snow precipitation expected. Only returned when version>2.
                 example: 0
               iceAccumulation:
                 type: number
+                description: The amount of ice precipitation expected. Only returned when version>2.
                 example: 0
               nearestStormDistance:
                 type: number
+                description: The distance to the nearest storm.
                 example: 139.01
               nearestStormBearing:
                 type: number
+                description: The direction to the nearest storm.
                 example: 172.87
               fireIndex:
                 type: number
+                description: The Fosburg fire index. Only returned when version>2.
                 example: 15.03
     daily:
       type: object
+      description: A block containing day-by-day forecasted conditions for the next 7 days.
       properties:
         summary:
           type: string
+          description: A summary of the daily forecast.
           example: Cloudy
         icon:
           type: string
+          description: An icon representing the daily forecast.
           example: cloudy
         data:
           type: array
@@ -341,232 +406,300 @@ components:
               time:
                 type: integer
                 format: int32
+                description: The time of the data point in UNIX format.
                 example: 1677823200
               icon:
                 type: string
+                description: An icon representing the weather.
                 example: rain
               summary:
                 type: string
+                description: A summary of the weather.
                 example: Rain
               sunriseTime:
                 type: integer
                 format: int32
+                description: The time of sunrise in UNIX format.
                 example: 1677846414
               sunsetTime:
                 type: integer
                 format: int32
+                description: The time of sunset in UNIX format.
                 example: 1677887618
               moonPhase:
                 type: number
+                description: The fractional lunation number for the given day.
                 example: 0.37
               precipIntensity:
                 type: number
+                description: The intensity of precipitation.
                 example: 0.0097
               precipIntensityMax:
                 type: number
+                description: The maximum intensity of precipitation.
                 example: 0.0501
               precipIntensityMaxTime:
                 type: integer
                 format: int32
+                description: The time when the maximum precipitation intensity occurs in UNIX format.
                 example: 1677873600
               precipProbability:
                 type: number
+                description: The probability of precipitation.
                 example: 0.55
               precipAccumulation:
                 type: number
+                description: The total amount of precipitation.
                 example: 0.087
               precipType:
                 type: string
+                description: The type of precipitation occurring.
                 example: rain
               temperatureHigh:
                 type: number
+                description: The daytime high temperature.
                 example: 44.44
               temperatureHighTime:
                 type: integer
                 format: int32
+                description: The time when the high temperature occurs in UNIX format.
                 example: 1677880800
               temperatureLow:
                 type: number
+                description: The overnight low temperature.
                 example: 35.56
               temperatureLowTime:
                 type: integer
                 format: int32
+                description: The time when the low temperature occurs in UNIX format.
                 example: 1677924000
               apparentTemperatureHigh:
                 type: number
+                description: The apparent daytime high temperature (feels like).
                 example: 38.36
               apparentTemperatureHighTime:
                 type: integer
                 format: int32
+                description: The time when the apparent high temperature occurs in UNIX format.
                 example: 1677880800
               apparentTemperatureLow:
                 type: number
+                description: The apparent overnight low temperature (feels like).
                 example: 35.18
               apparentTemperatureLowTime:
                 type: integer
                 format: int32
+                description: The time when the apparent low temperature occurs in UNIX format.
                 example: 1677920400
               dewPoint:
                 type: number
+                description: The dew point temperature.
                 example: 39.71
               humidity:
                 type: number
+                description: The relative humidity.
                 example: 0.862
               pressure:
                 type: number
+                description: The air pressure.
                 example: 988.48
               windSpeed:
                 type: number
+                description: The wind speed.
                 example: 12.87
               windGust:
                 type: number
+                description: The wind gust speed.
                 example: 29.62
               windGustTime:
                 type: integer
                 format: int32
+                description: The time when the maximum wind gust occurs in UNIX format.
                 example: 1677873600
               windBearing:
                 type: integer
                 format: int32
+                description: The direction of the wind in degrees.
                 example: 304
               cloudCover:
                 type: number
+                description: The fraction of the sky covered by clouds.
                 example: 0.49
               uvIndex:
                 type: number
+                description: The max UV index during that day.
                 example: 1.9
               uvIndexTime:
                 type: integer
                 format: int32
+                description: The time when the maximum UV index occurs in UNIX format.
                 example: 1677877200
               visibility:
                 type: number
+                description: The visibility in kilometers.
                 example: 9.93
               temperatureMin:
                 type: number
+                description: The minimum temperature.
                 example: 40.62
               temperatureMinTime:
                 type: integer
                 format: int32
+                description: The time when the minimum temperature occurs in UNIX format.
                 example: 1677902400
               temperatureMax:
                 type: number
+                description: The maximum temperature.
                 example: 44.44
               temperatureMaxTime:
                 type: integer
                 format: int32
+                description: The time when the maximum temperature occurs in UNIX format.
                 example: 1677880800
               apparentTemperatureMin:
                 type: number
+                description: The minimum apparent temperature (feels like).
                 example: 35.18
               apparentTemperatureMinTime:
                 type: integer
                 format: int32
+                description: The time when the minimum apparent temperature occurs in UNIX format.
                 example: 1677902400
               apparentTemperatureMax:
                 type: number
+                description: The maximum apparent temperature (feels like).
                 example: 38.36
               apparentTemperatureMaxTime:
                 type: integer
                 format: int32
+                description: The time when the maximum apparent temperature occurs in UNIX format.
                 example: 1677902400
               smokeMax:
                 type: number
+                description: The maximum amount of near-surface smoke in kg/m^3. Only returned when version>2.
                 example: 0.03
               smokeMaxTime:
                 type: integer
                 format: int32
+                description: The time when the maximum near-surface smoke occurs in UNIX format. Only returned when version>2.
                 example: 1715324400
               liquidAccumulation:
                 type: number
+                description: The amount of liquid precipitation expected. Only returned when version>2.
                 example: 0.01
               snowAccumulation:
                 type: number
+                description: The amount of snow precipitation expected. Only returned when version>2.
                 example: 0
               iceAccumulation:
                 type: number
+                description: The amount of ice precipitation expected. Only returned when version>2.
                 example: 0
               fireIndexMax:
                 type: number
+                description: The maximum Fosburg fire index. Only returned when version>2.
                 example: 19.06
               fireIndexMaxTime:
                 type: integer
                 format: int32
+                description: The time when the maximum Fosburg fire index occurs in UNIX format. Only returned when version>2.
                 example: 1715378400
     alerts:
       type: array
+      description: A block containing any severe weather alerts for the current location.
       items:
         type: object
         properties:
           title:
             type: string
+            description: A brief description of the alert.
             example: Flood Warning issued May 10 at 11:07AM CDT until May 17 at 5:00AM CDT by NWS Paducah KY
           regions:
             type: array
+            description: An array of strings containing all regions included in the weather alert.
             items:
               type: string
               example: Alexander, IL
           severity:
             type: string
+            description: The severity of the weather alert.
             example: Severe
           time:
             type: integer
             format: int32
+            description: The time the alert was issued in UNIX format.
             example: 1715357220
           expires:
             type: integer
             format: int32
+            description: The time the alert expires in UNIX format.
             example: 1715451300
           description:
             type: string
+            description: A detailed description of the alert.
             example: "...The Flood Warning is extended for the following river in Illinois...Missouri...Kentucky...  Mississippi River at Cape Girardeau, Thebes, and Hickman.  .With recent heavy rainfall, waters are rising on the Mississippi River with crests in minor flood at Cape Girardeau, Thebes, and Hickman early next week.  For the Mississippi River...including Cape Girardeau, Thebes, Hickman...Minor flooding is forecast.  * WHAT...Minor flooding is occurring and minor flooding is forecast.  * WHERE...Mississippi River at Cape Girardeau.  * WHEN...Until Friday, May 17.  * IMPACTS...At 36.0 feet, The flood gate on Themis Street closes.  * ADDITIONAL DETAILS... - At 11:00 AM CDT Friday the stage was 34.4 feet. - Forecast...The river is expected to rise to a crest of 36.0 feet Monday morning. It will then fall below flood stage late Thursday evening. - Flood stage is 32.0 feet."
           uri:
             type: string
+            description: A HTTP(S) URL for more information about the alert.
             example: https://alerts.weather.gov/search?id=urn:oid:2.49.0.1.840.0.f24c2a5f205f53c0f443861ac62244cc6aecfc9c.002.1
     flags:
       type: object
+      description: A block containing miscellaneous data for the API request.
       properties:
         sources:
           type: array
+          description: The models used to generate the forecast.
           items:
             type: string
             example: ETOPO1
         sourceTimes:
           type: object
+          description: The times in UTC when the models were last updated.
           properties:
             hrrr_0-18:
               type: string
+              description: The time the HRRR model for 0-18 hours was last updated.
               example: 2023-03-03 18Z
             hrrr_subh:
               type: string
+              description: The time the HRRR sub-hourly model was last updated.
               example: 2023-03-03 18Z
             nbm:
               type: string
+              description: The time the NBM model was last updated.
               example: 2023-03-03 18Z
             nbm_fire:
               type: string
+              description: The time the NBM fire model was last updated.
               example: 2023-03-03 12Z
             hrrr_18-48:
               type: string
+              description: The time the HRRR model for 18-48 hours was last updated.
               example: 2023-03-03 18Z
             gfs:
               type: string
+              description: The time the GFS model was last updated.
               example: 2023-03-03 12Z
             gefs:
               type: string
+              description: The time the GEFS model was last updated.
               example: 2023-03-03 12Z
         nearest-station:
           type: integer
           format: int32
+          description: The distance to the nearest station (not implemented, always returns 0).
           example: 0
         units:
           type: string
+          description: The units used in the forecasts.
           example: us
         version:
           type: string
-          example: V2.0.5
+          description: The version of Pirate Weather used to generate the forecast.
+          example: V2.0.7
         sourceIDX:
           type: object
+          description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>2.
           properties:
             hrrr:
               type: object
@@ -574,16 +707,20 @@ components:
                 x:
                   type: integer
                   format: int32
+                  description: The X coordinate for the HRRR model.
                   example: 1134
                 y:
                   type: integer
                   format: int32
+                  description: The Y coordinate for the HRRR model.
                   example: 495
                 lat:
                   type: number
+                  description: The latitude coordinate for the HRRR model.
                   example: 37.31
                 long:
                   type: number
+                  description: The longitude coordinate for the HRRR model.
                   example: -89.53
             nbm:
               type: object
@@ -591,16 +728,20 @@ components:
                 x:
                   type: integer
                   format: int32
+                  description: The X coordinate for the NBM model.
                   example: 1483
                 y:
                   type: integer
                   format: int32
+                  description: The Y coordinate for the NBM model.
                   example: 651
                 lat:
                   type: number
+                  description: The latitude coordinate for the NBM model.
                   example: 37.31
                 long:
                   type: number
+                  description: The longitude coordinate for the NBM model.
                   example: -89.53
             gfs:
               type: object
@@ -608,16 +749,20 @@ components:
                 x:
                   type: integer
                   format: int32
+                  description: The X coordinate for the GFS model.
                   example: 1082
                 y:
                   type: integer
                   format: int32
+                  description: The Y coordinate for the GFS model.
                   example: 509
                 lat:
                   type: number
+                  description: The latitude coordinate for the GFS model.
                   example: 37.25
                 long:
                   type: number
+                  description: The longitude coordinate for the GFS model.
                   example: -89.5
             etopo:
               type: object
@@ -625,18 +770,23 @@ components:
                 x:
                   type: integer
                   format: int32
+                  description: The X coordinate for the ETOPO model.
                   example: 5429
                 y:
                   type: integer
                   format: int32
+                  description: The Y coordinate for the ETOPO model.
                   example: 7638
                 lat:
                   type: number
+                  description: The latitude coordinate for the ETOPO model.
                   example: 37.3
                 long:
                   type: number
+                  description: The longitude coordinate for the ETOPO model.
                   example: -89.5166
         processTime:
           type: integer
           format: int32
+          description: The time taken to process the request in milliseconds. Only returned when version>2.
           example: 6970
