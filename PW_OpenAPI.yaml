@@ -695,10 +695,7 @@ components:
           example: us
         version:
           type: string
-<<<<<<< HEAD
           description: The version of Pirate Weather used to generate the forecast.
-=======
->>>>>>> fa32c6e2a2f4d32f12674f2fdbe42ea8c4a17e01
           example: V2.0.7
         sourceIDX:
           type: object
