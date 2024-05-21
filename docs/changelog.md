@@ -4,6 +4,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.0"
 
+	* May 21, 2024, API Version 2.0.8
+		* Yet more error handling code to handle cases when model input files are misformed. 
 	* May 15, 2024, API Version 2.0.7
 		* New error handling code to handle cases when model input files are misformed. 
 	* May 7, 2024, API Version 2.0.6
