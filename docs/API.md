@@ -444,17 +444,17 @@ A block containing miscellaneous data for the API request.
 **Only on `daily`**. The time (in UTC) that the minimum "feels like" temperature occurs during a day, from from 12:00 am and 11:59 pm.
 
 #### apparentTemperatureHigh
-**Only on `daily`**. The maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
+**Only on `daily`**. The maximum "feels like" temperature during the daytime, from 4:00 am to 4:00 pm.
 
 #### apparentTemperatureHighTime
-**Only on `daily`**. The time of the maximum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
+**Only on `daily`**. The time of the maximum "feels like" temperature during the daytime, from 4:00 am to 4:00 pm.
 
 #### apparentTemperatureLow
-**Only on `daily`**. The minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
+**Only on `daily`**. The minimum "feels like" temperature during the daytime, from 4:00 am to 4:00 pm.
 
 #### apparentTemperatureLowTime
 **Only on `daily`**. 
-The time of the minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
+The time of the minimum "feels like" temperature during the daytime, from 4:00 am to 4:00 pm.
 
 #### cloudCover
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
@@ -592,13 +592,13 @@ A human-readable summary describing the weather conditions for a given data poin
 The air temperature in degrees Celsius or degrees Fahrenheit depending on the requested `units`
 
 #### temperatureHigh
-**Only on `daily`**. The daytime high temperature calculated between 6:00 am and 6:00 pm local time.
+**Only on `daily`**. The daytime high temperature calculated between 4:00 am and 4:00 pm local time.
 
 #### temperatureHighTime
 **Only on `daily`**. The time in which the high temperature occurs represented in UNIX time.
 
 #### temperatureLow
-**Only on `daily`**. The overnight low temperature calculated between 6:00 pm and 6:00 am local time.
+**Only on `daily`**. The overnight low temperature calculated between 4:00 pm and 4:00 am local time.
 
 #### temperatureLowTime
 **Only on `daily`**. The time in which the low temperature occurs represented in UNIX time.
