@@ -1,5 +1,10 @@
 # Global Rule
 * @alexander0042
 
+# GitHub Actions/Templates
+/.github/dependabot.yml @cloneofghosts
+/.github/workflows/* @cloneofghosts
+/.github/ISSUE_TEMPLATE/* @cloneofghosts
+
 # Remove CODEOWNER for requirements file
 /docs/requirements.txt
