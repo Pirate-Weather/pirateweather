@@ -1,0 +1,5 @@
+# Global Rule
+* @alexander0042
+
+# Remove CODEOWNER for requirements file
+/docs/requirements.txt
