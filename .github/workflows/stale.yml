@@ -24,7 +24,7 @@ jobs:
         repo-token: ${{ github.token }}
         stale-issue-message: 'There has been no activity on this issue in the last ninety days and it will automatically close in seven days. Leave a comment on this issue to prevent it from closing automatically.'
         stale-pr-message: 'There has not been any activity on this pull request in the last ninety days and it will automatically close in seven days. Leave a comment on this pull request to prevent it from closing automatically.'
-        close-issue-message: 'This issue has been automatically closes as there has been no further activity in seven days. Feel free to re-open this issue or you can create a follow-up issue.'
+        close-issue-message: 'This issue has been automatically closed as there has been no further activity in seven days. Feel free to re-open this issue or you can create a follow-up issue.'
         close-pr-message: 'This pull request has been automatically closed since there has been no further activity after seven days. Feel free to re-open the pull request or you can create a new follow-up pull request.'
         stale-issue-label: 'stale'
         stale-pr-label: 'stale'
