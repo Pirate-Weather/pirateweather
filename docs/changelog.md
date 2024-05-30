@@ -4,6 +4,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.0"
 
+	* May 30, 2024, API Version 2.0.9
+		* Adjust the icon calculation approach to fix issues with a small number of very rainy hours per issue [#236](https://github.com/Pirate-Weather/pirateweather/issues/236).
+  		* Changed the icon/ summary to use 4 am to 4 am for calculations to follow the Dark Sky approach per discussion [#239](https://github.com/Pirate-Weather/pirateweather/discussions/239).
 	* May 21, 2024, API Version 2.0.8
 		* Yet more error handling code to handle cases when model input files are misformed. 
 	* May 15, 2024, API Version 2.0.7
