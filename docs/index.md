@@ -38,14 +38,23 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
-## Recent Updates- Spring 2023
-Up to version 1.4! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+## Recent Updates- Winter 2024
+Up to version 2.0! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-1. New sign-up portal: <https://pirate-weather.apiable.io/>. This will let me spend way less time managing subscriptions, and more time data wrangling. Also addresses a ton of bugs related to the old developer portal. APIs requested via the old portal will continue to work though! 
-2. Much better alert support.
-3. A ton of assorted bug fixes.
-4. Published official [API specifications](http://docs.pirateweather.net/en/latest/Specification/).
-5. Major revamp of the Home Assistant Integration.
+1. Includes a fancy new model from NOAA called the National Blend of Models
+2. Does a way better job of calculating the daily high/ low/ accumulations for the current day
+3. Returns somewhere between 10 and 50 times faster than v1 (this was my favourite to work out). I can't say for sure that it's the fastest weather API out there, but it's definitely in contention now.
+4. Faster data ingest (~5 minutes).
+5. Improved US alert processing.
+6. Nearest storm distance and bearing!
+
+As well as several new optional improvements behind a new `version=2` querystring parameter, to avoid breaking Dark Sky compatibility:
+
+1. Short term (~36 hour) smoke forecasts (top requested feature!).
+2. Fosburg Fire Index for the US and parts of Canada.
+3. Liquid, snow, and ice precipitation types.
+4. Model specific exclusions (`exclude=hrrr` or `exclude=nbm`), to facilitate performance comparisons between models.
+5. Returned grid indexes of model results (this seemed small, but since HRRR is in Lambert, it was fairly complex).
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
