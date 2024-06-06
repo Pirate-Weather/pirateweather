@@ -640,6 +640,8 @@ The wind gust in kilometres per hour or miles per hour depending on the requeste
 The current wind speed in kilometres per hour or miles per hour depending on the requested `units`.
 
 ### Alerts
+Note that alerts are only supported in the United States at the moment.
+
 #### title
 A brief description of the alert.
 
