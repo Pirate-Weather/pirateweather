@@ -561,6 +561,8 @@ The probability of precipitation occurring expressed as a decimal between 0 and 
 - Hourly `precipProbability` is the chance of precipitation occurring in that hour.
 - Daily `precipProbability` is the maximum chance of precipitation occurring in that day. If the maximum `precipProbability` for a day is 80% then the daily `precipProbability` would be 80%. For day 0, this is the probability of precipitation during the remaining hours of the day.
 
+You can get a probability >0 with no precipitation. It's because they're sometimes coming from different sources or different models, and the ensemble will sometimes show a chance of something but not confident in any amount. Basically, one is probabilistic, the other deterministic. 
+
 #### precipType
 The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow.
 
@@ -571,7 +573,7 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 **Only on `hourly` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
 
 #### smoke
-**Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of [near-surface (8 m) smoke represented in kg/m<sup>3</sup>](https://www.weather.gov/media/notification/pdf2/scn21-86rap_and_hrr_smoke_units_change_aab.pdf)
+**Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of near-surface (8 m) smoke.
 
 #### smokeMax
 **Only on `daily`.** The maxiumum `smoke` for the given day.
