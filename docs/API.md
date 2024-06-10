@@ -485,9 +485,9 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
-`clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, partly-cloudy-night`.
+`clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `thunderstorm` or `hail` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
 
-The algorithm here is straightforward, coming from this [NOAA resource](https://weather.com/science/weather-explainers/news/common-weather-terms-used-incorrectly):
+The daily icon is calculated between 4:00 am and 4:00 am local time. The algorithm here is straightforward, coming from this [NOAA resource](https://weather.com/science/weather-explainers/news/common-weather-terms-used-incorrectly):
 
 ##### Currently:
 
@@ -561,6 +561,8 @@ The probability of precipitation occurring expressed as a decimal between 0 and 
 - Hourly `precipProbability` is the chance of precipitation occurring in that hour.
 - Daily `precipProbability` is the maximum chance of precipitation occurring in that day. If the maximum `precipProbability` for a day is 80% then the daily `precipProbability` would be 80%. For day 0, this is the probability of precipitation during the remaining hours of the day.
 
+You can get a probability >0 with no precipitation. It's because they're sometimes coming from different sources or different models, and the ensemble will sometimes show a chance of something but not confident in any amount. Basically, one is probabilistic, the other deterministic. 
+
 #### precipType
 The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow.
 
@@ -571,7 +573,7 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 **Only on `hourly` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
 
 #### smoke
-**Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of [near-surface (8 m) smoke represented in kg/m<sup>3</sup>](https://www.weather.gov/media/notification/pdf2/scn21-86rap_and_hrr_smoke_units_change_aab.pdf)
+**Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of near-surface (8 m) smoke represented in µg/m<sup>3</sup>.
 
 #### smokeMax
 **Only on `daily`.** The maxiumum `smoke` for the given day.
@@ -580,7 +582,7 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 **Only on `daily`.** the time in which the maxiumum `smoke` occurs represented in UNIX time.
 
 #### summary
-A human-readable summary describing the weather conditions for a given data point.
+A human-readable summary describing the weather conditions for a given data point. The daily summary is calculated between 4:00 am and 4:00 am local time.
 
 #### sunriseTime
 **Only on `daily`**. The time when the sun rises for a given day represented in UNIX time.
@@ -640,6 +642,8 @@ The wind gust in kilometres per hour or miles per hour depending on the requeste
 The current wind speed in kilometres per hour or miles per hour depending on the requested `units`.
 
 ### Alerts
+Note that alerts are only supported in the United States at the moment.
+
 #### title
 A brief description of the alert.
 

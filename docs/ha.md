@@ -312,3 +312,7 @@ rest:
 ````
 
 Thanks to breel007 for posting the template [here](https://github.com/Pirate-Weather/pirate-weather-ha/issues/46#issuecomment-1987148981) and for more information see issues [#46](https://github.com/Pirate-Weather/pirate-weather-ha/issues/46) and [#149](https://github.com/Pirate-Weather/pirate-weather-ha/issues/149)
+
+### Does having multiple integrations setup result in multiple calls to the API?
+
+Yes, every time you setup a new instance of the integration it results in more queries to the API. For more information see [#243](https://github.com/Pirate-Weather/pirate-weather-ha/issues/243#issuecomment-2150104162)
