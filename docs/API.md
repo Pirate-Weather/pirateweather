@@ -573,7 +573,7 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 **Only on `hourly` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
 
 #### smoke
-**Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of near-surface (8 m) smoke.
+**Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of near-surface (8 m) smoke represented in µg/m<sup>3</sup>.
 
 #### smokeMax
 **Only on `daily`.** The maxiumum `smoke` for the given day.
