@@ -43,7 +43,7 @@ The use to integration, click on the "Add Integration" button on the Integration
 	- A **Weather Entity** creates the dashboard standard weather card, and can provide a daily and hourly forecast. 
 	- A **Sensor Entity** will create separate sensors for each condition and forecast time. For example, a sensor for the temperature on hour/day 0 (today), hour/day 1, and hour/day 2, for a total of three sensors. If unsure, start with leaving only the Weather Entity selected.
 		- Note that for alerts to work, this needs to be selected, along with "alerts" under the monitored conditions. 
-    - Note that for sensor entities to appear you must also setup the monitored conditions you would like to create sensors for otherwise no sensors will be created.
+    - Note that you must also setup the monitored conditions you would like to create sensors for otherwise no sensors will be created.
 
 ![Integration_Setup_B](https://github.com/alexander0042/pirate-weather-ha/blob/master/Integration_Setup_B.png?raw=true)
 
