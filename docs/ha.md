@@ -38,22 +38,22 @@ The use to integration, click on the "Add Integration" button on the Integration
 - The *API key* can be received from [Apiable](https://pirate-weather.apiable.io), and is only used to track usage and keep my AWS bills reasonable
 - The *Integration Name* is what this weather source will be called. If you want to track the weather at multiple locations, change this. 
 - The *Latitude* and *Longitude* for the forecast.
-- The update interval the forecast (in seconds). Anything below 15 minutes will likely lead to running out of quota.
+- The update interval the forecast (in seconds). Anything below 900 seconds (15 minutes) is not recommended will likely lead to running out of quota.
 - Select if a *Weather Entity* and/or *Sensor Entity* is required
-	- A **Weather Entity** creates the dashboard standard weather card, and can either provide a daily or hourly forecast. 
+	- A **Weather Entity** creates the dashboard standard weather card, and can provide a daily and hourly forecast. 
 	- A **Sensor Entity** will create separate sensors for each condition and forecast time. For example, a sensor for the temperature on hour/day 0 (today), hour/day 1, and hour/day 2, for a total of three sensors. If unsure, start with leaving only the Weather Entity selected.
 		- Note that for alerts to work, this needs to be selected, along with "alerts" under the monitored conditions. 
+    - Note that for sensor entities to appear you must also setup the monitored conditions you would like to create sensors for otherwise no sensors will be created.
 
 ![Integration_Setup_B](https://github.com/alexander0042/pirate-weather-ha/blob/master/Integration_Setup_B.png?raw=true)
 
-- The *Forecast Mode* for the Weather Entity, either forecasts every hour or every day.
 - The language. At the moment, only English is supported.
 - The days forecast sensors should be created for, in a csv list.
 	- If daily sensor entities need to be created, this is required.
 - The hours forecast sensors should be created for, in a csv list.
 	- If hourly sensors need to be created, this is required.
 - The monitored conditions forecast sensors should be created for.
-- If values should be rounded to the nearest integer.
+- If sensor entity values should be rounded to the nearest integer.
 - And which units the forecast sensors should be in. This integration works with the built-in Home Assistant units; however, this option allows rounding to be used.
 
 ### YAML Configuration
