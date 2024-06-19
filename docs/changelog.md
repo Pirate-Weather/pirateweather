@@ -4,6 +4,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.0"
 
+	* June 18, 2024, API Version 2.0.10
+		* Fixed a bug where `precipAccumulation` was being calculated from the GFS model instead of the GEFS model as per [#229](https://github.com/Pirate-Weather/pirateweather/issues/229)
 	* May 30, 2024, API Version 2.0.9
 		* Adjust the icon calculation approach to fix issues with a small number of very rainy hours per issue [#236](https://github.com/Pirate-Weather/pirateweather/issues/236).
   		* Changed the icon/ summary to use 4 am to 4 am for calculations to follow the Dark Sky approach per discussion [#239](https://github.com/Pirate-Weather/pirateweather/discussions/239).
