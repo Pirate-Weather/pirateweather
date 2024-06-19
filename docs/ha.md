@@ -196,7 +196,7 @@ weather:
     name: "Dynamic Weather Template"
     unique_id: "pw_template"
     attribution_template: "Powered by Pirate Weather"
-    temperature_template: "{{ state_attr('sensor.PW_Template_Currently', 'temperature') | int }}"
+    temperature_template: "{{ state_attr('sensor.PW_Template_Currently', 'temperature') }}"
     temperature_unit: "°F"
     humidity_template: "{{ state_attr('sensor.PW_Template_Currently', 'humidity')*100 | int }}"
     pressure_template: "{{ state_attr('sensor.PW_Template_Currently', 'pressure') }}"
@@ -231,44 +231,44 @@ weather:
       {% endif %}
     forecast_daily_template: >-
       {%set return=namespace(data=[])%}
-      {%for datapoint in state_attr('sensor.forecast_daily', 'data')%}
-      {% set condition=datapoint.icon%}
-      {% if datapoint.icon == "clear-day" %}
-      {%set condition="sunny"%}
-      {% elif datapoint.icon == "partly-cloudy-day" or datapoint.icon == "partly-cloudy-night"%}
-      {%set condition="partlycloudy"%}
-      {% elif datapoint.icon == "rain" %}
-      {%set condition="rainy"%}
-      {% elif datapoint.icon == "snow" or datapoint.icon=="sleet"%}
-      {%set condition="snowy"%}
-      {% elif datapoint.icon == "wind" %}
-      {%set condition="windy"%}                                           
-      {% endif %}
-      {%set returnPoint=[{'datetime':as_local(as_datetime(datapoint.time)).strftime("%Y-%m-%dT%H:%M:%S")
-      ,'temperature':datapoint.temperatureHigh, 'templow':datapoint.temperatureLow, 'condition':condition,'precipitation':datapoint.precipAccumulation
-      , 'wind_bearing':datapoint.windBearing, 'wind_speed':datapoint.windSpeed}]%}
-      {% set return.data=return.data+returnPoint%}
+	      {%for datapoint in state_attr('sensor.forecast_daily', 'data')%}
+		{% set condition=datapoint.icon%}
+	      {% if datapoint.icon == "clear-day" %}
+	      	{%set condition="sunny"%}
+	      {% elif datapoint.icon == "partly-cloudy-day" or datapoint.icon == "partly-cloudy-night"%}
+	      	{%set condition="partlycloudy"%}
+	      {% elif datapoint.icon == "rain" %}
+	      	{%set condition="rainy"%}
+	      {% elif datapoint.icon == "snow" or datapoint.icon=="sleet"%}
+	      	{%set condition="snowy"%}
+	      {% elif datapoint.icon == "wind" %}
+	      	{%set condition="windy"%}                                           
+	      {% endif %}
+	      {%set returnPoint=[{'datetime':as_local(as_datetime(datapoint.time)).strftime("%Y-%m-%dT%H:%M:%S")
+	      ,'temperature':datapoint.temperatureHigh, 'templow':datapoint.temperatureLow, 'condition':condition,'precipitation':datapoint.precipAccumulation
+	      , 'wind_bearing':datapoint.windBearing, 'wind_speed':datapoint.windSpeed}]%}
+	      {% set return.data=return.data+returnPoint%}
       {% endfor%}
       {{return.data}}
     forecast_hourly_template: >-
       {%set return=namespace(data=[])%}
       {%for datapoint in state_attr('sensor.forecast_hourly', 'data')%}
-      {% set condition=datapoint.icon%}
-      {% if datapoint.icon == "clear-day" %}
-      {%set condition="sunny"%}
-      {% elif datapoint.icon == "partly-cloudy-day" or datapoint.icon == "partly-cloudy-night"%}
-      {%set condition="partlycloudy"%}
-      {% elif datapoint.icon == "rain" %}
-      {%set condition="rainy"%}
-      {% elif datapoint.icon == "snow" or datapoint.icon=="sleet"%}
-      {%set condition="snowy"%}
-      {% elif datapoint.icon == "wind" %}
-      {%set condition="windy"%}                                           
-      {% endif %}
-      {%set returnPoint=[{'datetime':as_local(as_datetime(datapoint.time)).strftime("%Y-%m-%dT%H:%M:%S")
-      ,'temperature':datapoint.temperature,'condition':condition,'precipitation':datapoint.precipAccumulation
-      , 'wind_bearing':datapoint.windBearing, 'wind_speed':datapoint.windSpeed}]%}
-      {% set return.data=return.data+returnPoint%}
+	      {% set condition=datapoint.icon%}
+	      {% if datapoint.icon == "clear-day" %}
+	      	{%set condition="sunny"%}
+	      {% elif datapoint.icon == "partly-cloudy-day" or datapoint.icon == "partly-cloudy-night"%}
+	      	{%set condition="partlycloudy"%}
+	      {% elif datapoint.icon == "rain" %}
+	      	{%set condition="rainy"%}
+	      {% elif datapoint.icon == "snow" or datapoint.icon=="sleet"%}
+	      	{%set condition="snowy"%}
+	      {% elif datapoint.icon == "wind" %}
+	      	{%set condition="windy"%}                                           
+	      {% endif %}
+	      {%set returnPoint=[{'datetime':as_local(as_datetime(datapoint.time)).strftime("%Y-%m-%dT%H:%M:%S")
+	      ,'temperature':datapoint.temperature,'condition':condition,'precipitation':datapoint.precipAccumulation
+	      , 'wind_bearing':datapoint.windBearing, 'wind_speed':datapoint.windSpeed}]%}
+	      {% set return.data=return.data+returnPoint%}
       {% endfor%}
       {{return.data}}
 
