@@ -1,6 +1,6 @@
 # Roadmap
 1. Open source API code.
-2.a Text summaries
+2.  Text summaries
 	* Based on the [existing repository](https://github.com/alexander0042/translations).
 3. Translations
  	* Based on the [existing repository](https://github.com/alexander0042/translations).
