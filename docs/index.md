@@ -25,6 +25,7 @@
 - [MerrySky](https://merrysky.net) - Get a Forecast DarkSky Style
 - [PW-forecast](https://github.com/ktrue/PW-forecast) and [https://saratoga-weather.org/scripts-PWforecast.php](https://saratoga-weather.org/scripts-PWforecast.php)
 - [Breezy Weather](https://github.com/breezy-weather/breezy-weather)
+- [Weathergraph](https://weathergraph.app/) - Graphical hour-by-hour forecast & widget for iOS, Apple Watch and mac
 
 Do you use PirateWeather? Open a pull request to add it to the list.
 
