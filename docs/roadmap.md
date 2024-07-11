@@ -6,7 +6,7 @@
  	* Based on the [existing repository](https://github.com/alexander0042/translations).
 4. Weather maps from new Zarr datafiles.
 5. Add in alerts for Canada/ EU/ other.
-6. Improve source data.
+6. Add source data.
 	* Add in the Canadian models ([HRDPS](https://herbie.readthedocs.io/en/stable/user_guide/tutorial/model_notebooks/hrdps.html), [GDPS](https://herbie.readthedocs.io/en/stable/user_guide/tutorial/model_notebooks/gdps.html))
 	* [NOAA GraphCast](https://aws.amazon.com/marketplace/pp/prodview-owtdhh6w3k3c2?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)?
 	* [ECMWF](https://herbie.readthedocs.io/en/stable/user_guide/tutorial/model_notebooks/ecmwf.html)
