@@ -4,6 +4,10 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.0"
 
+	* July 9, 2024, API Version 2.0.11
+		* Added a check to the HRRR ingest script to check for misformed input files
+		* The API now falls back to using NBM/GFS data instead of returning an Internal Server Error
+		* These issues were reported in [#258](https://github.com/Pirate-Weather/pirateweather/issues/258)
 	* June 18, 2024, API Version 2.0.10
 		* Fixed a bug where `precipAccumulation` was being calculated from the GFS model instead of the GEFS model as per [#229](https://github.com/Pirate-Weather/pirateweather/issues/229)
 	* May 30, 2024, API Version 2.0.9
