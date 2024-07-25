@@ -2,7 +2,14 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
-???+ note "Version 2.0"
+???+ note "Version 2.1"
+
+	* July, 2024, API Version 2.1
+		* Added a check to the HRRR ingest script to check for misformed input files
+		* The API now falls back to using NBM/GFS data instead of returning an Internal Server Error
+		* These issues were reported in [#258](https://github.com/Pirate-Weather/pirateweather/issues/258)
+
+??? note "Version 2.0"
 
 	* July 9, 2024, API Version 2.0.11
 		* Added a check to the HRRR ingest script to check for misformed input files
