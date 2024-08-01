@@ -21,6 +21,6 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install dependencies
-        run: pip install --no-deps -r requirements/requirements-docs.txt
+        run: pip install --no-deps -r docs/requirements.txt
       - name: Build site
         run: mkdocs build --strict
