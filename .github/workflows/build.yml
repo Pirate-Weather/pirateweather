@@ -9,13 +9,18 @@ on:
   push:
   pull_request:
   schedule:
-  - cron: "0 0 * * *"
-
+    - cron: '0 6 * * 6'
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4.1.1
-    - name: Build with MkDocs
-      uses: romw314/mkdocs-action@v9
+      - name: Download source
+        uses: actions/checkout@v4.1.7
+      - name: Install Python
+        uses: actions/setup-python@v5.1.1
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install --no-deps -r requirements/requirements-docs.txt
+      - name: Build site
+        run: mkdocs build --strict
