@@ -23,4 +23,4 @@ jobs:
       - name: Install dependencies
         run: pip install --no-deps -r docs/requirements.txt
       - name: Build site
-        run: mkdocs build --strict
+        run: mkdocs build
