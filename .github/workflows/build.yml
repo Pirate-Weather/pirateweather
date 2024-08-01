@@ -1,0 +1,21 @@
+name: MkDocs Build
+
+permissions:
+  contents: write # only for delete-branch option
+  issues: write
+  pull-requests: write
+
+on:
+  push:
+  pull_request:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4.1.1
+    - name: Build with MkDocs
+      uses: romw314/mkdocs-action@v9
