@@ -39,23 +39,12 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
-## Recent Updates- Winter 2024
-Up to version 2.0! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+## Recent Updates- Summer 2024
+Up to version 2.1! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-1. Includes a fancy new model from NOAA called the National Blend of Models
-2. Does a way better job of calculating the daily high/ low/ accumulations for the current day
-3. Returns somewhere between 10 and 50 times faster than v1 (this was my favourite to work out). I can't say for sure that it's the fastest weather API out there, but it's definitely in contention now.
-4. Faster data ingest (~5 minutes).
-5. Improved US alert processing.
-6. Nearest storm distance and bearing!
-
-As well as several new optional improvements behind a new `version=2` querystring parameter, to avoid breaking Dark Sky compatibility:
-
-1. Short term (~36 hour) smoke forecasts (top requested feature!).
-2. Fosburg Fire Index for the US and parts of Canada.
-3. Liquid, snow, and ice precipitation types.
-4. Model specific exclusions (`exclude=hrrr` or `exclude=nbm`), to facilitate performance comparisons between models.
-5. Returned grid indexes of model results (this seemed small, but since HRRR is in Lambert, it was fairly complex).
+* Moved things from disk based storage to a Redis like database called [Garnet](https://github.com/microsoft/garnet) which solves the API returning weird results as reported in [issue #229](https://github.com/Pirate-Weather/pirateweather/issues/229), [issue #255](https://github.com/Pirate-Weather/pirateweather/issues/255), [issue #249](https://github.com/Pirate-Weather/pirateweather/issues/249) and [issue #266](https://github.com/Pirate-Weather/pirateweather/issues/266)
+* Fixed an issue where the `pressure` values were returning surface-level pressure instead of sea-level pressure as reported in issues [#265](https://github.com/Pirate-Weather/pirateweather/issues/265) and [#269](https://github.com/Pirate-Weather/pirateweather/issues/269)
+* Fixed an issue where the `apparentTemperature` was returing NBM data inside the HRRR domain as reported in [#246](https://github.com/Pirate-Weather/pirateweather/issues/246)
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!

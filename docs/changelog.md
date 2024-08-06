@@ -4,10 +4,10 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.1"
 
-	* July, 2024, API Version 2.1
-		* Added a check to the HRRR ingest script to check for misformed input files
-		* The API now falls back to using NBM/GFS data instead of returning an Internal Server Error
-		* These issues were reported in [#258](https://github.com/Pirate-Weather/pirateweather/issues/258)
+	* August, 2024, API Version 2.1
+		* Moved things from disk based storage to a Redis like database called [Garnet](https://github.com/microsoft/garnet) which fixes the issue of the API returning weird results as reported in [issue #229](https://github.com/Pirate-Weather/pirateweather/issues/229), [issue #255](https://github.com/Pirate-Weather/pirateweather/issues/255), [issue #249](https://github.com/Pirate-Weather/pirateweather/issues/249) and [issue #266](https://github.com/Pirate-Weather/pirateweather/issues/266)
+		* Fixed an issue where the `pressure` values were returning surface-level pressure instead of sea-level pressure as reported in issues [#265](https://github.com/Pirate-Weather/pirateweather/issues/265) and [#269](https://github.com/Pirate-Weather/pirateweather/issues/269)
+		* Fixed an issue where the `apparentTemperature` was returing NBM data inside the HRRR domain as reported in [#246](https://github.com/Pirate-Weather/pirateweather/issues/246)
 
 ??? note "Version 2.0"
 

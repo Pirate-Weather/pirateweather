@@ -6,7 +6,7 @@ To sign up, a free API key can be requested at [https://pirateweather.net/](http
 ## Why
 
 1. Weather forecasts are produced by government agencies using computational models; however, the data is hard to work with. Instead, there are a bunch of companies that take this data, process it, and provide easier to work with APIs. However, the steps that the data goes through aren't public or documented (for example, what do they mean by "percent of precipitation"?!?). I put this service together in order to provide a better way for people to know where their weather data is coming from and how it is being processed! 
-2. The Dark Sky API is great, and widely used. Unfortunately, it will shut down at the end of 2022, so in order to keep legacy services operating, I wanted to put a service together that would be drop-in compatible
+2. The Dark Sky API is great, and widely used. Unfortunately, it shut down at the end of 2022, so in order to keep legacy services operating, I wanted to put a service together that would be drop-in compatible
 
 ## What
 In this repository, I've included:
