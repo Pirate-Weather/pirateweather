@@ -2,7 +2,18 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
-???+ note "Version 2.0"
+???+ note "Version 2.1"
+
+	* August, 8 2024, API Version 2.1
+		* Moved things from disk based storage to a Redis like database called [Garnet](https://github.com/microsoft/garnet) which fixes the issue of the API returning weird results as reported in:
+  			* [issue #229](https://github.com/Pirate-Weather/pirateweather/issues/229)
+  			* [issue #255](https://github.com/Pirate-Weather/pirateweather/issues/255)
+  			* [issue #249](https://github.com/Pirate-Weather/pirateweather/issues/249)
+  			* [issue #266](https://github.com/Pirate-Weather/pirateweather/issues/266)
+  			* [issue #283](https://github.com/Pirate-Weather/pirateweather/issues/283)
+  			* [issue #284](https://github.com/Pirate-Weather/pirateweather/issues/284)
+
+??? note "Version 2.0"
 
 	* July 9, 2024, API Version 2.0.11
 		* Added a check to the HRRR ingest script to check for misformed input files
