@@ -4,7 +4,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.1"
 
-	* August, 2024, API Version 2.1
+	* August, 8 2024, API Version 2.1
 		* Moved things from disk based storage to a Redis like database called [Garnet](https://github.com/microsoft/garnet) which fixes the issue of the API returning weird results as reported in:
   			* [issue #229](https://github.com/Pirate-Weather/pirateweather/issues/229)
   			* [issue #255](https://github.com/Pirate-Weather/pirateweather/issues/255)
