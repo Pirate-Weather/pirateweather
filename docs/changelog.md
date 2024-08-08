@@ -12,6 +12,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
   			* [issue #266](https://github.com/Pirate-Weather/pirateweather/issues/266)
   			* [issue #283](https://github.com/Pirate-Weather/pirateweather/issues/283)
   			* [issue #284](https://github.com/Pirate-Weather/pirateweather/issues/284)
+		* Fixed an issue where a `none` icon and summary would be returned due to an issue with the interpolation for the minutely data, essentially when the probability/ amount of precipitation increases significantly from one 3-hourly output timestep to the next as reported in issue [#281](https://github.com/Pirate-Weather/pirateweather/issues/281)
 
 ??? note "Version 2.0"
 
