@@ -4,8 +4,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.1"
 
-	* August 9, 2024, API Version 2.1
-		* Moved things from disk based storage to a Redis like database called [Garnet](https://github.com/microsoft/garnet) which fixes the issue of the API returning weird results as reported in:
+	* August 15, 2024, API Version 2.1
+		* Moved things from disk based storage to a LMDB database called [Garnet](https://github.com/microsoft/garnet) which fixes the issue of the API returning weird results as reported in:
   			* [issue #229](https://github.com/Pirate-Weather/pirateweather/issues/229)
   			* [issue #255](https://github.com/Pirate-Weather/pirateweather/issues/255)
   			* [issue #249](https://github.com/Pirate-Weather/pirateweather/issues/249)
@@ -13,6 +13,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
   			* [issue #283](https://github.com/Pirate-Weather/pirateweather/issues/283)
   			* [issue #284](https://github.com/Pirate-Weather/pirateweather/issues/284)
 		* Fixed an issue where a `none` icon and summary would be returned due to an issue with the interpolation for the minutely data, essentially when the probability/ amount of precipitation increases significantly from one 3-hourly output timestep to the next as reported in issue [#281](https://github.com/Pirate-Weather/pirateweather/issues/281)
+		* Improved the times for daily high/ low calculations in [issue #268](https://github.com/Pirate-Weather/pirateweather/issues/268)
+     		* Prevented the API from returning incorrect data for requests more than 36 hours in the past
+       		* Finally  fixed the bug preventing results from being returned on the first day of the month
 
 ??? note "Version 2.0"
 
