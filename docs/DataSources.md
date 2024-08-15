@@ -28,30 +28,30 @@ Every Pirate Weather forecast element for each time block (`currently`, `minutel
 At a high level, the general approach is to use NBM first, then HRRR, then GEFS, the GFS. However, for Currently and minutely results data from the sub-hourly (15 minute) HRRR model is preferred when it is available (not all variables are included in sub hourly, notably cloud cover, which would be great to have).  
 
 
-|Parameter 	            |Currently              |Minutely   		|Hourly/ Daily          	|
-|-----------------------|-----------------------|-------------------|---------------------------|
-|apparentTemperature	|HRRR > NBM > GFS		|N/A   				|NBM > GFS   			 	|
-|cloudCover   			|NBM > HRRR > GFS   	|N/A   				|NBM > HRRR > GFS   		|
-|dewPoint     			|HRRR > NBM > GFS   	|N/A   				|NBM > HRRR > GFS   		|
-|fireIndex    			|NBM   			  		|N/A   				|NBM   			 			|
-|feelsLike    			|NBM > GFS  			|N/A   				|NBM > GFS		 			|
-|humidity     			|NBM > HRRR > GFS   	|N/A   				|NBM > HRRR > GFS   		|
-|iceAccumulation   		|N/A                    |N/A   				|NBM > HRRR > GEFS > GFS	|
-|liquidAccumulation 	|N/A                    |N/A   				|NBM > HRRR > GEFS > GFS	|
-|nearestStormBearing	|GFS   					|N/A   				|GFS   						|
-|nearestStormDistance   |GFS   					|N/A   				|GFS   						|
-|ozone   				|GFS   					|N/A   				|GFS   						|
-|precipAccumulation 	|N/A                    |N/A   				|NBM > HRRR > GEFS > GFS	|
-|precipIntensity   		|HRRR > NBM > GEFS 		|HRRR > NBM > GEFS	|NBM > HRRR > GEFS			|
-|precipIntensityError	|GEFS					|GEFS				|GEFS						|	
-|precipProbability  	|NBM > GEFS 			|NBM > GEFS 		|NBM > GEFS					|
-|precipType   			|HRRR > NBM > GEFS 		|HRRR > NBM > GEFS	|NBM > HRRR > GEFS			|
-|pressure   			|HRRR > GFS   			|N/A				|HRRR > GFS 				|
-|snowAccumulation   	|N/A					|N/A   				|NBM > HRRR > GEFS > GFS 	|
-|smoke   				|HRRR   				|N/A   				|HRRR  						|
-|temperature   			|HRRR > NBM > GFS   	|N/A   				|NBM > HRRR > GFS   		|
-|uvIndex   				|GFS   					|N/A   				|GFS   						|
-|visibility   			|NBM > HRRR > GFS   	|N/A   				|NBM > HRRR > GFS   		|
-|windBearing  			|HRRR > NBM > GFS   	|N/A   				|NBM > HRRR > GFS   		|
-|windGust   			|HRRR > NBM > GFS   	|N/A   				|NBM > HRRR > GFS   		|
-|windSpeed   			|HRRR > NBM > GFS   	|N/A				|NBM > HRRR > GFS   		|
+|Parameter 	            |Currently              |Minutely   			|Hourly/ Daily          	|
+|-----------------------|-----------------------|-----------------------|---------------------------|
+|apparentTemperature	|HRRR_SubH > NBM > GFS	|N/A   				    |NBM > HRRR > GFS		 	|
+|cloudCover   			|NBM > HRRR > GFS   	|N/A   				    |NBM > HRRR > GFS   		|
+|dewPoint     			|HRRR_SubH > NBM > GFS  |N/A   				    |NBM > HRRR > GFS   		|
+|fireIndex    			|NBM   			  		|N/A   				    |NBM   			 			|
+|feelsLike    			|NBM > GFS  			|N/A   				    |NBM > GFS		 			|
+|humidity     			|NBM > HRRR > GFS   	|N/A   				    |NBM > HRRR > GFS   		|
+|iceAccumulation   		|N/A                    |N/A   				    |NBM > HRRR > GEFS > GFS	|
+|liquidAccumulation 	|N/A                    |N/A   				    |NBM > HRRR > GEFS > GFS	|
+|nearestStormBearing	|GFS   					|N/A   				    |GFS   						|
+|nearestStormDistance   |GFS   					|N/A   				    |GFS   						|
+|ozone   				|GFS   					|N/A   				    |GFS   						|
+|precipAccumulation 	|N/A                    |N/A   				    |NBM > HRRR > GEFS > GFS	|
+|precipIntensity   		|HRRR_SubH > NBM > GEFS |HRRR_SubH > NBM > GEFS	|NBM > HRRR > GEFS			|
+|precipIntensityError	|GEFS					|GEFS					|GEFS						|	
+|precipProbability  	|NBM > GEFS 			|NBM > GEFS 			|NBM > GEFS					|
+|precipType   			|HRRR_SubH > NBM > GEFS |HRRR_SubH > NBM > GEFS	|NBM > HRRR > GEFS			|
+|pressure   			|HRRR > GFS   			|N/A				    |HRRR > GFS 				|
+|snowAccumulation   	|N/A					|N/A   				    |NBM > HRRR > GEFS > GFS 	|
+|smoke   				|HRRR   				|N/A   				    |HRRR  						|
+|temperature   			|HRRR_SubH > NBM > GFS  |N/A   				    |NBM > HRRR > GFS   		|
+|uvIndex   				|GFS   					|N/A   				    |GFS   						|
+|visibility   			|NBM > HRRR > GFS   	|N/A   				    |NBM > HRRR > GFS   		|
+|windBearing  			|HRRR_SubH > NBM > GFS  |N/A   				    |NBM > HRRR > GFS   		|
+|windGust   			|HRRR_SubH > NBM > GFS  |N/A   				    |NBM > HRRR > GFS   		|
+|windSpeed   			|HRRR_SubH > NBM > GFS  |N/A				    |NBM > HRRR > GFS   		|
