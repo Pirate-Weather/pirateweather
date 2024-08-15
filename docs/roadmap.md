@@ -1,5 +1,5 @@
 # Roadmap
-1. Open source API code.
+1. Open source API code and Docker containers to allow self-hosting.
 2. Text summaries and translations
 	* Based on the [existing repository](https://github.com/alexander0042/translations).
 3. Weather maps from new Zarr datafiles.
