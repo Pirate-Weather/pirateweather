@@ -221,6 +221,10 @@ components:
           type: number
           description: The Fosburg fire index. Only returned when version>2.
           example: 16.06
+        feelsLike:
+          type: number
+          description: The apparent temperature reported by NBM and gfs. Only returned when version>2.
+          example: 16.06          
     minutely:
       type: object
       description: A block containing minute-by-minute precipitation intensity for the next 60 minutes.
@@ -386,6 +390,10 @@ components:
                 type: number
                 description: The Fosburg fire index. Only returned when version>2.
                 example: 15.03
+              feelsLike:
+                type: number
+                description: The apparent temperature reported by NBM and gfs. Only returned when version>2.
+                example: 16.06          
     daily:
       type: object
       description: A block containing day-by-day forecasted conditions for the next 7 days.
