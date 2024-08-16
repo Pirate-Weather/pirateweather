@@ -476,7 +476,7 @@ The point in which the air temperature needs (assuming constant pressure) in ord
 **Only on `daily`**. The time when the the sun is a specific (6 degrees) height above the horizon before sunset. Calculated from [Astal dusk defaults](https://astral.readthedocs.io/en/latest/package.html?highlight=dusk#astral.sun.dusk).
 
 #### feelsLike
-The apparently temperature from the GFS or NBM models.
+The apparent temperature from the GFS or NBM models.
 
 #### fireIndex
 **Only available for the US and parts of Canada. Outside of these locations this will return -999** The [Fosburg fire index](https://www.spc.noaa.gov/exper/firecomp/INFO/fosbinfo.html). Notably, this 0-100 index deals only with conditions, not fuels, and so a high index area is not necessarily high risk for fires.

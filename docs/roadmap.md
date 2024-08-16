@@ -1,5 +1,6 @@
 # Roadmap
 1. Open source API code and Docker containers to allow self-hosting.
+	* Longer blog post on V2 processing flow using Herbie -> wgrib2 -> xarray -> Dask -> Zarr arrays on LMDB for data.  
 2. Text summaries and translations
 	* Based on the [existing repository](https://github.com/alexander0042/translations).
 3. Weather maps from new Zarr datafiles.
