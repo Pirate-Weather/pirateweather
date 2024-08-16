@@ -4,6 +4,11 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.1"
 
+	* August 16, 2024, API Version 2.1.1
+		* Added a returned header for "X-Node-ID", allowing which of the two nodes a request is served by to be tracked for debugging
+		* Fixed pressure variable to show Mean Sea Level Pressure
+		* Updated how the .dev backend works, making it more unstable but also faster to get updates.  
+			* A gentle reminder that this backend should not be used for production workloads and may serve incorrect/ outdated data, or no data at all.
 	* August 15, 2024, API Version 2.1
 		* Switched Apparent Temperature to use the Australian Bureau of Meteorology equation to improve accuracy and consistency.
 		* Added a new "FeelsLike" parameter for raw model outputs
@@ -18,7 +23,6 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Improved the times for daily high/ low calculations in [issue #268](https://github.com/Pirate-Weather/pirateweather/issues/268)
      	* Prevented the API from returning incorrect data for requests more than 36 hours in the past
        	* Finally  fixed the bug preventing results from being returned on the first day of the month
-       	* Fixed pressure variable to show Mean Sea Level Pressure
 
 ??? note "Version 2.0"
 
