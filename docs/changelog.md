@@ -7,7 +7,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 	* August 20, 2024, API Version 2.2
 		* Fixed the pressure variable showing surface level pressure instead of sea level pressure in the HRRR domain
 
-???+ note "Version 2.1"
+??? note "Version 2.1"
 
 	* August 16, 2024, API Version 2.1.2
 		* Fixed the pressure variable showing surface level pressure instead of sea level pressure in the HRRR domain
