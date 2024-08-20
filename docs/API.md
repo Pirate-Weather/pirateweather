@@ -231,7 +231,7 @@ If `version=2` is included fields which were not part of the Dark Sky API will b
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V1.5.5"
+	   "version": "V2.1.2"
 	   }
 	}
 ```
@@ -316,7 +316,7 @@ Added as part of the V1.0 release, this parameter removes some of the data block
 GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/45.42,-74.30,1654056000?&units=ca
 {
   "latitude": 45.42,
-  "longitude": -74.30000000000001,
+  "longitude": -74.3,
   "timezone": "America/Toronto",
   "offset": -4.0,
   "currently": {
@@ -336,7 +336,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
   "hourly": {
     "data": [
       {
-        "time": 1654056000.0,
+        "time": 1654056000,
         "icon": "clear-night",
         "summary": "clear-night",
         "precipAccumulation": 0.0,
@@ -355,7 +355,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
   "daily": {
     "data": [
       {
-        "time": 1654056000.0,
+        "time": 1654056000,
         "icon": "rain",
         "summary": "rain",
         "sunriseTime": 1654074748,
@@ -429,7 +429,14 @@ A block containing miscellaneous data for the API request.
 ### Data Point
 
 #### apparentTemperature
-"Feels like" temperature. From NBM or GFS model Apparent Temperature parameters.
+Temperature adjusted for wind and humidity, based the [Steadman 1994](http://www.bom.gov.au/jshess/docs/1994/steadman.pdf) approach used by the Australian Bureau of Meteorology. Implemented using the [Breezy Weather approach](https://github.com/breezy-weather/breezy-weather/discussions/1085#discussioncomment-9734935) without solar radiation, which follows this equation:
+
+$$ AT = Ta + 0.33 × rh / 100 × 6.105 × exp(17.27 × Ta / (237.7 + Ta)) − 0.70 × ws − 4.00$$
+
+- $Ta$ is the ambient temperature in °C
+- $ws$ is the wind speed in m/s
+
+This equation produces results that are similar to heat index and wind chill values; however, may vary from other sources that incorporate solar radiation to produce higher apparent temperatures.
 
 #### apparentTemperatureMax
 **Only on `daily`**. The maximum "feels like" temperature during a day, from midnight to midnight.
@@ -467,6 +474,9 @@ The point in which the air temperature needs (assuming constant pressure) in ord
 
 #### duskTime
 **Only on `daily`**. The time when the the sun is a specific (6 degrees) height above the horizon before sunset. Calculated from [Astal dusk defaults](https://astral.readthedocs.io/en/latest/package.html?highlight=dusk#astral.sun.dusk).
+
+#### feelsLike
+The apparent temperature from the GFS or NBM models.
 
 #### fireIndex
 **Only available for the US and parts of Canada. Outside of these locations this will return -999** The [Fosburg fire index](https://www.spc.noaa.gov/exper/firecomp/INFO/fosbinfo.html). Notably, this 0-100 index deals only with conditions, not fuels, and so a high index area is not necessarily high risk for fires.
@@ -594,13 +604,13 @@ A human-readable summary describing the weather conditions for a given data poin
 The air temperature in degrees Celsius or degrees Fahrenheit depending on the requested `units`
 
 #### temperatureHigh
-**Only on `daily`**. The daytime high temperature calculated between 6:00 am and 6:00 pm local time.
+**Only on `daily`**. The daytime high temperature calculated between 6:01 am and 6:00 pm local time.
 
 #### temperatureHighTime
 **Only on `daily`**. The time in which the high temperature occurs represented in UNIX time.
 
 #### temperatureLow
-**Only on `daily`**. The overnight low temperature calculated between 6:00 pm and 6:00 am local time.
+**Only on `daily`**. The overnight low temperature calculated between 6:01 pm and 6:00 am local time.
 
 #### temperatureLowTime
 **Only on `daily`**. The time in which the low temperature occurs represented in UNIX time.
