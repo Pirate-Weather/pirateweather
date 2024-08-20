@@ -231,7 +231,7 @@ If `version=2` is included fields which were not part of the Dark Sky API will b
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V1.5.5"
+	   "version": "V2.1.2"
 	   }
 	}
 ```
@@ -316,7 +316,7 @@ Added as part of the V1.0 release, this parameter removes some of the data block
 GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/45.42,-74.30,1654056000?&units=ca
 {
   "latitude": 45.42,
-  "longitude": -74.30000000000001,
+  "longitude": -74.3,
   "timezone": "America/Toronto",
   "offset": -4.0,
   "currently": {
@@ -336,7 +336,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
   "hourly": {
     "data": [
       {
-        "time": 1654056000.0,
+        "time": 1654056000,
         "icon": "clear-night",
         "summary": "clear-night",
         "precipAccumulation": 0.0,
@@ -355,7 +355,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
   "daily": {
     "data": [
       {
-        "time": 1654056000.0,
+        "time": 1654056000,
         "icon": "rain",
         "summary": "rain",
         "sunriseTime": 1654074748,

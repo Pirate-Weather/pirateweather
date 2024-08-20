@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 2.1
+  version: 2.1.2
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -8,7 +8,7 @@ info:
     email: mail@pirateweather.net
   license:
     name: Apache License 2.0
-    url: https://github.com/alexander0042/pirateweather/blob/main/LICENSE
+    url: https://github.com/Pirate-Weather/pirateweather/blob/main/LICENSE.md
 externalDocs:
   description: Full API reference
   url: https://pirate-weather.apiable.io/full-api-reference
@@ -704,7 +704,7 @@ components:
         version:
           type: string
           description: The version of Pirate Weather used to generate the forecast.
-          example: V2.1
+          example: V2.1.2
         sourceIDX:
           type: object
           description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>2.
