@@ -40,7 +40,7 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
 ## Recent Updates- Summer 2024
-Up to version 2.1! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+Up to version 2.2! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
 * Moved things from disk based storage to a [Zarr arrays backed by LMDB database](http://www.lmdb.tech/doc/) which fixes the issue of the API returning weird results as reported in:
   * [issue #229](https://github.com/Pirate-Weather/pirateweather/issues/229)

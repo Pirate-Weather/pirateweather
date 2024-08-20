@@ -2,7 +2,15 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
-???+ note "Version 2.1"
+???+ note "Version 2.2"
+
+	* August 20, 2024, API Version 2.2
+		* No endpoint facing changes, but a lot of backend reworking 
+			* Switched back from the LMDB to a file based approach for ingesting new data, with a new timing function for updates. This approach is also faster, with most requests returning in <10 ms
+			* Changed how Kong checks API keys to simplify the update roadmap for Kong
+			* Added a container restart policy for the dev container to allow for faster updates  
+
+??? note "Version 2.1"
 
 	* August 16, 2024, API Version 2.1.2
 		* Fixed the pressure variable showing surface level pressure instead of sea level pressure in the HRRR domain
