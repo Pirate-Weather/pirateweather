@@ -243,7 +243,7 @@ The forecast request can be extended in several ways by adding parameters to the
       https://timemachine.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
 ```
 
-The Time Machine uses ERA5 dataset which is updated monthly but the API stores the last three days of model data and to get access to that data you query the forecast API using the time parameter like in the following URL:
+The Time Machine uses ERA5 dataset which has data available until May 2023 and the API stores the last 32 hours of model data and to get access to that data you query the forecast API using the time parameter like in the following URL:
 
 ```
       https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
