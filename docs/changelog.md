@@ -267,6 +267,10 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ## Time Machine Changelog
 
+* September X, 2024
+	* Switched to using [NCAR ERA5 data source](https://registry.opendata.aws/nsf-ncar-era5/) instead of Google's data source.
+		* This data source is updated monthly and is lagging behind by 3-4 months
+	* See this [comemnt](https://github.com/Pirate-Weather/pirateweather/issues/130#issuecomment-2332547620) for more information
 * April 18, 2024
 	* Fixed an issue where locations in fractional timezones were not returning an error as reported in [#194](https://github.com/Pirate-Weather/pirateweather/issues/194)
 * March 11, 2024

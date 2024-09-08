@@ -41,7 +41,7 @@ body:
         - TimeMachine
         - Development
         - Production
-      default: 0
+      default: 2
     validations:
       required: true
 

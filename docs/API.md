@@ -231,7 +231,7 @@ If `version=2` is included fields which were not part of the Dark Sky API will b
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V2.1.2"
+	   "version": "V2.2"
 	   }
 	}
 ```
@@ -243,7 +243,7 @@ The forecast request can be extended in several ways by adding parameters to the
       https://timemachine.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
 ```
 
-The Time Machine uses ERA5 dataset which has data available until May 2023 and the API stores the last 32 hours of model data and to get access to that data you query the forecast API using the time parameter like in the following URL:
+The Time Machine uses ERA5 dataset which is updated monthly and is lagging behind by about 3-4 months. The API also stores the last 36 hours of model data and to get access to that data you query the forecast API using the time parameter like in the following URL:
 
 ```
       https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
@@ -699,3 +699,34 @@ Indicates which units were used in the forecasts.
 
 #### version
 The version of Pirate Weather used to generate the forecast.
+
+### Response Headers
+
+#### Ratelimit-Limit
+The number of API calls you can do per month.
+
+#### Ratelimit-Remaining
+The number of API calls remaning for the month.
+
+#### Ratelimit-Reset
+The time in seconds until your rate limit resets.
+
+#### X-Node-Id
+Shows which node processed your API call.
+
+### Error Codes
+
+#### 400 Bad Request
+You may encounter this error if you query the API using an invalid latitude or longitude.
+
+#### 401 Unathorized
+You may encounter this error if you try to query an endpoint your API key does not have access to or if you did not include an API key in your request.
+
+#### 404 Not Found
+You may encounter this error if query the API using an invalid route such as https://api.pirateweather.net/history/ or if you mispell forecast.
+
+#### 429 Too Many Requests
+You may enounter this error if your API key has hit the quota for the month.
+
+#### 500 Internal Server Error
+If the API returns a 500 error you can retry the request to see if the API will return a 500 error again. If the issue persists please check the [GitHub issues](https://github.com/Pirate-Weather/pirateweather/issues) to see if the issue has been reported otherwise create a [bug report](https://github.com/Pirate-Weather/pirateweather/issues/new?assignees=&labels=bug%2CNeeds+Review&projects=&template=report_bug.yml) and the issue will be investigated.
