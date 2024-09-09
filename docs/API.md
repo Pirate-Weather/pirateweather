@@ -723,7 +723,7 @@ You may encounter this error if you query the API using an invalid latitude or l
 You may encounter this error if you try to query an endpoint your API key does not have access to or if you did not include an API key in your request.
 
 #### 404 Not Found
-You may encounter this error if query the API using an invalid route such as https://api.pirateweather.net/history/ or if you mispell forecast.
+You may encounter this error if query the API using an invalid route or if you do not supply a latitude or longitude in your request.
 
 #### 429 Too Many Requests
 You may enounter this error if your API key has hit the quota for the month.
