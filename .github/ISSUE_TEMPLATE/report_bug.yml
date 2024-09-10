@@ -72,5 +72,7 @@ body:
           required: true
         - label: I have read through the [API documentation](https://pirateweather.net/en/latest/API/) before opening this issue.
           required: true
+        - label: I have not included my API key anywhere in my issue.
+          required: true
         - label: I have written an informative title.
           required: true
