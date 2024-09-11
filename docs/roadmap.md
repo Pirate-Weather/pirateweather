@@ -20,3 +20,4 @@
 7. Add in a day/night forecast as suggested in [issue #49](https://github.com/Pirate-Weather/pirateweather/issues/49)
 8. Add in water-related data as suggested in [issue #160](https://github.com/Pirate-Weather/pirateweather/issues/160)
 9. Investigate using radar data/station data.
+	*  Investigate if it's feasible to use radar data and/or station data for the currently conditions. This is a suggestion in [issue #10](https://github.com/alexander0042/pirateweather/issues/10).
