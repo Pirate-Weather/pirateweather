@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
-  version: 2.3
+  version: "2.3"
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -63,10 +63,22 @@ paths:
           schema:
             type: integer
       responses:
+        "400":
+          description: "Bad Request. Longitude or Latitude is invalid."
+        "401":
+          description: "API key does not have access to the queried endpoint or if you did not include an API key in your request."
+        "404":
+          description: "You queried the API using an invalid route or if you do not supply a latitude or longitude in your request."
+        "429":
+          description: "Your your API key has hit the quota for the month."
+        "500":
+          description: "Internal Server Error."
+        "5xx":
+          description: "Unexpected Error."
         "200":
           description: Success
           content:
-            "*/*":
+            application/json:
               schema:
                 properties:
                   latitude:
