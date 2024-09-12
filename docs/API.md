@@ -550,19 +550,19 @@ The density of total atmospheric ozone at a given time in Dobson units.
 The rate in which liquid precipitation is falling. This value is expressed in millimetres per hour or inches per hour depending on the requested `units`. For `currently` and `minutely` forecast blocks, the HRRR "Precipitation Rate" variable  is used where available, otherwise averaged GEFS data is returned. For `hourly` and `daily` forecast blocks, GEFS is always used. This is done so that the `precipIntensityProbablity` variable is aligned with the intensity.
 
 #### precipIntensityError
-The standard deviation of the `precipitationIntensity` from the GEFS model.
+The standard deviation of the `precipIntensity` from the GEFS model.
 
 #### precipIntensityMax
-**Only on `daily`**. The maximum value of `precipitationIntensity` for the given day.
+**Only on `daily`**. The maximum value of `precipIntensity` for the given day.
 
 #### precipIntensityMaxTime
-**Only on `daily`**. The point in which the maximum `precipitationIntensity` occurs represented in UNIX time.
+**Only on `daily`**. The point in which the maximum `precipIntensity` occurs represented in UNIX time.
 
 #### precipIntensityMin
-**Only on `daily`**. The minimum value of `precipitationIntensity` for the given day.
+**Only on `daily`**. The minimum value of `precipIntensity` for the given day.
 
 #### precipIntensityMinTime
-**Only on `daily`**. The point in which the minimum `precipitationIntensity` occurs represented in UNIX time.
+**Only on `daily`**. The point in which the minimum `precipIntensity` occurs represented in UNIX time.
 
 #### precipProbability
 The probability of precipitation occurring expressed as a decimal between 0 and 1 inclusive.
