@@ -45,21 +45,23 @@ Specifies the requested unit for the weather conditions. Options are
 * `us`: Imperial units
 * `si`: SI units
 
-For compatibility with Dark Sky, `us` (Imperial units) are the default if nothing is specified. For reference, the SI units are
+For compatibility with Dark Sky, `us` (Imperial units) are the default if nothing is specified.
 
-* `summary`: Temperatures in degrees Celsius or accumulation in centimetres .
-* `precipIntensity`: Millimetres per hour.
-* `precipIntensityMax`: Millimetres per hour.
-* `precipAccumulation`: Centimetres.
-* `temperature`: Degrees Celsius.
-* `temperatureMin`: Degrees Celsius.
-* `temperatureMax`: Degrees Celsius.
-* `apparentTemperature`: Degrees Celsius.
-* `dewPoint`: Degrees Celsius.
-* `windSpeed`: Meters per second.
-* `windGust`: Meters per second.
-* `pressure`: Hectopascals.
-* `visibility`: Kilometres.
+| Units | si | ca | uk | us |
+|---|---|---|---|---|
+| summary | Temperatures in degrees Celsius or accumulation in centimetres | Temperatures in degrees Celsius or accumulation in centimetres | Temperatures in degrees Celsius or accumulation in centimetres | Temperatures in degrees Fahrenheit or accumulation in inches |
+| precipIntensity | Millimetres per hour | Millimetres per hour | Millimetres per hour | Inches per hour |
+| precipIntensityMax | Millimetres per hour | Millimetres per hour | Millimetres per hour | Inches per hour |
+| precipAccumulation | Centimetres | Centimetres | Centimetres | Inches |
+| temperature | Degrees Celsius | Degrees Celsius | Degrees Celsius | Degrees Fahrenheit |
+| temperatureMin | Degrees Celsius | Degrees Celsius | Degrees Celsius | Degrees Fahrenheit |
+| temperatureMax | Degrees Celsius | Degrees Celsius | Degrees Celsius | Degrees Fahrenheit |
+| apparentTemperature | Degrees Celsius | Degrees Celsius | Degrees Celsius | Degrees Fahrenheit |
+| dewPoint | Degrees Celsius | Degrees Celsius | Degrees Celsius | Degrees Fahrenheit |
+| windSpeed | Meters per second | Kilometres per hour | Miles per hour | Miles per hour |
+| windGust | Meters per second | Kilometres per hour | Miles per hour | Miles per hour |
+| pressure | Hectopascals | Hectopascals | Hectopascals | Inch of mercury |
+| visibility | Kilometres | Kilometres | Kilometres | Miles |
 
 #### Exclude
 Added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Exclude parameters can be added as a comma-separated list, with the options being:
