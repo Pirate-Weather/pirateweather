@@ -60,7 +60,7 @@ For compatibility with Dark Sky, `us` (Imperial units) are the default if nothin
 | dewPoint | Degrees Celsius | Degrees Celsius | Degrees Celsius | Degrees Fahrenheit |
 | windSpeed | Meters per second | Kilometres per hour | Miles per hour | Miles per hour |
 | windGust | Meters per second | Kilometres per hour | Miles per hour | Miles per hour |
-| pressure | Hectopascals | Hectopascals | Hectopascals | Inch of mercury |
+| pressure | Hectopascals | Hectopascals | Hectopascals | Millibars |
 | visibility | Kilometres | Kilometres | Kilometres | Miles |
 
 #### Exclude
