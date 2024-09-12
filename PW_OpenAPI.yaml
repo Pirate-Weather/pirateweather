@@ -65,16 +65,52 @@ paths:
       responses:
         "400":
           description: "Bad Request. Longitude or Latitude is invalid."
+          content:
+            application/json:
+              schema:
+                properties:
+                  statusCode:
+                    type: number
+                    description: The error status code
+                    example: 400
+                  body:
+                    type: string
+                    description: The error message
+                    example: "\"Invalid Location Specification\""
         "401":
           description: "API key does not have access to the queried endpoint or if you did not include an API key in your request."
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Kong Error Invalid authentication credentials.
         "404":
           description: "You queried the API using an invalid route or if you do not supply a latitude or longitude in your request."
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                    example: "no Route matched with those values"
         "429":
           description: "Your your API key has hit the quota for the month."
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Kong Error API rate limit exceeded.
         "500":
           description: "Internal Server Error."
-        "5xx":
-          description: "Unexpected Error."
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                    example: "Internal Server Error"
         "200":
           description: Success
           content:
