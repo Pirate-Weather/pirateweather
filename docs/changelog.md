@@ -4,7 +4,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.3"
 
-	* September X, 2024, API Version 2.3
+	* September 13, 2024, API Version 2.3
 		* Major time machine (historic data) update!
 			* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
 			* Performance for these requests has been considerably improved (~10 s), since it is no longer querying against the Google data.
@@ -288,7 +288,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ## Time Machine Changelog
 
-* September X, 2024
+* September 13, 2024
 	* Major time machine (historic data) update!
 		* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
 		* Performance for these requests has been considerably improved (~10 s), since it is no longer querying against the Google data.

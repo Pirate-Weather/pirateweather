@@ -40,12 +40,25 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
 ## Recent Updates- Summer 2024
-Up to version 2.2! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+Up to version 2.3! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-* No endpoint facing changes, but a lot of backend reworking
-  * Switched back from the LMDB to a file based approach for ingesting new data, with a new timing function for updates. This approach is also faster, with most requests returning in <10 ms
-  * Changed how Kong checks API keys to simplify the update roadmap for Kong
-  * Added a container restart policy for the dev container to allow for faster updates 
+* Major time machine (historic data) update!
+	* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
+	* Performance for these requests has been considerably improved (~10 s), since it is no longer querying against the Google data.
+	* Implemented using the excellent [Kerchunk library](https://fsspec.github.io/kerchunk)
+	* The June 2024 end date will be moved up as the ERA-5 data is updated.
+	* [Issue #130](https://github.com/Pirate-Weather/pirateweather/issues/130)
+	* [Issue #316](https://github.com/Pirate-Weather/pirateweather/issues/316)
+* Historic model 1-hour forecast data is now available from June 2024 to present via the Pirate Weather Zarr archive.
+	* While technically forecast data, these forecasts are as close to observations as possible.
+	* Slower than ERA-5, since the full range of forecast models is used (~30 s).
+* Historic data is now accessible from both the timemachine.pirateweather.net endpoint and the api.pirateweather.net endpoint.
+* Documentation updates:
+	* [Issue #315](https://github.com/Pirate-Weather/pirateweather/issues/315)
+	* [Issue #320](https://github.com/Pirate-Weather/pirateweather/issues/320)
+* Added the ability to provide the API key as a query parameter or header (as `apikey`) per [issue #314](https://github.com/Pirate-Weather/pirateweather/issues/314).
+* Improved error handling for invalid locations per [issue #318](https://github.com/Pirate-Weather/pirateweather/issues/318)
+* Fixed an unreported bug for max/min Apparent Temperature Times
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
