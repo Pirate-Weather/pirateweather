@@ -573,19 +573,19 @@ The density of total atmospheric ozone at a given time in Dobson units.
 The rate in which liquid precipitation is falling. This value is expressed in millimetres per hour or inches per hour depending on the requested `units`. For `currently` and `minutely` forecast blocks, the HRRR "Precipitation Rate" variable  is used where available, otherwise averaged GEFS data is returned. For `hourly` and `daily` forecast blocks, GEFS is always used. This is done so that the `precipIntensityProbablity` variable is aligned with the intensity.
 
 #### precipIntensityError
-The standard deviation of the `precipitationIntensity` from the GEFS model.
+The standard deviation of the `precipIntensity` from the GEFS model.
 
 #### precipIntensityMax
-**Only on `daily`**. The maximum value of `precipitationIntensity` for the given day.
+**Only on `daily`**. The maximum value of `precipIntensity` for the given day.
 
 #### precipIntensityMaxTime
-**Only on `daily`**. The point in which the maximum `precipitationIntensity` occurs represented in UNIX time.
+**Only on `daily`**. The point in which the maximum `precipIntensity` occurs represented in UNIX time.
 
 #### precipIntensityMin
-**Only on `daily`**. The minimum value of `precipitationIntensity` for the given day.
+**Only on `daily`**. The minimum value of `precipIntensity` for the given day.
 
 #### precipIntensityMinTime
-**Only on `daily`**. The point in which the minimum `precipitationIntensity` occurs represented in UNIX time.
+**Only on `daily`**. The point in which the minimum `precipIntensity` occurs represented in UNIX time.
 
 #### precipProbability
 The probability of precipitation occurring expressed as a decimal between 0 and 1 inclusive.
@@ -722,3 +722,34 @@ Indicates which units were used in the forecasts.
 
 #### version
 The version of Pirate Weather used to generate the forecast.
+
+### Response Headers
+
+#### Ratelimit-Limit
+The number of API calls you can do per month.
+
+#### Ratelimit-Remaining
+The number of API calls remaning for the month.
+
+#### Ratelimit-Reset
+The time in seconds until your rate limit resets.
+
+#### X-Node-Id
+Shows which node processed your API call.
+
+### Error Codes
+
+#### 400 Bad Request
+You may encounter this error if you query the API using an invalid latitude or longitude.
+
+#### 401 Unathorized
+You may encounter this error if you try to query an endpoint your API key does not have access to or if you did not include an API key in your request.
+
+#### 404 Not Found
+You may encounter this error if query the API using an invalid route or if you do not supply a latitude or longitude in your request.
+
+#### 429 Too Many Requests
+You may enounter this error if your API key has hit the quota for the month.
+
+#### 500 Internal Server Error
+If the API returns a 500 error you can retry the request to see if the API will return a 500 error again. If the issue persists please check the [GitHub issues](https://github.com/Pirate-Weather/pirateweather/issues) to see if the issue has been reported otherwise create a [bug report](https://github.com/Pirate-Weather/pirateweather/issues/new?assignees=&labels=bug%2CNeeds+Review&projects=&template=report_bug.yml) and the issue will be investigated.

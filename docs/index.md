@@ -27,13 +27,13 @@
 - [Breezy Weather](https://github.com/breezy-weather/breezy-weather)
 - [Weathergraph](https://weathergraph.app/) - Graphical hour-by-hour forecast & widget for iOS, Apple Watch and mac
 
-Do you use PirateWeather? Open a pull request to add it to the list.
+Do you use PirateWeather? Open a [pull request](https://github.com/Pirate-Weather/pirateweather/compare) to add it to the list.
 
 # Introduction 
 Weather forecasts are primarily found using models run by government agencies, but the [outputs](https://weather.gc.ca/grib/what_is_GRIB_e.html) aren't easy to use or in formats built for the web.
 To try to address this, I've put together a service that reads weather forecasts and serves it following the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs) style. 
 
-Before going any farther, I wanted to add a [link to sign up and support this project](https://pirate-weather.apiable.io/products/weather-data)! Running this on AWS means that it scales beautifully and is much more reliable than if I was trying to host this, but also costs real money. I'd love to keep this project going long-term, but I'm still paying back my student loans, which limits how much I can spend on this! Anything helps, and a $2 monthly donation lets me raise your API limit from 10,000 calls/ month to 25,000 calls per month.
+Before going any farther, I wanted to add a [link to sign up and support this project](https://pirate-weather.apiable.io/products/weather-data)! Running this on AWS means that it scales beautifully and is much more reliable than if I was trying to host this, but also costs real money. I'd love to keep this project going long-term, but I'm still paying back my student loans, which limits how much I can spend on this! Anything helps, and a $2 monthly donation lets me raise your API limit from 10,000 calls/ month to 20,000 calls per month.
 
 Alternatively, I also have a GitHub Sponsorship page set up on my [profile](https://github.com/sponsors/alexander0042/)! This gives the option to make a one-time donation to contribute this project. This project (especially the free tier) wouldn't be possible without the ongoing support from the project sponsors, so they're the [heros here](https://github.com/sponsors/alexander0042/)! 
 
