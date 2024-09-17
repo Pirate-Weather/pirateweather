@@ -19,6 +19,12 @@ https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?ex
 The API key needs to be requested from <https://pirateweather.net/>. After signing up for the service, the forecast API needs to be subscribed to, by logging in and clicking subscribe. Once subscribed to the API, it can take up to 20 minutes for the change to propagate to the gateway to allow requests, so go grab a coffee and it should be ready shortly after. 
 As a reminder, this key is secret, and unique to each user. Keep it secret, and do not have it hard-coded into an application's source, and definitely don't commit it to a git repo!
 
+Alternatively, you can also add the API key to the request headers by using the `apikey` header. You will still need to add a dummy API key to the URL so it would look like the following:
+
+```
+https://api.pirateweather.net/forecast/{anythingAtAll}/{lat},{lon}
+```
+
 #### Location
 The location is specified by a latitude (1st) and longitude (2nd) in decimal degrees (ex. `45.42,-75.69`). An unlimited number of decimal places are allowed; however, the API only returns data to the closest 13 km model square, so there's no benefit after 3 digits. While the recommended way to format this field is with positive (North/East) and negative (South/West) degrees, results should be valid when submitting longitudes from 0 to 360, instead of -180 to 180. 
 
@@ -233,23 +239,38 @@ If `version=2` is included fields which were not part of the Dark Sky API will b
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V2.2"
+	   "version": "V2.3"
 	   }
 	}
 ```
 
 ### Time Machine Request
-The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
+The Time Machine uses ERA5 dataset which is updated monthly and is approximately three to four months behind realtime. The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 
 ```
       https://timemachine.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
 ```
 
-The Time Machine uses ERA5 dataset which has data available until May 2023 and the API stores the last 36 hours of model data and to get access to that data you query the forecast API using the time parameter like in the following URL:
+The main API endpoint can also be used and can be queried like so:
 
 ```
       https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
 ```
+
+Crucially, there's now three different ways a request could be handled:
+
+1. Pre 3 or 4 months behind realtime: ERA5 data via the NCAR S3 archive.
+	* 24 hours
+	* Subset of variables
+	* Slowish (~10 seconds)
+2. 3 or 4 months behind realtime, to T-minus 24 hours: GFS/HRRR/NBM 1-hour forecast data from the PW archive
+	* Provides more data and resolution than is available on ERA5
+	* Full range of PW forecast variables
+	* Avoids the ERA5 production time lag
+	* Slow (~30 seconds), since it needs to open and read many zarr files on S3
+3. T-minus 24 hours onward: merged 1-hour forecast data with foreward looking forecast data, responding with the full 7 day forecast.
+	* Same process as before!
+	* Very fast (10 ms), since this is optimized for fast reads in one location
 
 The response format is the same as the forecast except:
 

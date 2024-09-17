@@ -2,6 +2,27 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
+???+ note "Version 2.3"
+
+	* September 13, 2024, API Version 2.3
+		* Major time machine (historic data) update!
+			* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
+			* Performance for these requests has been considerably improved (~10 s), since it is no longer querying against the Google data.
+			* Implemented using the excellent [Kerchunk library](https://fsspec.github.io/kerchunk)
+			* The June 2024 end date will be moved up as the ERA-5 data is updated.
+			* [Issue #130](https://github.com/Pirate-Weather/pirateweather/issues/130)
+			* [Issue #316](https://github.com/Pirate-Weather/pirateweather/issues/316)
+		* Historic model 1-hour forecast data is now available from June 2024 to present via the Pirate Weather Zarr archive.
+			* While technically forecast data, these forecasts are as close to observations as possible.
+			* Slower than ERA-5, since the full range of forecast models is used (~30 s).
+		* Historic data is now accessible from both the timemachine.pirateweather.net endpoint and the api.pirateweather.net endpoint.
+		* Documentation updates:
+			* [Issue #315](https://github.com/Pirate-Weather/pirateweather/issues/315)
+			* [Issue #320](https://github.com/Pirate-Weather/pirateweather/issues/320)
+		* Added the ability to provide the API key as a query parameter or header (as `apikey`) per [issue #314](https://github.com/Pirate-Weather/pirateweather/issues/314).
+		* Improved error handling for invalid locations per [issue #318](https://github.com/Pirate-Weather/pirateweather/issues/318)
+		* Fixed an unreported bug for max/min Apparent Temperature Times
+
 ???+ note "Version 2.2"
 
 	* August 20, 2024, API Version 2.2
@@ -267,6 +288,18 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ## Time Machine Changelog
 
+* September 13, 2024
+	* Major time machine (historic data) update!
+		* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
+		* Performance for these requests has been considerably improved (~10 s), since it is no longer querying against the Google data.
+		* Implemented using the excellent [Kerchunk library](https://fsspec.github.io/kerchunk)
+		* The June 2024 end date will be moved up as the ERA-5 data is updated.
+		* [Issue #130](https://github.com/Pirate-Weather/pirateweather/issues/130)
+		* [Issue #316](https://github.com/Pirate-Weather/pirateweather/issues/316)
+	* Historic model 1-hour forecast data is now available from June 2024 to present via the Pirate Weather Zarr archive.
+		* While technically forecast data, these forecasts are as close to observations as possible.
+		* Slower than ERA-5, since the full range of forecast models is used (~30 s).
+	* Historic data is now accessible from both the timemachine.pirateweather.net endpoint and the api.pirateweather.net endpoint.
 * April 18, 2024
 	* Fixed an issue where locations in fractional timezones were not returning an error as reported in [#194](https://github.com/Pirate-Weather/pirateweather/issues/194)
 * March 11, 2024
