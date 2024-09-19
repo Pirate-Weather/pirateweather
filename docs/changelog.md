@@ -4,6 +4,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.3"
 
+	* September 19, 2024, API Version 2.3.1
+		* Major time machine (historic data) update!
 	* September 13, 2024, API Version 2.3
 		* Major time machine (historic data) update!
 			* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
@@ -23,7 +25,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Improved error handling for invalid locations per [issue #318](https://github.com/Pirate-Weather/pirateweather/issues/318)
 		* Fixed an unreported bug for max/min Apparent Temperature Times
 
-???+ note "Version 2.2"
+??? note "Version 2.2"
 
 	* August 20, 2024, API Version 2.2
 		* No endpoint facing changes, but a lot of backend reworking 
