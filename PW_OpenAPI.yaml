@@ -69,14 +69,10 @@ paths:
             application/json:
               schema:
                 properties:
-                  statusCode:
-                    type: number
-                    description: The error status code
-                    example: 400
-                  body:
+                  detail:
                     type: string
                     description: The error message
-                    example: "\"Invalid Location Specification\""
+                    example: "Invalid Location Specification"
         "401":
           description: "API key does not have access to the queried endpoint or if you did not include an API key in your request."
           content:
