@@ -275,11 +275,11 @@ Crucially, there's now three different ways a request could be handled:
 The response format is the same as the forecast except:
 
 * The `currently` block will refer to the requested time and not the present time.
-* The `minutely` block is not present except when querying data from the last three days.
+* The `minutely` block is not present except when querying data from the last 24h.
 * The `hourly` block will return data from midnight of the requested day to midnight the next day.
-* The `daily` block will return the data for the current day except when querying data from the last three days.
+* The `daily` block will return the data for the current day except when querying data from the last 24h.
 * The `alerts` block is not included.
-* The `flags` block will not be included except when querying data from the last three days.
+* The `flags` block will show the sources used in the request, the requested `units` and the API version.
 
 #### API Key
 The API key needs to be requested from <https://pirateweather.net/>. After signing up for the service, the forecast API needs to be subscribed to, by logging in and clicking subscribe. Once subscribed to the API, it can take up to 20 minutes for the change to propagate to the gateway to allow requests, so go grab a coffee and it should be ready shortly after. 
@@ -725,6 +725,9 @@ The version of Pirate Weather used to generate the forecast.
 
 ### Response Headers
 
+#### Cache-Control
+The directive on how the response data can be cached.
+
 #### Ratelimit-Limit
 The number of API calls you can do per month.
 
@@ -734,8 +737,15 @@ The number of API calls remaning for the month.
 #### Ratelimit-Reset
 The time in seconds until your rate limit resets.
 
+#### X-Forecast-API-Calls
+The number of API calls your key has done for the month.
+
 #### X-Node-Id
 Shows which node processed your API call.
+
+#### X-Response-Time
+The time taken to process the request in milliseconds.
+
 
 ### Error Codes
 
