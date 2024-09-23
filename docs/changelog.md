@@ -9,6 +9,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Added missing Dark Sky headers per [issue #334](https://github.com/Pirate-Weather/pirateweather/issues/334).
 		* Fix for requested times on the hour returning incorrect data.
 		* Updates to Apiable docs per [issue #324](https://github.com/Pirate-Weather/pirateweather/issues/324).
+		* Assorted other time machine fixes per [issue #330](https://github.com/Pirate-Weather/pirateweather/issues/330).
+		* Changed humidity priority to HRRR for consistency with dewpoint per [issue #282](https://github.com/Pirate-Weather/pirateweather/issues/282).
 	* September 13, 2024, API Version 2.3
 		* Major Time Machine (historic data) update!
 			* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
