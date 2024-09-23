@@ -4,10 +4,13 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.3"
 
-	* September 19, 2024, API Version 2.3.1
-		* Major time machine (historic data) update!
+	* September 23, 2024, API Version 2.3.1
+	* Fixed some issues with Time Machine causing slow responses for the production API.
+	* Added missing Dark Sky headers per [issue #334](https://github.com/Pirate-Weather/pirateweather/issues/334).
+	* Fix for requested times on the hour returning incorrect data.
+	* Updates to Apiable docs per [issue #324](https://github.com/Pirate-Weather/pirateweather/issues/324).
 	* September 13, 2024, API Version 2.3
-		* Major time machine (historic data) update!
+		* Major Time Machine (historic data) update!
 			* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
 			* Performance for these requests has been considerably improved (~10 s), since it is no longer querying against the Google data.
 			* Implemented using the excellent [Kerchunk library](https://fsspec.github.io/kerchunk)
