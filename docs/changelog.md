@@ -4,8 +4,16 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.3"
 
+	* September 23, 2024, API Version 2.3.1
+		* Fixed some issues with Time Machine causing slow responses for the production API.
+		* Added missing Dark Sky headers per [issue #334](https://github.com/Pirate-Weather/pirateweather/issues/334).
+		* Fix for requested times on the hour returning incorrect data.
+		* Updates to Apiable docs per [issue #324](https://github.com/Pirate-Weather/pirateweather/issues/324).
+		* Assorted other time machine fixes per [issue #330](https://github.com/Pirate-Weather/pirateweather/issues/330).
+		* Changed humidity priority to HRRR for consistency with dewpoint per [issue #282](https://github.com/Pirate-Weather/pirateweather/issues/282).
+		* Started work on an interactive Swagger documentation at <https://api.pirateweather.net/docs>.   
 	* September 13, 2024, API Version 2.3
-		* Major time machine (historic data) update!
+		* Major Time Machine (historic data) update!
 			* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
 			* Performance for these requests has been considerably improved (~10 s), since it is no longer querying against the Google data.
 			* Implemented using the excellent [Kerchunk library](https://fsspec.github.io/kerchunk)
@@ -23,7 +31,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Improved error handling for invalid locations per [issue #318](https://github.com/Pirate-Weather/pirateweather/issues/318)
 		* Fixed an unreported bug for max/min Apparent Temperature Times
 
-???+ note "Version 2.2"
+??? note "Version 2.2"
 
 	* August 20, 2024, API Version 2.2
 		* No endpoint facing changes, but a lot of backend reworking 

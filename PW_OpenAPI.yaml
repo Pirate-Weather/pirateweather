@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: "2.3"
+  version: "2.3.1"
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -62,6 +62,11 @@ paths:
           description: Include fields which were not part of the Dark Sky API but were introduced in API version 2.
           schema:
             type: integer
+        - name: tmextra
+          in: query
+          description: Include the full set of parameters in recent time machine requests.
+          schema:
+            type: integer            
       responses:
         "400":
           description: "Bad Request. Longitude or Latitude is invalid."
@@ -69,14 +74,10 @@ paths:
             application/json:
               schema:
                 properties:
-                  statusCode:
-                    type: number
-                    description: The error status code
-                    example: 400
-                  body:
+                  detail:
                     type: string
                     description: The error message
-                    example: "\"Invalid Location Specification\""
+                    example: "Invalid Location Specification"
         "401":
           description: "API key does not have access to the queried endpoint or if you did not include an API key in your request."
           content:
@@ -472,16 +473,26 @@ components:
                 type: string
                 description: A summary of the weather.
                 example: Rain
+              dawnTime:
+                type: integer
+                format: int32
+                description: The time when the the sun is a specific (6 degrees) height above the horizon after sunrise. Only returned when version>2.
+                example: 1726744655
               sunriseTime:
                 type: integer
                 format: int32
                 description: The time of sunrise in UNIX format.
-                example: 1677846414
+                example: 1726746249
               sunsetTime:
                 type: integer
                 format: int32
                 description: The time of sunset in UNIX format.
-                example: 1677887618
+                example: 1726790310
+              duskTime:
+                type: integer
+                format: int32
+                description: The time when the the sun is a specific (6 degrees) height above the horizon before sunset. Only returned when version>2.
+                example: 1726791901
               moonPhase:
                 type: number
                 description: The fractional lunation number for the given day.
@@ -752,7 +763,7 @@ components:
         version:
           type: string
           description: The version of Pirate Weather used to generate the forecast.
-          example: V2.3
+          example: V2.3.1
         sourceIDX:
           type: object
           description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>2.

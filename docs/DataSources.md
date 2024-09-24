@@ -35,7 +35,7 @@ At a high level, the general approach is to use NBM first, then HRRR, then GEFS,
 |dewPoint     			|HRRR_SubH > NBM > GFS  |N/A   				    |NBM > HRRR > GFS   		|
 |fireIndex    			|NBM   			  		|N/A   				    |NBM   			 			|
 |feelsLike    			|NBM > GFS  			|N/A   				    |NBM > GFS		 			|
-|humidity     			|NBM > HRRR > GFS   	|N/A   				    |NBM > HRRR > GFS   		|
+|humidity     			|HRRR > NBM > GFS   	|N/A   				    |NBM > HRRR > GFS   		|
 |iceAccumulation   		|N/A                    |N/A   				    |NBM > HRRR > GEFS > GFS	|
 |liquidAccumulation 	|N/A                    |N/A   				    |NBM > HRRR > GEFS > GFS	|
 |nearestStormBearing	|GFS   					|N/A   				    |GFS   						|
