@@ -62,6 +62,11 @@ paths:
           description: Include fields which were not part of the Dark Sky API but were introduced in API version 2.
           schema:
             type: integer
+        - name: tmextra
+          in: query
+          description: Include the full set of parameters in recent time machine requests.
+          schema:
+            type: integer            
       responses:
         "400":
           description: "Bad Request. Longitude or Latitude is invalid."

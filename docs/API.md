@@ -1,6 +1,8 @@
 # API Docs
 This page serves as the documentation for the Pirate Weather API call and response format. Since this service is designed to be a drop in replacement for the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs), the goal is to match that as closely as possible, and any disagreement between their service and Pirate Weather will be treated as a bug. However, as Pirate Weather continues to evolve, I plan on adding small, non-breaking additions where I can, and they will be documented here! Plus, always better to have my own (open source and editable) version of the docs!
 
+An alpha [Swagger UI](https://github.com/swagger-api/swagger-ui) for the API is also available at <https://api.pirateweather.net/docs>.   
+
 ## Request
 The minimum structure for every request to this service is the same:
 ```
@@ -245,16 +247,10 @@ If `version=2` is included fields which were not part of the Dark Sky API will b
 ```
 
 ### Time Machine Request
-The Time Machine uses ERA5 dataset which is updated monthly and is approximately three to four months behind realtime. The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
+The Time Machine uses either archived 1-hour model results (past four months) or the [NCAR AWS ERA5 dataset](https://registry.opendata.aws/nsf-ncar-era5/) which is updated monthly and is approximately three to four months behind realtime. The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 
 ```
       https://timemachine.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
-```
-
-The main API endpoint can also be used and can be queried like so:
-
-```
-      https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
 ```
 
 Crucially, there's now three different ways a request could be handled:
@@ -265,7 +261,7 @@ Crucially, there's now three different ways a request could be handled:
 	* Slowish (~10 seconds)
 2. 3 or 4 months behind realtime, to T-minus 24 hours: GFS/HRRR/NBM 1-hour forecast data from the PW archive
 	* Provides more data and resolution than is available on ERA5
-	* Full range of PW forecast variables
+	* Can provide the range of PW forecast variables via the `tmextra` parameter
 	* Avoids the ERA5 production time lag
 	* Slow (~30 seconds), since it needs to open and read many zarr files on S3
 3. T-minus 24 hours onward: merged 1-hour forecast data with foreward looking forecast data, responding with the full 7 day forecast.
@@ -280,6 +276,8 @@ The response format is the same as the forecast except:
 * The `daily` block will return the data for the current day except when querying data from the last 24h.
 * The `alerts` block is not included.
 * The `flags` block will show the sources used in the request, the requested `units` and the API version.
+
+When requesting data from the PW archive (3-4 months trailing), the optional `tmextra` query parameter controls which variables are returned. When it is included, same variables that are present in a forecast request (except alerts) are returned. When it is not included (by default), the same range of parameters returned by ERA5 requests is included.  
 
 #### API Key
 The API key needs to be requested from <https://pirateweather.net/>. After signing up for the service, the forecast API needs to be subscribed to, by logging in and clicking subscribe. Once subscribed to the API, it can take up to 20 minutes for the change to propagate to the gateway to allow requests, so go grab a coffee and it should be ready shortly after. 
@@ -353,6 +351,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
     "dewPoint": 7.6,
     "pressure": 1006.3,
     "windSpeed": 15.15,
+	"windGust": 17.15,
     "windBearing": 72,
     "cloudCover": 0.0
   },
@@ -369,8 +368,10 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
         "dewPoint": 7.6,
         "pressure": 1006.3,
         "windSpeed": 15.15,
+		"windGust": 17.15,
         "windBearing": 72,
-        "cloudCover": 0.0
+        "cloudCover": 0.0,
+		"snowAccumulation": 0.0
       },
      ...
     ]
@@ -397,6 +398,8 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
         "dewPoint": 9.74,
         "pressure": 1002.41,
         "windSpeed": 15.19,
+		"windGust": 16,
+		"windGustTime": 1654092000,
         "windBearing": 0,
         "cloudCover": 0.38
         "temperatureMin": 12.41,
@@ -406,10 +409,22 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
         "apparentTemperatureMin": 12.73,
         "apparentTemperatureMinTime": 13.01,
         "apparentTemperatureMax": 18.94,
-        "apparentTemperatureMaxTime": 1654120800
+        "apparentTemperatureMaxTime": 1654120800,
+		"snowAccumulation":0.0
       }
     ]
-  }
+  },
+  "flags": {
+	"sources":"ERA5",
+	"nearest-station":0,
+	"units":"us",
+	"version":"V2.3.1",
+	"sourceIDX":[
+		"x":1120,
+		"y":216
+		],
+	"processTime":408339
+	}
 }
 ```
 
@@ -732,7 +747,7 @@ The directive on how the response data can be cached.
 The number of API calls you can do per month.
 
 #### Ratelimit-Remaining
-The number of API calls remaning for the month.
+The number of API calls remaining for the month.
 
 #### Ratelimit-Reset
 The time in seconds until your rate limit resets.
@@ -752,14 +767,14 @@ The time taken to process the request in milliseconds.
 #### 400 Bad Request
 You may encounter this error if you query the API using an invalid latitude or longitude.
 
-#### 401 Unathorized
+#### 401 Unauthorized
 You may encounter this error if you try to query an endpoint your API key does not have access to or if you did not include an API key in your request.
 
 #### 404 Not Found
 You may encounter this error if query the API using an invalid route or if you do not supply a latitude or longitude in your request.
 
 #### 429 Too Many Requests
-You may enounter this error if your API key has hit the quota for the month.
+You may encounter this error if your API key has hit the quota for the month.
 
 #### 500 Internal Server Error
 If the API returns a 500 error you can retry the request to see if the API will return a 500 error again. If the issue persists please check the [GitHub issues](https://github.com/Pirate-Weather/pirateweather/issues) to see if the issue has been reported otherwise create a [bug report](https://github.com/Pirate-Weather/pirateweather/issues/new?assignees=&labels=bug%2CNeeds+Review&projects=&template=report_bug.yml) and the issue will be investigated.
