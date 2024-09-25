@@ -11,6 +11,11 @@ updates:
       interval: "daily"
       time: "09:00"
       timezone: "America/Toronto"
+    groups:
+      non-major-versions: # the name of the group
+        update-types:     # the key used to specify the semver level to include in the group
+        - "minor"         # an array, possible values being minor, patch and major
+        - "patch"
     open-pull-requests-limit: 100
 
   - package-ecosystem: "github-actions"
@@ -19,4 +24,9 @@ updates:
       interval: "daily"
       time: "09:10"
       timezone: "America/Toronto"
+    groups:
+      non-major-versions: # the name of the group
+        update-types:     # the key used to specify the semver level to include in the group
+        - "minor"         # an array, possible values being minor, patch and major
+        - "patch"
     open-pull-requests-limit: 100
