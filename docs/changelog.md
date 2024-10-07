@@ -3,7 +3,9 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
 ???+ note "Version 2.3"
-
+	* October 7, 2024, API Version 2.3.2
+		* Simplify US alert headline details  per [issue #344](https://github.com/Pirate-Weather/pirateweather/issues/344).
+		* Correct how Current Fire Index outside of NBM area is returned. -999 (for "No Data" is now displayed instead of 0.
 	* September 23, 2024, API Version 2.3.1
 		* Fixed some issues with Time Machine causing slow responses for the production API.
 		* Added missing Dark Sky headers per [issue #334](https://github.com/Pirate-Weather/pirateweather/issues/334).
