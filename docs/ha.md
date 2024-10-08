@@ -140,7 +140,7 @@ The available sensors for the integration are:
 
 Full documentation of the different data points is available here [https://pirateweather.net/en/latest/API/#data-point](https://pirateweather.net/en/latest/API/#data-point). A full list of conditions supported by HA is available here [https://www.home-assistant.io/integrations/weather/#condition-mapping](https://www.home-assistant.io/integrations/weather/#condition-mapping).
 
-The only data point that is included in HA but not the API is a described Fire Risk Level, converting from the numeric index to a qualitative term following [this approach](https://github.com/Pirate-Weather/pirate-weather-ha/issues/297).
+The only data point that is included in HA but not the API is a described Fire Risk Level, converting from the numeric index to a qualitative term following [this approach](https://cwfis.cfs.nrcan.gc.ca/maps/fm3?type=fwih).
 
 
 ## Frequently Asked Questions
