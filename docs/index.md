@@ -27,6 +27,9 @@
 - [Breezy Weather](https://github.com/breezy-weather/breezy-weather)
 - [Weathergraph](https://weathergraph.app/) - Graphical hour-by-hour forecast & widget for iOS, Apple Watch and mac
 
+## Libraries
+- [python-pirate-weather](https://github.com/cloneofghosts/python-pirate-weather) - A thin Python Wrapper for the Pirate Weather API forked from the [forecastio python library](https://github.com/ZeevG/python-forecast.io).
+
 Do you use PirateWeather? Open a [pull request](https://github.com/Pirate-Weather/pirateweather/compare) to add it to the list.
 
 # Introduction 
