@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download source
-        uses: actions/checkout@v4.2.1
+        uses: actions/checkout@v4.2.2
       - name: Install Python
         uses: actions/setup-python@v5.2.0
         with:
