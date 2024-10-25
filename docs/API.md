@@ -61,6 +61,9 @@ For compatibility with Dark Sky, `us` (Imperial units) are the default if nothin
 | precipIntensity | Millimetres per hour | Millimetres per hour | Millimetres per hour | Inches per hour |
 | precipIntensityMax | Millimetres per hour | Millimetres per hour | Millimetres per hour | Inches per hour |
 | precipAccumulation | Centimetres | Centimetres | Centimetres | Inches |
+| liquidAccumulation   | Centimetres | Centimetres | Centimetres | Inches |
+| snowAccumulation | Centimetres | Centimetres | Centimetres | Inches |
+| iceAccumulation | Centimetres | Centimetres | Centimetres | Inches |
 | temperature | Degrees Celsius | Degrees Celsius | Degrees Celsius | Degrees Fahrenheit |
 | temperatureMin | Degrees Celsius | Degrees Celsius | Degrees Celsius | Degrees Fahrenheit |
 | temperatureMax | Degrees Celsius | Degrees Celsius | Degrees Celsius | Degrees Fahrenheit |
@@ -241,7 +244,7 @@ If `version=2` is included fields which were not part of the Dark Sky API will b
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V2.3.1"
+	   "version": "V2.3.3"
 	   }
 	}
 ```
@@ -504,6 +507,15 @@ The time of the minimum "feels like" temperature during the daytime, from 6:00 a
 #### cloudCover
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
 
+#### currentDayIce
+**Only on `currently`**. The ice precipitation that has accumulated so far during the day, from midnight until the forecast request time.
+
+#### currentDayLiquid
+**Only on `currently`**. The liquid precipitation that has accumulated so far during the day, from midnight until the forecast request time.
+
+#### currentDaySnow
+**Only on `currently`**. The snow precipitation that has accumulated so far during the day, from midnight until the forecast request time.
+
 #### dawnTime
 **Only on `daily`**. The time when the the sun is a specific (6 degrees) height above the horizon after sunrise. Calculated from [Astal dawn defaults](https://astral.readthedocs.io/en/latest/package.html?highlight=dawn#astral.sun.dawn).
 
@@ -585,7 +597,7 @@ The density of total atmospheric ozone at a given time in Dobson units.
 **Only on `hourly` and `daily`**. The total amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For day 0, this is the precipitation during the remaining hours of the day.
 
 #### precipIntensity
-The rate in which liquid precipitation is falling. This value is expressed in millimetres per hour or inches per hour depending on the requested `units`. For `currently` and `minutely` forecast blocks, the HRRR "Precipitation Rate" variable  is used where available, otherwise averaged GEFS data is returned. For `hourly` and `daily` forecast blocks, GEFS is always used. This is done so that the `precipIntensityProbablity` variable is aligned with the intensity.
+The rate in which liquid precipitation is falling. This value is expressed in millimetres per hour or inches per hour depending on the requested `units`.
 
 #### precipIntensityError
 The standard deviation of the `precipIntensity` from the GEFS model.
@@ -708,7 +720,7 @@ Indicates how severe the weather alert is. Possible values are:
 * Unknown
 
 #### time
-The time in which the alert was issued represented in UNIX time.
+The time in which the alert was issued represented in UNIX time. From the NWS `effective` time.
 
 #### expires
 The time in which the alert expires represented in UNIX time.

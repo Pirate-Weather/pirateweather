@@ -19,7 +19,7 @@ The GFS model also underpins the Global Ensemble Forecast System [(GEFS)](https:
 The Global Ensemble Forecast System [(GEFS)](https://www.ncei.noaa.gov/products/weather-climate-models/global-ensemble-forecast) is the ensemble version of NOAA's GFS model. By running different variations parameters and inputs, 30 different versions of this model are run at the same time, providing 3-hour forecasts out to 240 hours. The API uses the GEFS to get precipitation type, quantity, and probability, since it seemed like the most accurate way of determining this. I have no idea how Dark Sky did it, and I am very open to feedback about other ways it could be assigned, since getting the precipitation probability number turned out to be one of the most complex parts of the entire setup! 
 
 ### ERA5
-To provide historic weather data, the [European Reanalysis 5 Dataset](https://registry.opendata.aws/ecmwf-era5/) is used. This source is particularly interesting, since unlike the real-time NOAA models that I need to convert, it's provided in the "cloud native" [Zarr](https://zarr.readthedocs.io/en/stable/) file format. This lets the data be accessed directly and quickly in S3 from Lambda. There aren't nearly as many, many parameters available as with the GFS or HRRR models, but there are enough to cover the most important variables. 
+To provide historic weather data, the [NCAR European Reanalysis 5 Dataset](https://registry.opendata.aws/nsf-ncar-era5/) is used. This source uses NetCDF4 files saved on S3, which lets them be accessed directly from S3; however, it's not particularly fast, making it only suitable for historic requests. 
 
 
 ## Forecast element sources
@@ -32,6 +32,9 @@ At a high level, the general approach is to use NBM first, then HRRR, then GEFS,
 |-----------------------|-----------------------|-----------------------|---------------------------|
 |apparentTemperature	|HRRR_SubH > NBM > GFS	|N/A   				    |NBM > HRRR > GFS		 	|
 |cloudCover   			|NBM > HRRR > GFS   	|N/A   				    |NBM > HRRR > GFS   		|
+|currentDayIce		    |NBM > HRRR > GEFS > GFS|N/A					|N/A						|
+|currentDayLiquid       |NBM > HRRR > GEFS > GFS|N/A					|N/A						|
+|currentDaySnow         |NBM > HRRR > GEFS > GFS|N/A					|N/A						|
 |dewPoint     			|HRRR_SubH > NBM > GFS  |N/A   				    |NBM > HRRR > GFS   		|
 |fireIndex    			|NBM   			  		|N/A   				    |NBM   			 			|
 |feelsLike    			|NBM > GFS  			|N/A   				    |NBM > GFS		 			|

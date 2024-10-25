@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: "2.3.1"
+  version: "2.3.3"
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -274,6 +274,18 @@ components:
           type: number
           description: The apparent temperature reported by NBM and gfs. Only returned when version>2.
           example: 16.06          
+        currentDayIce:
+          type: number
+          description: The ice precipitation that has accumulated so far during the day, from midnight until the forecast request time. Only returned when version>2.
+          example: 0.02
+        currentDayLiquid:
+          type: number
+          description: The liquid precipitation that has accumulated so far during the day, from midnight until the forecast request time. Only returned when version>2.
+          example: 0.20 
+        currentDaySnow:
+          type: number
+          description: The snow precipitation that has accumulated so far during the day, from midnight until the forecast request time. Only returned when version>2.
+          example: 2.02           
     minutely:
       type: object
       description: A block containing minute-by-minute precipitation intensity for the next 60 minutes.
@@ -763,7 +775,7 @@ components:
         version:
           type: string
           description: The version of Pirate Weather used to generate the forecast.
-          example: V2.3.1
+          example: V2.3.3
         sourceIDX:
           type: object
           description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>2.
