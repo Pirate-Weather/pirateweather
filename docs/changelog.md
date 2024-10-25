@@ -3,11 +3,16 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
 ???+ note "Version 2.3"
-	* October 22, 2024, API Version 2.3.3
-		* Simplify US alert headline details  per [issue #344](https://github.com/Pirate-Weather/pirateweather/issues/344).
-		* Correct how Current Fire Index outside of NBM area is returned. -999 (for "No Data" is now displayed instead of 0.
+	* October 25, 2024, API Version 2.3.3
+		* Updated cache parameters per [issue #350](https://github.com/Pirate-Weather/pirateweather/issues/350). 
+		* Changed alert start time to use NWS effective time instead of onset time per [issue #353](https://github.com/Pirate-Weather/pirateweather/issues/353). 
+		* Added line breaks in NWS alert descriptions [issue #353](https://github.com/Pirate-Weather/pirateweather/issues/353). 
+		* Removed extra white space in NWS alert regions per [issue #353](https://github.com/Pirate-Weather/pirateweather/issues/353). 
+		* Fixed a rounding issue in precipitation intensity per [issue #211](https://github.com/Pirate-Weather/pirateweather/issues/211). 
+		* Added current day precipitation per [issue #211](https://github.com/Pirate-Weather/pirateweather/issues/211). 
+		* Added a check to filter invalid data per [issue #354](https://github.com/Pirate-Weather/pirateweather/issues/354).  
 	* October 7, 2024, API Version 2.3.2
-		* Simplify US alert headline details  per [issue #344](https://github.com/Pirate-Weather/pirateweather/issues/344).
+		* Simplify US alert headline details per [issue #344](https://github.com/Pirate-Weather/pirateweather/issues/344).
 		* Correct how Current Fire Index outside of NBM area is returned. -999 (for "No Data" is now displayed instead of 0.
 	* September 23, 2024, API Version 2.3.1
 		* Fixed some issues with Time Machine causing slow responses for the production API.

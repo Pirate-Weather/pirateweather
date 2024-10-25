@@ -32,6 +32,9 @@ At a high level, the general approach is to use NBM first, then HRRR, then GEFS,
 |-----------------------|-----------------------|-----------------------|---------------------------|
 |apparentTemperature	|HRRR_SubH > NBM > GFS	|N/A   				    |NBM > HRRR > GFS		 	|
 |cloudCover   			|NBM > HRRR > GFS   	|N/A   				    |NBM > HRRR > GFS   		|
+|currentDayIce		    |NBM > HRRR > GEFS > GFS|N/A					|N/A						|
+|currentDayLiquid       |NBM > HRRR > GEFS > GFS|N/A					|N/A						|
+|currentDaySnow         |NBM > HRRR > GEFS > GFS|N/A					|N/A						|
 |dewPoint     			|HRRR_SubH > NBM > GFS  |N/A   				    |NBM > HRRR > GFS   		|
 |fireIndex    			|NBM   			  		|N/A   				    |NBM   			 			|
 |feelsLike    			|NBM > GFS  			|N/A   				    |NBM > GFS		 			|
