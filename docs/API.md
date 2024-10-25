@@ -508,16 +508,13 @@ The time of the minimum "feels like" temperature during the daytime, from 6:00 a
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
 
 #### currentDayIce
-**Only on `currently`**. 
-The ice precipitation that has accumulated so far during the day, from midnight until the forecast request time.
+**Only on `currently`**. The ice precipitation that has accumulated so far during the day, from midnight until the forecast request time.
 
 #### currentDayLiquid
-**Only on `currently`**. 
-The liquid precipitation that has accumulated so far during the day, from midnight until the forecast request time.
+**Only on `currently`**. The liquid precipitation that has accumulated so far during the day, from midnight until the forecast request time.
 
 #### currentDaySnow
-**Only on `currently`**. 
-The snow precipitation that has accumulated so far during the day, from midnight until the forecast request time.
+**Only on `currently`**. The snow precipitation that has accumulated so far during the day, from midnight until the forecast request time.
 
 #### dawnTime
 **Only on `daily`**. The time when the the sun is a specific (6 degrees) height above the horizon after sunrise. Calculated from [Astal dawn defaults](https://astral.readthedocs.io/en/latest/package.html?highlight=dawn#astral.sun.dawn).
