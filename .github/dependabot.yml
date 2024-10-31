@@ -8,8 +8,8 @@ updates:
   - package-ecosystem: "pip" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "daily"
-      time: "09:00"
+      interval: "weekly"
+      time: "13:00"
       timezone: "America/Toronto"
     groups:
       non-major-versions: # the name of the group
@@ -21,8 +21,8 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
-      time: "09:10"
+      interval: "weekly"
+      time: "13:10"
       timezone: "America/Toronto"
     groups:
       non-major-versions: # the name of the group
