@@ -58,3 +58,16 @@ At a high level, the general approach is to use NBM first, then HRRR, then GEFS,
 |windBearing  			|HRRR_SubH > NBM > GFS  |N/A   				    |NBM > HRRR > GFS   		|
 |windGust   			|HRRR_SubH > NBM > GFS  |N/A   				    |NBM > HRRR > GFS   		|
 |windSpeed   			|HRRR_SubH > NBM > GFS  |N/A				    |NBM > HRRR > GFS   		|
+
+## Data Pipeline
+
+### Trigger
+Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opendata.aws/collab/noaa/) into three buckets for the [HRRR](https://registry.opendata.aws/noaa-hrrr-pds/), [GFS](https://registry.opendata.aws/noaa-gfs-bdp-pds/), and [GEFS](https://registry.opendata.aws/noaa-gefs/ models. Since I couldn't find a good way to trigger processing tasks based on S3 events in a public buckled, the ingest system relies on timed events scheduled through [AWS EventBridge Rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html), with the timings shown in the table below:
+
+| Model                | Run Times (UTC) | Delay | Ingest Times (UTC)    |
+|----------------------|-----------------|-------|-----------------------|
+| GFS                  | 0,6,12,18       | 5:00  | 5,11,17,23            |
+| GEFS                 | 0,6,12,18       | 7:00  | 7,13,19,1             |
+| NBM                  | 0-24            | 1:45  | 1:45-00:45            |
+| HRRR- 48h            | 0,6,12,18       | 2:30  | 2:30,8:30,14:30,20:30 |
+| HRRR- 18h/ SubHourly | 0-24            | 1:45  | 1:45-00:45        	 |
