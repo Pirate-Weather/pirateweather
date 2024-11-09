@@ -62,7 +62,7 @@ At a high level, the general approach is to use NBM first, then HRRR, then GEFS,
 ## Data Pipeline
 
 ### Trigger
-Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opendata.aws/collab/noaa/) into three buckets for the [HRRR](https://registry.opendata.aws/noaa-hrrr-pds/), [GFS](https://registry.opendata.aws/noaa-gfs-bdp-pds/), and [GEFS](https://registry.opendata.aws/noaa-gefs/ models. Since I couldn't find a good way to trigger processing tasks based on S3 events in a public buckled, the ingest system relies on timed events scheduled through [AWS EventBridge Rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html), with the timings shown in the table below:
+Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opendata.aws/collab/noaa/) into three buckets for the [HRRR](https://registry.opendata.aws/noaa-hrrr-pds/), [GFS](https://registry.opendata.aws/noaa-gfs-bdp-pds/), and [GEFS](https://registry.opendata.aws/noaa-gefs/) models. Since I couldn't find a good way to trigger processing tasks based on S3 events in a public buckled, the ingest system relies on timed events scheduled through [AWS EventBridge Rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html), with the timings shown in the table below:
 
 | Model                | Run Times (UTC) | Delay | Ingest Times (UTC)    |
 |----------------------|-----------------|-------|-----------------------|
