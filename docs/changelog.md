@@ -7,7 +7,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 	* November 25, 2024, API Version 2.4.0
 		* First Official Open Source Release! Details in the new [Pirate Weather Code](https://github.com/Pirate-Weather/pirate-weather-code) repository, but starting today, you can see exactly how the data is processed, and even host your own instance of Pirate Weather! Contributions are welcome, so come check it out. Addresses the second oldest outstanding [issue #11](https://github.com/Pirate-Weather/pirateweather/issues/11).
 		* Fixed a datetime bug per [issue #330](https://github.com/Pirate-Weather/pirate-weather-ha/issues/330). 
-		* Corrects the wind direction range to be from 0 to 360 per [issue #368](https://github.com/Pirate-Weather/pirateweather/issues/368). 
+		* Corrects the Apparent Temperature calculation per [issue #363](https://github.com/Pirate-Weather/pirateweather/issues/363).
+		* Changed the behaviour of new lines in NWS per [issue #367](https://github.com/Pirate-Weather/pirateweather/issues/367). 
 
 ??? note "Version 2.3"
 
