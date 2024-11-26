@@ -50,6 +50,7 @@ Up to version 2.4! As always, details are available in the [changelog](https://p
 * Fixed a datetime bug per [issue #330](https://github.com/Pirate-Weather/pirate-weather-ha/issues/330). 
 * Corrects the Apparent Temperature calculation per [issue #363](https://github.com/Pirate-Weather/pirateweather/issues/363).
 * Changed the behaviour of new lines in NWS per [issue #367](https://github.com/Pirate-Weather/pirateweather/issues/367). 
+* Fixed issues where data points could return values outside of expected range as per [issue #360](https://github.com/Pirate-Weather/pirateweather/issues/360).
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!

@@ -244,7 +244,7 @@ If `version=2` is included fields which were not part of the Dark Sky API will b
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V2.4.0"
+	   "version": "V2.4.1"
 	   }
 	}
 ```
