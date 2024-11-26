@@ -10,7 +10,8 @@
 * To [**register for the API**](https://pirate-weather.apiable.io/)
 * [Get a weather forecast in the Dark Sky style](https://merrysky.net/)
 * [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
-* [Processing code repo](https://github.com/alexander0042/pirateweather)
+* [API repo](https://github.com/alexander0042/pirateweather)
+* [Open Source code repo](https://github.com/Pirate-Weather/pirate-weather-code)
 * [Changelog](https://pirateweather.net/en/latest/changelog/)
 * [Status page](https://pirateweather.xitoring.io/)
 
@@ -42,33 +43,21 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
-## Recent Updates- Summer 2024
-Up to version 2.3! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+## Recent Updates- Fall 2024
+Up to version 2.4! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-* Major time machine (historic data) update!
-	* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
-	* Performance for these requests has been considerably improved (~10 s), since it is no longer querying against the Google data.
-	* Implemented using the excellent [Kerchunk library](https://fsspec.github.io/kerchunk)
-	* The June 2024 end date will be moved up as the ERA-5 data is updated.
-	* [Issue #130](https://github.com/Pirate-Weather/pirateweather/issues/130)
-	* [Issue #316](https://github.com/Pirate-Weather/pirateweather/issues/316)
-* Historic model 1-hour forecast data is now available from June 2024 to present via the Pirate Weather Zarr archive.
-	* While technically forecast data, these forecasts are as close to observations as possible.
-	* Slower than ERA-5, since the full range of forecast models is used (~30 s).
-* Historic data is now accessible from both the timemachine.pirateweather.net endpoint and the api.pirateweather.net endpoint.
-* Documentation updates:
-	* [Issue #315](https://github.com/Pirate-Weather/pirateweather/issues/315)
-	* [Issue #320](https://github.com/Pirate-Weather/pirateweather/issues/320)
-* Added the ability to provide the API key as a query parameter or header (as `apikey`) per [issue #314](https://github.com/Pirate-Weather/pirateweather/issues/314).
-* Improved error handling for invalid locations per [issue #318](https://github.com/Pirate-Weather/pirateweather/issues/318)
-* Fixed an unreported bug for max/min Apparent Temperature Times
+* First Official Open Source Release! Details in the new [Pirate Weather Code](https://github.com/Pirate-Weather/pirate-weather-code) repository, but starting today, you can see exactly how the data is processed, and even host your own instance of Pirate Weather! Contributions are welcome, so come check it out. Addresses the second oldest outstanding [issue #11](https://github.com/Pirate-Weather/pirateweather/issues/11).
+* Fixed a datetime bug per [issue #330](https://github.com/Pirate-Weather/pirate-weather-ha/issues/330). 
+* Corrects the Apparent Temperature calculation per [issue #363](https://github.com/Pirate-Weather/pirateweather/issues/363).
+* Changed the behaviour of new lines in NWS per [issue #367](https://github.com/Pirate-Weather/pirateweather/issues/367). 
+* Fixed issues where data points could return values outside of expected range as per [issue #360](https://github.com/Pirate-Weather/pirateweather/issues/360).
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
 Spoiler alert, but it was way more difficult than I thought, but learned a lot throughout the process, and I think the end result turned out really well! 
 
 ## Why?
-This API is designed to be a drop in replacement/ alternative to the Dark Sky API, and as a tool for assessing GFS and HRRR forecasts via a JSON API. This solves two goals:
+This API is designed to be a drop in replacement/ alternative to the Dark Sky API, and as a tool for assessing GFS, HRRR and NBM forecasts via a JSON API. This solves two goals:
 
 1. It will also allow **legacy** applications to continue running after the Dark Sky shutdown, since as Home Assistant Integrations, Magic Mirror cards, and a whole host of other applications that have been developed over the years.
 2. For anyone that is interested in knowing **exactly** how your weather forecasts are generated, this is the "show me the numbers" approach, since the data returned is directly from NOAA models, and every processing step I do is [documented](https://blog.pirateweather.net/). There are [lots](https://openweathermap.org/) [of](https://www.theweathernetwork.com) [existing](https://weather.com) [services](https://www.accuweather.com/) that provide custom forecasts using their own unique technologies, which can definitely improve accuracy, but I'm an engineer, so I wanted to be able to know what's going into the forecasts I'm using. If you're the sort of person who wants a [dense 34-page PowerPoint](http://rapidrefresh.noaa.gov/pdf/Alexander_AMS_NWP_2020.pdf) about why it rained when the forecast said it wouldn't, then this might be for you.
