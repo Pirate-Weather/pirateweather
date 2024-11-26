@@ -6,3 +6,9 @@ contact_links:
   - name: Home Assistant Repository
     url: https://github.com/alexander0042/pirate-weather-ha
     about: Please report any issues with the Home Assistant integration here.
+  - name: Code Repository
+    url: https://github.com/Pirate-Weather/pirate-weather-code
+    about: Please report any issues with the self-hosting code here.
+  - name: Translations Repository
+    url: https://github.com/Pirate-Weather/translations
+    about: Please report any issues with the summary translations here.
