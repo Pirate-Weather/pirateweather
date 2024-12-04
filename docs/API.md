@@ -244,7 +244,7 @@ If `version=2` is included fields which were not part of the Dark Sky API will b
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V2.4.1"
+	   "version": "V2.5.0"
 	   }
 	}
 ```
@@ -334,6 +334,9 @@ Added as part of the V1.0 release, this parameter removes some of the data block
 * `hourly`
 * `daily`
 * `alerts`
+
+### Language
+Added as part of the V2.5 release, this parameter allows you to sepecify what language the text summaries use.
 
 ## Response
 ```
@@ -553,27 +556,27 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 
 * If precipitation accumulation is greater than 0.02 mm, then the precipitation type.
 * If visibility is less than 1 km, then `fog`.
-* If winds are greater than 10 m/s, then `wind`.
+* If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 75%, then `cloudy`.
-* If cloud cover is greater than 37.5% and less than 75%, then `partly-cloudy-day` or `partly-cloudy-night`.
-* If cloud cover is less than 37.5%, then `clear`.
+* If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day` or `partly-cloudy-night`.
+* If cloud cover is less than 87.5%, then `clear`.
   
 ##### Hourly:
 
 * If precipitation probability is greater than 30% and accumulation is greater than 0.02 mm, then the precipitation type.
 * If visibility is less than 1 km, then `fog`.
-* If winds are greater than 10 m/s, then `wind`.
-* If cloud cover is greater than 75%, then `cloudy`.
-* If cloud cover is greater than 37.5% and less than 75%, then `partly-cloudy-day` or `partly-cloudy-night`.
+* If winds are greater than 6.7056 m/s, then `wind`.
+* If cloud cover is greater than 87.5%, then `cloudy`.
+* If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day` or `partly-cloudy-night`.
 * If cloud cover is less than 37.5%, then `clear`.
 
 ##### Daily:
 * If max probability is greater than 30% in any hour and total accumulation is greater than 1 mm, then precipitation type.
 	* Type is based on the most common (modal) precipitation type.
 * If average visibility is less than 1 km, then `fog`.
-* If average wind speed is greater than 10 m/s, then `wind`.
-* If average cloud cover is greater than 75%, then `cloudy`.
-* If average cloud cover is greater than 37.5% and less than 75%, then `partly-cloudy-day`.
+* If average wind speed is greater than 6.7056 m/s, then `wind`.
+* If average cloud cover is greater than 87.5%, then `cloudy`.
+* If average cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day`.
 * If average cloud cover is less than 37.5%, then `clear`.
 
 For additional details, see [issue #3](https://github.com/alexander0042/pirateweather/issues/3).

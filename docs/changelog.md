@@ -2,7 +2,12 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
-???+ note "Version 2.4"
+???+ note "Version 2.5"
+
+	* December 5, 2024, API Version 2.5
+		* Added support for the Dark Sky translation module as per [issue #152](https://github.com/Pirate-Weather/pirateweather/issues/152).
+
+??? note "Version 2.4"
 
 	* November 26, 2024, API Version 2.4.1
 		* Fixed unit issues that occured when fixing the data point value issue as per [issue #360](https://github.com/Pirate-Weather/pirateweather/issues/360).
