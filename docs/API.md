@@ -14,7 +14,7 @@ All request attributes are contained within the URL. Request headers are not par
 ### Request Parameters
 The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 ```
-https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]
+https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]
 ``` 
 
 #### API Key
@@ -93,6 +93,9 @@ If `extend=hourly` is included, hourly data for the next 168 hours will be inclu
 
 #### Version
 If `version=2` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime` and `duskTime`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
+
+### Language
+Added as part of the V2.5 release, this parameter allows you to sepecify what language the text summaries use.
 
 ### Example
 ```
@@ -334,9 +337,6 @@ Added as part of the V1.0 release, this parameter removes some of the data block
 * `hourly`
 * `daily`
 * `alerts`
-
-### Language
-Added as part of the V2.5 release, this parameter allows you to sepecify what language the text summaries use.
 
 ## Response
 ```
