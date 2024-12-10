@@ -4,6 +4,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.4"
 
+	* December 10, 2024, API Version 2.4.2
+		* Quick bugfix to address an issue with alert ingest and ERA5 data retrieval for January dates.
 	* November 26, 2024, API Version 2.4.1
 		* Fixed unit issues that occured when fixing the data point value issue as per [issue #360](https://github.com/Pirate-Weather/pirateweather/issues/360).
 	* November 25, 2024, API Version 2.4
