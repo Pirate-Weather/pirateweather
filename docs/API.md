@@ -14,7 +14,7 @@ All request attributes are contained within the URL. Request headers are not par
 ### Request Parameters
 The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 ```
-https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]
+https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]
 ``` 
 
 #### API Key
@@ -93,6 +93,71 @@ If `extend=hourly` is included, hourly data for the next 168 hours will be inclu
 
 #### Version
 If `version=2` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime` and `duskTime`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
+
+### Language
+Added as part of the V2.5 release, this parameter allows you to sepecify what language the text summaries use. The possible values for language may be:
+
+??? note "Language"
+
+	* `ar`: Arabic
+	* `az`: Azerbaijani
+	* `be`: Belarusian
+	* `bg`: Bulgarian
+	* `bn`: Bengali
+	* `bs`: Bosnian
+	* `ca`: Catalan
+	* `cs`: Czech
+	* `cy`: Welsh
+	* `da`: Danish
+	* `de`: German
+	* `el`: Greek
+	* `en`: English (which is the default)
+	* `eo`: Esperanto
+	* `es`: Spanish
+	* `et`: Estonian
+	* `fa`: Persian
+	* `fi`: Finnish
+	* `fr`: French
+	* `ga`: Irish
+	* `gd`: Gaelic
+	* `he`: Hebrew
+	* `hi`: Hindi
+	* `hr`: Croatian
+	* `hu`: Hungarian
+	* `id`: Indonesian
+	* `is`: Icelandic
+	* `it`: Italian
+	* `ja`: Japanese
+	* `ka`: Georgian
+	* `kn`: Kannada
+	* `ko`: Korean
+	* `kw`: Cornish
+	* `lv`: Latvian
+	* `ml`: Malayam
+	* `mr`: Marathi
+	* `nl`: Dutch
+	* `no`: Norwegian Bokmål
+	* `pa`: Punjabi
+	* `pl`: Polish
+	* `pt`: Portuguese
+	* `ro`: Romanian
+	* `ru`: Russian
+	* `sk`: Slovak
+	* `sl`: Slovenian
+	* `sr`: Serbian
+	* `sv`: Swedish
+	* `ta`: Tamil
+	* `te`: Telugu
+	* `tet: Tetum
+	* `tr`: Turkish
+	* `uk`: Ukrainian
+	* `ur`: Urdu
+	* `vi`: Vietnamese
+	* `x-pig-latin`: Igpay Atinlay
+	* `zh`: simplified Chinese
+	* `zh-tw`: traditional Chinese
+
+If you require a language not listed above, please consider contributing to the [API translation module](https://github.com/Pirate-Weather/translations).
 
 ### Example
 ```
@@ -244,7 +309,7 @@ If `version=2` is included fields which were not part of the Dark Sky API will b
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V2.4.1"
+	   "version": "V2.5.0"
 	   }
 	}
 ```
@@ -553,27 +618,27 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 
 * If precipitation accumulation is greater than 0.02 mm, then the precipitation type.
 * If visibility is less than 1 km, then `fog`.
-* If winds are greater than 10 m/s, then `wind`.
+* If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 75%, then `cloudy`.
-* If cloud cover is greater than 37.5% and less than 75%, then `partly-cloudy-day` or `partly-cloudy-night`.
-* If cloud cover is less than 37.5%, then `clear`.
+* If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day` or `partly-cloudy-night`.
+* If cloud cover is less than 87.5%, then `clear`.
   
 ##### Hourly:
 
 * If precipitation probability is greater than 30% and accumulation is greater than 0.02 mm, then the precipitation type.
 * If visibility is less than 1 km, then `fog`.
-* If winds are greater than 10 m/s, then `wind`.
-* If cloud cover is greater than 75%, then `cloudy`.
-* If cloud cover is greater than 37.5% and less than 75%, then `partly-cloudy-day` or `partly-cloudy-night`.
+* If winds are greater than 6.7056 m/s, then `wind`.
+* If cloud cover is greater than 87.5%, then `cloudy`.
+* If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day` or `partly-cloudy-night`.
 * If cloud cover is less than 37.5%, then `clear`.
 
 ##### Daily:
 * If max probability is greater than 30% in any hour and total accumulation is greater than 1 mm, then precipitation type.
 	* Type is based on the most common (modal) precipitation type.
 * If average visibility is less than 1 km, then `fog`.
-* If average wind speed is greater than 10 m/s, then `wind`.
-* If average cloud cover is greater than 75%, then `cloudy`.
-* If average cloud cover is greater than 37.5% and less than 75%, then `partly-cloudy-day`.
+* If average wind speed is greater than 6.7056 m/s, then `wind`.
+* If average cloud cover is greater than 87.5%, then `cloudy`.
+* If average cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day`.
 * If average cloud cover is less than 37.5%, then `clear`.
 
 For additional details, see [issue #3](https://github.com/alexander0042/pirateweather/issues/3).
