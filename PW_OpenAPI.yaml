@@ -170,6 +170,16 @@ paths:
                     type: string
                     description: The error message.
                     example: "Internal Server Error"
+        "502":
+          description: "Bad Gateway."
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                    example: "An invalid response was received from the upstream server"
         "200":
           description: Success
           content:
