@@ -1,9 +1,9 @@
 # Deploying Kong Gateway (OSS) in Production on AWS Using Serverless Tools
 ## You can bring a data scientist to a database, but you can’t make them an administrator
 
-Weather APIs can be intricate, dealing with a myriad of data flowing in and out. At  [Pirate Weather](https://pirateweather.net), my background in data processing equipped me to handle file operations with Python, but delving into the realm of cloud infrastructure was an entirely new challenge. While I am familiar enough with the command line and know the basics of AWS, I started this without experience in networking or databases, and frankly, I wasn't eager to learn. This meant that serverless tools were an ideal solution, letting me abstract away the infrastructure complexities and focus on actual building.
+Weather APIs can be intricate, dealing with a myriad of data flowing in and out. At [Pirate Weather](https://pirateweather.net), my background in data processing equipped me to handle file operations with Python, but delving into the realm of cloud infrastructure was an entirely new challenge. While I am familiar enough with the command line and know the basics of AWS, I started this without experience in networking or databases, and frankly, I wasn't eager to learn. This meant that serverless tools were an ideal solution, letting me abstract away the infrastructure complexities and focus on actual building.
 
-Initially, AWS API Gateway was an incredible tool, full stop. It let me rapidly deploy Pirate Weather as a functioning API using little more than a Lambda function and a URL, which was exactly what I was looking for at the time. It was easy to set up, very high performant, and allowed just the right amount of customization. However, two years post-launch, Pirate Weather started to come up against the API key limit imposed by AWS API Gateway, and the developer portal I was using had been depreciated. This meant that it was time to find a new solution, and Kong Gateway was exactly what I was looking for!
+Initially, AWS API Gateway was an incredible tool, full stop. It let me rapidly deploy Pirate Weather as a functioning API using little more than a Lambda function and a URL, which was exactly what I was looking for at the time. It was easy to set up, very high-performance, and allowed just the right amount of customization. However, two years post-launch, Pirate Weather started to come up against the API key limit imposed by AWS API Gateway, and the developer portal I was using had been deprecated. This meant that it was time to find a new solution, and Kong Gateway was exactly what I was looking for!
 
 ### Why Kong?
 Why Kong Gateway (OSS)? Five main reasons:
@@ -11,7 +11,7 @@ Why Kong Gateway (OSS)? Five main reasons:
 1. Cloud native. Kong is designed to run in containers and has built in support for AWS Lambda, which meant it fit right in with my existing infrastructure.
 2. Scalable. Running in containers, Kong is more than capable of handling as many requests as I could throw at it and doesn’t have any key limitations.
 3. Compatible. My awesome registration provider ([Apiable](https://www.apiable.io/)) already supported it as a backend, and the API is very straightforward.
-4. Customization. Kong supports custom plug-ins, which let me use a URL based API Key as authentication.
+4. Customization. Kong supports custom plug-ins, which let me use a URL-based API Key as authentication.
 5. Open Source! It felt wrong to put an open weather API behind a proprietary gateway, so this was an added plus.
 
 ### Overview
@@ -20,7 +20,7 @@ Implementing this was a significant undertaking, and I relied heavily on other p
 ![Architecture](img/PirateKong.png)
 
 ### Image
-The system starts with a lightly customized [Kong OSS image](https://gallery.ecr.aws/j9v4j3c7/pirate-kong), which is build using Docker on an EC2 ARM instant and a very simple dockerfile:
+The system starts with a lightly customized [Kong OSS image](https://gallery.ecr.aws/j9v4j3c7/pirate-kong), which is build using Docker on an EC2 ARM instance and a very simple dockerfile:
 
 ```
 FROM kong:3.2-ubuntu
@@ -31,12 +31,12 @@ RUN luarocks install kong-plugin-request-transformer_1251-0.4-1.all.rock
 USER kong
 ```
 
-Why the custom image? By default, the “Request Transformer” plugin runs after authentication; however, I needed it to run beforehand to extract the API key from a URL string. Specifically, the plugin adds a header from a URI capture: apikey:$(uri_captures['apikey']). This required that I create a ever so slightly modified version of the built in transformer [built in transformer](https://github.com/Kong/kong/tree/a382576530b7ddd57898c9ce917343bddeaf93f4/kong/plugins/request-transformer) with a [priority of 1251](https://docs.konghq.com/gateway/latest/plugin-development/custom-logic/#handlerlua-specifications) so it would run beforehand. By downloading the request transformer files, I could adjust the priority and [build a new rock](https://github.com/luarocks/luarocks/wiki/Creating-a-rock). The created the file that gets copied over and installed in the dockerfile.
+Why the custom image? By default, the “Request Transformer” plugin runs after authentication; however, I needed it to run beforehand to extract the API key from a URL string. Specifically, the plugin adds a header from a URI capture: `apikey:$(uri_captures['apikey'])`. This required that I create an ever so slightly modified version of the built-in transformer [built in transformer](https://github.com/Kong/kong/tree/a382576530b7ddd57898c9ce917343bddeaf93f4/kong/plugins/request-transformer) with a [priority of 1251](https://docs.konghq.com/gateway/latest/plugin-development/custom-logic/#handlerlua-specifications) so it would run beforehand. By downloading the request transformer files, I could adjust the priority and [build a new rock](https://github.com/luarocks/luarocks/wiki/Creating-a-rock). This gets copied over and installed in the Dockerfile.
 
 ### Database
 Now that I had a functioning image, the AWS infrastructure falls into place around it. Kong stores everything in a Postgres database, and while I could have spun up my own, it was easier to rely on the AWS option, Aurora Postgres. Since the load is relatively small, I’m using the smallest Serverless v2 option, which uses 0.5 Aurora Capacity Units. By running this on RDS, it means I don’t have to worry about database updates, maintenance, or backups, and it will scale if there’s ever a wave of traffic.
 
-Kong can also rely on Redis for caching API calls or authentication. While I’m not caching any data yet, caching authentication quotas did produce a slight performance improvement, and allow for quotas to stay in sync when multiple instances of the Kong instance are running or if it gets restarted. For this, I spun up a simple, single node t4g instance, which provides a primary endpoint that Kong uses.
+Kong can also rely on Redis for caching API calls or authentication. While I’m not caching any data yet, caching authentication quotas did produce a slight performance improvement, and allow for quotas to stay in sync when multiple instances of the Kong instance are running or if it gets restarted. For this, I spun up a simple, single node T4g instance, which provides a primary endpoint that Kong uses.
 
 ### Container
 With the AWS infrastructure in place, it was time to get to Kong. At the core, it is an ECS service that calls a task definition that looks like this:
@@ -219,9 +219,9 @@ With the AWS infrastructure in place, it was time to get to Kong. At the core, i
 ```
 </details>
 
-This calls the public image with a few environmental variables referencing the database and cache. The service is designed to run as many copies of this task as required, scaling them up and down as needed. In terms of networking, the containers are assigned a public IP address, which allows the image to be pulled, and are otherwise attached to a private subnet. I also had to configure security groups to allow access to the database, cache, and Lambda function.
+This calls the public image with a few environment variables referencing the database and cache. The service is designed to run as many copies of this task as required, scaling them up and down as needed. In terms of networking, the containers are assigned a public IP address, which allows the image to be pulled, and are otherwise attached to a private subnet. I also had to configure security groups to allow access to the database, cache, and Lambda function.
 
-With the basic Kong container in place, it was time to get traffic two and from it! At the front end, a Network Load Balancer interfaces between the broader internet and however many Kong containers are currently running. It’s configured to distribute traffic evenly between functioning containers, and Route53 is used to set the DNS for api.pirateweather.net to this load balancer or a fallback (more on that in a minute). For the back-end, I configured Kong to pass requests to a Lambda function using their built in plugin and a [Lambda endpoint](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc-endpoints.html) in my VPC. I did all the Kong setup using the wonderful [Konga](https://github.com/pantsel/konga) running in a docker container on a management EC2 VM.
+With the basic Kong container in place, it was time to get traffic to and from it! At the front end, a Network Load Balancer interfaces between the broader internet and however many Kong containers are currently running. It’s configured to distribute traffic evenly between functioning containers, and Route53 is used to set the DNS for api.pirateweather.net to this load balancer or a fallback (more on that in a minute). For the back-end, I configured Kong to pass requests to a Lambda function using their built in plugin and a [Lambda endpoint](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc-endpoints.html) in my VPC. I did all the Kong setup using the wonderful [Konga](https://github.com/pantsel/konga) running in a docker container on a management EC2 VM.
 
 ### Fallback
 While this setup is designed to be resilient and reliable, I’m always thinking about possible failures, and Route53 has a tool built specifically for this! By adding in a healthcheck, Route53 will either return the DNS for the Elastic Load Balancer, or in case there’s an issue with my Konga setup, fall back to AWS API HTTP Gateway. This does not provide quota management or allow for new registrations but keeps things running at a baseline level.
@@ -229,4 +229,4 @@ While this setup is designed to be resilient and reliable, I’m always thinking
 Compared to the regular AWS API Gateway, this setup has advantages and disadvantages. The always on database, container, and cache result in a slightly higher bill than before; however, this should remain relatively flat with increased usage. It’s equally fast, provides a wider range of customisation options, and scaled past the 10,000th key without missing a beat! In six months of production this setup has been rock solid, easily handling more than 20 million requests per month.
 
 ### Apiable
-Sitting alongside all of it is [Apiable](https://www.apiable.io/). This service was exactly what I was looking for to replace my depreciated AWS developer portal, handling registration, signups, and quota plans. Their service interfaces with my Kong admin API via the same port/ load balancer but a [different endpoint within Kong](https://docs.konghq.com/gateway/latest/admin-api/), so all I had to do to connect the two was create an admin consumer API key and point the URL to the correct place.
+Sitting alongside all of it is [Apiable](https://www.apiable.io/). This service was exactly what I was looking for to replace my deprecated AWS developer portal, handling registration, signups, and quota plans. Their service interfaces with my Kong admin API via the same port/load balancer but a [different endpoint within Kong](https://docs.konghq.com/gateway/latest/admin-api/), so all I had to do to connect the two was create an admin consumer API key and point the URL to the correct place.
