@@ -4,7 +4,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.5"
 
-	* December, 2024, API Version 2.5
+	* January, 2025, API Version 2.5
 		* Added support for the Dark Sky translation module as per [issue #152](https://github.com/Pirate-Weather/pirateweather/issues/152).
 		* Correct 10:1 liquid snow ratio in intensity
 		* Zero intensity when pop==0 (https://github.com/Pirate-Weather/pirate-weather-code/issues/30)
