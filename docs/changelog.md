@@ -320,6 +320,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ## Time Machine Changelog
 
+* December 9, 2024
+	* Added a per API key rate limit of 1 to 4/ per second (depending on the plan) to prevent instabililty as per [https://github.com/Pirate-Weather/pirate-weather-code/issues/30#issuecomment-2528680513](https://github.com/Pirate-Weather/pirate-weather-code/issues/30#issuecomment-2528680513)
 * September 13, 2024
 	* Major time machine (historic data) update!
 		* ERA-5 data now available from January 1940 to June 2024 via the excellent [NCAR archive](https://registry.opendata.aws/nsf-ncar-era5/)!
