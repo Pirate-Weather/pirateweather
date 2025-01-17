@@ -707,7 +707,7 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 **Only on `daily`.** the time in which the maxiumum `smoke` occurs represented in UNIX time.
 
 #### summary
-A human-readable summary describing the weather conditions for a given data point. The daily summary is calculated between 4:00 am and 4:00 am local time. For a full list of possible summary values you can view [Appendex A in the translations repository.](https://github.com/Pirate-Weather/translations?tab=readme-ov-file#appendix-a-pirate-weather-summary-format)
+A human-readable summary describing the weather conditions for a given data point. The daily summary is calculated between 4:00 am and 4:00 am local time. For a full list of possible summary values you can view [Appendex A in the translations repository](https://github.com/Pirate-Weather/translations?tab=readme-ov-file#appendix-a-pirate-weather-summary-format).
 
 #### sunriseTime
 **Only on `daily`**. The time when the sun rises for a given day represented in UNIX time.
