@@ -486,7 +486,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.3.1",
+	"version":"V2.5.0",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
@@ -621,7 +621,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 * If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 75%, then `cloudy`.
 * If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day` or `partly-cloudy-night`.
-* If cloud cover is less than 87.5%, then `clear`.
+* If cloud cover is less than 37.5%, then `clear`.
   
 ##### Hourly:
 
@@ -707,7 +707,7 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 **Only on `daily`.** the time in which the maxiumum `smoke` occurs represented in UNIX time.
 
 #### summary
-A human-readable summary describing the weather conditions for a given data point. The daily summary is calculated between 4:00 am and 4:00 am local time.
+A human-readable summary describing the weather conditions for a given data point. The daily summary is calculated between 4:00 am and 4:00 am local time. For a full list of possible summary values you can view [Appendex A in the translations repository.](https://github.com/Pirate-Weather/translations?tab=readme-ov-file#appendix-a-pirate-weather-summary-format)
 
 #### sunriseTime
 **Only on `daily`**. The time when the sun rises for a given day represented in UNIX time.
@@ -837,7 +837,6 @@ Shows which node processed your API call.
 
 #### X-Response-Time
 The time taken to process the request in milliseconds.
-
 
 ### Error Codes
 
