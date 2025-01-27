@@ -1,7 +1,7 @@
 # API Docs
 This page serves as the documentation for the Pirate Weather API call and response format. Since this service is designed to be a drop in replacement for the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs), the goal is to match that as closely as possible, and any disagreement between their service and Pirate Weather will be treated as a bug. However, as Pirate Weather continues to evolve, I plan on adding small, non-breaking additions where I can, and they will be documented here! Plus, always better to have my own (open source and editable) version of the docs!
 
-An alpha [Swagger UI](https://github.com/swagger-api/swagger-ui) for the API is also available at <https://api.pirateweather.net/docs>.   
+<!-- An alpha [Swagger UI](https://github.com/swagger-api/swagger-ui) for the API is also available at <https://api.pirateweather.net/docs>. -->
 
 ## Request
 The minimum structure for every request to this service is the same:
