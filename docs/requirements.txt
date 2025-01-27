@@ -3,7 +3,7 @@ beautifulsoup4==4.12.3
 click==8.1.8
 colorama==0.4.6
 ghp-import==2.1.0
-importlib-metadata==8.5.0
+importlib-metadata==8.6.1
 Jinja2==3.1.5
 Markdown==3.7
 MarkupSafe==3.0.2
@@ -15,7 +15,7 @@ mkdocs-swagger-ui-tag==0.6.11
 packaging==24.2
 pathspec==0.12.1
 Pygments==2.19.1
-pymdown-extensions==10.14
+pymdown-extensions==10.14.1
 python-dateutil==2.9.0.post0
 PyYAML==6.0.2
 pyyaml_env_tag==0.1
