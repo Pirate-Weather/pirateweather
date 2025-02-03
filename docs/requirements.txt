@@ -21,5 +21,6 @@ PyYAML==6.0.2
 pyyaml_env_tag==0.1
 six==1.17.0
 soupsieve==2.6
+typing-extensions==4.12.2
 watchdog==6.0.0
 zipp==3.21.0
