@@ -3,6 +3,8 @@ This is the primary repository for the Pirate Weather API, a free and open API d
 
 To sign up, a free API key can be requested at [https://pirate-weather.apiable.io/](https://pirate-weather.apiable.io/). API Documentation is at [https://pirateweather.net/en/latest/API/](https://pirateweather.net/en/latest/API/), a front end is available at [https://merrysky.net](https://merrysky.net) and the status page is available at https://pirateweather.xitoring.io/
 
+The API source code is now publicly available here: https://github.com/Pirate-Weather/pirate-weather-code! You're now able to self-host your own instance of the Pirate Weather API or just browse through the code if you're curious on how the API works.
+
 ## Why
 
 1. Weather forecasts are produced by government agencies using computational models; however, the data is hard to work with. Instead, there are a bunch of companies that take this data, process it, and provide easier to work with APIs. However, the steps that the data goes through aren't public or documented (for example, what do they mean by "percent of precipitation"?!?). I put this service together in order to provide a better way for people to know where their weather data is coming from and how it is being processed! 
