@@ -662,7 +662,7 @@ The density of total atmospheric ozone at a given time in Dobson units.
 **Only on `hourly` and `daily`**. The total amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For day 0, this is the precipitation during the remaining hours of the day.
 
 #### precipIntensity
-The rate in which liquid precipitation is falling. This value is expressed in millimetres per hour or inches per hour depending on the requested `units`.
+The rate in which precipitation is falling, in liquid water equivalent! This value is expressed in millimetres per hour or inches per hour depending on the requested `units`. This means (approximately) that if 1 cm of snow if forecasted to fall in an hour, the intensity would be 1 mm/h, as 1 mm of water ~= 10 mm of snow == 1 cm of snow. 
 
 #### precipIntensityError
 The standard deviation of the `precipIntensity` from the GEFS model.

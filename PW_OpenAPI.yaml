@@ -267,7 +267,7 @@ components:
           example: 27
         precipIntensity:
           type: number
-          description: The intensity of precipitation in millimeters per hour.
+          description: The intensity of liquid water equivalent precipitation in millimeters per hour.
           example: 0
         precipProbability:
           type: number

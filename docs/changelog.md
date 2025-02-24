@@ -4,10 +4,12 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.5"
 
-	* February, 2025, API Version 2.5
-		* Added support for the Dark Sky translation module as per [issue #152](https://github.com/Pirate-Weather/pirateweather/issues/152).
-		* Correct 10:1 liquid snow ratio in intensity
-		* Zero intensity when pop==0 (https://github.com/Pirate-Weather/pirate-weather-code/issues/30)
+	* February 24, 2025, API Version 2.5
+		* Added support for the Dark Sky translation module as per [issue #152](https://github.com/Pirate-Weather/pirateweather/issues/152)!
+		* Document liquid water ratio in intensity to [align with Dark Sky](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131). 
+		* Zero intensity when pop==0 (https://github.com/Pirate-Weather/pirate-weather-code/issues/30).
+		* Updated Docker containers to remove old pip requirements.
+		* Move to Zarr V3 for the response script! 
 
 ??? note "Version 2.4"
 
