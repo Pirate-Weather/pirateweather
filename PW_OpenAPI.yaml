@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: "2.4.1"
+  version: "2.5.0"
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -49,9 +49,67 @@ paths:
             type: string
         - name: lang
           in: query
-          description: Not presently implemented. Change the forecast language.
+          description: Returns the forecast summaries in the desired language.
           schema:
             type: string
+            enum:
+              - ar
+              - az
+              - be
+              - bg
+              - bn
+              - bs
+              - ca
+              - cs
+              - cy
+              - da
+              - de
+              - el
+              - en
+              - eo
+              - es
+              - et
+              - fa
+              - fi
+              - fr
+              - ga
+              - gd
+              - he
+              - hi
+              - hr
+              - hu
+              - id
+              - is
+              - it
+              - ja
+              - ka
+              - kn
+              - ko
+              - kw
+              - lv
+              - ml
+              - mr
+              - nl
+              - no
+              - pa
+              - pl
+              - pt
+              - ro
+              - ru
+              - sk
+              - sl
+              - sr
+              - sv
+              - ta
+              - te
+              - tet
+              - tr
+              - uk
+              - ur
+              - vi
+              - x-pig-latin
+              - zh
+              - zh-tw
         - name: units
           in: query
           description: Return the weather forecast data in the requested unit system.
@@ -112,6 +170,16 @@ paths:
                     type: string
                     description: The error message.
                     example: "Internal Server Error"
+        "502":
+          description: "Bad Gateway."
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                    example: "An invalid response was received from the upstream server"
         "200":
           description: Success
           content:
@@ -199,7 +267,7 @@ components:
           example: 27
         precipIntensity:
           type: number
-          description: The intensity of precipitation in millimeters per hour.
+          description: The intensity of liquid water equivalent precipitation in millimeters per hour.
           example: 0
         precipProbability:
           type: number
@@ -775,7 +843,7 @@ components:
         version:
           type: string
           description: The version of Pirate Weather used to generate the forecast.
-          example: V2.4.1
+          example: V2.5.0
         sourceIDX:
           type: object
           description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>2.

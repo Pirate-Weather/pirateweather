@@ -1,5 +1,5 @@
 # Roadmap
-1. Text summaries and translations
+1. Text summaries
 	* Based on the [existing repository](https://github.com/alexander0042/translations).
 2. Weather maps from new Zarr datafiles.
 3. Add in alerts for Canada/ EU/ other.
