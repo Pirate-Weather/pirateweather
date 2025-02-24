@@ -46,9 +46,11 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 ## Recent Updates- Winter 2024
 Up to version 2.5! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-* Added support for the Dark Sky translation module as per [issue #152](https://github.com/Pirate-Weather/pirateweather/issues/152).
-* Correct 10:1 liquid snow ratio in intensity
-* Zero intensity when pop==0 (https://github.com/Pirate-Weather/pirate-weather-code/issues/30)
+* Added support for the Dark Sky translation module as per [issue #152](https://github.com/Pirate-Weather/pirateweather/issues/152)!
+* Document liquid water ratio in intensity to [align with Dark Sky](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131). 
+* Zero intensity when pop==0 (https://github.com/Pirate-Weather/pirate-weather-code/issues/30).
+* Updated Docker containers to remove old pip requirements.
+* Move to Zarr V3 for the response script! 
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
