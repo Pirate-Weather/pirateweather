@@ -9,7 +9,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Document liquid water ratio in intensity to [align with Dark Sky](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131). 
 		* Zero intensity when pop==0 (https://github.com/Pirate-Weather/pirate-weather-code/issues/30).
 		* Updated Docker containers to remove old pip requirements.
-		* Move to Zarr V3 for the response script! 
+		* Move to Zarr V3 for the response script!
+		* Corrected an issue where the fire index was capped at 15 instead of 100
 
 ??? note "Version 2.4"
 
