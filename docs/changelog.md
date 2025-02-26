@@ -16,6 +16,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Improved Dev endpoint stability.
 		* Improved monitoring stability
 		* Fixed historic data python environment 
+	* February 26, 2025, API Version 2.5.2	
+	 	* Fix a bug where the maximum intensity time was incorrect.
+	 	* Allow the GEFS model to be excluded [issue #412]. 
 
 ??? note "Version 2.4"
 
