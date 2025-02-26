@@ -10,7 +10,12 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Zero intensity when pop==0 (https://github.com/Pirate-Weather/pirate-weather-code/issues/30).
 		* Updated Docker containers to remove old pip requirements.
 		* Move to Zarr V3 for the response script!
-		* Corrected an issue where the fire index was capped at 15 instead of 100
+		* Corrected an issue where the fire index was capped at 15 instead of 100.
+	* February 26, 2025, API Version 2.5.1	
+		* Updated containers to Python 3.13.
+		* Improved Dev endpoint stability.
+		* Improved monitoring stability
+		* Fixed historic data python environment 
 
 ??? note "Version 2.4"
 
