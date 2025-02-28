@@ -309,7 +309,7 @@ If you require a language not listed above, please consider contributing to the 
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V2.5.2"
+	   "version": "V2.5.3"
 	   }
 	}
 ```
