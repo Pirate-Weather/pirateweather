@@ -5,11 +5,13 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ???+ note "Version 2.5"
 
 	* February 28, 2025, API Version 2.5.3
-	 	* Fix a bug where the maximum intensity time was incorrect.
-	 	* Allow the GEFS model to be excluded [issue #412].
+	 	* Fix an issue where the possible precipitation text was generating incorrectly on days with multiple precipitation types forecasted as per [pull request #80](https://github.com/Pirate-Weather/pirate-weather-code/pull/80)
+	 	* Allow the GEFS model to be excluded [issue #412](https://github.com/Pirate-Weather/pirateweather/issues/412).
+		* Zero intensity on currently and minutely when pop==0 as per [pull request #79](https://github.com/Pirate-Weather/pirate-weather-code/pull/79) and [pull request #81](https://github.com/Pirate-Weather/pirate-weather-code/pull/81).
+		* Zero accumulation on hourly when pop==0 as per [pull request #79](https://github.com/Pirate-Weather/pirate-weather-code/pull/79)
 	* February 26, 2025, API Version 2.5.2	
 	 	* Fix a bug where the maximum intensity time was incorrect.
-	 	* Allow the GEFS model to be excluded [issue #412].
+	 	* Allow the GEFS model to be excluded [issue #412](https://github.com/Pirate-Weather/pirateweather/issues/412).
 	* February 26, 2025, API Version 2.5.1	
 		* Updated containers to Python 3.13.
 		* Improved Dev endpoint stability.
