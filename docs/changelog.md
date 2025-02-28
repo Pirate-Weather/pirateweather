@@ -4,6 +4,17 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.5"
 
+	* February 28, 2025, API Version 2.5.3
+	 	* Fix a bug where the maximum intensity time was incorrect.
+	 	* Allow the GEFS model to be excluded [issue #412].
+	* February 26, 2025, API Version 2.5.2	
+	 	* Fix a bug where the maximum intensity time was incorrect.
+	 	* Allow the GEFS model to be excluded [issue #412].
+	* February 26, 2025, API Version 2.5.1	
+		* Updated containers to Python 3.13.
+		* Improved Dev endpoint stability.
+		* Improved monitoring stability
+		* Fixed historic data python environment  
 	* February 24, 2025, API Version 2.5
 		* Added support for the Dark Sky translation module as per [issue #152](https://github.com/Pirate-Weather/pirateweather/issues/152)!
 		* Document liquid water ratio in intensity to [align with Dark Sky](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131). 
@@ -11,14 +22,6 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Updated Docker containers to remove old pip requirements.
 		* Move to Zarr V3 for the response script!
 		* Corrected an issue where the fire index was capped at 15 instead of 100.
-	* February 26, 2025, API Version 2.5.1	
-		* Updated containers to Python 3.13.
-		* Improved Dev endpoint stability.
-		* Improved monitoring stability
-		* Fixed historic data python environment 
-	* February 26, 2025, API Version 2.5.2	
-	 	* Fix a bug where the maximum intensity time was incorrect.
-	 	* Allow the GEFS model to be excluded [issue #412]. 
 
 ??? note "Version 2.4"
 
