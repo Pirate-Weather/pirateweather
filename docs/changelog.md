@@ -4,6 +4,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.5"
 
+	* March 7, 2025, API Version 2.5.4
+	 	* The API now returns a HTTP 400 Language Not Supported error for invalid translations instead of defaulting to English.
 	* February 28, 2025, API Version 2.5.3
 	 	* Fix an issue where the possible precipitation text was generating incorrectly on days with multiple precipitation types forecasted as per [pull request #80](https://github.com/Pirate-Weather/pirate-weather-code/pull/80)
 	 	* Allow the GEFS model to be excluded [issue #412](https://github.com/Pirate-Weather/pirateweather/issues/412).
