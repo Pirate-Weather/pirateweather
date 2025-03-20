@@ -1,3 +1,5 @@
+# Navigating Stormy Seas: Troubleshooting (and Fixing) Pirate Weather’s Container Memory Usage with AWS Container Insights
+
 Running applications in containers provides numerous benefits—easy deployments, rapid scaling, streamlined updates, and more. However, troubleshooting and maintaining observability can become challenging, especially when containers run in cloud environments. Issues that didn't surface during testing might appear suddenly in production, and without direct access to underlying processes, diagnosing root causes can quickly become complex. This exact scenario happened to us recently at Pirate Weather, where unexpected container failures led to brief and seemingly random downtime incidents.
 
 As outlined previously in our infrastructure overview, Pirate Weather’s production stack is hosted on Amazon Elastic Container Service (Amazon ECS), utilizing a series of ECS tasks managed by a single ECS service. Our service ensures high availability by maintaining at least two tasks running at all times, each task consisting of three distinct containers. Behind these tasks, we leverage auto-scaling EC2 instances to handle dynamic workloads.
@@ -10,7 +12,7 @@ Enabling AWS Container Insights was incredibly straightforward—just a single c
 
 After collecting data for a couple of days (and observing several more restarts), we revisited CloudWatch. The depth of data was impressive—almost overwhelming at first glance—but by filtering on key parameters like ClusterName, ContainerName, and ServiceName, we quickly identified the culprit. Our "TimeMachine" container, responsible for handling historical data requests, was steadily leaking memory and occasionally experiencing significant spikes. These spikes caused it to exceed its allocated memory, resulting in container termination and subsequent stack downtime.
 
-<img src="https://github.com/Pirate-Weather/pirateweather/raw/main/docs/images/CloudWatch.png" width="325">
+<img src="https://github.com/Pirate-Weather/pirateweather/raw/main/docs/images/CloudWatch.png">
 
 While a complete, permanent solution requires deeper investigation into the memory leak, AWS Container Insights provided immediate actionable insights, enabling us to implement two effective short-term solutions:
 
