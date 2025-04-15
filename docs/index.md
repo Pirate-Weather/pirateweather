@@ -50,6 +50,7 @@ Up to version 2.6! As always, details are available in the [changelog](https://p
 * Updated the daily summaries to show more precipitation information as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
 	* Note: This is not the full daily summaries and merely enhances the current daily summaries with more precipitation information
 * Fixes an issue where GEFS error was always equal to precipitation accumulation as per [issue #434](https://github.com/Pirate-Weather/pirateweather/issues/434)
+* Add a Pirate Weather iconset as per issue [#402](https://github.com/Pirate-Weather/pirateweather/issues/402)
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
