@@ -309,7 +309,7 @@ If you require a language not listed above, please consider contributing to the 
 	    },
 	   "nearest-station": 0,
 	   "units": "ca",
-	   "version": "V2.5.4"
+	   "version": "V2.6.0"
 	   }
 	}
 ```
@@ -486,7 +486,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.5.4",
+	"version":"V2.6.0",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
