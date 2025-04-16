@@ -4,7 +4,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.6"
 
-	* April x, 2025, API Version 2.6
+	* April 16, 2025, API Version 2.6
 	 	* Added the weekly and minutely summaries as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
 		* Updated the daily summaries to show more precipitation information as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
 			* Note: This is not the full daily summaries and merely enhances the current daily summaries with more precipitation information
