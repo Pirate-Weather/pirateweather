@@ -159,159 +159,166 @@ Added as part of the V2.5 release, this parameter allows you to sepecify what la
 
 If you require a language not listed above, please consider contributing to the [API translation module](https://github.com/Pirate-Weather/translations).
 
+#### Icon
+If you add `icon=pirate` to the list of parameters you can get an expanded icon set with icons that were not available in the Dark Sky API.
+
 ### Example
 ```
 	GET https://api.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/45.42,-74.30?&units=ca
-	{
-	  "latitude": 45.42,
-	  "longitude": -75.69,
-	  "timezone": "America/Toronto",
-	  "offset": -5.0,
-	  "elevation": 69,
-	  "currently": {
-		"time": 1674318840,
-		"summary": "Clear",
-		"icon": "clear-day",
-		"nearestStormDistance": 0,
-		"nearestStormBearing": 0,
-		"precipIntensity": 0.0,
-		"precipProbability": 0.0,
-		"precipIntensityError": 0.0,
+	"latitude": 45.42,
+	"longitude": -74.3,
+	"timezone": "America/Toronto",
+	"offset": -4,
+	"elevation": 77,
+	"currently": {
+		"time": 1744842420,
+		"summary": "Breezy and Mostly Cloudy",
+		"icon": "wind",
+		"nearestStormDistance": 40.21,
+		"nearestStormBearing": 63,
+		"precipIntensity": 0,
+		"precipProbability": 0,
+		"precipIntensityError": 0.07,
 		"precipType": "none",
-		"temperature": -4.59,
-		"apparentTemperature": -7.82,
-		"dewPoint": -6.21,
-		"humidity": 0.88,
-		"pressure": 1014.3,
-		"windSpeed": 7.20,
-		"windGust": 14.18,
-		"windBearing": 255.53,
-		"cloudCover": 0.14,
-		"uvIndex": 2.38,
-		"visibility": 14.7,
-		"ozone": 402.2
-	  },
-	   "minutely":{
-	      "summary":"Clear",
-	      "icon":"clear",
-	      "data":[
-	         {
-	            "time": 1674318840,
-		    "precipIntensity": 0.0,
-		    "precipProbability": 0.0,
-		    "precipIntensityError": 0.0,
-		    "precipType": "none"
-	         },
+		"temperature": 3.16,
+		"apparentTemperature": -3.86,
+		"dewPoint": -0.11,
+		"humidity": 0.76,
+		"pressure": 1006.65,
+		"windSpeed": 25.42,
+		"windGust": 46,
+		"windBearing": 289,
+		"cloudCover": 0.79,
+		"uvIndex": 0.65,
+		"visibility": 11.83,
+		"ozone": 439.84
+	},
+	"minutely": {
+		"summary": "Breezy and mostly cloudy for the hour.",
+		"icon": "wind",
+	    "data": [
+		{
+			"time": 1744842420,
+			"precipIntensity": 0,
+			"precipProbability": 0,
+			"precipIntensityError": 0.07,
+			"precipType": "none"
+		},
 	   ...
-	      ]
-	   },
-	   "hourly":{
-	      "summary": "Cloudy",
-	      "icon": "cloudy",
-	      "data": [
-	         {
-	            "time": 1674316800,
-	            "icon": "partly-cloudy-day",
-	            "summary": "Partly Cloudy",
-	            "precipIntensity": 0.0033,
-	            "precipProbability": 0.0,
-	            "precipIntensityError": 0.0026,
-	            "precipAccumulation": 0.0033,
-	            "precipType": "snow",
-	            "temperature": -5.4,
-	            "apparentTemperature": -8.63,
-	            "dewPoint": -7.02,
-	            "humidity": 0.9,
-	            "pressure": 1014.4,
-	            "windSpeed": 6.88,
-	            "windGust": 15.08,
-	            "windBearing": 258.69,
-	            "cloudCover": 0.49,
-	            "uvIndex": 1.74,
-	            "visibility": 14.8,
-	            "ozone": 405.38
-	         },
-	   ...
-	      ]
-	   },
-	   "daily": {
-	      "summary": "Snow",
-	      "icon": "cloudy",
-	      "data": [
-	         {
-	            "time": 1674277200,
-	            "icon": "cloudy",
-	            "summary": "Cloudy",
-	            "sunriseTime": 1674304502,
-	            "sunsetTime": 1674338008,
-	            "moonPhase": 0.99,
-	            "precipIntensity": 0.0179,
-	            "precipIntensityMax": 0.0362,
-	            "precipIntensityMaxTime": 1674356400,
-	            "precipProbability": 0.0,
-	            "precipAccumulation": 0.2861,
-	            "precipType": "none",
-	            "temperatureHigh": -2.59,
-	            "temperatureHighTime": 1674331200,
-	            "temperatureLow": -5.4,
-	            "temperatureLowTime": 1674316800,
-	            "apparentTemperatureHigh": -2.89,
-	            "apparentTemperatureHighTime": 1674342000,
-	            "apparentTemperatureLow": -8.63,
-	            "apparentTemperatureLowTime": 1674316800,
-	            "dewPoint": -5.6,
-	            "humidity": 0.848,
-	            "pressure": 1013.11,
-	            "windSpeed": 5.92,
-	            "windGust": 14.4,
-	            "windGustTime": 1674320400,
-	            "windBearing": 210.18,
-	            "cloudCover": 0.77,
-	            "uvIndex": 2.38,
-	            "uvIndexTime": 1674320400,
-	            "visibility": 15.1,
-	            "temperatureMin": -5.4,
-	            "temperatureMinTime": 1674316800,
-	            "temperatureMax": -2.59,
-	            "temperatureMaxTime": 1674331200,
-	            "apparentTemperatureMin": -8.63,
-	            "apparentTemperatureMinTime": 1674316800,
-	            "apparentTemperatureMax": -2.89,
-	            "apparentTemperatureMaxTime": 1674342000
-	         },
-	  ...
-	   ]
-	   "alerts": [
-			{
-				"title": "Wind Advisory issued January 24 at 9:25AM CST until January 24 at 6:00PM CST by NWS Corpus Christi TX",
-				"regions": ["Live Oak", " Bee", " Goliad", " Victoria", " Jim Wells", " Inland Kleberg", " Inland Nueces", " Inland San Patricio", " Coastal Aransas", " Inland Refugio", " Inland Calhoun", " Coastal Kleberg", " Coastal Nueces", " Coastal San Patricio", " Aransas Islands", " Coastal Refugio", " Coastal Calhoun", " Kleberg Islands", " Nueces Islands", " Calhoun Islands"],
-				"severity": "Moderate",
-				"time": 1674573900,
-				"expires": 1674604800,
-				"description": "* WHAT...Southwest winds 25 to 30 mph with gusts up to 40 mph.  * WHERE...Portions of South Texas.  * WHEN...Until 6 PM CST this evening.  * IMPACTS...Gusty winds could blow around unsecured objects. Tree limbs could be blown down and a few power outages may result.",
-				"uri": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.492c55233ef16d7a98a3337298c828b0f358ea34.001.1"
-			},
-		]
-	   "flags": {
-	      "sources": [
-	         "ETOPO1",
-	         "gfs",
-	         "gefs",
-	         "hrrrsubh",
-	         "hrrr"
-	    ],
-	   "sourceTimes": {
-	         "hrrr_0-18": "2023-01-21 14:00:00",
-	         "hrrr_subh": "2023-01-21 14:00:00",
-	         "hrrr_18-48": "2023-01-21 12:00:00",
-	         "gfs": "2023-01-21 06:00:00",
-	         "gefs": "2023-01-21 06:00:00"
-	    },
-	   "nearest-station": 0,
-	   "units": "ca",
-	   "version": "V2.5.4"
-	   }
+	  ]
+	},
+	"hourly": {
+	"summary": "Mostly Clear",
+	"icon": "clear-night",
+	"data": [
+		{
+			"time": 1744840800,
+			"summary": "Breezy and Mostly Cloudy",
+			"icon": "wind",
+			"precipIntensity": 0,
+			"precipProbability": 0.06,
+			"precipIntensityError": 0.0864,
+			"precipAccumulation": 0,
+			"precipType": "rain",
+			"temperature": 4.35,
+			"apparentTemperature": -3.01,
+			"dewPoint": -2.59,
+			"humidity": 0.61,
+			"pressure": 1006.08,
+			"windSpeed": 25.92,
+			"windGust": 41.4,
+			"windBearing": 290,
+			"cloudCover": 0.83,
+			"uvIndex": 0.88,
+			"visibility": 11.09,
+			"ozone": 439.37
+		},
+	    ...
+	  ]
+	},
+	"daily": {
+	"summary": "Drizzle on Friday and Saturday and Tuesday, with high temperatures peaking at 16°C on Saturday.",
+	"icon": "rain",
+	"data": [
+		{
+			"time": 1744776000,
+			"summary": "Breezy and mostly cloudy.",
+			"icon": "wind",
+			"sunriseTime": 1744798190,
+			"sunsetTime": 1744847087,
+			"moonPhase": 0.61,
+			"precipIntensity": 0,
+			"precipIntensityMax": 0,
+			"precipIntensityMaxTime": 1744776000,
+			"precipProbability": 0.06,
+			"precipAccumulation": 0,
+			"precipType": "snow",
+			"temperatureHigh": 4.35,
+			"temperatureHighTime": 1744837200,
+			"temperatureLow": -0.77,
+			"temperatureLowTime": 1744884000,
+			"apparentTemperatureHigh": -3.01,
+			"apparentTemperatureHighTime": 1744840800,
+			"apparentTemperatureLow": -7.18,
+			"apparentTemperatureLowTime": 1744884000,
+			"dewPoint": -2.25,
+			"humidity": 0.7,
+			"pressure": 1002.76,
+			"windSpeed": 25.56,
+			"windGust": 40.17,
+			"windGustTime": 1744822800,
+			"windBearing": 277.08,
+			"cloudCover": 0.74,
+			"uvIndex": 3.1,
+			"uvIndexTime": 1744819200,
+			"visibility": 13.76,
+			"temperatureMin": 0.79,
+			"temperatureMinTime": 1744797600,
+			"temperatureMax": 4.85,
+			"temperatureMaxTime": 1744776000,
+			"apparentTemperatureMin": -6.63,
+			"apparentTemperatureMinTime": 1744801200,
+			"apparentTemperatureMax": -1.07,
+			"apparentTemperatureMaxTime": 1744776000
+		},
+	    ...
+	  ]
 	}
+	"alerts": [
+		{
+			"title": "Wind Advisory issued January 24 at 9:25AM CST until January 24 at 6:00PM CST by NWS Corpus Christi TX",
+			"regions": ["Live Oak", " Bee", " Goliad", " Victoria", " Jim Wells", " Inland Kleberg", " Inland Nueces", " Inland San Patricio", " Coastal Aransas", " Inland Refugio", " Inland Calhoun", " Coastal Kleberg", " Coastal Nueces", " Coastal San Patricio", " Aransas Islands", " Coastal Refugio", " Coastal Calhoun", " Kleberg Islands", " Nueces Islands", " Calhoun Islands"],
+			"severity": "Moderate",
+			"time": 1674573900,
+			"expires": 1674604800,
+			"description": "* WHAT...Southwest winds 25 to 30 mph with gusts up to 40 mph.  * WHERE...Portions of South Texas.  * WHEN...Until 6 PM CST this evening.  * IMPACTS...Gusty winds could blow around unsecured objects. Tree limbs could be blown down and a few power outages may result.",
+			"uri": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.492c55233ef16d7a98a3337298c828b0f358ea34.001.1"
+		},
+	]
+	"flags": {
+		"sources": [
+			"ETOPO1",
+			"gfs",
+			"hrrrsubh",
+			"hrrr_0-18",
+			"nbm",
+			"nbm_fire",
+			"hrrr_18-48",
+			"gefs"
+		],
+		"sourceTimes": {
+			"hrrr_subh": "2025-04-16 20Z",
+			"hrrr_0-18": "2025-04-16 19Z",
+			"nbm": "2025-04-16 18Z",
+			"nbm_fire": "2025-04-16 12Z",
+			"hrrr_18-48": "2025-04-16 18Z",
+			"gfs": "2025-04-16 12Z",
+			"gefs": "2025-04-16 06Z"
+		},
+		"nearest-station": 0,
+		"units": "ca",
+		"version": "V2.6.0"
+  	}
 ```
 
 ### Time Machine Request
@@ -345,60 +352,7 @@ The response format is the same as the forecast except:
 * The `alerts` block is not included.
 * The `flags` block will show the sources used in the request, the requested `units` and the API version.
 
-When requesting data from the PW archive (3-4 months trailing), the optional `tmextra` query parameter controls which variables are returned. When it is included, same variables that are present in a forecast request (except alerts) are returned. When it is not included (by default), the same range of parameters returned by ERA5 requests is included.  
-
-#### API Key
-The API key needs to be requested from <https://pirateweather.net/>. After signing up for the service, the forecast API needs to be subscribed to, by logging in and clicking subscribe. Once subscribed to the API, it can take up to 20 minutes for the change to propagate to the gateway to allow requests, so go grab a coffee and it should be ready shortly after. 
-As a reminder, this key is secret, and unique to each user. Keep it secret, and do not have it hard-coded into an application's source, and definitely don't commit it to a git repo!
-
-#### Location
-The location is specified by a latitude (1st) and longitude (2nd) in decimal degrees (ex. `45.42,-75.69`). An unlimited number of decimal places are allowed; however, the API only returns data to the closest 13 km model square, so there's no benefit after 3 digits. While the recommended way to format this field is with positive (North/East) and negative (South/West) degrees, results should be valid when submitting longitudes from 0 to 360, instead of -180 to 180. 
-
-If you are looking for a place to figure out the latitude and longitude, [https://www.latlong.net/](https://www.latlong.net/) is a good starting point.
-
-#### Time
-This field is required for the time machine request and it can be specified in one of three different ways:
-
-1. UNIX timestamp, or the number of seconds since midnight GMT on 1 Jan 1970 (this is the preferred way).
-2. A datestring in the local time zone of the location being requested: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]`.
-3. A datestring in UTC time: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]Z`
-4. A time delta (in seconds) from the current time (ex. to get results for the previous day): `-86400`.
-
-It's worth noting that Dark Sky also allows strings with a specified time zone (ex. `+[HH][MM]`). Right now this isn't supported, but if it's important for a workflow I can try to get it working.
-If the time variable is not included, then the current time is used for the request. If a time variable is included, the request is treated as if it was requested at that time. This means that the API will return the forecast data that would have been returned then- so not quite observations, but the last forecast for that date. Results are always returned in UTC time using UNIX timestamps, and internally UNIX time is used for everything, with the exception of calculating where to begin and end the daily data. Also, for checking time format conversions, I found <https://www.silisoftware.com/tools/date.php> to be an invaluable resource.
-
-#### Units
-Specifies the requested unit for the weather conditions. Options are
-
-* `ca`: SI, with Wind Speed and Wind Gust in kilometres per hour.
-* `uk`: SI, with Wind Speed and Wind Gust in miles per hour and visibility are in miles.
-* `us`: Imperial units
-* `si`: SI units
-
-For compatibility with Dark Sky, `us` (Imperial units) are the default if nothing is specified. For reference, the SI units are
-
-* `summary`: Temperatures in degrees Celsius or accumulation in centimetres .
-* `precipIntensity`: Millimetres per hour.
-* `precipIntensityMax`: Millimetres per hour.
-* `precipAccumulation`: Centimetres.
-* `temperature`: Degrees Celsius.
-* `temperatureMin`: Degrees Celsius.
-* `temperatureMax`: Degrees Celsius.
-* `apparentTemperature`: Degrees Celsius.
-* `dewPoint`: Degrees Celsius.
-* `windSpeed`: Meters per second.
-* `windGust`: Meters per second.
-* `pressure`: Hectopascals.
-* `visibility`: Kilometres.
-
-#### Exclude
-Added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Exclude parameters can be added as a comma-separated list, with the options being:
-
-* `currently`
-* `minutely`
-* `hourly`
-* `daily`
-* `alerts`
+When requesting data from the PW archive (3-4 months trailing), the optional `tmextra` query parameter controls which variables are returned. When it is included, same variables that are present in a forecast request (except alerts) are returned. When it is not included (by default), the same range of parameters returned by ERA5 requests is included.
 
 ## Response
 ```
@@ -486,7 +440,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.5.4",
+	"version":"V2.6.0",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
@@ -611,6 +565,33 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
 `clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `thunderstorm`, `hail` or `mixed` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
+
+If `icon=pirate` is added as a query string parameter the list of icons is epanded to:
+
+* `mostly-clear-day`
+* `mostly-clear-night`
+* `mostly-cloudy-day`
+* `mostly-cloudy-night`
+* `possible-rain-day`
+* `possible-rain-night`
+* `possible-snow-day`
+* `possible-snow-night`
+* `possible-sleet-day`
+* `possible-sleet-night`
+* `possible-precipitation-day`
+* `possible-precipitation-night`
+* `precipitation`
+* `drizzle`
+* `light-rain`
+* `heavy-rain`
+* `flurries`
+* `light-snow`
+* `heavy-snow`
+* `very-light-sleet`
+* `light-sleet`
+* `heavy-sleet`
+* `breezy`
+* `dangerous-wind`
 
 The daily icon is calculated between 4:00 am and 4:00 am local time. The algorithm here is straightforward, coming from this [NOAA resource](https://weather.com/science/weather-explainers/news/common-weather-terms-used-incorrectly):
 

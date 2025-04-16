@@ -2,7 +2,16 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
-???+ note "Version 2.5"
+???+ note "Version 2.6"
+
+	* April 16, 2025, API Version 2.6
+	 	* Added the weekly and minutely summaries as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
+		* Updated the daily summaries to show more precipitation information as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
+			* Note: This is not the full daily summaries and merely enhances the current daily summaries with more precipitation information
+		* Fixes an issue where GEFS error was always equal to precipitation accumulation as per [issue #434](https://github.com/Pirate-Weather/pirateweather/issues/434)
+		* Add a Pirate Weather iconset as per issue [#402](https://github.com/Pirate-Weather/pirateweather/issues/402)
+
+??? note "Version 2.5"
 
 	* March 7, 2025, API Version 2.5.4
 	 	* The API now returns a HTTP 400 Language Not Supported error for invalid translations instead of defaulting to English.
