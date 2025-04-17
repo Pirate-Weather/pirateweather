@@ -640,10 +640,18 @@ The approximate distance to the nearest storm in kilometers or miles depending o
 The density of total atmospheric ozone at a given time in Dobson units.
 
 #### precipAccumulation
-**Only on `hourly` and `daily`**. The total amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For day 0, this is the precipitation during the remaining hours of the day.
+**Only on `hourly` and `daily`**. The total amount of precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For day 0, this is the precipitation during the remaining hours of the day.
+A 1:10 snowfall ratio is used and already factored into this parameter:
+  * 5 cm (50 mm) of snow is forecasted for an hour, `precipAccumulation`, in cm, will return 5.
+  * 5 mm of rain is forecasted for an hour, `precipAccumulation`, in cm, will return 0.5.
+  * 5 mm of rain and 5 cm of snow is forecasted for an hour, `precipAccumulation`, in cm, will return 5.5. This illustrates the value of using the `liquidAccumulation`, `snowAccumulation`, and `iceAccumulation` parameters instead of `precipAccumulation`.
 
 #### precipIntensity
-The rate in which precipitation is falling, in liquid water equivalent! This value is expressed in millimetres per hour or inches per hour depending on the requested `units`. This means (approximately) that if 1 cm of snow if forecasted to fall in an hour, the intensity would be 1 mm/h, as 1 mm of water ~= 10 mm of snow == 1 cm of snow. 
+Precipitation intensity units have been revised to reflect the Dark Sky style. This means that intensity is always reported in **liquid water equivalent**, and this should be reflected when displaying the data.
+  * So if 5 cm (50 mm) of snow is forecasted for an hour, `precipIntensity`, in mm, will return 5, as 5 mm of rain provides 50 mm of snow.
+    * If 5 mm of rain is forecasted for an hour, `precipIntensity`, in mm, will return 5, for 5 mm of rain.
+  * See [this thread for details](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131).
+  * In the future, `snowIntensity`, `sleetIntensity`, and `rainIntensity` will be added to clarify this.
 
 #### precipIntensityError
 The standard deviation of the `precipIntensity` from the GEFS model.
@@ -670,7 +678,14 @@ The probability of precipitation occurring expressed as a decimal between 0 and 
 You can get a probability >0 with no precipitation. It's because they're sometimes coming from different sources or different models, and the ensemble will sometimes show a chance of something but not confident in any amount. Basically, one is probabilistic, the other deterministic. 
 
 #### precipType
-The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow.
+The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow. For the `daily` block, the following process is used to assess a type when multiple precipitation types are expected:
+
+1. If more than 1 mm of ice is forecast, then ice. Otherwise:
+2. If there is more than 5 cm of snow, then snow. Otherwise:
+3. If there is more than 10 mm of rain, then rain Otherwise:
+4. Use the most common precipitation type.
+
+See [this issue](https://github.com/Pirate-Weather/pirateweather/issues/413) for additional discussion.
 
 #### pressure
 The sea-level pressure represented in hectopascals or millibars depending on the requested `units`.

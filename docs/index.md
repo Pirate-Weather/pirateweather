@@ -12,6 +12,7 @@
 * [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
 * [API repo](https://github.com/alexander0042/pirateweather)
 * [Open Source code repo](https://github.com/Pirate-Weather/pirate-weather-code)
+  * Including recently updated self hosting instructions and docker images!
 * [Changelog](https://pirateweather.net/en/latest/changelog/)
 * [Status page](https://pirateweather.xitoring.io/)
 
@@ -46,6 +47,15 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 ## Recent Updates- Spring 2025
 Up to version 2.6! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
+* **NOTE:** Precipitation intensity units have been revised to reflect the Dark Sky style. This means that intensity is always reported in **liquid water equivalent**, and this should be reflected when displaying the data.
+  * So if 5 cm (50 mm) of snow is forecasted for an hour, `precipIntensity`, in mm, will return 5, as 5 mm of rain provides 50 mm of snow.
+    * If 5 mm of rain is forecasted for an hour, `precipIntensity`, in mm, will return 5, for 5 mm of rain.
+  * See [this thread for details](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131).
+  * In the future, `snowIntensity`, `sleetIntensity`, and `rainIntensity` will be added to clarify this.
+  * Accumulation remains unchanged, publishing with snowfall adjustments:
+    * 5 cm (50 mm) of snow is forecasted for an hour, `precipAccumulation`, in cm, will return 5.
+    * 5 mm of rain is forecasted for an hour, `precipAccumulation`, in cm, will return 0.5.
+    * 5 mm of rain and 5 cm of snow is forecasted for an hour, `precipAccumulation`, in cm, will return 5.5. This illustrates the value of using the `liquidAccumulation`, `snowAccumulation`, and `iceAccumulation` parameters instead of `precipAccumulation`.
 * Added the weekly and minutely summaries as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
 * Updated the daily summaries to show more precipitation information as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
 	* Note: This is not the full daily summaries and merely enhances the current daily summaries with more precipitation information

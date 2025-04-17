@@ -9,7 +9,14 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Updated the daily summaries to show more precipitation information as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
 			* Note: This is not the full daily summaries and merely enhances the current daily summaries with more precipitation information
 		* Fixes an issue where GEFS error was always equal to precipitation accumulation as per [issue #434](https://github.com/Pirate-Weather/pirateweather/issues/434)
-		* Add a Pirate Weather iconset as per issue [#402](https://github.com/Pirate-Weather/pirateweather/issues/402)
+		* Add a Pirate Weather iconset as per [issue #402](https://github.com/Pirate-Weather/pirateweather/issues/402).
+		* Significant self-hosting improvements per [PR #92](https://github.com/Pirate-Weather/pirate-weather-code/pull/92):
+			* Update Zarr to V3.
+			* x64 and ARM builds.
+			* Optimize Dask code to reduce memory requirements to ~16 GB.
+			* Add in ECMWF data (not yet in API).
+			* Add in maps data output (not yet in API).
+			
 
 ??? note "Version 2.5"
 
