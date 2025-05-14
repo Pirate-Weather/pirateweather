@@ -265,8 +265,7 @@ components:
           description: The distance to the nearest storm in kilometers.
           example: 30.07
         nearestStormBearing:
-          type: integer
-          format: int32
+          type: number
           description: The direction to the nearest storm in degrees.
           example: 0
         precipIntensity:
@@ -314,8 +313,7 @@ components:
           description: The wind gust speed.
           example: 29.97
         windBearing:
-          type: integer
-          format: int32
+          type: number
           description: The direction of the wind in degrees.
           example: 156
         cloudCover:
@@ -476,7 +474,6 @@ components:
                 example: 21.6
               windBearing:
                 type: number
-                format: int32
                 description: The direction of the wind in degrees.
                 example: 160
               cloudCover:
@@ -668,8 +665,7 @@ components:
                 description: The time when the maximum wind gust occurs in UNIX format.
                 example: 1746046800
               windBearing:
-                type: integer
-                format: int32
+                type: number
                 description: The direction of the wind in degrees.
                 example: 130
               cloudCover:
