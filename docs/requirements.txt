@@ -23,4 +23,4 @@ six==1.17.0
 soupsieve==2.7
 typing-extensions==4.13.2
 watchdog==6.0.0
-zipp==3.21.0
+zipp==3.22.0
