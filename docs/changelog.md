@@ -2,7 +2,14 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
-???+ note "Version 2.6"
+???+ note "Version 2.7"
+
+	* June 16, 2025, API Version 2.6
+	 	* Added the 24 hour and day summaries as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
+		* Fix `windBearing` and `nearestStormBearing` not being integers as per [#455](https://github.com/Pirate-Weather/pirateweather/issues/455)
+		* Fix an issue with fractional TimeZones returning odd data as per [$458](https://github.com/Pirate-Weather/pirateweather/issues/458)
+
+??? note "Version 2.6"
 
 	* April 16, 2025, API Version 2.6
 	 	* Added the weekly and minutely summaries as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)

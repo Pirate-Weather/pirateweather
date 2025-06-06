@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: "2.6.0"
+  version: "2.7.0"
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -239,8 +239,7 @@ components:
       description: The timezone offset in hours.
       example: -6
     elevation:
-      type: integer
-      format: int32
+      type: number
       description: The elevation in meters of the forecast point.
       example: 105
     currently:
@@ -265,7 +264,8 @@ components:
           description: The distance to the nearest storm in kilometers.
           example: 30.07
         nearestStormBearing:
-          type: number
+          type: integer
+          format: int32
           description: The direction to the nearest storm in degrees.
           example: 0
         precipIntensity:
@@ -313,7 +313,8 @@ components:
           description: The wind gust speed.
           example: 29.97
         windBearing:
-          type: number
+          type: integer
+          format: int32
           description: The direction of the wind in degrees.
           example: 156
         cloudCover:
@@ -473,7 +474,8 @@ components:
                 description: The wind gust speed.
                 example: 21.6
               windBearing:
-                type: number
+                type: integer
+                format: int32
                 description: The direction of the wind in degrees.
                 example: 160
               cloudCover:
@@ -513,7 +515,8 @@ components:
                 description: The distance to the nearest storm.
                 example: 35.59
               nearestStormBearing:
-                type: number
+                type: integer
+                format: int32
                 description: The direction to the nearest storm.
                 example: 45
               fireIndex:
@@ -665,7 +668,8 @@ components:
                 description: The time when the maximum wind gust occurs in UNIX format.
                 example: 1746046800
               windBearing:
-                type: number
+                type: integer
+                format: int32
                 description: The direction of the wind in degrees.
                 example: 130
               cloudCover:
