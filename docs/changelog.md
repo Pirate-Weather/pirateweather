@@ -4,10 +4,11 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.7"
 
-	* June 16, 2025, API Version 2.6
+	* June 9, 2025, API Version 2.7
 	 	* Added the 24 hour and day summaries as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
 		* Fix `windBearing` and `nearestStormBearing` not being integers as per [#455](https://github.com/Pirate-Weather/pirateweather/issues/455)
 		* Fix an issue with fractional TimeZones returning odd `currently` data as per [$458](https://github.com/Pirate-Weather/pirateweather/issues/458)
+		* Fix an issue where the weekly summary could generate a null icon
 
 ??? note "Version 2.6"
 
