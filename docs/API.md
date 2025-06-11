@@ -171,115 +171,115 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 	"offset": -4,
 	"elevation": 77,
 	"currently": {
-		"time": 1744842420,
-		"summary": "Breezy and Mostly Cloudy",
-		"icon": "wind",
-		"nearestStormDistance": 40.21,
-		"nearestStormBearing": 63,
+		"time": 1749319080,
+		"summary": "Mostly Clear",
+		"icon": "clear-day",
+		"nearestStormDistance": 19.51,
+		"nearestStormBearing": 270,
 		"precipIntensity": 0,
 		"precipProbability": 0,
-		"precipIntensityError": 0.07,
+		"precipIntensityError": 0.16,
 		"precipType": "none",
-		"temperature": 3.16,
-		"apparentTemperature": -3.86,
-		"dewPoint": -0.11,
-		"humidity": 0.76,
-		"pressure": 1006.65,
-		"windSpeed": 25.42,
-		"windGust": 46,
-		"windBearing": 289,
-		"cloudCover": 0.79,
-		"uvIndex": 0.65,
-		"visibility": 11.83,
-		"ozone": 439.84
+		"temperature": 23.28,
+		"apparentTemperature": 21.64,
+		"dewPoint": 11.48,
+		"humidity": 0.52,
+		"pressure": 1009.92,
+		"windSpeed": 13.05,
+		"windGust": 17.5,
+		"windBearing": 30,
+		"cloudCover": 0.26,
+		"uvIndex": 5.48,
+		"visibility": 16.09,
+		"ozone": 361.16
 	},
 	"minutely": {
-		"summary": "Breezy and mostly cloudy for the hour.",
-		"icon": "wind",
-	    "data": [
+		"summary": "Mostly clear for the hour.",
+		"icon": "clear-day",
+		"data": [
 		{
-			"time": 1744842420,
+			"time": 1749319080,
 			"precipIntensity": 0,
 			"precipProbability": 0,
-			"precipIntensityError": 0.07,
+			"precipIntensityError": 0.16,
 			"precipType": "none"
 		},
 	   ...
 	  ]
 	},
 	"hourly": {
-	"summary": "Mostly Clear",
-	"icon": "clear-night",
-	"data": [
-		{
-			"time": 1744840800,
-			"summary": "Breezy and Mostly Cloudy",
-			"icon": "wind",
-			"precipIntensity": 0,
-			"precipProbability": 0.06,
-			"precipIntensityError": 0.0864,
-			"precipAccumulation": 0,
-			"precipType": "rain",
-			"temperature": 4.35,
-			"apparentTemperature": -3.01,
-			"dewPoint": -2.59,
-			"humidity": 0.61,
-			"pressure": 1006.08,
-			"windSpeed": 25.92,
-			"windGust": 41.4,
-			"windBearing": 290,
-			"cloudCover": 0.83,
-			"uvIndex": 0.88,
-			"visibility": 11.09,
-			"ozone": 439.37
-		},
-	    ...
-	  ]
+		"summary": "Mostly clear until tomorrow morning.",
+		"icon": "clear-day",
+		"data": [
+			{
+				"time": 1749315600,
+				"summary": "Mostly Clear",
+				"icon": "clear-day",
+				"precipIntensity": 0,
+				"precipProbability": 0,
+				"precipIntensityError": 0.116,
+				"precipAccumulation": 0,
+				"precipType": "rain",
+				"temperature": 23.73,
+				"apparentTemperature": 22.68,
+				"dewPoint": 12.1,
+				"humidity": 0.48,
+				"pressure": 1009.92,
+				"windSpeed": 8.64,
+				"windGust": 15.84,
+				"windBearing": 30,
+				"cloudCover": 0.32,
+				"uvIndex": 6.99,
+				"visibility": 16.09,
+				"ozone": 356.59
+			},
+	    	...
+		]
 	},
 	"daily": {
-	"summary": "Drizzle on Friday and Saturday and Tuesday, with high temperatures peaking at 16°C on Saturday.",
+	"summary": "Light rain on Monday and Tuesday, with high temperatures falling to 21°C next Saturday.",
 	"icon": "rain",
 	"data": [
 		{
-			"time": 1744776000,
-			"summary": "Breezy and mostly cloudy.",
-			"icon": "wind",
-			"sunriseTime": 1744798190,
-			"sunsetTime": 1744847087,
-			"moonPhase": 0.61,
+			"time": 1749268800,
+			"summary": "Mostly clear starting in the afternoon.",
+			"icon": "clear-day",
+			"sunriseTime": 1749287384,
+			"sunsetTime": 1749343376,
+			"moonPhase": 0.38,
 			"precipIntensity": 0,
 			"precipIntensityMax": 0,
-			"precipIntensityMaxTime": 1744776000,
-			"precipProbability": 0.06,
+			"precipIntensityMaxTime": 1749268800,
+			"precipProbability": 0,
 			"precipAccumulation": 0,
-			"precipType": "snow",
-			"temperatureHigh": 4.35,
-			"temperatureHighTime": 1744837200,
-			"temperatureLow": -0.77,
-			"temperatureLowTime": 1744884000,
-			"apparentTemperatureHigh": -3.01,
-			"apparentTemperatureHighTime": 1744840800,
-			"apparentTemperatureLow": -7.18,
-			"apparentTemperatureLowTime": 1744884000,
-			"dewPoint": -2.25,
-			"humidity": 0.7,
-			"pressure": 1002.76,
-			"windSpeed": 25.56,
-			"windGust": 40.17,
-			"windGustTime": 1744822800,
-			"windBearing": 277.08,
-			"cloudCover": 0.74,
-			"uvIndex": 3.1,
-			"uvIndexTime": 1744819200,
-			"visibility": 13.76,
-			"temperatureMin": 0.79,
-			"temperatureMinTime": 1744797600,
-			"temperatureMax": 4.85,
-			"temperatureMaxTime": 1744776000,
-			"apparentTemperatureMin": -6.63,
-			"apparentTemperatureMinTime": 1744801200,
-			"apparentTemperatureMax": -1.07,
-			"apparentTemperatureMaxTime": 1744776000
+			"precipType": "rain",
+			"temperatureHigh": 24.73,
+			"temperatureHighTime": 1749326400,
+			"temperatureLow": 12.41,
+			"temperatureLowTime": 1749373200,
+			"apparentTemperatureHigh": 23.1,
+			"apparentTemperatureHighTime": 1749326400,
+			"apparentTemperatureLow": 10,
+			"apparentTemperatureLowTime": 1749373200,
+			"dewPoint": 11.8,
+			"humidity": 0.6,
+			"pressure": 1009.94,
+			"windSpeed": 6.22,
+			"windGust": 11.68,
+			"windGustTime": 1749322800,
+			"windBearing": 134,
+			"cloudCover": 0.52,
+			"uvIndex": 6.99,
+			"uvIndexTime": 1749315600,
+			"visibility": 13.15,
+			"temperatureMin": 16.35,
+			"temperatureMinTime": 1749283200,
+			"temperatureMax": 24.73,
+			"temperatureMaxTime": 1749326400,
+			"apparentTemperatureMin": 15.77,
+			"apparentTemperatureMinTime": 1749351600,
+			"apparentTemperatureMax": 23.1,
+			"apparentTemperatureMaxTime": 1749326400
 		},
 	    ...
 	  ]
@@ -307,17 +307,17 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 			"gefs"
 		],
 		"sourceTimes": {
-			"hrrr_subh": "2025-04-16 20Z",
-			"hrrr_0-18": "2025-04-16 19Z",
-			"nbm": "2025-04-16 18Z",
-			"nbm_fire": "2025-04-16 12Z",
-			"hrrr_18-48": "2025-04-16 18Z",
-			"gfs": "2025-04-16 12Z",
-			"gefs": "2025-04-16 06Z"
+			""hrrr_subh": "2025-06-07 16Z",
+			"hrrr_0-18": "2025-06-07 15Z",
+			"nbm": "2025-06-07 15Z",
+			"nbm_fire": "2025-06-07 12Z",
+			"hrrr_18-48": "2025-06-07 12Z",
+			"gfs": "2025-06-07 12Z",
+			"gefs": "2025-06-07 00Z"
 		},
 		"nearest-station": 0,
 		"units": "ca",
-		"version": "V2.6.0"
+		"version": "V2.7.2"
   	}
 ```
 
@@ -440,7 +440,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.6.0",
+	"version":"V2.7.2",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
@@ -614,13 +614,44 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 * If cloud cover is less than 37.5%, then `clear`.
 
 ##### Daily:
-* If max probability is greater than 25% in any hour and total accumulation is greater than 1 mm, then precipitation type.
-	* Type is based on the most common (modal) precipitation type.
-* If average visibility is less than 1 km, then `fog`.
-* If average wind speed is greater than 6.7056 m/s, then `wind`.
-* If average cloud cover is greater than 87.5%, then `cloudy`.
-* If average cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day`.
-* If average cloud cover is less than 37.5%, then `clear`.
+
+With the daily summaries being introduced in version 2.7 the day icon now considers the day as a whole rather than using daily averages. The icon shown will generally be whichever condition comes first so if the morning is foggy and the evening is windy the fog icon will be shown. The cloud cover icons will only be shown as long as no other conditions are forecasted for the day.
+
+**Precipitaion**
+
+The precipitation icon logic is as follows:
+
+* If max probability is greater than 25% in any hour
+* The total accumulation depends on the number of periods has precipitation forecasted
+	* Total precipitation needs to be 0.25 mm for one period
+	* Total precipitation needs to be 0.50 mm for two periods
+	* Total precipitation needs to be 0.75 mm for three periods
+	* Total precipitation needs to be 1 mm for four periods
+
+The precipitation with the most accumulation forecasted is generally the icon which is shown unless:
+* If more than 10 mm of rain is forecast, then `rain`
+* If more than 5 mm of snow is forecast, then `snow`
+* Else, if more than 1 mm of ice is forecast, then `sleet`
+
+**Fog and Wind**
+
+The fog and wind icons are shown if at least one period has at least half of its hours (or three or more hours for longer periods) as foggy or windy and there is no precipitation then the icon is shown.
+
+* If visibility is less than 1 km, then `fog`.
+* If wind speed is greater than 6.7056 m/s, then `wind`.
+
+**Cloud Cover**
+
+The average cloud cover is calculated for each period and the most common level (clear, mostly clear, partly cloudy, mostly cloudy or overcast) is chosen as the icon. The exception is if all of the periods have a different level. In this case the following logic is used:
+
+* If the maximum cloud cover occurs in the last period then use the lowest cloud cover level
+* Otherwise use the maximum cloud cover level for the day
+
+The cloud cover icon thresholds are the following:
+
+* If cloud cover is greater than 87.5%, then `cloudy`.
+* If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day`.
+* If cloud cover is less than 37.5%, then `clear`.
 
 For additional details, see [issue #3](https://github.com/alexander0042/pirateweather/issues/3).
 

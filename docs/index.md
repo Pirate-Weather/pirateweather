@@ -45,22 +45,13 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
 ## Recent Updates- Spring 2025
-Up to version 2.6! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+Up to version 2.7! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-* **NOTE:** Precipitation intensity units have been revised to reflect the Dark Sky style. This means that intensity is always reported in **liquid water equivalent**, and this should be reflected when displaying the data.
-  * So if 5 cm (50 mm) of snow is forecasted for an hour, `precipIntensity`, in mm, will return 5, as 5 mm of rain provides 50 mm of snow.
-    * If 5 mm of rain is forecasted for an hour, `precipIntensity`, in mm, will return 5, for 5 mm of rain.
-  * See [this thread for details](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131).
-  * In the future, `snowIntensity`, `sleetIntensity`, and `rainIntensity` will be added to clarify this.
-  * Accumulation remains unchanged, publishing with snowfall adjustments:
-    * 5 cm (50 mm) of snow is forecasted for an hour, `precipAccumulation`, in cm, will return 5.
-    * 5 mm of rain is forecasted for an hour, `precipAccumulation`, in cm, will return 0.5.
-    * 5 mm of rain and 5 cm of snow is forecasted for an hour, `precipAccumulation`, in cm, will return 5.5. This illustrates the value of using the `liquidAccumulation`, `snowAccumulation`, and `iceAccumulation` parameters instead of `precipAccumulation`.
-* Added the weekly and minutely summaries as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
-* Updated the daily summaries to show more precipitation information as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
-	* Note: This is not the full daily summaries and merely enhances the current daily summaries with more precipitation information
-* Fixes an issue where GEFS error was always equal to precipitation accumulation as per [issue #434](https://github.com/Pirate-Weather/pirateweather/issues/434)
-* Add a Pirate Weather iconset as per issue [#402](https://github.com/Pirate-Weather/pirateweather/issues/402)
+* Added the 24 hour and day summaries as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
+* Fix `windBearing` and `nearestStormBearing` not being integers as per [#455](https://github.com/Pirate-Weather/pirateweather/issues/455)
+* Fix an issue with fractional TimeZones returning odd `currently` data as per [#458](https://github.com/Pirate-Weather/pirateweather/issues/458)
+* Major self hosting improvements, relying on built in Docker scripts for everything and removing the need to mount volumes 
+* Allow the  response container to query the raw Zarr files directly to simplify development!
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
