@@ -3,10 +3,11 @@
 2. Add in alerts for Canada/ EU/ other.
 3. Add in a Air Quality Index as suggested in [issue #92](https://github.com/Pirate-Weather/pirateweather/issues/92)
 4. Add source data.
-	* Add in the Canadian models ([HRDPS](https://herbie.readthedocs.io/en/stable/gallery/eccc_models/hrdps.html), [GDPS](https://herbie.readthedocs.io/en/stable/gallery/eccc_models/gdps.html) and [RDPS](https://herbie.readthedocs.io/en/stable/gallery/eccc_models/rdps.html))
+	* [ECMWF](https://herbie.readthedocs.io/en/stable/gallery/ecmwf_models/ecmwf.html)
+		* This is already being ingested, so underlying data is there
+	* Canadian models ([HRDPS](https://herbie.readthedocs.io/en/stable/gallery/eccc_models/hrdps.html), [GDPS](https://herbie.readthedocs.io/en/stable/gallery/eccc_models/gdps.html) and [RDPS](https://herbie.readthedocs.io/en/stable/gallery/eccc_models/rdps.html))
 	* [NBM-Alaska/ Hawaii/ Puerto Rico/ Guam](https://herbie.readthedocs.io/en/stable/gallery/noaa_models/nbm.html)
 	* [RTMA/ URMA](https://herbie.readthedocs.io/en/stable/gallery/noaa_models/rtma-urma.html)
-	* [ECMWF](https://herbie.readthedocs.io/en/stable/gallery/ecmwf_models/ecmwf.html)
 	* [NOAA GraphCast](https://herbie.readthedocs.io/en/stable/gallery/noaa_models/gfs.html#GFS-GraphCast)?
 	* [DWD ICON](https://www.dwd.de/EN/ourservices/nwp_forecast_data/nwp_forecast_data.html)
 	* [KNMI HARMONIE](https://dataplatform.knmi.nl/group/weather-forecast?q=UWC&sort=metadata_modified+desc)?
