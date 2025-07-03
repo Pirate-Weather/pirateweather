@@ -54,7 +54,7 @@ At a high level, the general approach is to use NBM first, then HRRR, then GEFS,
 |smoke   				|HRRR   				      |N/A   				    |HRRR  						|
 |temperature   			|HRRR_SubH > NBM > GFS        |N/A   				    |NBM > HRRR > GFS   		|
 |uvIndex   				|GFS   					      |N/A   				    |GFS   						|
-|visibility   			|HRRR_SubH > NBM > HRRR > GFS |N/A   				    |NBM > HRRR > GFS   		|
+|visibility   			|NBM > HRRR > GFS |N/A   				    |NBM > HRRR > GFS   		|
 |windBearing  			|HRRR_SubH > NBM > GFS        |N/A   				    |NBM > HRRR > GFS   		|
 |windGust   			|HRRR_SubH > NBM > GFS        |N/A   				    |NBM > HRRR > GFS   		|
 |windSpeed   			|HRRR_SubH > NBM > GFS        |N/A				        |NBM > HRRR > GFS   		|
