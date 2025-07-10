@@ -3,18 +3,28 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
 ???+ note "Version 2.7"
+
+	* July 10, 2025, API Version 2.7.3
+	    	 Bugfix release
+	    	* Midnight currently values were sometimes incorrect per [#394](https://github.com/Pirate-Weather/pirateweather/issues/3940)
+	    	* Timemachine new file version fix per [#471](https://github.com/Pirate-Weather/pirateweather/issues/471)
+	    	* Timemachine half hour timezone fix per [#459](https://github.com/Pirate-Weather/pirateweather/issues/459)
+	    	* Change currently visibility to use HRRR SubHourly per [#437](https://github.com/Pirate-Weather/pirateweather/issues/437)
+	    	* Add an additional check for array sizing (cause of June 26 downtime)
+	    	* Add basic code testing [PR #167](https://github.com/Pirate-Weather/pirate-weather-code/pull/1670)
+	    	* Assorted summary issues and improvements per [#137](https://github.com/Pirate-Weather/pirate-weather-code/issues/137)
 	* June 11, 2025, API Version 2.7.2
-        * Fixed a [build issue](https://github.com/Pirate-Weather/pirate-weather-code/pull/157)
+	        * Fixed a [build issue](https://github.com/Pirate-Weather/pirate-weather-code/pull/157)
 	* June 9, 2025, API Version 2.7.1
-        * Fixed an ingest interpolation issue causing inaccurate data per [issue #464](https://github.com/Pirate-Weather/pirateweather/issues/464)
-        * Allow the  response container to query the raw Zarr files directly to simplify development
+	        * Fixed an ingest interpolation issue causing inaccurate data per [issue #464](https://github.com/Pirate-Weather/pirateweather/issues/464)
+	        * Allow the  response container to query the raw Zarr files directly to simplify development
 	* June 9, 2025, API Version 2.7
-        * Moved the production API to Zarr v3
-        * Updated the production API to run off the script in the Docker image
-        * Added the 24 hour and day summaries as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
-        * Fix `windBearing` and `nearestStormBearing` not being integers as per [#455](https://github.com/Pirate-Weather/pirateweather/issues/455)
-        * Fix an issue with fractional TimeZones returning odd `currently` data as per [$458](https://github.com/Pirate-Weather/pirateweather/issues/458)
-        * Fix an issue where the weekly summary could generate a null icon
+	        * Moved the production API to Zarr v3
+	        * Updated the production API to run off the script in the Docker image
+	        * Added the 24 hour and day summaries as per [issue #48](https://github.com/Pirate-Weather/pirateweather/issues/48)
+	        * Fix `windBearing` and `nearestStormBearing` not being integers as per [#455](https://github.com/Pirate-Weather/pirateweather/issues/455)
+	        * Fix an issue with fractional TimeZones returning odd `currently` data as per [$458](https://github.com/Pirate-Weather/pirateweather/issues/458)
+	        * Fix an issue where the weekly summary could generate a null icon
 
 ??? note "Version 2.6"
 
