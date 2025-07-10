@@ -4,8 +4,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.7"
 
-	* July 10, 2025, API Version 2.7.3
-	    	 Bugfix release
+	* July 10, 2025, API Version 2.7.3 - Bugfix release
 	    	* Midnight currently values were sometimes incorrect per [#394](https://github.com/Pirate-Weather/pirateweather/issues/3940)
 	    	* Timemachine new file version fix per [#471](https://github.com/Pirate-Weather/pirateweather/issues/471)
 	    	* Timemachine half hour timezone fix per [#459](https://github.com/Pirate-Weather/pirateweather/issues/459)
