@@ -5,7 +5,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ???+ note "Version 2.7"
 
 	* July 17, 2025, API Version 2.7.4
-	 	* Midnight currently values were sometimes incorrect per [#394](https://github.com/Pirate-Weather/pirateweather/issues/394)
+	 	* Fixed an issue where `smoke` was always 0 per [#477](https://github.com/Pirate-Weather/pirateweather/issues/477)
+	 	* Fixed 504 Gateway Timeouts on TimeMachine endpotnt per [#478](https://github.com/Pirate-Weather/pirateweather/issues/478)
+		* Added updated summaries/translations for hourly and currently on TimeMachine endpoint
 	* July 10, 2025, API Version 2.7.3 - Bugfix release
 	 	* Midnight currently values were sometimes incorrect per [#394](https://github.com/Pirate-Weather/pirateweather/issues/394)
 	 	* Timemachine new file version fix per [#471](https://github.com/Pirate-Weather/pirateweather/issues/471)
