@@ -6,7 +6,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 	* July 17, 2025, API Version 2.7.4
 	 	* Fixed an issue where `smoke` was always 0 per [#477](https://github.com/Pirate-Weather/pirateweather/issues/477)
-	 	* Fixed 504 Gateway Timeouts on TimeMachine endpotnt per [#478](https://github.com/Pirate-Weather/pirateweather/issues/478)
+	 	* Fixed 504 Gateway Timeouts on TimeMachine endpoint per [#478](https://github.com/Pirate-Weather/pirateweather/issues/478)
 		* Added updated summaries for hourly and currently on TimeMachine endpoint
 		* Added additional ingest checking to address rare high values per [#472](https://github.com/Pirate-Weather/pirateweather/issues/472)  
 	* July 10, 2025, API Version 2.7.3 - Bugfix release
