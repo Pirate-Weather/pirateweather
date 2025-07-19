@@ -82,6 +82,7 @@ Added as part of the V1.0 release, this parameter removes some of the data block
 * `hourly`
 * `daily`
 * `alerts`
+* `summary` - Allows you to get the summaries in the old format before the translations module was added.
 
 Some models can also be excluded, which will force data from the fallback sources to be used:
 
