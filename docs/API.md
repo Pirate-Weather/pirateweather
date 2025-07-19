@@ -82,6 +82,7 @@ Added as part of the V1.0 release, this parameter removes some of the data block
 * `hourly`
 * `daily`
 * `alerts`
+* `summary` - Allows you to get the summaries in the old format before the translations module was added.
 
 Some models can also be excluded, which will force data from the fallback sources to be used:
 
@@ -162,7 +163,7 @@ If you require a language not listed above, please consider contributing to the 
 #### Icon
 If you add `icon=pirate` to the list of parameters you can get an expanded icon set with icons that were not available in the Dark Sky API.
 
-### Example
+### API Response Example
 ```
 	GET https://api.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/45.42,-74.30?&units=ca
 	"latitude": 45.42,
@@ -548,7 +549,7 @@ The point in which the air temperature needs (assuming constant pressure) in ord
 The apparent temperature from the GFS or NBM models.
 
 #### fireIndex
-**Only available for the US and parts of Canada. Outside of these locations this will return -999** The [Fosburg fire index](https://www.spc.noaa.gov/exper/firecomp/INFO/fosbinfo.html). Notably, this 0-100 index deals only with conditions, not fuels, and so a high index area is not necessarily high risk for fires.
+**Only on `currently` and `hourly`.** **Only available for the US and parts of Canada. Outside of these locations this will return -999.** The [Fosburg fire index](https://www.spc.noaa.gov/exper/firecomp/INFO/fosbinfo.html). Notably, this 0-100 index deals only with conditions, not fuels, and so a high index area is not necessarily high risk for fires.
 
 #### fireIndexMax
 **Only on `daily`.** The maximum `fireIndex` for the given day.
@@ -629,6 +630,7 @@ The precipitation icon logic is as follows:
 	* Total precipitation needs to be 1 mm for four periods
 
 The precipitation with the most accumulation forecasted is generally the icon which is shown unless:
+
 * If more than 10 mm of rain is forecast, then `rain`
 * If more than 5 mm of snow is forecast, then `snow`
 * Else, if more than 1 mm of ice is forecast, then `sleet`
@@ -668,17 +670,19 @@ The approximate direction in degrees in which a storm is travelling with 0° rep
 The approximate distance to the nearest storm in kilometers or miles depending on the requested `units`. Calculated with the excellent [XArray-Spatial](https://github.com/makepath/xarray-spatial) package using a 0.2 mm/h water equivalent (so 2 mm/h of snow or 0.2 mm/h of rain) threshold for a storm. Note that the distance is calculated from the midpoint of a GFS model cell to the midpoint of a model cell with a "storm".  
 
 #### ozone
-The density of total atmospheric ozone at a given time in Dobson units.
+**Only on `currently` and `hourly`**. The density of total atmospheric ozone at a given time in Dobson units.
 
 #### precipAccumulation
 **Only on `hourly` and `daily`**. The total amount of precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For day 0, this is the precipitation during the remaining hours of the day.
 A 1:10 snowfall ratio is used and already factored into this parameter:
+
   * 5 cm (50 mm) of snow is forecasted for an hour, `precipAccumulation`, in cm, will return 5.
   * 5 mm of rain is forecasted for an hour, `precipAccumulation`, in cm, will return 0.5.
   * 5 mm of rain and 5 cm of snow is forecasted for an hour, `precipAccumulation`, in cm, will return 5.5. This illustrates the value of using the `liquidAccumulation`, `snowAccumulation`, and `iceAccumulation` parameters instead of `precipAccumulation`.
 
 #### precipIntensity
 Precipitation intensity units have been revised to reflect the Dark Sky style. This means that intensity is always reported in **liquid water equivalent**, and this should be reflected when displaying the data.
+
   * So if 5 cm (50 mm) of snow is forecasted for an hour, `precipIntensity`, in mm, will return 5, as 5 mm of rain provides 50 mm of snow.
     * If 5 mm of rain is forecasted for an hour, `precipIntensity`, in mm, will return 5, for 5 mm of rain.
   * See [this thread for details](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131).
@@ -725,7 +729,7 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 **Only on `hourly` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
 
 #### smoke
-**Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of near-surface (8 m) smoke represented in µg/m<sup>3</sup>.
+**Only on `currently` and `hourly`**. **Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of near-surface (8 m) smoke represented in µg/m<sup>3</sup>.
 
 #### smokeMax
 **Only on `daily`.** The maxiumum `smoke` for the given day.
