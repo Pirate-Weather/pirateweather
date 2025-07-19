@@ -549,7 +549,7 @@ The point in which the air temperature needs (assuming constant pressure) in ord
 The apparent temperature from the GFS or NBM models.
 
 #### fireIndex
-**Only on `currently` and `hourly`. Only available for the US and parts of Canada. Outside of these locations this will return -999.** The [Fosburg fire index](https://www.spc.noaa.gov/exper/firecomp/INFO/fosbinfo.html). Notably, this 0-100 index deals only with conditions, not fuels, and so a high index area is not necessarily high risk for fires.
+**Only on `currently` and `hourly`.** **Only available for the US and parts of Canada. Outside of these locations this will return -999.** The [Fosburg fire index](https://www.spc.noaa.gov/exper/firecomp/INFO/fosbinfo.html). Notably, this 0-100 index deals only with conditions, not fuels, and so a high index area is not necessarily high risk for fires.
 
 #### fireIndexMax
 **Only on `daily`.** The maximum `fireIndex` for the given day.
