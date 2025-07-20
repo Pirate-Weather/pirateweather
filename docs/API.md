@@ -594,6 +594,8 @@ If `icon=pirate` is added as a query string parameter the icon set is expanded t
 * `breezy`
 * `dangerous-wind`
 
+This set will be expanded in the near future to include `mist`, `haze`, and `smoke`. Note that `smoke` and `haze` may be moved to the default icon set in the future, at which point they will be removed from this expanded list.
+
 The daily icon is calculated between 4:00 am and 4:00 am local time. The algorithm here is straightforward, coming from this [NOAA resource](https://weather.com/science/weather-explainers/news/common-weather-terms-used-incorrectly):
 
 ##### Currently:
