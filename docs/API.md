@@ -565,7 +565,7 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
-`clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `thunderstorm`, `hail`, `mixed`, `haze` or `smoke` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
+`clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `thunderstorm`, `hail` or `mixed` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
 
 If `icon=pirate` is added as a query string parameter the icon set is expanded to include:
 
@@ -594,7 +594,7 @@ If `icon=pirate` is added as a query string parameter the icon set is expanded t
 * `breezy`
 * `dangerous-wind`
 
-This set will be expanded in the near future to include `mist`, `haze` and `smoke`.
+This set will be expanded in the near future to include `mist`, `haze` and `smoke`. `smoke` and `haze` may be included in the default icon set in the future and if so will be removed from the `icon=pirate` expanded icon list.
 
 The daily icon is calculated between 4:00 am and 4:00 am local time. The algorithm here is straightforward, coming from this [NOAA resource](https://weather.com/science/weather-explainers/news/common-weather-terms-used-incorrectly):
 
