@@ -39,14 +39,27 @@ paths:
             type: string
         - name: exclude
           in: query
-          description: Exclude some keys from the Pirate Weather forecast response.
+          description: Exclude some keys (hourly, minutely, daily, flags, alerts), models (nbm, hrrr, gefs), or detailed text summaries (summary) from the Pirate Weather forecast response. 
           schema:
             type: string
+            enum:
+              - summary
+              - currently
+              - minutely
+              - hourly
+              - daily
+              - flags
+              - alerts
+              - nbm
+              - hrrr
+              - gefs
         - name: extend
           in: query
           description: Fetch the next 168 hours (7 days) worth of hourly data, instead of the next 24.
           schema:
             type: string
+            enum:
+              - hourly
         - name: lang
           in: query
           description: Returns the forecast summaries in the desired language.
@@ -129,7 +142,8 @@ paths:
           in: query
           description: Changes the icon field to return icons which aren't part of the Dark Sky icon set.
           schema:
-            type: string        
+            type: string    
+                
       responses:
         "400":
           description: "Bad Request. Longitude or Latitude is invalid."
