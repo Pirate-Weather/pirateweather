@@ -10,8 +10,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Added updated summaries for daily and translations on TimeMachine endpoint
 		* Add smoke, haze and mist as conditions per [#460](https://github.com/Pirate-Weather/pirateweather/issues/460)
 			* Smoke, haze and mist now have their own icons using the pirate icon set.
-		* Fix an issue where the currently summaries would return Not Available if one of temperature, windSpeed, dewPoint, cloudCover, humidity or visibility where -999.
-			* Also corrected the icon to be none instead of not-available
+		* Fixed an issue where the `currently` summaries would return "Not Available" if one of `temperature`, `windSpeed`, `dewPoint`, `cloudCover`, `humidity` or `visibility` was -999.
+			* Also corrected the icon to be `none` instead of `not-available`
 	* July 17, 2025, API Version 2.7.4
 	 	* Fixed an issue where `smoke` was always 0 per [#477](https://github.com/Pirate-Weather/pirateweather/issues/477)
 	 	* Fixed 504 Gateway Timeouts on TimeMachine endpoint per [#478](https://github.com/Pirate-Weather/pirateweather/issues/478)
