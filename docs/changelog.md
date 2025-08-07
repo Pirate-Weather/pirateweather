@@ -5,8 +5,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ???+ note "Version 2.7"
 
 	* August 7, 2025, API Version 2.7.5
-	 	* Fixed an issue where `nearestStormDistance` was -999 per [#480](https://github.com/Pirate-Weather/pirateweather/issues/480)
-	 	* Fixed an issue where some data points would return -999 per [#486](https://github.com/Pirate-Weather/pirateweather/issues/486)
+		* Fixed an issue where `nearestStormDistance` was -999 per [#480](https://github.com/Pirate-Weather/pirateweather/issues/480)
+		* Fixed an issue where some data points would return -999 per [#486](https://github.com/Pirate-Weather/pirateweather/issues/486)
 		* Added updated summaries for daily and translations on TimeMachine endpoint
 		* Add smoke, haze and mist as conditions per [#460](https://github.com/Pirate-Weather/pirateweather/issues/460)
 			* Smoke, haze and mist now have their own icons using the pirate icon set.
