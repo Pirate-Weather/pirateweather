@@ -4,6 +4,14 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.7"
 
+	* August 7, 2025, API Version 2.7.5
+	 	* Fixed an issue where `nearestStormDistance` was -999 per [#480](https://github.com/Pirate-Weather/pirateweather/issues/480)
+	 	* Fixed an issue where some data points would return -999 per [#486](https://github.com/Pirate-Weather/pirateweather/issues/486)
+		* Added updated summaries for daily and translations on TimeMachine endpoint
+		* Add smoke, haze and mist as conditions per [#460](https://github.com/Pirate-Weather/pirateweather/issues/460)
+			* Smoke, haze and mist now have their own icons using the pirate icon set.
+		* Fix an issue where the currently summaries would return Not Available if one of temperature, windSpeed, dewPoint, cloudCover, humidity or visibility where -999.
+			* Also corrected the icon to be none instead of not-available
 	* July 17, 2025, API Version 2.7.4
 	 	* Fixed an issue where `smoke` was always 0 per [#477](https://github.com/Pirate-Weather/pirateweather/issues/477)
 	 	* Fixed 504 Gateway Timeouts on TimeMachine endpoint per [#478](https://github.com/Pirate-Weather/pirateweather/issues/478)

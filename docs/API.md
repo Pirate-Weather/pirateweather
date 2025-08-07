@@ -318,7 +318,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": 0,
 		"units": "ca",
-		"version": "V2.7.4"
+		"version": "V2.7.5"
   	}
 ```
 
@@ -441,7 +441,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.7.4",
+	"version":"V2.7.5",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
@@ -593,8 +593,11 @@ If `icon=pirate` is added as a query string parameter the icon set is expanded t
 * `heavy-sleet`
 * `breezy`
 * `dangerous-wind`
+* `mist`
+* `haze`
+* `smoke`
 
-This set will be expanded in the near future to include `mist`, `haze`, and `smoke`. Note that `smoke` and `haze` may be moved to the default icon set in the future, at which point they will be removed from this expanded list.
+Note that `smoke` and `haze` may be moved to the default icon set in the future, at which point they will be removed from this expanded list.
 
 The daily icon is calculated between 4:00 am and 4:00 am local time. The algorithm here is straightforward, coming from this [NOAA resource](https://weather.com/science/weather-explainers/news/common-weather-terms-used-incorrectly):
 
@@ -641,7 +644,11 @@ The precipitation with the most accumulation forecasted is generally the icon wh
 
 The fog and wind icons are shown if at least one period has at least half of its hours (or three or more hours for longer periods) as foggy or windy and there is no precipitation then the icon is shown.
 
-* If visibility is less than 1 km, then `fog`.
+* If visibility is less than 10 km, then `fog`.
+	* If visiblity is less than 1 km and difference between dew point is less than 2.5 degrees Celcius then conditions are foggy.
+	* If visiblity is less than 10 km and difference between dew point is less than 3 degrees Celcius then conditions are misty.
+	* If visiblity is less than 10 km and difference between dew point is greater than 3 degrees Celcius then conditions are hazy.
+	* If visiblity is less than 10 km, the difference between dew point is greater than 3 degrees Celcius and surface smoke is greater than 25 µg/m<sup>3</sup> then conditions are smoke.
 * If wind speed is greater than 6.7056 m/s, then `wind`.
 
 **Cloud Cover**
