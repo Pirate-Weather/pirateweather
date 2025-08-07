@@ -644,11 +644,7 @@ The precipitation with the most accumulation forecasted is generally the icon wh
 
 The fog and wind icons are shown if at least one period has at least half of its hours (or three or more hours for longer periods) as foggy or windy and there is no precipitation then the icon is shown.
 
-* If visibility is 10 km or less, one of the following conditions may apply:
-	* If visibility is less than 1 km and difference between dew point is less than 2.5 degrees Celsius then conditions are foggy.
-	* If visibility is 10 km or less, the difference between dew point is greater than 3 degrees Celsius and surface smoke is greater than 25 µg/m<sup>3</sup> then conditions are smoke.
-	* If visibility is 10 km or less and difference between dew point is less than 3 degrees Celsius then conditions are misty.
-	* If visibility is 10 km or less and difference between dew point is greater than 3 degrees Celsius then conditions are hazy.
+* If visibility is 10 km or less then `fog`
 * If wind speed is greater than 6.7056 m/s, then `wind`.
 
 **Cloud Cover**
