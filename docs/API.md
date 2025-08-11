@@ -644,7 +644,7 @@ The precipitation with the most accumulation forecasted is generally the icon wh
 
 The fog and wind icons are shown if at least one period has at least half of its hours (or three or more hours for longer periods) as foggy or windy and there is no precipitation then the icon is shown.
 
-* If visibility is less than 10 km then `fog`
+* If visibility is less than 10 km then `fog`.
 * If wind speed is greater than 6.7056 m/s, then `wind`.
 
 **Cloud Cover**
