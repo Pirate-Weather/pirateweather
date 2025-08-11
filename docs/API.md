@@ -318,7 +318,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": 0,
 		"units": "ca",
-		"version": "V2.7.5"
+		"version": "V2.7.7"
   	}
 ```
 
@@ -441,7 +441,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.7.5",
+	"version":"V2.7.7",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
@@ -604,7 +604,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 ##### Currently:
 
 * If precipitation accumulation is greater than 0.02 mm, then the precipitation type.
-* If visibility is less than 1 km, then `fog`.
+* If visibility is less than 10 km, then `fog`.
 * If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 87.5%, then `cloudy`.
 * If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day` or `partly-cloudy-night`.
@@ -613,7 +613,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 ##### Hourly:
 
 * If precipitation probability is greater than 25% and accumulation is greater than 0.02 mm, then the precipitation type.
-* If visibility is less than 1 km, then `fog`.
+* If visibility is less than 10 km, then `fog`.
 * If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 87.5%, then `cloudy`.
 * If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day` or `partly-cloudy-night`.
@@ -644,7 +644,7 @@ The precipitation with the most accumulation forecasted is generally the icon wh
 
 The fog and wind icons are shown if at least one period has at least half of its hours (or three or more hours for longer periods) as foggy or windy and there is no precipitation then the icon is shown.
 
-* If visibility is 10 km or less then `fog`
+* If visibility is less than 10 km then `fog`
 * If wind speed is greater than 6.7056 m/s, then `wind`.
 
 **Cloud Cover**
