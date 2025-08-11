@@ -4,11 +4,11 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.7"
 
-	* August 11, 2025, API Version 2.7.7
-		* Fixed a GFS ingest bug as per [#472](https://github.com/Pirate-Weather/pirateweather/issues/472) and [#429](https://github.com/Pirate-Weather/pirate-weather-ha/issues/429)
+	* TBD, 2025, API Version 2.7.7
+		* Changed so that bad/ missing data is always returned as -999, instead of clipping to the extreme range in [PR #234](https://github.com/Pirate-Weather/pirate-weather-code/pull/234).
 	* August 11, 2025, API Version 2.7.6
 		* Fixed a GFS ingest bug as per [#472](https://github.com/Pirate-Weather/pirateweather/issues/472) and [#429](https://github.com/Pirate-Weather/pirate-weather-ha/issues/429)
-		* Fixed inconsistencies between `smoke`, `haze` and `mist`. These conditions now check if visibility is less than 10 km rather than less than or equal to
+		* Fixed inconsistencies between `smoke`, `haze` and `mist`. These conditions now check if visibility is less than 10 km rather than less than or equal to in [PR #230](https://github.com/Pirate-Weather/pirate-weather-code/pull/230).
 	* August 7, 2025, API Version 2.7.5
 		* Fixed an issue where `nearestStormDistance` was -999 per [#480](https://github.com/Pirate-Weather/pirateweather/issues/480)
 		* Fixed an issue where some data points would return -999 per [#486](https://github.com/Pirate-Weather/pirateweather/issues/486)
