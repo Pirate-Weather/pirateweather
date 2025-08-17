@@ -397,6 +397,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ## Time Machine Changelog
 
+* July 16, 2025
+	* Change the number of saved data on the API endpoint to 48 hours from 36 hours as per [PR #180](https://github.com/Pirate-Weather/pirate-weather-code/pull/180)
 * December 9, 2024
 	* Added a per API key rate limit of 1 to 4/ per second (depending on the plan) to prevent instabililty as per [https://github.com/Pirate-Weather/pirate-weather-code/issues/30#issuecomment-2528680513](https://github.com/Pirate-Weather/pirate-weather-code/issues/30#issuecomment-2528680513)
 * September 13, 2024
