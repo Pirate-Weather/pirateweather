@@ -340,7 +340,7 @@ Crucially, there's now three different ways a request could be handled:
 	* Can provide the range of PW forecast variables via the `tmextra` parameter
 	* Avoids the ERA5 production time lag
 	* Slow (~30 seconds), since it needs to open and read many zarr files on S3
-3. T-minus 48 hours onward: merged 1-hour forecast data with foreward looking forecast data, responding with the full 7 day forecast.
+3. T-minus 48 hours onward: merged 1-hour forecast data with forward looking forecast data, responding with the full 7 day forecast.
 	* Same process as before using the API endpoint with the time variable.
 	* Very fast (10 ms), since this is optimized for fast reads in one location
 
