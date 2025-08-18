@@ -335,12 +335,12 @@ Crucially, there's now three different ways a request could be handled:
 	* 24 hours
 	* Subset of variables
 	* Slowish (~10 seconds)
-2. 3 or 4 months behind realtime, to T-minus 48 hours: GFS/HRRR/NBM 1-hour forecast data from the PW archive
+2. 3 or 4 months behind realtime, to T-minus 24 hours: GFS/HRRR/NBM 1-hour forecast data from the PW archive
 	* Provides more data and resolution than is available on ERA5
 	* Can provide the range of PW forecast variables via the `tmextra` parameter
 	* Avoids the ERA5 production time lag
 	* Slow (~30 seconds), since it needs to open and read many zarr files on S3
-3. T-minus 48 hours onward: merged 1-hour forecast data with forward looking forecast data, responding with the full 7 day forecast.
+3. T-minus 24 hours onward: merged 1-hour forecast data with forward looking forecast data, responding with the full 7 day forecast.
 	* Same process as before using the API endpoint with the time variable.
 	* Very fast (10 ms), since this is optimized for fast reads in one location
 
@@ -890,3 +890,4 @@ You may encounter this error if your API key has hit the quota for the month.
 
 #### 500 Internal Server Error
 If the API returns a 500 error you can retry the request to see if the API will return a 500 error again. If the issue persists please check the [GitHub issues](https://github.com/Pirate-Weather/pirateweather/issues) to see if the issue has been reported otherwise create a [bug report](https://github.com/Pirate-Weather/pirateweather/issues/new?assignees=&labels=bug%2CNeeds+Review&projects=&template=report_bug.yml) and the issue will be investigated.
+
