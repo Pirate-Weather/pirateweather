@@ -6,6 +6,10 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 	* TBD, 2025, API Version 2.7.7
 		* Changed so that bad/ missing data is always returned as -999, instead of clipping to the extreme range in [PR #234](https://github.com/Pirate-Weather/pirate-weather-code/pull/234).
+		* Changed the currently and minutely blocks to use reflectivity for precipitation where available as per [#390](https://github.com/Pirate-Weather/pirateweather/issues/390). The current models with reflectivity data are HRRR and GFS.
+			* **Note:** It is possible to have precipitation without an associated type as reflectivity data is coming from HRRR subhourly and the type from HRRR hourly.
+		* Fixed an issue where it was possible to have the daily `precipType` be snow without any significant accumulation as per [#413](https://github.com/Pirate-Weather/pirateweather/issues/413)
+		* Changed snow accumulation to use a density formula instead of just multiplying by ten per [#89](https://github.com/Pirate-Weather/pirateweather/issues/89)
 	* August 11, 2025, API Version 2.7.6
 		* Fixed a GFS ingest bug as per [#472](https://github.com/Pirate-Weather/pirateweather/issues/472) and [#429](https://github.com/Pirate-Weather/pirate-weather-ha/issues/429)
 		* Fixed inconsistencies between `smoke`, `haze` and `mist`. These conditions now check if visibility is less than 10 km rather than less than or equal to in [PR #230](https://github.com/Pirate-Weather/pirate-weather-code/pull/230).
