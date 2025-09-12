@@ -10,6 +10,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 			* **Note:** It is possible to have precipitation without an associated type as reflectivity data is coming from HRRR subhourly and the type from HRRR hourly.
 		* Fixed an issue where it was possible to have the daily `precipType` be snow without any significant accumulation as per [#413](https://github.com/Pirate-Weather/pirateweather/issues/413)
 		* Changed snow accumulation to use a density formula instead of just multiplying by ten per [#89](https://github.com/Pirate-Weather/pirateweather/issues/89)
+		* Fixed inconsistencies between metric and imperial units where the possible text was showing for imperial units but not on metric units as per [PR #255](https://github.com/Pirate-Weather/pirate-weather-code/pull/255)
 	* August 11, 2025, API Version 2.7.6
 		* Fixed a GFS ingest bug as per [#472](https://github.com/Pirate-Weather/pirateweather/issues/472) and [#429](https://github.com/Pirate-Weather/pirate-weather-ha/issues/429)
 		* Fixed inconsistencies between `smoke`, `haze` and `mist`. These conditions now check if visibility is less than 10 km rather than less than or equal to in [PR #230](https://github.com/Pirate-Weather/pirate-weather-code/pull/230).
@@ -449,3 +450,4 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 	* Fixed an issue where a combination of a time zone glitch and an issue with dates that were the last day of a month, since they required two separate calls to the archive.
  	* Fixed a couple other issues pertaining to rain/snow units
   	* These issues were reported in [#3](https://github.com/alexander0042/alexander0042.github.io/issues/3) 
+
