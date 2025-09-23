@@ -14,7 +14,7 @@ All request attributes are contained within the URL. Request headers are not par
 ### Request Parameters
 The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 ```
-https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]
+https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]
 ``` 
 
 #### API Key
@@ -149,7 +149,7 @@ Added as part of the V2.5 release, this parameter allows you to sepecify what la
 	* `sv`: Swedish
 	* `ta`: Tamil
 	* `te`: Telugu
-	* `tet: Tetum
+	* `tet`: Tetum
 	* `tr`: Turkish
 	* `uk`: Ukrainian
 	* `ur`: Urdu
@@ -162,6 +162,9 @@ If you require a language not listed above, please consider contributing to the 
 
 #### Icon
 If you add `icon=pirate` to the list of parameters you can get an expanded icon set with icons that were not available in the Dark Sky API.
+
+#### Extra Variables 
+`extraVars=` is used to show additional parameters that are not required for most users and may cause confusion. Currently, only `stationPressure` is allowed, but others may be added in the future. 
 
 ### API Response Example
 ```
@@ -318,7 +321,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": 0,
 		"units": "ca",
-		"version": "V2.7.5"
+		"version": "V2.7.8"
   	}
 ```
 
@@ -441,7 +444,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.7.5",
+	"version":"V2.7.8",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
@@ -604,7 +607,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 ##### Currently:
 
 * If precipitation accumulation is greater than 0.02 mm, then the precipitation type.
-* If visibility is less than 1 km, then `fog`.
+* If visibility is less than 10 km, then `fog`.
 * If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 87.5%, then `cloudy`.
 * If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day` or `partly-cloudy-night`.
@@ -613,7 +616,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 ##### Hourly:
 
 * If precipitation probability is greater than 25% and accumulation is greater than 0.02 mm, then the precipitation type.
-* If visibility is less than 1 km, then `fog`.
+* If visibility is less than 10 km, then `fog`.
 * If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 87.5%, then `cloudy`.
 * If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day` or `partly-cloudy-night`.
@@ -623,7 +626,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 
 With the daily summaries being introduced in version 2.7 the day icon now considers the day as a whole rather than using daily averages. The icon shown will generally be whichever condition comes first so if the morning is foggy and the evening is windy the fog icon will be shown. The cloud cover icons will only be shown as long as no other conditions are forecasted for the day.
 
-**Precipitaion**
+**Precipitation**
 
 The precipitation icon logic is as follows:
 
@@ -644,7 +647,7 @@ The precipitation with the most accumulation forecasted is generally the icon wh
 
 The fog and wind icons are shown if at least one period has at least half of its hours (or three or more hours for longer periods) as foggy or windy and there is no precipitation then the icon is shown.
 
-* If visibility is 10 km or less then `fog`
+* If visibility is less than 10 km then `fog`.
 * If wind speed is greater than 6.7056 m/s, then `wind`.
 
 **Cloud Cover**
@@ -679,7 +682,8 @@ The approximate distance to the nearest storm in kilometers or miles depending o
 
 #### precipAccumulation
 **Only on `hourly` and `daily`**. The total amount of precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For day 0, this is the precipitation during the remaining hours of the day.
-A 1:10 snowfall ratio is used and already factored into this parameter:
+
+Snow accumulation is estimated using a [density formulation](https://github.com/Pirate-Weather/pirateweather/issues/89), adjusting based on the temperature and wind speed when the snow falls. It tends to be around 1:10, but will vary when it's a warm, slushy snowfall. 
 
   * 5 cm (50 mm) of snow is forecasted for an hour, `precipAccumulation`, in cm, will return 5.
   * 5 mm of rain is forecasted for an hour, `precipAccumulation`, in cm, will return 0.5.
@@ -741,6 +745,10 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 
 #### smokeMaxTime
 **Only on `daily`.** the time in which the maxiumum `smoke` occurs represented in UNIX time.
+
+#### station pressure
+**Hidden by default behind the `extraVars=stationPressure` queryparam**.
+The station pressure represented in hectopascals or millibars depending on the requested `units`.
 
 #### summary
 A human-readable summary describing the weather conditions for a given data point. The daily summary is calculated between 4:00 am and 4:00 am local time. For a full list of possible summary values you can view [Appendex A in the translations repository](https://github.com/Pirate-Weather/translations?tab=readme-ov-file#appendix-a-pirate-weather-summary-format).

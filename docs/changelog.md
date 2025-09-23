@@ -4,6 +4,21 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.7"
 
+	* September 23, 2025, API Version 2.7.8
+		* Add station pressure in [PR #271](https://github.com/Pirate-Weather/pirate-weather-code/pull/271).
+		* Added version tags to the release images [PR #267](https://github.com/Pirate-Weather/pirate-weather-code/pull/267).
+		* Updated the build to use the most recent wgrib2 version
+	* September 23, 2025, API Version 2.7.7
+		* Changed so that bad/ missing data is always returned as -999, instead of clipping to the extreme range in [PR #234](https://github.com/Pirate-Weather/pirate-weather-code/pull/234).
+		* Changed the currently and minutely blocks to use reflectivity for precipitation where available as per [#390](https://github.com/Pirate-Weather/pirateweather/issues/390). The current models with reflectivity data are HRRR and GFS.
+		* Added estimating the precipitation type when its none in the HRRR sub-hourly as per [PR #262](https://github.com/Pirate-Weather/pirate-weather-code/pull/262).
+		* Fixed an issue where it was possible to have the daily `precipType` be snow without any significant accumulation as per [#413](https://github.com/Pirate-Weather/pirateweather/issues/413).
+		* Changed snow accumulation to use a density formula instead of just multiplying by ten per [#89](https://github.com/Pirate-Weather/pirateweather/issues/89).
+		* Fixed inconsistencies between metric and imperial units where the possible text was showing for imperial units but not on metric units as per [PR #255](https://github.com/Pirate-Weather/pirate-weather-code/pull/255).
+		* Fixed an issue where the minutely text summaries were using the wrong accumulation unit as per [PR #261](https://github.com/Pirate-Weather/pirate-weather-code/pull/261).
+	* August 11, 2025, API Version 2.7.6
+		* Fixed a GFS ingest bug as per [#472](https://github.com/Pirate-Weather/pirateweather/issues/472) and [#429](https://github.com/Pirate-Weather/pirate-weather-ha/issues/429)
+		* Fixed inconsistencies between `smoke`, `haze` and `mist`. These conditions now check if visibility is less than 10 km rather than less than or equal to in [PR #230](https://github.com/Pirate-Weather/pirate-weather-code/pull/230).
 	* August 7, 2025, API Version 2.7.5
 		* Fixed an issue where `nearestStormDistance` was -999 per [#480](https://github.com/Pirate-Weather/pirateweather/issues/480)
 		* Fixed an issue where some data points would return -999 per [#486](https://github.com/Pirate-Weather/pirateweather/issues/486)
