@@ -4,7 +4,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.7"
 
-	* TBD, 2025, API Version 2.7.7
+	* September 23, 2025, API Version 2.7.8
+		* Add station pressure in [PR #271](https://github.com/Pirate-Weather/pirate-weather-code/pull/271).
+	* September 23, 2025, API Version 2.7.7
 		* Changed so that bad/ missing data is always returned as -999, instead of clipping to the extreme range in [PR #234](https://github.com/Pirate-Weather/pirate-weather-code/pull/234).
 		* Changed the currently and minutely blocks to use reflectivity for precipitation where available as per [#390](https://github.com/Pirate-Weather/pirateweather/issues/390). The current models with reflectivity data are HRRR and GFS.
 		* Added estimating the precipitation type when its none in the HRRR sub-hourly as per [PR #262](https://github.com/Pirate-Weather/pirate-weather-code/pull/262)
