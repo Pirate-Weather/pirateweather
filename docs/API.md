@@ -326,7 +326,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 ```
 
 ### Time Machine Request
-The Time Machine uses either archived 1-hour model results (past four months) or the [NCAR AWS ERA5 dataset](https://registry.opendata.aws/nsf-ncar-era5/) which is updated monthly and is approximately three to four months behind realtime. The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
+The Time Machine uses either archived 1-hour model results (after May 2024) or the [NCAR AWS ERA5 dataset](https://registry.opendata.aws/nsf-ncar-era5/) which is updated monthly and is approximately three to four months behind realtime. The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 
 ```
       https://timemachine.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
@@ -334,17 +334,17 @@ The Time Machine uses either archived 1-hour model results (past four months) or
 
 Crucially, there's now three different ways a request could be handled:
 
-1. Pre 3 or 4 months behind realtime: ERA5 data via the NCAR S3 archive.
-	* 24 hours
+1. Before May 2024: ERA5 data via the NCAR S3 archive.
+	* 24 hour;
 	* Subset of variables
 	* Slowish (~10 seconds)
-2. 3 or 4 months behind realtime, to T-minus 24 hours: GFS/HRRR/NBM 1-hour forecast data from the PW archive
+2. After May 2024, to T-minus 30 hours: GFS/HRRR/NBM 1-hour forecast data from the PW archive.
 	* Provides more data and resolution than is available on ERA5
 	* Can provide the range of PW forecast variables via the `tmextra` parameter
 	* Avoids the ERA5 production time lag
 	* Slow (~30 seconds), since it needs to open and read many zarr files on S3
-3. T-minus 24 hours onward: merged 1-hour forecast data with forward looking forecast data, responding with the full 7 day forecast.
-	* Same process as before using the API endpoint with the time variable.
+3. T-minus 30 hours onward: merged 1-hour forecast data with forward looking forecast data, responding with the full 7 day forecast.
+	* Same process as before using the API endpoint with the time variable
 	* Very fast (10 ms), since this is optimized for fast reads in one location
 
 The response format is the same as the forecast except:

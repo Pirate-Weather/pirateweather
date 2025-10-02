@@ -6,6 +6,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 	* October 2, 2025, API Version 2.7.9
 		* Fixed station pressure units in [PR #276](https://github.com/Pirate-Weather/pirate-weather-code/pull/276).
+		* Updated timemachine data threshold and fixed file reading error [Issue #492](https://github.com/Pirate-Weather/pirateweather/issues/492).
 	* September 23, 2025, API Version 2.7.8
 		* Add station pressure in [PR #271](https://github.com/Pirate-Weather/pirate-weather-code/pull/271).
 		* Added version tags to the release images [PR #267](https://github.com/Pirate-Weather/pirate-weather-code/pull/267).
