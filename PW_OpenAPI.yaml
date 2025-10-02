@@ -60,6 +60,13 @@ paths:
             type: string
             enum:
               - hourly
+        - name: extraVars
+          in: query
+          description: Add additional variables to the response.
+          schema:
+            type: string
+            enum:
+              - stationPressure      
         - name: lang
           in: query
           description: Returns the forecast summaries in the desired language.
@@ -370,7 +377,11 @@ components:
         currentDaySnow:
           type: number
           description: The snow precipitation that has accumulated so far during the day, from midnight until the forecast request time. Only returned when version>2.
-          example: 0           
+          example: 0    
+        stationPressure:      
+          type: number
+          description: The station pressure hectopascals. Only returned when extraVars contains stationPressure.
+          example: 0               
     minutely:
       type: object
       description: A block containing minute-by-minute precipitation intensity for the next 60 minutes.
@@ -479,6 +490,10 @@ components:
                 type: number
                 description: The air pressure.
                 example: 1009.92
+              stationPressure:
+                type: number
+                description: The station pressure. Only returned when extraVars contains stationPressure.
+                example: 1009.92                
               windSpeed:
                 type: number
                 description: The wind speed.
