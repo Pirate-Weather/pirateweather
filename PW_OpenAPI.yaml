@@ -589,7 +589,7 @@ components:
               dawnTime:
                 type: integer
                 format: int32
-                description: The time when the the sun is a specific (6 degrees) height above the horizon after sunrise. Only returned when version>1.
+                description: The time when the sun is a specific (6 degrees) height above the horizon after sunrise. Only returned when version>1.
                 example: 1749290785
               sunriseTime:
                 type: integer
@@ -604,7 +604,7 @@ components:
               duskTime:
                 type: integer
                 format: int32
-                description: The time when the the sun is a specific (6 degrees) height above the horizon before sunset. Only returned when version>1.
+                description: The time when the sun is a specific (6 degrees) height above the horizon before sunset. Only returned when version>1.
                 example: 1749347279
               moonPhase:
                 type: number
@@ -756,7 +756,7 @@ components:
                 example: 1749344400
               smokeMax:
                 type: number
-                description: The maximum amount of near-surface smoke in kg/m^3. Only returned when version>1.
+                description: The maximum amount of near-surface smoke in ug/m^3. Only returned when version>1.
                 example: 0.24
               smokeMaxTime:
                 type: integer
