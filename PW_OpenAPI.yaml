@@ -356,27 +356,27 @@ components:
           example: 304.41
         smoke:
           type: number
-          description: The amount of near-surface smoke in ug/m^3. Only returned when version>2.
+          description: The amount of near-surface smoke in ug/m^3. Only returned when version>1.
           example: 0.08
         fireIndex:
           type: number
-          description: The Fosburg fire index. Only returned when version>2.
+          description: The Fosburg fire index. Only returned when version>1.
           example: 5.39
         feelsLike:
           type: number
-          description: The apparent temperature reported by NBM and gfs. Only returned when version>2.
+          description: The apparent temperature reported by NBM and gfs. Only returned when version>1.
           example: 23.23         
         currentDayIce:
           type: number
-          description: The ice precipitation that has accumulated so far during the day, from midnight until the forecast request time. Only returned when version>2.
+          description: The ice precipitation that has accumulated so far during the day, from midnight until the forecast request time. Only returned when version>1.
           example: 0
         currentDayLiquid:
           type: number
-          description: The liquid precipitation that has accumulated so far during the day, from midnight until the forecast request time. Only returned when version>2.
+          description: The liquid precipitation that has accumulated so far during the day, from midnight until the forecast request time. Only returned when version>1.
           example: 0.0508
         currentDaySnow:
           type: number
-          description: The snow precipitation that has accumulated so far during the day, from midnight until the forecast request time. Only returned when version>2.
+          description: The snow precipitation that has accumulated so far during the day, from midnight until the forecast request time. Only returned when version>1.
           example: 0    
         stationPressure:      
           type: number
@@ -525,19 +525,19 @@ components:
                 example: 301.99
               smoke:
                 type: number
-                description: The amount of near-surface smoke in ug/m3. Only returned when version>2.
+                description: The amount of near-surface smoke in ug/m3. Only returned when version>1.
                 example: 0.1
               liquidAccumulation:
                 type: number
-                description: The amount of liquid precipitation expected. Only returned when version>2.
+                description: The amount of liquid precipitation expected. Only returned when version>1.
                 example: 0.0254
               snowAccumulation:
                 type: number
-                description: The amount of snow precipitation expected. Only returned when version>2.
+                description: The amount of snow precipitation expected. Only returned when version>1.
                 example: 0
               iceAccumulation:
                 type: number
-                description: The amount of ice precipitation expected. Only returned when version>2.
+                description: The amount of ice precipitation expected. Only returned when version>1.
                 example: 0
               nearestStormDistance:
                 type: number
@@ -550,11 +550,11 @@ components:
                 example: 0
               fireIndex:
                 type: number
-                description: The Fosburg fire index. Only returned when version>2.
+                description: The Fosburg fire index. Only returned when version>1.
                 example: 4.49
               feelsLike:
                 type: number
-                description: The apparent temperature reported by NBM and gfs. Only returned when version>2.
+                description: The apparent temperature reported by NBM and gfs. Only returned when version>1.
                 example: 23.29
     daily:
       type: object
@@ -589,7 +589,7 @@ components:
               dawnTime:
                 type: integer
                 format: int32
-                description: The time when the the sun is a specific (6 degrees) height above the horizon after sunrise. Only returned when version>2.
+                description: The time when the the sun is a specific (6 degrees) height above the horizon after sunrise. Only returned when version>1.
                 example: 1749290785
               sunriseTime:
                 type: integer
@@ -604,7 +604,7 @@ components:
               duskTime:
                 type: integer
                 format: int32
-                description: The time when the the sun is a specific (6 degrees) height above the horizon before sunset. Only returned when version>2.
+                description: The time when the the sun is a specific (6 degrees) height above the horizon before sunset. Only returned when version>1.
                 example: 1749347279
               moonPhase:
                 type: number
@@ -756,33 +756,33 @@ components:
                 example: 1749344400
               smokeMax:
                 type: number
-                description: The maximum amount of near-surface smoke in kg/m^3. Only returned when version>2.
+                description: The maximum amount of near-surface smoke in kg/m^3. Only returned when version>1.
                 example: 0.24
               smokeMaxTime:
                 type: integer
                 format: int32
-                description: The time when the maximum near-surface smoke occurs in UNIX format. Only returned when version>2.
+                description: The time when the maximum near-surface smoke occurs in UNIX format. Only returned when version>1.
                 example: 1749333600
               liquidAccumulation:
                 type: number
-                description: The amount of liquid precipitation expected. Only returned when version>2.
+                description: The amount of liquid precipitation expected. Only returned when version>1.
                 example: 0.508
               snowAccumulation:
                 type: number
-                description: The amount of snow precipitation expected. Only returned when version>2.
+                description: The amount of snow precipitation expected. Only returned when version>1.
                 example: 0
               iceAccumulation:
                 type: number
-                description: The amount of ice precipitation expected. Only returned when version>2.
+                description: The amount of ice precipitation expected. Only returned when version>1.
                 example: 0
               fireIndexMax:
                 type: number
-                description: The maximum Fosburg fire index. Only returned when version>2.
+                description: The maximum Fosburg fire index. Only returned when version>1.
                 example: 8.2
               fireIndexMaxTime:
                 type: integer
                 format: int32
-                description: The time when the maximum Fosburg fire index occurs in UNIX format. Only returned when version>2.
+                description: The time when the maximum Fosburg fire index occurs in UNIX format. Only returned when version>1.
                 example: 1749344400
     alerts:
       type: array
@@ -879,7 +879,7 @@ components:
           example: V2.7.10
         sourceIDX:
           type: object
-          description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>2.
+          description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>1.
           properties:
             hrrr:
               type: object
@@ -968,13 +968,13 @@ components:
         processTime:
           type: integer
           format: int32
-          description: The time taken to process the request in milliseconds. Only returned when version>2.
+          description: The time taken to process the request in milliseconds. Only returned when version>1.
           example: 12026
         ingestVersion:
           type: string
-          description: The ingest version of Pirate Weather used to generate the forecast. Only returned when version>2.
+          description: The ingest version of Pirate Weather used to generate the forecast. Only returned when version>1.
           example: v29
         nearestCity:
           type: string
-          description: The name of the closest city to your location. Only returned when version>2.
+          description: The name of the closest city to your location. Only returned when version>1.
           example: Cape Girardeau

@@ -6,7 +6,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 	* October 8, 2025, API Version 2.7.10
 		* Add the capacity to select a unit system automatically as per [PR #290](https://github.com/Pirate-Weather/pirate-weather-code/pull/290).
-		* Fix an issue with `stationPressure` as per [PR #291](https://github.com/Pirate-Weather/pirate-weather-code/pull/291)
+		* Fix an issue with `stationPressure` as per [PR #291](https://github.com/Pirate-Weather/pirate-weather-code/pull/291).
 		* Added the ingest version to flags section behind the `version=2` query string as per [PR #290](https://github.com/Pirate-Weather/pirate-weather-code/pull/290).
 		* Added closest city name to the flags section behind the `version=2` query string as per [PR #290](https://github.com/Pirate-Weather/pirate-weather-code/pull/290).
 		* Added ingest for RTMA-RU as per [PR #263](https://github.com/Pirate-Weather/pirate-weather-code/pull/263).
@@ -17,7 +17,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 	* September 23, 2025, API Version 2.7.8
 		* Add station pressure in [PR #271](https://github.com/Pirate-Weather/pirate-weather-code/pull/271).
 		* Added version tags to the release images [PR #267](https://github.com/Pirate-Weather/pirate-weather-code/pull/267).
-		* Updated the build to use the most recent wgrib2 version
+		* Updated the build to use the most recent wgrib2 version.
 	* September 23, 2025, API Version 2.7.7
 		* Changed so that bad/ missing data is always returned as -999, instead of clipping to the extreme range in [PR #234](https://github.com/Pirate-Weather/pirate-weather-code/pull/234).
 		* Changed the currently and minutely blocks to use reflectivity for precipitation where available as per [#390](https://github.com/Pirate-Weather/pirateweather/issues/390). The current models with reflectivity data are HRRR and GFS.
