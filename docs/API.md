@@ -321,7 +321,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": 0,
 		"units": "ca",
-		"version": "V2.7.9"
+		"version": "V2.7.10"
   	}
 ```
 
@@ -444,7 +444,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.7.9",
+	"version":"V2.7.10",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
@@ -858,6 +858,15 @@ Indicates which units were used in the forecasts.
 
 #### version
 The version of Pirate Weather used to generate the forecast.
+
+#### processTime
+The time taken to process the request in milliseconds.
+
+#### ingestVersion
+The ingest version of Pirate Weather used to generate the forecast.
+
+#### nearestCity
+The name of the closest city to your location.
 
 ### Response Headers
 

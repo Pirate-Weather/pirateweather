@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: "2.7.9"
+  version: "2.7.10"
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -876,7 +876,7 @@ components:
         version:
           type: string
           description: The version of Pirate Weather used to generate the forecast.
-          example: V2.7.9
+          example: V2.7.10
         sourceIDX:
           type: object
           description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>2.
@@ -970,3 +970,11 @@ components:
           format: int32
           description: The time taken to process the request in milliseconds. Only returned when version>2.
           example: 12026
+        ingestVersion:
+          type: string
+          description: The ingest version of Pirate Weather used to generate the forecast. Only returned when version>2.
+          example: v29
+        nearestCity:
+          type: string
+          description: The name of the closest city to your location. Only returned when version>2.
+          example: Cape Girardeau
