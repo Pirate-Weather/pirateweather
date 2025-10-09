@@ -7,8 +7,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 	* October 8, 2025, API Version 2.7.10
 		* Add the capacity to select a unit system automatically as per [PR #290](https://github.com/Pirate-Weather/pirate-weather-code/pull/290).
 		* Fix an issue with `stationPressure` as per [PR #291](https://github.com/Pirate-Weather/pirate-weather-code/pull/291)
-		* Added the ingest version to flags section behind the `version=2` query string as per [#290](https://github.com/Pirate-Weather/pirate-weather-code/pull/290).
-		* Added closest city name to the flags section behind the `version=2` query string as per [#290](https://github.com/Pirate-Weather/pirate-weather-code/pull/290).
+		* Added the ingest version to flags section behind the `version=2` query string as per [PR #290](https://github.com/Pirate-Weather/pirate-weather-code/pull/290).
+		* Added closest city name to the flags section behind the `version=2` query string as per [PR #290](https://github.com/Pirate-Weather/pirate-weather-code/pull/290).
 		* Added ingest for RTMA-RU as per [PR #263](https://github.com/Pirate-Weather/pirate-weather-code/pull/263).
 		* Added ingest for WMO Alerts as per [PR #263](https://github.com/Pirate-Weather/pirate-weather-code/pull/263).
 	* October 2, 2025, API Version 2.7.9
