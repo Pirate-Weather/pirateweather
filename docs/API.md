@@ -93,7 +93,7 @@ Some models can also be excluded, which will force data from the fallback source
 If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.   
 
 #### Version
-If `version=2` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime`, `duskTime`, `currentDayIce`, `currentDayLiquid` and `currentDaySnow`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
+If `version>1` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime`, `duskTime`, `currentDayIce`, `currentDayLiquid`, `currentDaySnow`, `processTime`, `ingestVersion` and `nearestCity`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
 
 #### Language
 Added as part of the V2.5 release, this parameter allows you to sepecify what language the text summaries use. The possible values for language may be:
@@ -321,7 +321,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": 0,
 		"units": "ca",
-		"version": "V2.7.9"
+		"version": "V2.7.10"
   	}
 ```
 
@@ -444,7 +444,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.7.9",
+	"version":"V2.7.10",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
@@ -858,6 +858,15 @@ Indicates which units were used in the forecasts.
 
 #### version
 The version of Pirate Weather used to generate the forecast.
+
+#### processTime
+The time taken to process the request in milliseconds.
+
+#### ingestVersion
+The ingest version of Pirate Weather used to generate the forecast.
+
+#### nearestCity
+The name of the closest city to your location.
 
 ### Response Headers
 
