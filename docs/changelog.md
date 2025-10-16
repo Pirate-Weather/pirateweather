@@ -4,6 +4,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.7"
 
+	* October 8, 2025, API Version 2.7.11
+		* Add closest state/ province (`nearestSubNational`) and country.
+		* Fixed a number of issues for the RTMA-RU/ECMWF/WMO Alerts ingest pipeline to allow for testing these sources in dev (planned for 2.8!)
 	* October 8, 2025, API Version 2.7.10
 		* Add the capacity to select a unit system automatically as per [PR #290](https://github.com/Pirate-Weather/pirate-weather-code/pull/290).
 		* Fix an issue with `stationPressure` as per [PR #291](https://github.com/Pirate-Weather/pirate-weather-code/pull/291).
