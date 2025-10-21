@@ -2,7 +2,17 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
-???+ note "Version 2.7"
+???+ note "Version 2.8"
+
+	* October 20, 2025, API Version 2.8c
+		* Fixed an crash when `nearestSubNational` is missing as per [PR #323](https://github.com/Pirate-Weather/pirate-weather-code/pull/323)
+	* October 18, 2025, API Version 2.8b
+		* Added WMO alerts for global alert coverage as per [PR #320](https://github.com/Pirate-Weather/pirate-weather-code/pull/320)
+		* Added the ECMWF model behind an `include=ecmwf_ifs` query string as per [PR #317](https://github.com/Pirate-Weather/pirate-weather-code/pull/317)
+	* October 17, 2025, API Version 2.8a
+		* Added the RTMA-RU model for the currently block for locations inside its domain as per [PR #311](https://github.com/Pirate-Weather/pirate-weather-code/pull/311)
+
+??? note "Version 2.7"
 
 	* October 8, 2025, API Version 2.7.11
 		* Add closest state/ province (`nearestSubNational`) and country.

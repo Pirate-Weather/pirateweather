@@ -4,6 +4,9 @@ This page serves as the documentation for the underlying data source algorithm f
 ## Data sources
 Several models are used to produce the forecast. They are all hosted on [AWS's Open Data Platform](https://registry.opendata.aws/collab/noaa/), and the fantastic [Herbie package](https://github.com/blaylockbk/Herbie) is used to download and perform initial processing for all of them.    
 
+#### RTMA Rapid Update
+The Real-Time Mesoscale Analysis Rapid Update [(RTMA-RU)](https://emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/rtma.php) provides real time analysis for the continental US and parts of Canada. The model runs every 15-minutes and combines the HRRR first guess with observations from satellites and station observations.
+
 #### NBM
 The National Blend of Models [(NBM)](https://vlab.noaa.gov/web/mdl/nbm) is a calibrated blend of both NOAA and non-NOAA weather models from around the world. Running every hour for about 7 days, the NBM produces a forecast that aims to leverage strengths from each of the source models, as well as providing some probabilistic forecasts. For most weather elements in the US and Canada, this is the primary source. 
 
@@ -18,6 +21,9 @@ The GFS model also underpins the Global Ensemble Forecast System [(GEFS)](https:
 #### GEFS
 The Global Ensemble Forecast System [(GEFS)](https://www.ncei.noaa.gov/products/weather-climate-models/global-ensemble-forecast) is the ensemble version of NOAA's GFS model. By running different variations parameters and inputs, 30 different versions of this model are run at the same time, providing 3-hour forecasts out to 240 hours. The API uses the GEFS to get precipitation type, quantity, and probability, since it seemed like the most accurate way of determining this. I have no idea how Dark Sky did it, and I am very open to feedback about other ways it could be assigned, since getting the precipitation probability number turned out to be one of the most complex parts of the entire setup! 
 
+#### ECMWF IFS
+The European Centre for Medium-Range Weather Forecasts Integrated Forecasting System [(ECMWF IFS)](https://www.ecmwf.int/en/forecasts/documentation-and-support/changes-ecmwf-model) is a global weather model.
+
 ### ERA5
 To provide historic weather data, the [NCAR European Reanalysis 5 Dataset](https://registry.opendata.aws/nsf-ncar-era5/) is used. This source uses NetCDF4 files saved on S3, which lets them be accessed directly from S3; however, it's not particularly fast, making it only suitable for historic requests. 
 
@@ -28,36 +34,36 @@ Every Pirate Weather forecast element for each time block (`currently`, `minutel
 At a high level, the general approach is to use NBM first, then HRRR, then GEFS, the GFS. However, for Currently and minutely results data from the sub-hourly (15 minute) HRRR model is preferred when it is available (not all variables are included in sub hourly, notably cloud cover, which would be great to have).  
 
 
-|Parameter 	            |Currently                    |Minutely   			    |Hourly/ Daily          	|
-|-----------------------|-----------------------------|-------------------------|---------------------------|
-|apparentTemperature	|HRRR_SubH > NBM > GFS	      |N/A   				    |NBM > HRRR > GFS		 	|
-|cloudCover   			|NBM > HRRR > GFS   	      |N/A   				    |NBM > HRRR > GFS   		|
-|currentDayIce		    |NBM > HRRR > GEFS > GFS      |N/A					    |N/A						|
-|currentDayLiquid       |NBM > HRRR > GEFS > GFS      |N/A					    |N/A						|
-|currentDaySnow         |NBM > HRRR > GEFS > GFS      |N/A					    |N/A						|
-|dewPoint     			|HRRR_SubH > NBM > GFS        |N/A   				    |NBM > HRRR > GFS   		|
-|fireIndex    			|NBM   			  		      |N/A   				    |NBM   			 			|
-|feelsLike    			|NBM > GFS  			      |N/A   				    |NBM > GFS		 			|
-|humidity     			|HRRR > NBM > GFS   	      |N/A   				    |NBM > HRRR > GFS   		|
-|iceAccumulation   		|N/A                          |N/A   				    |NBM > HRRR > GEFS > GFS	|
-|liquidAccumulation 	|N/A                          |N/A   				    |NBM > HRRR > GEFS > GFS	|
-|nearestStormBearing	|GFS   					      |N/A   				    |GFS   						|
-|nearestStormDistance   |GFS   					      |N/A   				    |GFS   						|
-|ozone   				|GFS   					      |N/A   				    |GFS   						|
-|precipAccumulation 	|N/A                          |N/A   				    |NBM > HRRR > GEFS > GFS	|
-|precipIntensity   		|HRRR_SubH > NBM > GEFS       |HRRR_SubH > NBM > GEFS	|NBM > HRRR > GEFS			|
-|precipIntensityError	|GEFS					      |GEFS					    |GEFS						|	
-|precipProbability  	|NBM > GEFS 			      |NBM > GEFS 			    |NBM > GEFS					|
-|precipType   			|HRRR_SubH > NBM > GEFS       |HRRR_SubH > NBM > GEFS	|NBM > HRRR > GEFS			|
-|pressure   			|HRRR > GFS   			      |N/A				        |HRRR > GFS 				|
-|snowAccumulation   	|N/A					      |N/A   				    |NBM > HRRR > GEFS > GFS 	|
-|smoke   				|HRRR   				      |N/A   				    |HRRR  						|
-|temperature   			|HRRR_SubH > NBM > GFS        |N/A   				    |NBM > HRRR > GFS   		|
-|uvIndex   				|GFS   					      |N/A   				    |GFS   						|
-|visibility   			|NBM > HRRR > GFS |N/A   				    |NBM > HRRR > GFS   		|
-|windBearing  			|HRRR_SubH > NBM > GFS        |N/A   				    |NBM > HRRR > GFS   		|
-|windGust   			|HRRR_SubH > NBM > GFS        |N/A   				    |NBM > HRRR > GFS   		|
-|windSpeed   			|HRRR_SubH > NBM > GFS        |N/A				        |NBM > HRRR > GFS   		|
+|Parameter 	            |Currently                                      |Minutely   			  |Hourly/ Daily                        |
+|-----------------------|-----------------------------------------------|-------------------------|-------------------------------------|
+|apparentTemperature	|RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS	|N/A   				      |NBM > HRRR > ECMWF IFS > GFS		 	|
+|cloudCover   			|RTMA-RU > NBM > HRRR > ECMWF IFS > GFS   	    |N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
+|currentDayIce		    |NBM > HRRR > ECMWF IFS > GEFS > GFS            |N/A					  |N/A					                |
+|currentDayLiquid       |NBM > HRRR > ECMWF IFS > GEFS > GFS            |N/A					  |N/A				    	            |
+|currentDaySnow         |NBM > HRRR >  ECMWF IFS >GEFS > GFS            |N/A					  |N/A						            |
+|dewPoint     			|RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS    |N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
+|fireIndex    			|NBM   			  		                        |N/A   				      |NBM   			 		            |
+|feelsLike    			|NBM > GFS  			                        |N/A   				      |NBM > GFS		 		            |
+|humidity     			|RTMA-RU > HRRR > NBM > ECMWF IFS > GFS   	    |N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
+|iceAccumulation   		|N/A                                            |N/A   				      |NBM > HRRR > GEFS > GFS	            |
+|liquidAccumulation 	|N/A                                            |N/A   				      |NBM > HRRR > ECMWF IFS > GEFS > GFS	|
+|nearestStormBearing	|GFS   					                        |N/A   				      |NBM > HRRR > ECMWF IFS > GEFS > GFS	|
+|nearestStormDistance   |GFS   					                        |N/A   				      |GFS   					            |
+|ozone   				|GFS   					                        |N/A   				      |GFS   					            |
+|precipAccumulation 	|N/A                                            |N/A   				      |NBM > HRRR > ECMWF IFS > GEFS > GFS	|
+|precipIntensity   		|HRRR_SubH > NBM > ECMWF IFS >  GEFS            |HRRR_SubH > NBM > GEFS	  |NBM > HRRR > ECMWF IFS > GEFS		|
+|precipIntensityError	|ECMWF IFS > GEFS			                    |ECMWF IFS > GEFS		  |ECMWF IFS > GEFS			            |	
+|precipProbability  	|NBM > ECMWF IFS >  GEFS 			            |NBM > GEFS 			  |NBM > ECMWF IFS > GEFS				|
+|precipType   			|HRRR_SubH > NBM > ECMWF IFS >  GEFS            |HRRR_SubH > NBM > GEFS	  |NBM > HRRR > ECMWF IFS > GEFS		|
+|pressure   			|HRRR > ECMWF IFS > GFS   			            |N/A				      |HRRR > ECMWF IFS > GFS 	            |
+|snowAccumulation   	|N/A					                        |N/A   				      |NBM > HRRR > ECMWF IFS > GEFS > GFS 	|
+|smoke   				|HRRR   				                        |N/A   				      |HRRR  					            |
+|temperature   			|RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS    |N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
+|uvIndex   				|GFS   					                        |N/A   				      |GFS   				                |
+|visibility   			|RTMA-RU > NBM > HRRR > ECMWF IFS > GFS         |N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
+|windBearing  			|RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS    |N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
+|windGust   			|RTMA-RU > HRRR_SubH > NBM > GFS                |N/A   				      |NBM > HRRR > GFS   		            |
+|windSpeed   			|RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS    |N/A				      |NBM > HRRR > ECMWF IFS > GFS   		|
 
 ## Data Pipeline
 
@@ -71,3 +77,5 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | NBM                  | 0-24            | 1:45  | 1:45-00:45            |
 | HRRR- 48h            | 0,6,12,18       | 2:30  | 2:30,8:30,14:30,20:30 |
 | HRRR- 18h/ SubHourly | 0-24            | 1:45  | 1:45-00:45        	 |
+| RTMA-RU              | 0-24            | 0:xx  | :00,:15,:30,:45       |
+| ECMWF IFS            | 0,12            | x:xx  | x,x                   |

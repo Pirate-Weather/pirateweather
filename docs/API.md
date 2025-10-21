@@ -321,7 +321,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": 0,
 		"units": "ca",
-		"version": "V2.7.10"
+		"version": "V2.8c"
   	}
 ```
 
@@ -444,7 +444,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.7.10",
+	"version":"V2.8c",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
@@ -867,6 +867,12 @@ The ingest version of Pirate Weather used to generate the forecast.
 
 #### nearestCity
 The name of the closest city to your location.
+
+#### nearestCountry
+The name of the closest country to your location.
+
+#### nearestSubNational
+The name of the closest state or province to your location.
 
 ### Response Headers
 
