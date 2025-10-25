@@ -493,14 +493,15 @@ A block containing miscellaneous data for the API request.
 ### Data Point
 
 #### apparentTemperature
-Temperature adjusted for wind and humidity, based the [Steadman 1994](http://www.bom.gov.au/jshess/docs/1994/steadman.pdf) approach used by the Australian Bureau of Meteorology. Implemented using the [Breezy Weather approach](https://github.com/breezy-weather/breezy-weather/discussions/1085#discussioncomment-9734935) without solar radiation, which follows this equation:
+Temperature adjusted for wind and humidity, based the [Steadman 1994](http://www.bom.gov.au/jshess/docs/1994/steadman.pdf) approach used by the Australian Bureau of Meteorology. Implemented using the [Breezy Weather approach](https://github.com/breezy-weather/breezy-weather/discussions/1085#discussioncomment-9734935) with solar radiation, which follows this equation:
 
-$$ AT = Ta + 0.33 × rh / 100 × 6.105 × exp(17.27 × Ta / (237.7 + Ta)) − 0.70 × ws − 4.00$$
+$$ AT = Ta + 0.348 × rh / 100 × 6.105 × exp(17.27 × Ta / (237.7 + Ta)) − 0.70 × ws + 0.70 × Q / (ws + 10) − 4.25$$
 
 - $Ta$ is the ambient temperature in °C
 - $ws$ is the wind speed in m/s
+- $Q$ is solar radiation in W/m^2
 
-This equation produces results that are similar to heat index and wind chill values; however, may vary from other sources that incorporate solar radiation to produce higher apparent temperatures.
+This equation produces results that are similar to heat index and wind chill values.
 
 #### apparentTemperatureMax
 **Only on `daily`**. The maximum "feels like" temperature during a day, from midnight to midnight.
@@ -615,7 +616,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 ##### Currently:
 
 * If precipitation accumulation is greater than 0.02 mm, then the precipitation type.
-	* If CAPE is greater than 2500J/kg then `thunderstorm`.
+	* If CAPE is greater than or equal to 2500J/kg then `thunderstorm`.
 * If visibility is less than 10 km, then `fog`.
 * If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 87.5%, then `cloudy`.
@@ -625,7 +626,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 ##### Hourly:
 
 * If precipitation probability is greater than 25% and accumulation is greater than 0.02 mm, then the precipitation type.
-	* If CAPE is greater than 2500J/kg then `thunderstorm`.
+	* If CAPE is greater than or equal to 2500J/kg then `thunderstorm`.
 * If visibility is less than 10 km, then `fog`.
 * If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 87.5%, then `cloudy`.

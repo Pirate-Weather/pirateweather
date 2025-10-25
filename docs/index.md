@@ -52,7 +52,7 @@ Up to version 2.8! As always, details are available in the [changelog](https://p
 * Added the ECMWF model behind an `include=ecmwf_ifs` query string as per [PR #317](https://github.com/Pirate-Weather/pirate-weather-code/pull/317)
 * Added the RTMA-RU model for the currently block for locations inside its domain as per [PR #311](https://github.com/Pirate-Weather/pirate-weather-code/pull/311)
 * Added solar and CAPE to API response when version>1 as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
-* Updated `apparentTemperature` calculation to use solar as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
+* Updated `apparentTemperature` calculation to use solar radiation as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
