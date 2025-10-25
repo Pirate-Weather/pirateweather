@@ -37,6 +37,7 @@ At a high level, the general approach is to use NBM first, then HRRR, then GEFS,
 |Parameter 	            |Currently                                      |Minutely   			  |Hourly/ Daily                        |
 |-----------------------|-----------------------------------------------|-------------------------|-------------------------------------|
 |apparentTemperature	|RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS	|N/A   				      |NBM > HRRR > ECMWF IFS > GFS		 	|
+|cape               	|HRRR_SubH > NBM > GFS	                        |N/A   				      |NBM > HRRR > GFS    		 	        |
 |cloudCover   			|RTMA-RU > NBM > HRRR > ECMWF IFS > GFS   	    |N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
 |currentDayIce		    |NBM > HRRR > ECMWF IFS > GEFS > GFS            |N/A					  |N/A					                |
 |currentDayLiquid       |NBM > HRRR > ECMWF IFS > GEFS > GFS            |N/A					  |N/A				    	            |
@@ -56,6 +57,7 @@ At a high level, the general approach is to use NBM first, then HRRR, then GEFS,
 |precipProbability  	|NBM > ECMWF IFS >  GEFS 			            |NBM > GEFS 			  |NBM > ECMWF IFS > GEFS				|
 |precipType   			|HRRR_SubH > NBM > ECMWF IFS >  GEFS            |HRRR_SubH > NBM > GEFS	  |NBM > HRRR > ECMWF IFS > GEFS		|
 |pressure   			|HRRR > ECMWF IFS > GFS   			            |N/A				      |HRRR > ECMWF IFS > GFS 	            |
+|solar               	|HRRR_SubH > NBM > GFS	                        |N/A   				      |NBM > HRRR > GFS    		 	        |
 |snowAccumulation   	|N/A					                        |N/A   				      |NBM > HRRR > ECMWF IFS > GEFS > GFS 	|
 |smoke   				|HRRR   				                        |N/A   				      |HRRR  					            |
 |temperature   			|RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS    |N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|

@@ -4,7 +4,16 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.8"
 
-	* October 20, 2025, API Version 2.8c
+	* October 25, 2025, API Version 2.8f
+		* Simplify thunderstorm summary to no longer include precipitation per [PR #337](https://github.com/Pirate-Weather/pirate-weather-code/pull/337)
+	* October 23, 2025, API Version 2.8e
+		* Added thunderstorm as a summary and icon per [PR #335](https://github.com/Pirate-Weather/pirate-weather-code/pull/335)
+			* This means that the default icon set has been updated to include thunderstorm
+	* October 22, 2025, API Version 2.8d
+		* Added solar and CAPE to API response when version>1 as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
+		* Updated `apparentTemperature` calculation to use solar as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
+	* October 21, 2025, API Version 2.8c
+		* Added NOMADS as a backup source as per [PR #326](https://github.com/Pirate-Weather/pirate-weather-code/pull/326)
 		* Fixed an crash when `nearestSubNational` is missing as per [PR #323](https://github.com/Pirate-Weather/pirate-weather-code/pull/323)
 	* October 18, 2025, API Version 2.8b
 		* Added WMO alerts for global alert coverage as per [PR #320](https://github.com/Pirate-Weather/pirate-weather-code/pull/320)

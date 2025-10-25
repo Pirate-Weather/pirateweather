@@ -321,7 +321,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": 0,
 		"units": "ca",
-		"version": "V2.8c"
+		"version": "V2.8f"
   	}
 ```
 
@@ -444,7 +444,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sources":"ERA5",
 	"nearest-station":0,
 	"units":"us",
-	"version":"V2.8c",
+	"version":"V2.8f",
 	"sourceIDX":[
 		"x":1120,
 		"y":216
@@ -527,6 +527,12 @@ This equation produces results that are similar to heat index and wind chill val
 **Only on `daily`**. 
 The time of the minimum "feels like" temperature during the daytime, from 6:00 am to 6:00 pm.
 
+#### cape
+The Convective Available Potential Energy measured in J/kg.
+
+#### capeMaxTime
+**Only on `daily`.** the time in which the maxiumum `cape` occurs represented in UNIX time.
+
 #### cloudCover
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
 
@@ -568,7 +574,7 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
-`clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `thunderstorm`, `hail` or `mixed` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
+`clear-day, clear-night, thunderstorm, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `freezing-rain`, `hail` or `mixed` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
 
 If `icon=pirate` is added as a query string parameter the icon set is expanded to include:
 
@@ -584,6 +590,8 @@ If `icon=pirate` is added as a query string parameter the icon set is expanded t
 * `possible-sleet-night`
 * `possible-precipitation-day`
 * `possible-precipitation-night`
+* `possible-thunderstorm-day`
+* `possible-thunderstorm-night`
 * `precipitation`
 * `drizzle`
 * `light-rain`
@@ -607,6 +615,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 ##### Currently:
 
 * If precipitation accumulation is greater than 0.02 mm, then the precipitation type.
+	* If CAPE is greater than 2500J/kg then `thunderstorm`.
 * If visibility is less than 10 km, then `fog`.
 * If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 87.5%, then `cloudy`.
@@ -616,6 +625,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 ##### Hourly:
 
 * If precipitation probability is greater than 25% and accumulation is greater than 0.02 mm, then the precipitation type.
+	* If CAPE is greater than 2500J/kg then `thunderstorm`.
 * If visibility is less than 10 km, then `fog`.
 * If winds are greater than 6.7056 m/s, then `wind`.
 * If cloud cover is greater than 87.5%, then `cloudy`.
@@ -639,6 +649,7 @@ The precipitation icon logic is as follows:
 
 The precipitation with the most accumulation forecasted is generally the icon which is shown unless:
 
+* If maximum CAPE (with precipitation) is greater than 2500J/kg then `thunderstorm`.
 * If more than 10 mm of rain is forecast, then `rain`
 * If more than 5 mm of snow is forecast, then `snow`
 * Else, if more than 1 mm of ice is forecast, then `sleet`
@@ -746,7 +757,13 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 #### smokeMaxTime
 **Only on `daily`.** the time in which the maxiumum `smoke` occurs represented in UNIX time.
 
-#### station pressure
+#### solar
+The Downward Short-Wave Radiation Flux measured in W/m^2.
+
+#### solarMax
+**Only on `daily`.** the time in which the maxiumum `solar` occurs represented in UNIX time.
+
+#### stationPressure
 **Hidden by default behind the `extraVars=stationPressure` queryparam**.
 The station pressure represented in hectopascals or millibars depending on the requested `units`.
 

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: "2.8c"
+  version: "2.8f"
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -381,7 +381,16 @@ components:
         stationPressure:      
           type: number
           description: The station pressure hectopascals. Only returned when extraVars contains stationPressure.
-          example: 0               
+          example: 0
+        solar:
+          type: number
+          description: The Downward Short-Wave Radiation Flux measured in W/m^2. Only returned when version>1.
+          example: 378.4  
+        cape:
+          type: integer
+          format: int32
+          description: The Convective Available Potential Energy measured in J/kg. Only returned when version>1.
+          example: 0             
     minutely:
       type: object
       description: A block containing minute-by-minute precipitation intensity for the next 60 minutes.
@@ -556,6 +565,15 @@ components:
                 type: number
                 description: The apparent temperature reported by NBM and gfs. Only returned when version>1.
                 example: 23.29
+              solar:
+                type: number
+                description: The Downward Short-Wave Radiation Flux measured in W/m^2. Only returned when version>1.
+                example: 378.4
+              cape:
+                type: integer
+                format: int32
+                description: The Convective Available Potential Energy measured in J/kg. Only returned when version>1.
+                example: 0
     daily:
       type: object
       description: A block containing day-by-day forecasted conditions for the next 7 days.
@@ -784,6 +802,24 @@ components:
                 format: int32
                 description: The time when the maximum Fosburg fire index occurs in UNIX format. Only returned when version>1.
                 example: 1749344400
+              solar:
+                type: number
+                description: The Downward Short-Wave Radiation Flux measured in W/m^2. Only returned when version>1.
+                example: 392.78
+              solarMax:
+                type: number
+                description: The time when the maximum solar occurs in UNIX format. Only returned when version>1.
+                example: 1761422400
+              cape:
+                type: integer
+                format: int32
+                description: The Convective Available Potential Energy measured in J/kg. Only returned when version>1.
+                example: 0
+              capeMax:
+                type: integer
+                format: int32
+                description: The time when the maximum CAPE occurs in UNIX format. Only returned when version>1.
+                example: 1761368400
     alerts:
       type: array
       description: A block containing any severe weather alerts for the current location.
@@ -876,7 +912,7 @@ components:
         version:
           type: string
           description: The version of Pirate Weather used to generate the forecast.
-          example: V2.8c
+          example: V2.8f
         sourceIDX:
           type: object
           description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>1.
@@ -977,12 +1013,12 @@ components:
         nearestCity:
           type: string
           description: The name of the closest city to your location. Only returned when version>1.
-          example: Ottawa
+          example: Cape Girardeau
         nearestCountry:
           type: string
           description: The name of the closest country to your location. Only returned when version>1.
-          example: Canada
+          example: United States
         nearestSubNational:
           type: string
           description: The name of the closest state or province to your location. Only returned when version>1.
-          example: Ontario          
+          example: Missouri
