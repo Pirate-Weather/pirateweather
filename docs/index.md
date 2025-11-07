@@ -47,6 +47,12 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 ## Recent Updates- Fall 2025
 Up to version 2.8! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
+* Fixed an issue where the day icon, hourly block icon and day/night summary icon was hardcorded to use a day icon as per [PR #362](https://github.com/Pirate-Weather/pirate-weather-code/pull/362)
+	* Locations experiencing polar night will no longer have the API return a day icon in these blocks
+	* Locations experiencing polar day will see a day icon in the night summary block
+* Refactored the codebase to use SI units throughout as per [PR #348](https://github.com/Pirate-Weather/pirate-weather-code/pull/348)
+* Added a Day/Night Forecast as per [PR #349](https://github.com/Pirate-Weather/pirate-weather-code/pull/349)
+  * The day portion of the forecast is calculated from 4am to 4pm and the night forecast is calculated from 5pm to 3am.
 * Added thunderstorm as a summary and icon per [PR #335](https://github.com/Pirate-Weather/pirate-weather-code/pull/335)
 * Added solar and CAPE to API response when version>1 as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
 * Updated `apparentTemperature` calculation to use solar radiation as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
