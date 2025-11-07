@@ -566,7 +566,7 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
-`clear-day, clear-night, thunderstorm, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `freezing-rain`, `hail` or `mixed` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
+`clear-day, clear-night, thunderstorm, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `hail` or `mixed` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
 
 If `icon=pirate` is added as a query string parameter the icon set is expanded to include:
 
