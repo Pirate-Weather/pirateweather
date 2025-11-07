@@ -4,21 +4,20 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.8"
 
-	* October 25, 2025, API Version 2.8f
-		* Simplify thunderstorm summary to no longer include precipitation per [PR #337](https://github.com/Pirate-Weather/pirate-weather-code/pull/337)
-	* October 23, 2025, API Version 2.8e
+	* November 7, 2025, API Version 2.8
+		* Fixed an issue where the day icon, hourly block icon and day/night summary icon was hardcorded to use a day icon as per [PR #362](https://github.com/Pirate-Weather/pirate-weather-code/pull/362)
+			* Locations experiencing polar night will no longer have the API return a day icon in these blocks
+			* Locations experiencing polar day will see a day icon in the night summary block
+		* Refactored the codebase to use SI units throughout as per [PR #348](https://github.com/Pirate-Weather/pirate-weather-code/pull/348)
+		* Added a Day/Night Forecast as per [PR #349](https://github.com/Pirate-Weather/pirate-weather-code/pull/349)
+			* The day portion of the forecast is calculated from 4am to 4pm and the night forecast is calculated from 5pm to 3am.
 		* Added thunderstorm as a summary and icon per [PR #335](https://github.com/Pirate-Weather/pirate-weather-code/pull/335)
 			* This means that the default icon set has been updated to include thunderstorm
-	* October 22, 2025, API Version 2.8d
 		* Added solar and CAPE to API response when version>1 as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
 		* Updated `apparentTemperature` calculation to use solar radiation as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
-	* October 21, 2025, API Version 2.8c
-		* Added NOMADS as a backup source as per [PR #326](https://github.com/Pirate-Weather/pirate-weather-code/pull/326)
 		* Fixed an crash when `nearestSubNational` is missing as per [PR #323](https://github.com/Pirate-Weather/pirate-weather-code/pull/323)
-	* October 18, 2025, API Version 2.8b
 		* Added WMO alerts for global alert coverage as per [PR #320](https://github.com/Pirate-Weather/pirate-weather-code/pull/320)
-		* Added the ECMWF model behind an `include=ecmwf_ifs` query string as per [PR #317](https://github.com/Pirate-Weather/pirate-weather-code/pull/317)
-	* October 17, 2025, API Version 2.8a
+		* Added the ECMWF model for better global forecasts as per [PR #317](https://github.com/Pirate-Weather/pirate-weather-code/pull/317)
 		* Added the RTMA-RU model for the currently block for locations inside its domain as per [PR #311](https://github.com/Pirate-Weather/pirate-weather-code/pull/311)
 
 ??? note "Version 2.7"
@@ -444,6 +443,11 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ## Time Machine Changelog
 
+* October 31, 2025
+	* Changed TimeMachine to use the Google ERA5 dataset
+		* Requests for the last 24 hours use all the sources and are unchanged;
+		* Request for the last 10 days rely only on GFS data (although ECMWF would be easy to add) stored in the zip file on the server;
+		* Requests >10 days rely on Google's ERA5 zarr dataset, which is a perfect source for this sort of application.
 * December 9, 2024
 	* Added a per API key rate limit of 1 to 4/ per second (depending on the plan) to prevent instabililty as per [https://github.com/Pirate-Weather/pirate-weather-code/issues/30#issuecomment-2528680513](https://github.com/Pirate-Weather/pirate-weather-code/issues/30#issuecomment-2528680513)
 * September 13, 2024
