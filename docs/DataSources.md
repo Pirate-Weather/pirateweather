@@ -27,7 +27,6 @@ The European Centre for Medium-Range Weather Forecasts Integrated Forecasting Sy
 ### ERA5
 To provide historic weather data, the [NCAR European Reanalysis 5 Dataset](https://registry.opendata.aws/nsf-ncar-era5/) is used. This source uses NetCDF4 files saved on S3, which lets them be accessed directly from S3; however, it's not particularly fast, making it only suitable for historic requests. 
 
-
 ## Forecast element sources
 Every Pirate Weather forecast element for each time block (`currently`, `minutely`, `hourly`, or `daily`) is included in the table below, along with the primary, secondary, and tertiary data sources. Fallback sources are used if model data is intentionally excluded, the request point is outside of the primary model coverage area, or if there's some sort of data interruption. 
 
@@ -79,5 +78,5 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | NBM                  | 0-24            | 1:45  | 1:45-00:45            |
 | HRRR- 48h            | 0,6,12,18       | 2:30  | 2:30,8:30,14:30,20:30 |
 | HRRR- 18h/ SubHourly | 0-24            | 1:45  | 1:45-00:45        	 |
-| RTMA-RU              | 0-24            | 0:xx  | :00,:15,:30,:45       |
+| RTMA-RU              | 0-24            | 0:25  | :25,:40,:55,:10       |
 | ECMWF IFS            | 0,12            | x:xx  | x,x                   |
