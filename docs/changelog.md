@@ -4,13 +4,13 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.8"
 
-	* November 8, 2025, API Version 2.8.1b
+	* November 11, 2025, API Version 2.8.1
 		* Changed the snow error calculations to use the density function as per [PR #380](https://github.com/Pirate-Weather/pirate-weather-code/pull/380)
 		* Changed snow error calculations use hours where the type is snow and there is snow accumulation as per [PR #381](https://github.com/Pirate-Weather/pirate-weather-code/pull/381)
-	* November 7, 2025, API Version 2.8.1a
 		* Fixed a KeyError in the minutely summary calculations as per [PR #376](https://github.com/Pirate-Weather/pirate-weather-code/pull/376)
 		* Fixed a ValueError caused by alerts with no end time as per [PR #377](https://github.com/Pirate-Weather/pirate-weather-code/pull/376)
 			* Alerts with no end date will return -999 as per [PR #378](https://github.com/Pirate-Weather/pirate-weather-code/pull/378)
+		* Added padding to the ingest files to fix compatibility with Dask 2025.11.0 [PR #393](https://github.com/Pirate-Weather/pirate-weather-code/pull/393)
 	* November 7, 2025, API Version 2.8
 		* Fixed an issue where the day icon, hourly block icon and day/night summary icon was hardcorded to use a day icon as per [PR #362](https://github.com/Pirate-Weather/pirate-weather-code/pull/362)
 			* Locations experiencing polar night will no longer have the API return a day icon in these blocks
