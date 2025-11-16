@@ -356,7 +356,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": 0,
 		"units": "ca",
-		"version": "V2.8.1"
+		"version": "V2.8.2"
   	}
 ```
 
@@ -477,7 +477,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sourceTimes": {},
 	"nearest-station": 0,
 	"units": "ca",
-	"version": "V2.8.1"
+	"version": "V2.8.2"
 	}
 }
 ```
