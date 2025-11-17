@@ -18,3 +18,7 @@ mkdocs:
 python:
    install:
    - requirements: docs/requirements.txt
+
+build:
+  commands:
+    - zensical build
