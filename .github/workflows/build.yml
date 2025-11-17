@@ -1,4 +1,4 @@
-name: MkDocs Build
+name: Zensical Build
 
 permissions:
   contents: write # only for delete-branch option
@@ -21,6 +21,6 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install dependencies
-        run: pip install --no-deps -r docs/requirements.txt
+        run: pip install -r docs/requirements.txt
       - name: Build site
-        run: mkdocs build
+        run: zensical build

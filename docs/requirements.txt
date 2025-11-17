@@ -1,26 +1,5 @@
-# File: docs/requirements.txt
-beautifulsoup4==4.14.2
-click==8.3.1
-colorama==0.4.6
-ghp-import==2.1.0
-importlib-metadata==8.7.0
-Jinja2==3.1.6
-Markdown==3.10
-MarkupSafe==3.0.3
-mergedeep==1.3.4
-mkdocs==1.6.1
-mkdocs-material==9.7.0
-mkdocs-material-extensions==1.3.1
+# Minimal requirements for building docs with Zensical
+# Zensical is the static site generator; dependencies are installed by pip
+zensical==0.0.8
+# Keep the Swagger UI tag plugin used in `mkdocs.yml` (compatibility may vary)
 mkdocs-swagger-ui-tag==0.7.2
-packaging==25.0
-pathspec==0.12.1
-Pygments==2.19.2
-pymdown-extensions==10.17.1
-python-dateutil==2.9.0.post0
-PyYAML==6.0.3
-pyyaml_env_tag==1.1
-six==1.17.0
-soupsieve==2.8
-typing-extensions==4.15.0
-watchdog==6.0.0
-zipp==3.23.0
