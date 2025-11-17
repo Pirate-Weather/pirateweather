@@ -13,8 +13,8 @@ build:
   commands:
     - python -m pip install -r docs/requirements.txt
     - python -m zensical build
-      - mkdir -p "$READTHEDOCS_OUTPUT/html"
-      - cp -a site/. "$READTHEDOCS_OUTPUT/html/"
+    - mkdir -p "$READTHEDOCS_OUTPUT/html"
+    - cp -a site/. "$READTHEDOCS_OUTPUT/html/"
 
 mkdocs:
   configuration: mkdocs.yml
