@@ -11,7 +11,8 @@ build:
   tools:
     python: "3.13"
   commands:
-    - zensical build
+    - python -m pip install -r docs/requirements.txt
+    - python -m zensical build
 
 mkdocs:
   configuration: mkdocs.yml
