@@ -56,9 +56,6 @@ extra_javascript:
   - javascripts/extra.js
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-  
-plugins:
-   - swagger-ui-tag  
    
 extra_css:
   - stylesheets/extra.css
