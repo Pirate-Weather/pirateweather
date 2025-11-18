@@ -316,11 +316,11 @@ components:
           example: none
         rainIntensity:
           type: number
-          description: The intensity of ice precipitation. Only returned when version>1.
+          description: The intensity of rain precipitation. Only returned when version>1.
           example: 0
-        iceIntensity:
+        snowIntensity:
           type: number
-          description: The intensity of ice precipitation. Only returned when version>1.
+          description: The intensity of snow precipitation. Only returned when version>1.
           example: 0
         iceIntensity:
           type: number
@@ -452,11 +452,11 @@ components:
                 example: none
               rainIntensity:
                 type: number
-                description: The intensity of ice precipitation. Only returned when version>1.
+                description: The intensity of rain precipitation. Only returned when version>1.
                 example: 0
-              iceIntensity:
+              snowIntensity:
                 type: number
-                description: The intensity of ice precipitation. Only returned when version>1.
+                description: The intensity of snow precipitation. Only returned when version>1.
                 example: 0
               iceIntensity:
                 type: number
@@ -1028,7 +1028,8 @@ components:
                 description: The Downward Short-Wave Radiation Flux measured in W/m^2. Only returned when version>1.
                 example: 558.76
               solarMax:
-                type: number
+                type: integer
+                format: int32
                 description: The time when the maximum solar occurs in UNIX format. Only returned when version>1.
                 example: 1762714800
               cape:
@@ -1194,20 +1195,20 @@ components:
                 x:
                   type: integer
                   format: int32
-                  description: The X coordinate for the NBM model.
+                  description: The X coordinate for the ECMWF IFS model.
                   example: 362
                 y:
                   type: integer
                   format: int32
-                  description: The Y coordinate for the NBM model.
+                  description: The Y coordinate for the ECMWF IFS model.
                   example: 211
                 lat:
                   type: number
-                  description: The latitude coordinate for the NBM model.
+                  description: The latitude coordinate for the ECMWF IFS model.
                   example: 37.25
                 long:
                   type: number
-                  description: The longitude coordinate for the NBM model.
+                  description: The longitude coordinate for the ECMWF IFS model.
                   example: -89.5
             rtma_ru:
               type: object

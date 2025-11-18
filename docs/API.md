@@ -96,7 +96,7 @@ Some models can also be excluded, which will force data from the fallback source
 If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.   
 
 #### Version
-If `version>1` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime`, `duskTime`, `currentDayIce`, `currentDayLiquid`, `currentDaySnow`, `processTime`, `ingestVersion`, `nearestCity`, `nearestCountry`, `nearestSubNational`, `cape`, `solar`, `capeMax`, `solarMax`, `rainIntensity`, `snowIntensity`, `sleetIntensity`, `rainIntensityMax`, `snowIntensityMax`, `sleetIntensityMax`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
+If `version>1` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime`, `duskTime`, `currentDayIce`, `currentDayLiquid`, `currentDaySnow`, `processTime`, `ingestVersion`, `nearestCity`, `nearestCountry`, `nearestSubNational`, `cape`, `solar`, `capeMax`, `solarMax`, `rainIntensity`, `snowIntensity`, `iceIntensity`, `rainIntensityMax`, `snowIntensityMax`, `iceIntensityMax`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
 
 #### Language
 Added as part of the V2.5 release, this parameter allows you to sepecify what language the text summaries use. The possible values for language may be:
@@ -178,9 +178,9 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 	"latitude": 45.42,
 	"longitude": -74.3,
 	"timezone": "America/Toronto",
-	"offset": -,
+	"offset": -5,
 	"elevation": 77,
-	currently": {
+	"currently": {
 		"time": 1762718100,
 		"summary": "Light Snow",
 		"icon": "snow",
@@ -337,7 +337,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 	]
 	"flags": {
-		"sources": "sources": [
+		"sources": [
 			"ETOPO1",
 			"hrrrsubh",
 			"rtma_ru",
@@ -570,7 +570,7 @@ The time of the minimum "feels like" temperature during the daytime, from 6:00 a
 The Convective Available Potential Energy measured in J/kg.
 
 #### capeMaxTime
-**Only on `daily`.** the time in which the maxiumum `cape` occurs represented in UNIX time.
+**Only on `daily`.** the time in which the maximum `cape` occurs represented in UNIX time.
 
 #### cloudCover
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
@@ -611,7 +611,7 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 #### iceAccumulation
 **Only on `hourly` and `daily`**. The amount of ice precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
 
-### ineIntensity
+### iceIntensity
 **Only on `hourly`, `day_night` and `daily`**. The intensity of ice precipitation expected to fall over an hour or a day expressed in milimetres or inches depending on the requested `units`.
 
 ### iceIntensityMax
@@ -809,16 +809,16 @@ The sea-level pressure represented in hectopascals or millibars depending on the
 **Only on `currently`, `hourly` and `day_night`**. **Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of near-surface (8 m) smoke represented in µg/m<sup>3</sup>.
 
 #### smokeMax
-**Only on `daily`.** The maxiumum `smoke` for the given day.
+**Only on `daily`.** The maximum `smoke` for the given day.
 
 #### smokeMaxTime
-**Only on `daily`.** the time in which the maxiumum `smoke` occurs represented in UNIX time.
+**Only on `daily`.** the time in which the maximum `smoke` occurs represented in UNIX time.
 
 #### solar
 The Downward Short-Wave Radiation Flux measured in W/m^2.
 
 #### solarMax
-**Only on `daily`.** the time in which the maxiumum `solar` occurs represented in UNIX time.
+**Only on `daily`.** the time in which the maximum `solar` occurs represented in UNIX time.
 
 #### stationPressure
 **Hidden by default behind the `extraVars=stationPressure` queryparam**.
