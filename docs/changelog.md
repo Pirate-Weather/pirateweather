@@ -26,7 +26,7 @@ For a RSS feed of these changes, subscribe using this link: <http://github.com/P
 		* Added the RTMA-RU model for the currently block for locations inside its domain as per [PR #311](https://github.com/Pirate-Weather/pirate-weather-code/pull/311)
 		* Switched historic data source to ERA5 for all requests more than 10 days ago, GFS for requests between 10 days and 24 hours ago, and all models within 24 hours per [PR #330](https://github.com/Pirate-Weather/pirate-weather-code/pull/330)
 			* This will improve response times and data consistently for historic requests, while allowing self hosting the Time Machine back end. 
-		* Fixed an issue where the day icon, hourly block icon and day/night summary icon was hardcorded to use a day icon as per [PR #362](https://github.com/Pirate-Weather/pirate-weather-code/pull/362)
+		* Fixed an issue where the day icon, hourly block icon and day/night summary icon was hardcoded to use a day icon as per [PR #362](https://github.com/Pirate-Weather/pirate-weather-code/pull/362)
 			* Locations experiencing polar night will no longer have the API return a day icon in these blocks
 			* Locations experiencing polar day will see a day icon in the night summary block
 		* Refactored the codebase to use SI units throughout as per [PR #348](https://github.com/Pirate-Weather/pirate-weather-code/pull/348)

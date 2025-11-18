@@ -35,8 +35,7 @@ If you are looking for a place to figure out the latitude and longitude, [https:
 #### Time
 The time field is optional for the forecast request, but mandatory for a historic request. If present, time can be specified in one of three different ways:
 
-1. UNIX timestamp, or the number of seconds since mid
-2.  GMT on 1 Jan 1970 (this is the preferred way).
+1. UNIX timestamp, or the number of seconds since midnight.  GMT on 1 Jan 1970 (this is the preferred way).
 2. A datestring in the local time zone of the location being requested: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]`.
 3. A datestring in UTC time: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]Z`
 4. A time delta (in seconds) from the current time (ex. to get results for the previous day): `-86400`.
@@ -754,7 +753,7 @@ Precipitation intensity units have been revised to reflect the Dark Sky style. T
   * So if 5 cm (50 mm) of snow is forecasted for an hour, `precipIntensity`, in mm, will return 5, as 5 mm of rain provides 50 mm of snow.
     * If 5 mm of rain is forecasted for an hour, `precipIntensity`, in mm, will return 5, for 5 mm of rain.
   * See [this thread for details](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131).
-  * It is **strongly* recommended to use the type specific intensities.
+  * It is **strongly** recommended to use the type specific intensities.
 
 #### precipIntensityError
 The standard deviation of the `precipIntensity` from the GEFS/ECMWF IFS model.
