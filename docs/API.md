@@ -35,7 +35,7 @@ If you are looking for a place to figure out the latitude and longitude, [https:
 #### Time
 The time field is optional for the forecast request, but mandatory for a historic request. If present, time can be specified in one of three different ways:
 
-1. UNIX timestamp, or the number of seconds since midnight.  GMT on 1 Jan 1970 (this is the preferred way).
+1. UNIX timestamp, or the number of seconds since midnight GMT on 1 Jan 1970 (this is the preferred way).
 2. A datestring in the local time zone of the location being requested: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]`.
 3. A datestring in UTC time: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]Z`
 4. A time delta (in seconds) from the current time (ex. to get results for the previous day): `-86400`.
@@ -519,7 +519,6 @@ A block containing the hour-by-hour forecasted conditions for the next 48 hours.
 
 ### day_night
 A block containing a day and night forecast for the next 7 days. The day portion of the forecast is calculated from 4:00 am to 4:59 pm and the night portion is calculated from 5:00 pm to 3:59 am. The data is included as a 16 item list, alternating between the day and night forecast starting from the current day.
-
 
 ### daily
 A block containing the day-by-day forecasted conditions for the next 7 days.

@@ -1,6 +1,6 @@
 # Changelog
 
-For a RSS feed of these changes, subscribe using this link: <http://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
+For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.8"
 
