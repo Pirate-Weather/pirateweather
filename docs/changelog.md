@@ -4,10 +4,12 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.8"
 
-	* November 17, 2025, API Version 2.8.2
-		* Switched to using an external file sync to allow for multiple workers as per [PR #404](https://github.com/Pirate-Weather/pirate-weather-code/pull/404)
+	* November 18, 2025, API Version 2.8.3
+		* Optimized rounding to improve performance as per [PR #408](https://github.com/Pirate-Weather/pirate-weather-code/pull/408)
 		* Fixed a broadcast ValueError with the GEFS model where the API assumed it always had the full length of data as per [PR #407](https://github.com/Pirate-Weather/pirate-weather-code/pull/407)
 		* Fixed an issue where the API would include outdated alerts as per [PR #407](https://github.com/Pirate-Weather/pirate-weather-code/pull/407)
+	* November 17, 2025, API Version 2.8.2
+		* Switched to using an external file sync to allow for multiple workers as per [PR #404](https://github.com/Pirate-Weather/pirate-weather-code/pull/404)
 	* November 11, 2025, API Version 2.8.1
 		* Changed the snow error calculations to use the density function as per [PR #380](https://github.com/Pirate-Weather/pirate-weather-code/pull/380)
 		* Changed snow error calculations use hours where the type is snow and there is snow accumulation as per [PR #381](https://github.com/Pirate-Weather/pirate-weather-code/pull/381)
