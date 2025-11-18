@@ -1,4 +1,6 @@
-<div class="imageContainer">
+
+
+- <div class="imageContainer">
   <div class="text-block">
     <h1 style="color: white;">Pirate Weather</h1>
   </div>
