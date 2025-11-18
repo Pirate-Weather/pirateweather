@@ -2,10 +2,12 @@
 This page serves as the documentation for the underlying data source algorithm for the Pirate Weather API- in sort, it explains which parameter comes from where. Since the goal of this API to to provide raw model data with as little processing as possible, results from the API should very closely match the model described in this document, with some minor differences due to interpolation. 
 
 ## Data sources
-Several models are used to produce the forecast. They are all hosted on [AWS's Open Data Platform](https://registry.opendata.aws/collab/noaa/), and the fantastic [Herbie package](https://github.com/blaylockbk/Herbie) is used to download and perform initial processing for all of them.    
+Several models are used to produce the forecast. All but ERA5 are hosted on [AWS's Open Data Platform](https://registry.opendata.aws/collab/noaa/), and the fantastic [Herbie package](https://github.com/blaylockbk/Herbie) is used to download and perform initial processing for all of them.    
 
 #### RTMA Rapid Update
 The Real-Time Mesoscale Analysis Rapid Update [(RTMA-RU)](https://emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/rtma.php) provides real time analysis for the continental US and parts of Canada. The model runs every 15-minutes and combines the HRRR first guess with observations from satellites and station observations.
+
+Because each 15-minute cycle depends on the availability, quality, and spatial coverage of incoming observations—as well as the relative weighting between those observations and the HRRR first guess—the resulting analyses can vary significantly from one update to the next. This can be especially noticeable in regions with rapidly evolving conditions or sparse observational coverage.
 
 #### NBM
 The National Blend of Models [(NBM)](https://vlab.noaa.gov/web/mdl/nbm) is a calibrated blend of both NOAA and non-NOAA weather models from around the world. Running every hour for about 7 days, the NBM produces a forecast that aims to leverage strengths from each of the source models, as well as providing some probabilistic forecasts. For most weather elements in the US and Canada, this is the primary source. 
@@ -22,10 +24,12 @@ The GFS model also underpins the Global Ensemble Forecast System [(GEFS)](https:
 The Global Ensemble Forecast System [(GEFS)](https://www.ncei.noaa.gov/products/weather-climate-models/global-ensemble-forecast) is the ensemble version of NOAA's GFS model. By running different variations parameters and inputs, 30 different versions of this model are run at the same time, providing 3-hour forecasts out to 240 hours. The API uses the GEFS to get precipitation type, quantity, and probability, since it seemed like the most accurate way of determining this. I have no idea how Dark Sky did it, and I am very open to feedback about other ways it could be assigned, since getting the precipitation probability number turned out to be one of the most complex parts of the entire setup! 
 
 #### ECMWF IFS
-The European Centre for Medium-Range Weather Forecasts Integrated Forecasting System [(ECMWF IFS)](https://www.ecmwf.int/en/forecasts/documentation-and-support/changes-ecmwf-model) is a global weather model.
+The European Centre for Medium-Range Weather Forecasts Integrated Forecasting System [(ECMWF IFS)](https://www.ecmwf.int/en/forecasts/documentation-and-support/changes-ecmwf-model) is a global numerical weather prediction model used for medium-range to long-range atmospheric forecasting. It combines a spectral atmospheric model, an ocean model, and advanced data assimilation techniques to produce some of the most accurate weather forecasts in the world.
+
+The ECMWF IFS underpins many operational forecasting systems worldwide, serving as a benchmark for global models due to its strong performance in forecast skill, particularly for medium-range (3–10 days) predictions and ensemble probabilistic guidance.
 
 ### ERA5
-To provide historic weather data, the [NCAR European Reanalysis 5 Dataset](https://registry.opendata.aws/nsf-ncar-era5/) is used. This source uses NetCDF4 files saved on S3, which lets them be accessed directly from S3; however, it's not particularly fast, making it only suitable for historic requests. 
+To provide historic weather data, the [Google European Reanalysis 5 Dataset](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_HOURLY) is used. 
 
 ## Forecast element sources
 Every Pirate Weather forecast element for each time block (`currently`, `minutely`, `hourly`, or `daily`) is included in the table below, along with the primary, secondary, and tertiary data sources. Fallback sources are used if model data is intentionally excluded, the request point is outside of the primary model coverage area, or if there's some sort of data interruption. 
@@ -69,7 +73,7 @@ At a high level, the general approach is to use NBM first, then HRRR, then GEFS,
 ## Data Pipeline
 
 ### Trigger
-Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opendata.aws/collab/noaa/) into three buckets for the [HRRR](https://registry.opendata.aws/noaa-hrrr-pds/), [GFS](https://registry.opendata.aws/noaa-gfs-bdp-pds/), and [GEFS](https://registry.opendata.aws/noaa-gefs/) models. Since I couldn't find a good way to trigger processing tasks based on S3 events in a public bucket, the ingest system relies on timed events scheduled through [AWS EventBridge Rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html), with the timings shown in the table below:
+Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opendata.aws/collab/noaa/) into three buckets for the [HRRR](https://registry.opendata.aws/noaa-hrrr-pds/), [GFS](https://registry.opendata.aws/noaa-gfs-bdp-pds/), [GEFS](https://registry.opendata.aws/noaa-gefs/), [RTMA-RU](https://registry.opendata.aws/noaa-rtma/) and [ECMWF IFS](https://registry.opendata.aws/ecmwf-forecasts/) models. Since I couldn't find a good way to trigger processing tasks based on S3 events in a public bucket, the ingest system relies on timed events scheduled through [AWS EventBridge Rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html), with the timings shown in the table below:
 
 | Model                | Run Times (UTC) | Delay | Ingest Times (UTC)    |
 |----------------------|-----------------|-------|-----------------------|
@@ -79,4 +83,4 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | HRRR- 48h            | 0,6,12,18       | 2:30  | 2:30,8:30,14:30,20:30 |
 | HRRR- 18h/ SubHourly | 0-24            | 1:45  | 1:45-00:45        	 |
 | RTMA-RU              | 0-24            | 0:25  | :25,:40,:55,:10       |
-| ECMWF IFS            | 0,12            | x:xx  | x,x                   |
+| ECMWF IFS            | 0,12            | 8:00  | 8,20                  |

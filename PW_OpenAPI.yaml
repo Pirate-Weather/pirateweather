@@ -291,7 +291,7 @@ components:
           example: wind
         nearestStormDistance:
           type: number
-          description: The distance to the nearest storm in kilometers.
+          description: The distance to the nearest storm.
           example: 194.97
         nearestStormBearing:
           type: integer
@@ -300,7 +300,7 @@ components:
           example: 131
         precipIntensity:
           type: number
-          description: The intensity of liquid water equivalent precipitation in millimeters per hour.
+          description: The intensity of liquid water equivalent precipitation.
           example: 0
         precipProbability:
           type: number
@@ -314,6 +314,18 @@ components:
           type: string
           description: The type of precipitation occurring.
           example: none
+        rainIntensity:
+          type: number
+          description: The intensity of ice precipitation. Only returned when version>1.
+          example: 0
+        iceIntensity:
+          type: number
+          description: The intensity of ice precipitation. Only returned when version>1.
+          example: 0
+        iceIntensity:
+          type: number
+          description: The intensity of ice precipitation. Only returned when version>1.
+          example: 0
         temperature:
           type: number
           description: The air temperature.
@@ -438,6 +450,19 @@ components:
                 type: string
                 description: The type of precipitation occurring.
                 example: none
+              rainIntensity:
+                type: number
+                description: The intensity of ice precipitation. Only returned when version>1.
+                example: 0
+              iceIntensity:
+                type: number
+                description: The intensity of ice precipitation. Only returned when version>1.
+                example: 0
+              iceIntensity:
+                type: number
+                description: The intensity of ice precipitation. Only returned when version>1.
+                example: 0
+              temperature:
     hourly:
       type: object
       description: A block containing hour-by-hour forecasted conditions for the next 48 hours. If `extend=hourly` is used, the hourly block gives hour-by-hour forecasted conditions for the next 168 hours.

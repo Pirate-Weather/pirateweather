@@ -88,12 +88,15 @@ Some models can also be excluded, which will force data from the fallback source
 
 *  `hrrr`
 *  `nbm`
+*  `gefs`
+*  `rtma_ru`
+*  `ecmwf_ifs`
 
 #### Extend
 If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.   
 
 #### Version
-If `version>1` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime`, `duskTime`, `currentDayIce`, `currentDayLiquid`, `currentDaySnow`, `processTime`, `ingestVersion` and `nearestCity`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
+If `version>1` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime`, `duskTime`, `currentDayIce`, `currentDayLiquid`, `currentDaySnow`, `processTime`, `ingestVersion`, `nearestCity`, `nearestCountry`, `nearestSubNational`, `cape`, `solar`, `capeMax`, `solarMax`, `rainIntensity`, `snowIntensity`, `sleetIntensity`, `rainIntensityMax`, `snowIntensityMax`, `sleetIntensityMax`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
 
 #### Language
 Added as part of the V2.5 release, this parameter allows you to sepecify what language the text summaries use. The possible values for language may be:
@@ -165,6 +168,9 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 
 #### Extra Variables 
 `extraVars=` is used to show additional parameters that are not required for most users and may cause confusion. Currently, only `stationPressure` is allowed, but others may be added in the future. 
+
+#### Include
+`include=` is used to add additional data blocks not available in the Dark Sky API.  Currently, only `day_night_forecast` is allowed, but others may be added in the future. 
 
 ### API Response Example
 ```
@@ -604,6 +610,12 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 #### iceAccumulation
 **Only on `hourly` and `daily`**. The amount of ice precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
 
+### ineIntensity
+**Only on `hourly`, `day_night` and `daily`**. The intensity of ice precipitation expected to fall over an hour or a day expressed in milimetres or inches depending on the requested `units`.
+
+### iceIntensityMax
+**Only on `day_night` and `daily`**. The UNIX time the maximum ice intensity occurs.
+
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
 `clear-day, clear-night, thunderstorm, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `hail` or `mixed` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
@@ -664,7 +676,7 @@ The daily icon is calculated between 4:00 am and 4:00 am local time. The algorit
 * If cloud cover is greater than 37.5% and less than 87.5%, then `partly-cloudy-day` or `partly-cloudy-night`.
 * If cloud cover is less than 37.5%, then `clear`.
 
-##### Daily:
+##### Daily and Day/Night:
 
 With the daily summaries being introduced in version 2.7 the day icon now considers the day as a whole rather than using daily averages. The icon shown will generally be whichever condition comes first so if the morning is foggy and the evening is windy the fog icon will be shown. The cloud cover icons will only be shown as long as no other conditions are forecasted for the day.
 
@@ -721,10 +733,10 @@ The approximate direction in degrees in which a storm is travelling with 0° rep
 The approximate distance to the nearest storm in kilometers or miles depending on the requested `units`. Calculated with the excellent [XArray-Spatial](https://github.com/makepath/xarray-spatial) package using a 0.2 mm/h water equivalent (so 2 mm/h of snow or 0.2 mm/h of rain) threshold for a storm. Note that the distance is calculated from the midpoint of a GFS model cell to the midpoint of a model cell with a "storm".  
 
 #### ozone
-**Only on `currently` and `hourly`**. The density of total atmospheric ozone at a given time in Dobson units.
+**Only on `currently`, `hourly` and `day_night`**. The density of total atmospheric ozone at a given time in Dobson units.
 
 #### precipAccumulation
-**Only on `hourly` and `daily`**. The total amount of precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For day 0, this is the precipitation during the remaining hours of the day.
+**Only on `hourly`, `day_night` and `daily`**. The total amount of precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For day 0, this is the precipitation during the remaining hours of the day.
 
 Snow accumulation is estimated using a [density formulation](https://github.com/Pirate-Weather/pirateweather/issues/89), adjusting based on the temperature and wind speed when the snow falls. It tends to be around 1:10, but will vary when it's a warm, slushy snowfall. 
 
@@ -741,10 +753,10 @@ Precipitation intensity units have been revised to reflect the Dark Sky style. T
   * In the future, `snowIntensity`, `sleetIntensity`, and `rainIntensity` will be added to clarify this.
 
 #### precipIntensityError
-The standard deviation of the `precipIntensity` from the GEFS model.
+The standard deviation of the `precipIntensity` from the GEFS/ECMWF IFS model.
 
 #### precipIntensityMax
-**Only on `daily`**. The maximum value of `precipIntensity` for the given day.
+**Only on `day_night` and `daily`**. The maximum value of `precipIntensity` for the given day.
 
 #### precipIntensityMaxTime
 **Only on `daily`**. The point in which the maximum `precipIntensity` occurs represented in UNIX time.
@@ -777,11 +789,23 @@ See [this issue](https://github.com/Pirate-Weather/pirateweather/issues/413) for
 #### pressure
 The sea-level pressure represented in hectopascals or millibars depending on the requested `units`.
 
+### rainIntensity
+**Only on `hourly`, `day_night` and `daily`**. The intensity of rain precipitation expected to fall over an hour or a day expressed in milimetres or inches depending on the requested `units`.
+
+### rainIntensityMax
+**Only on `day_night` and `daily`**. The UNIX time the maximum rain intensity occurs.
+
 #### snowAccumulation
-**Only on `hourly` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
+**Only on `hourly`, `day_night` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
+
+### snowIntensity
+**Only on `hourly`, `day_night` and `daily`**. The intensity of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
+
+### snowIntensityMax
+**Only on `day_night` and `daily`**. The UNIX time the maximum snow intensity occurs.
 
 #### smoke
-**Only on `currently` and `hourly`**. **Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of near-surface (8 m) smoke represented in µg/m<sup>3</sup>.
+**Only on `currently`, `hourly` and `day_night`**. **Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of near-surface (8 m) smoke represented in µg/m<sup>3</sup>.
 
 #### smokeMax
 **Only on `daily`.** The maxiumum `smoke` for the given day.
@@ -860,7 +884,6 @@ The wind gust in kilometres per hour or miles per hour depending on the requeste
 The current wind speed in kilometres per hour or miles per hour depending on the requested `units`.
 
 ### Alerts
-Note that alerts are only supported in the United States at the moment.
 
 #### title
 A brief description of the alert.
@@ -878,10 +901,10 @@ Indicates how severe the weather alert is. Possible values are:
 * Unknown
 
 #### time
-The time in which the alert was issued represented in UNIX time. From the NWS `effective` time.
+The time in which the alert was issued represented in UNIX time. From the `effective` time.
 
 #### expires
-The time in which the alert expires represented in UNIX time.
+The time in which the alert expires represented in UNIX time. Note: -999 will be returned for alerts without an expires time.
 
 #### description
 A detailed description of the alert.
