@@ -367,7 +367,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 ```
 
 ### Time Machine Request
-The Time Machine uses either archived 1-hour model results (after May 2024) or the [Google ERA5 dataset](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_HOURLY#description) which is updated weekly and is approximately ten days behind realtime. The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
+The Time Machine uses either archived 1-hour model results (last 10 days) or the [Google ERA5 dataset](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_HOURLY) which is updated weekly and is approximately ten days behind realtime. The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 
 ```
       https://timemachine.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
@@ -384,11 +384,12 @@ The response format is the same as the forecast except:
 * The `currently` block will refer to the requested time and not the present time.
 * The `minutely` block is not present except when querying data from the last 24h.
 * The `hourly` block will return data from midnight of the requested day to midnight the next day.
+* The `day_night` block is not included.
 * The `daily` block will return the data for the current day except when querying data from the last 24h.
 * The `alerts` block is not included.
 * The `flags` block will show the sources used in the request, the requested `units` and the API version.
 
-When requesting data from the PW archive (3-4 months trailing), the optional `tmextra` query parameter controls which variables are returned. When it is included, same variables that are present in a forecast request (except alerts) are returned. When it is not included (by default), the same range of parameters returned by ERA5 requests is included.
+When requesting data from the PW archive, the optional `tmextra` query parameter controls which variables are returned. When it is included, same variables that are present in a forecast request (except alerts) are returned. When it is not included (by default), the same range of parameters returned by ERA5 requests is included.
 
 ## Response
 ```
