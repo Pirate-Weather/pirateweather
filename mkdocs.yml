@@ -6,7 +6,23 @@ theme:
   name: 'material' 
   favicon: images/pw_favicon.png
   palette:
-    primary: 'deep orange'
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: 'deep orange'
+      accent: 'deep orange'
+      toggle:
+        icon: lucide/sun
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: 'deep orange'
+      accent: 'deep orange'
+      toggle:
+        icon: lucide/moon
+        name: Switch to light mode
   features:
     - navigation.expand
     
@@ -40,9 +56,6 @@ extra_javascript:
   - javascripts/extra.js
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-  
-plugins:
-   - swagger-ui-tag  
    
 extra_css:
   - stylesheets/extra.css

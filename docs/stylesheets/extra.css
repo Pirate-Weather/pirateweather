@@ -12,3 +12,16 @@
   padding-left: 20px;
   padding-top: 10%;
 }
+
+/* Improve Swagger UI appearance in dark mode by placing it on a light card */
+.swagger-container-wrapper {
+  padding: 10px 0;
+	border-radius: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+	.swagger-container-wrapper {
+		background: #ffffff;
+		border-radius: 8px;
+	}
+}

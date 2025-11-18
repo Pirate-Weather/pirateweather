@@ -2,7 +2,36 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
 
-???+ note "Version 2.7"
+???+ note "Version 2.8"
+
+	* November 17, 2025, API Version 2.8.2
+		* Switched to using an external file sync to allow for multiple workers as per [PR #404](https://github.com/Pirate-Weather/pirate-weather-code/pull/404)
+		* Fixed a broadcast ValueError with the GEFS model where the API assumed it always had the full length of data as per [PR #407](https://github.com/Pirate-Weather/pirate-weather-code/pull/407)
+		* Fixed an issue where the API would include outdated alerts as per [PR #407](https://github.com/Pirate-Weather/pirate-weather-code/pull/407)
+	* November 11, 2025, API Version 2.8.1
+		* Changed the snow error calculations to use the density function as per [PR #380](https://github.com/Pirate-Weather/pirate-weather-code/pull/380)
+		* Changed snow error calculations use hours where the type is snow and there is snow accumulation as per [PR #381](https://github.com/Pirate-Weather/pirate-weather-code/pull/381)
+		* Fixed a KeyError in the minutely summary calculations as per [PR #376](https://github.com/Pirate-Weather/pirate-weather-code/pull/376)
+		* Fixed a ValueError caused by alerts with no end time as per [PR #377](https://github.com/Pirate-Weather/pirate-weather-code/pull/376)
+			* Alerts with no end date will return -999 as per [PR #378](https://github.com/Pirate-Weather/pirate-weather-code/pull/378)
+		* Added padding to the ingest files to fix compatibility with Dask 2025.11.0 [PR #393](https://github.com/Pirate-Weather/pirate-weather-code/pull/393)
+	* November 7, 2025, API Version 2.8
+		* Fixed an issue where the day icon, hourly block icon and day/night summary icon was hardcorded to use a day icon as per [PR #362](https://github.com/Pirate-Weather/pirate-weather-code/pull/362)
+			* Locations experiencing polar night will no longer have the API return a day icon in these blocks
+			* Locations experiencing polar day will see a day icon in the night summary block
+		* Refactored the codebase to use SI units throughout as per [PR #348](https://github.com/Pirate-Weather/pirate-weather-code/pull/348)
+		* Added a Day/Night Forecast as per [PR #349](https://github.com/Pirate-Weather/pirate-weather-code/pull/349)
+			* The day portion of the forecast is calculated from 4am to 4pm and the night forecast is calculated from 5pm to 3am.
+		* Added thunderstorm as a summary and icon per [PR #335](https://github.com/Pirate-Weather/pirate-weather-code/pull/335)
+			* This means that the default icon set has been updated to include thunderstorm
+		* Added solar and CAPE to API response when version>1 as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
+		* Updated `apparentTemperature` calculation to use solar radiation as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
+		* Fixed an crash when `nearestSubNational` is missing as per [PR #323](https://github.com/Pirate-Weather/pirate-weather-code/pull/323)
+		* Added WMO alerts for global alert coverage as per [PR #320](https://github.com/Pirate-Weather/pirate-weather-code/pull/320)
+		* Added the ECMWF model for better global forecasts as per [PR #317](https://github.com/Pirate-Weather/pirate-weather-code/pull/317)
+		* Added the RTMA-RU model for the currently block for locations inside its domain as per [PR #311](https://github.com/Pirate-Weather/pirate-weather-code/pull/311)
+
+??? note "Version 2.7"
 
 	* October 8, 2025, API Version 2.7.11
 		* Add closest state/ province (`nearestSubNational`) and country.
@@ -425,6 +454,11 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ## Time Machine Changelog
 
+* October 31, 2025
+	* Changed TimeMachine to use the Google ERA5 dataset
+		* Requests for the last 24 hours use all the sources and are unchanged;
+		* Request for the last 10 days rely only on GFS data (although ECMWF would be easy to add) stored in the zip file on the server;
+		* Requests >10 days rely on Google's ERA5 zarr dataset, which is a perfect source for this sort of application.
 * December 9, 2024
 	* Added a per API key rate limit of 1 to 4/ per second (depending on the plan) to prevent instabililty as per [https://github.com/Pirate-Weather/pirate-weather-code/issues/30#issuecomment-2528680513](https://github.com/Pirate-Weather/pirate-weather-code/issues/30#issuecomment-2528680513)
 * September 13, 2024
