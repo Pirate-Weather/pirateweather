@@ -1,6 +1,6 @@
 # Changelog
 
-For a RSS feed of these changes, subscribe using this link: <https://github.com/alexander0042/pirateweather/commits/main.atom>.
+For a RSS feed of these changes, subscribe using this link: <http://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.8"
 
@@ -8,16 +8,24 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Optimized rounding to improve performance as per [PR #408](https://github.com/Pirate-Weather/pirate-weather-code/pull/408)
 		* Fixed a broadcast ValueError with the GEFS model where the API assumed it always had the full length of data as per [PR #407](https://github.com/Pirate-Weather/pirate-weather-code/pull/407)
 		* Fixed an issue where the API would include outdated alerts as per [PR #407](https://github.com/Pirate-Weather/pirate-weather-code/pull/407)
+		* Fix the interpolation for minutely precipitation types per [PR #412](https://github.com/Pirate-Weather/pirate-weather-code/pull/412)
+		* Lower the precipitation accumulation threshold for the daily summaries to 0.2 mm/day per [PR #412](https://github.com/Pirate-Weather/pirate-weather-code/pull/412)
+		* Fix an issue with UK Alert parsing per [PR #412](https://github.com/Pirate-Weather/pirate-weather-code/pull/412)
 	* November 17, 2025, API Version 2.8.2
-		* Switched to using an external file sync to allow for multiple workers as per [PR #404](https://github.com/Pirate-Weather/pirate-weather-code/pull/404)
+		* Switched to using an external file sync container (rclone) to allow for multiple workers as per [PR #404](https://github.com/Pirate-Weather/pirate-weather-code/pull/404)
 	* November 11, 2025, API Version 2.8.1
 		* Changed the snow error calculations to use the density function as per [PR #380](https://github.com/Pirate-Weather/pirate-weather-code/pull/380)
 		* Changed snow error calculations use hours where the type is snow and there is snow accumulation as per [PR #381](https://github.com/Pirate-Weather/pirate-weather-code/pull/381)
 		* Fixed a KeyError in the minutely summary calculations as per [PR #376](https://github.com/Pirate-Weather/pirate-weather-code/pull/376)
 		* Fixed a ValueError caused by alerts with no end time as per [PR #377](https://github.com/Pirate-Weather/pirate-weather-code/pull/376)
-			* Alerts with no end date will return -999 as per [PR #378](https://github.com/Pirate-Weather/pirate-weather-code/pull/378)
+		* Alerts with no end date will return -999 as per [PR #378](https://github.com/Pirate-Weather/pirate-weather-code/pull/378)
 		* Added padding to the ingest files to fix compatibility with Dask 2025.11.0 [PR #393](https://github.com/Pirate-Weather/pirate-weather-code/pull/393)
 	* November 7, 2025, API Version 2.8
+		* Added WMO alerts for global alert coverage as per [PR #320](https://github.com/Pirate-Weather/pirate-weather-code/pull/320)
+		* Added the ECMWF model for better global forecasts as per [PR #317](https://github.com/Pirate-Weather/pirate-weather-code/pull/317)
+		* Added the RTMA-RU model for the currently block for locations inside its domain as per [PR #311](https://github.com/Pirate-Weather/pirate-weather-code/pull/311)
+		* Switched historic data source to ERA5 for all requests more than 10 days ago, GFS for requests between 10 days and 24 hours ago, and all models within 24 hours per [PR #330](https://github.com/Pirate-Weather/pirate-weather-code/pull/330)
+			* This will improve response times and data consistently for historic requests, while allowing self hosting the Time Machine back end. 
 		* Fixed an issue where the day icon, hourly block icon and day/night summary icon was hardcorded to use a day icon as per [PR #362](https://github.com/Pirate-Weather/pirate-weather-code/pull/362)
 			* Locations experiencing polar night will no longer have the API return a day icon in these blocks
 			* Locations experiencing polar day will see a day icon in the night summary block
@@ -29,9 +37,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Added solar and CAPE to API response when version>1 as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
 		* Updated `apparentTemperature` calculation to use solar radiation as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
 		* Fixed an crash when `nearestSubNational` is missing as per [PR #323](https://github.com/Pirate-Weather/pirate-weather-code/pull/323)
-		* Added WMO alerts for global alert coverage as per [PR #320](https://github.com/Pirate-Weather/pirate-weather-code/pull/320)
-		* Added the ECMWF model for better global forecasts as per [PR #317](https://github.com/Pirate-Weather/pirate-weather-code/pull/317)
-		* Added the RTMA-RU model for the currently block for locations inside its domain as per [PR #311](https://github.com/Pirate-Weather/pirate-weather-code/pull/311)
+
 
 ??? note "Version 2.7"
 
