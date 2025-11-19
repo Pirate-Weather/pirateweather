@@ -7,7 +7,7 @@
 	<script>
 		window.onload = function() {
 			const ui = SwaggerUIBundle({
-				url: "https://raw.githubusercontent.com/alexander0042/pirateweather/main/PW_OpenAPI.yaml",
+                url: "https://raw.githubusercontent.com/Pirate-Weather/pirateweather/main/PW_OpenAPI.yaml",
 				dom_id: "#swagger-ui",
 				presets: [SwaggerUIBundle.presets.apis],
 				layout: "BaseLayout",

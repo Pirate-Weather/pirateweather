@@ -82,13 +82,14 @@ Added as part of the V1.0 release, this parameter removes some of the data block
 * `hourly`
 * `daily`
 * `alerts`
-* `summary` - Allows you to get the summaries in the old format before the translations module was added.
+* `summary` - Allows you to get the summaries in the old format before the translations module was added. This also improves response times if detailed text is not needed.
 
 Some models can also be excluded, which will force data from the fallback sources to be used:
 
 *  `hrrr`
 *  `nbm`
 *  `gefs`
+*  `gfs`
 *  `rtma_ru`
 *  `ecmwf_ifs`
 
@@ -362,7 +363,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": 0,
 		"units": "ca",
-		"version": "V2.8.2"
+		"version": "V2.8.3"
   	}
 ```
 
@@ -484,7 +485,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sourceTimes": {},
 	"nearest-station": 0,
 	"units": "ca",
-	"version": "V2.8.2"
+	"version": "V2.8.3"
 	}
 }
 ```
@@ -517,7 +518,7 @@ A block containing the minute-by-minute precipitation intensity for the 60 minut
 A block containing the hour-by-hour forecasted conditions for the next 48 hours. If `extend=hourly` is used then the hourly block gives hour-by-hour forecasted conditions for the next 168 hours.
 
 ### day_night
-A block containg a day and night forecast for the next 7 days. The day portion of the forecast is calculated from 4:00 am to 4:59 pm and the night portion is calculated from 5:00 pm to 3:59 am.
+A block containing a day and night forecast for the next 7 days. The day portion of the forecast is calculated from 4:00 am to 4:59 pm and the night portion is calculated from 5:00 pm to 3:59 am. The data is included as a 16 item list, alternating between the day and night forecast starting from the current day.
 
 ### daily
 A block containing the day-by-day forecasted conditions for the next 7 days.
@@ -751,7 +752,7 @@ Precipitation intensity units have been revised to reflect the Dark Sky style. T
   * So if 5 cm (50 mm) of snow is forecasted for an hour, `precipIntensity`, in mm, will return 5, as 5 mm of rain provides 50 mm of snow.
     * If 5 mm of rain is forecasted for an hour, `precipIntensity`, in mm, will return 5, for 5 mm of rain.
   * See [this thread for details](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131).
-  * In the future, `snowIntensity`, `sleetIntensity`, and `rainIntensity` will be added to clarify this.
+  * It is **strongly** recommended to use the type specific intensities.
 
 #### precipIntensityError
 The standard deviation of the `precipIntensity` from the GEFS/ECMWF IFS model.
