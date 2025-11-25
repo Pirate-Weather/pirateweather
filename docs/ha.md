@@ -44,17 +44,19 @@ The use to integration, click on the "Add Integration" button on the Integration
 	- A **Sensor Entity** will create separate sensors for each condition and forecast time. For example, a sensor for the temperature on hour/day 0 (today), hour/day 1, and hour/day 2, for a total of three sensors. If unsure, start with leaving only the Weather Entity selected.
 		- Note that for alerts to work, this needs to be selected, along with "alerts" under the monitored conditions. 
 		- Note that you must also setup the monitored conditions you would like to create sensors for otherwise no sensors will be created.
+    - Note that if you select a monitored condition but leave the hourly and daily forecast blank it will only create sensors for the current conditions. The exception is the model source times which pull in data from the flags block.
+
 
 ![Integration_Setup_B](https://github.com/alexander0042/pirate-weather-ha/blob/master/Integration_Setup_B.png?raw=true)
 
-- The language. At the moment, only English is supported.
+- The language.
 - The days forecast sensors should be created for, in a csv list.
 	- If daily sensor entities need to be created, this is required.
 - The hours forecast sensors should be created for, in a csv list.
 	- If hourly sensors need to be created, this is required.
 - The monitored conditions forecast sensors should be created for.
 - If sensor entity values should be rounded to the nearest integer.
-- And which units the forecast sensors should be in. This integration works with the built-in Home Assistant units; however, this option allows rounding to be used.
+- And which units the forecast should be in. This integration works with the built-in Home Assistant units; however, this option allows rounding to be used.
 
 ### YAML Configuration
 
