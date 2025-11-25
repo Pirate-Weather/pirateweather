@@ -156,7 +156,7 @@ paths:
           in: query
           description: Include extra blocks that were not part of the Dark Sky API.
           schema:
-            type: enum
+            type: string
             enum:
               - day_night_forecast
                 
@@ -237,6 +237,8 @@ paths:
                     $ref: "#/components/schemas/minutely"
                   hourly:
                     $ref: "#/components/schemas/hourly"
+                  day_night:
+                    $ref: "#/components/schemas/day_night"
                   daily:
                     $ref: "#/components/schemas/daily"
                   alerts:
@@ -462,7 +464,6 @@ components:
                 type: number
                 description: The intensity of ice precipitation. Only returned when version>1.
                 example: 0
-              temperature:
     hourly:
       type: object
       description: A block containing hour-by-hour forecasted conditions for the next 48 hours. If `extend=hourly` is used, the hourly block gives hour-by-hour forecasted conditions for the next 168 hours.
@@ -1293,4 +1294,5 @@ components:
         nearestSubNational:
           type: string
           description: The name of the closest state or province to your location. Only returned when version>1.
+
           example: Missouri
