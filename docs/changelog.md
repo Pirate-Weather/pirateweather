@@ -4,6 +4,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.8"
 
+	* November 20, 2025, API Version 2.8.4a
+		* Fix issues where certain data points were not properly rounded as per [PR #417](https://github.com/Pirate-Weather/pirate-weather-code/pull/417)
 	* November 18, 2025, API Version 2.8.3
 		* Optimized rounding to improve performance as per [PR #408](https://github.com/Pirate-Weather/pirate-weather-code/pull/408)
 		* Fixed a broadcast ValueError with the GEFS model where the API assumed it always had the full length of data as per [PR #407](https://github.com/Pirate-Weather/pirate-weather-code/pull/407)
