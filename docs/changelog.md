@@ -4,6 +4,11 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.8"
 
+	* November 27, 2025, API Version 2.8.4c
+		* Fix an issue where ECMWF forecasted accumulation with no precipitation [PR #424](https://github.com/Pirate-Weather/pirate-weather-code/pull/424)
+	* November 26, 2025, API Version 2.8.4b
+		* Fix an issue where the daily summary would fail to generate a proper summary when fog and high wind were forecasted as per [PR #422](https://github.com/Pirate-Weather/pirate-weather-code/pull/422)
+		* Fix more issues where certain data points were not properly rounded as per [PR #421](https://github.com/Pirate-Weather/pirate-weather-code/pull/421)
 	* November 20, 2025, API Version 2.8.4a
 		* Fix issues where certain data points were not properly rounded as per [PR #417](https://github.com/Pirate-Weather/pirate-weather-code/pull/417)
 	* November 18, 2025, API Version 2.8.3
