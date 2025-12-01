@@ -4,6 +4,12 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.8"
 
+	* December 1, 2025, API Version 2.8.4
+		* Fix an issue with the minutely summary returning no type with precipitation intensity [PR #427](https://github.com/Pirate-Weather/pirate-weather-code/pull/427).
+		* Fix alert ingest for Europe [PR #416](https://github.com/Pirate-Weather/pirate-weather-code/pull/416).
+		* Fix an issue where ECMWF forecasted accumulation with no precipitation [PR #424](https://github.com/Pirate-Weather/pirate-weather-code/pull/424).
+		* Fix an issue where the daily summary would fail to generate a proper summary when fog and high wind were forecasted as per [PR #422](https://github.com/Pirate-Weather/pirate-weather-code/pull/422).
+		* Fix issues where certain data points were not properly rounded as per [PR #417](https://github.com/Pirate-Weather/pirate-weather-code/pull/417) and [PR #421](https://github.com/Pirate-Weather/pirate-weather-code/pull/421).
 	* November 18, 2025, API Version 2.8.3
 		* Optimized rounding to improve performance as per [PR #408](https://github.com/Pirate-Weather/pirate-weather-code/pull/408)
 		* Fixed a broadcast ValueError with the GEFS model where the API assumed it always had the full length of data as per [PR #407](https://github.com/Pirate-Weather/pirate-weather-code/pull/407)

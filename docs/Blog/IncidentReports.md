@@ -2,6 +2,11 @@
 
 Weather data is critical for many applications, and accordingly, Pirate Weather takes uptime very seriously. This page will be updated with details on any outage, along with lessons learned and next steps.
 
+???+ note "November 28, 2025"
+
+	* The production file synchronization location was not defined in the zip_sync script, resulting in the transfer failing on new EC2 instances. 
+	* Fixed in [PR #425](https://github.com/Pirate-Weather/pirate-weather-code/pull/425).
+	* This was quickly identified and corrected using the new notification process.
 
 ???+ note "November 17, 2025"
 
