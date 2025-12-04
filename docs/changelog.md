@@ -4,6 +4,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.8"
 
+	* December 4, 2025, API Version 2.8.5
+		* Fix an issue that caused alerts to be duplicated as per [PR #439](https://github.com/Pirate-Weather/pirate-weather-code/pull/439).
 	* December 1, 2025, API Version 2.8.4
 		* Fix an issue with the minutely summary returning no type with precipitation intensity [PR #427](https://github.com/Pirate-Weather/pirate-weather-code/pull/427).
 		* Fix alert ingest for Europe [PR #416](https://github.com/Pirate-Weather/pirate-weather-code/pull/416).
