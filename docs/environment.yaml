@@ -5,6 +5,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - zensical==0.0.8
+  - zensical==0.0.11
   - pip:
+
     - jinja2==3.0.0
