@@ -5,10 +5,10 @@
 
 version: 2
 updates:
-  # pip updates → main
+  # pip updates
   - package-ecosystem: "pip"
     directory: "/"
-    target-branch: "main"
+    target-branch: "dev"
     schedule:
       interval: "weekly"
       time: "13:00"
@@ -20,24 +20,10 @@ updates:
           - patch
     open-pull-requests-limit: 100
 
-  # pip updates → dev
-  - package-ecosystem: "pip"
-    directory: "/"
-    target-branch: "dev"
-    schedule:
-      interval: "weekly"
-      time: "13:05"
-      timezone: "America/Toronto"
-    groups:
-      non-major-versions:
-        update-types:
-          - minor
-          - patch
-    open-pull-requests-limit: 100
-
-  # github-actions (unchanged)
+  # github-actions
   - package-ecosystem: "github-actions"
     directory: "/"
+    target-branch: "dev"
     schedule:
       interval: "weekly"
       time: "13:10"

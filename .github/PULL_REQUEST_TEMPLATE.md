@@ -17,4 +17,3 @@
 - [ ] Update recent updates section
 - [ ] Update changelog
 - [ ] Update roadmap
-- [ ] Update data sources page
