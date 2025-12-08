@@ -46,34 +46,34 @@ At a high level, the general approach is to use NBM first, then HRRR, then GEFS,
 |-----------------------|-----------------------------------------------------------|-------------------------|-------------------------------------|
 |apparentTemperature	|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX > ECMWF IFS > GFS	|N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS		 	|
 |cape               	|HRRR_SubH > NBM > GFS	                                    |N/A   				      |NBM > HRRR > GFS    		 	        |
-|cloudCover   			|RTMA-RU > NBM > HRRR > > DWD MOSMIX  ECMWF IFS > GFS   	|N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
+|cloudCover   			|RTMA-RU > NBM > HRRR > DWD MOSMIX >  ECMWF IFS > GFS   	|N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
 |currentDayIce		    |NBM > HRRR > ECMWF IFS > GEFS > GFS                        |N/A					  |N/A					                |
 |currentDayLiquid       |NBM > HRRR > ECMWF IFS > GEFS > GFS                        |N/A					  |N/A				    	            |
-|currentDaySnow         |NBM > HRRR >  ECMWF IFS >GEFS > GFS                        |N/A					  |N/A						            |
-|dewPoint     			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX  > ECMWF IFS > GFS  |N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
+|currentDaySnow         |NBM > HRRR > ECMWF IFS > GEFS > GFS                        |N/A					  |N/A						            |
+|dewPoint     			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX   ECMWF IFS > GFS   |N/A   				      |NBM > HRRR > ECMWF IFS > GFS   		|
 |fireIndex    			|NBM   			  		                                    |N/A   				      |NBM   			 		            |
 |feelsLike    			|NBM > GFS  			                                    |N/A   				      |NBM > GFS		 		            |
-|humidity     			|RTMA-RU > HRRR > NBM > DWD MOSMIX  > ECMWF IFS > GFS   	|N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS   		|
+|humidity     			|RTMA-RU > HRRR > NBM > DWD MOSMIX > ECMWF IFS > GFS   	    |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS   		|
 |iceAccumulation   		|N/A                                                        |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GEFS > GFS	            |
 |liquidAccumulation 	|N/A                                                        |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GEFS > GFS	|
 |nearestStormBearing	|GFS   					                                    |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GEFS > GFS	|
 |nearestStormDistance   |GFS   					                                    |N/A   				      |GFS   					            |
 |ozone   				|GFS   					                                    |N/A   				      |GFS   					            |
 |precipAccumulation 	|N/A                                                        |N/A   				                                  |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GEFS > GFS	|
-|precipIntensity   		|HRRR_SubH > NBM > DWD MOSMIX  > ECMWF IFS >  GEFS          |HRRR_SubH > NBM > DWD MOSMIX > ECMWF IFS > GEFS	  |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GEFS		|
+|precipIntensity   		|HRRR_SubH > NBM > DWD MOSMIX > ECMWF IFS >  GEFS           |HRRR_SubH > NBM > DWD MOSMIX > ECMWF IFS > GEFS	  |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GEFS		|
 |precipIntensityError	|ECMWF IFS > GEFS			                                |ECMWF IFS > GEFS		  |ECMWF IFS > GEFS			            |	
 |precipProbability  	|NBM > ECMWF IFS >  GEFS 			                        |NBM > ECMWF IFS > GEFS 			  |NBM > ECMWF IFS > GEFS				|
 |precipType   			|HRRR_SubH > NBM  > DWD MOSMIX > ECMWF IFS >  GEFS          |HRRR_SubH > NBM > DWD MOSMIX > ECMWF IFS > GEFS	  |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GEFS		|
-|pressure   			|HRRR > ECMWF IFS > DWD MOSMIX  > GFS   			        |N/A				      |HRRR > DWD MOSMIX > ECMWF IFS > GFS 	            |
+|pressure   			|HRRR > ECMWF IFS > DWD MOSMIX > GFS   			            |N/A				      |HRRR > DWD MOSMIX > ECMWF IFS > GFS 	            |
 |solar               	|HRRR_SubH > NBM > DWD MOSMIX > GFS	                        |N/A   				      |NBM > HRRR > DWD MOSMIX > GFS    		 	        |
 |snowAccumulation   	|N/A					                                    |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GEFS > GFS 	|
 |smoke   				|HRRR   				                                    |N/A   				      |HRRR  					            |
-|temperature   			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX  > ECMWF IFS > GFS  |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS   		|
+|temperature   			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX > ECMWF IFS > GFS   |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS   		|
 |uvIndex   				|GFS   					                                    |N/A   				      |GFS   				                |
-|visibility   			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX  > ECMWF IFS > GFS  |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS   		|
-|windBearing  			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX  > ECMWF IFS > GFS  |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS   		|
-|windGust   			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX  > GFS              |N/A   				      |NBM > HRRR > DWD MOSMIX > GFS   		            |
-|windSpeed   			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX  > ECMWF IFS > GFS  |N/A				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS   		|
+|visibility   			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX > ECMWF IFS > GFS   |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS   		|
+|windBearing  			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX > ECMWF IFS > GFS   |N/A   				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS   		|
+|windGust   			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX > GFS               |N/A   				      |NBM > HRRR > DWD MOSMIX > GFS   		            |
+|windSpeed   			|RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX > ECMWF IFS > GFS   |N/A				      |NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS   		|
 
 ## Data Pipeline
 
