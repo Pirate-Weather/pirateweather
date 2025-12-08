@@ -2,7 +2,24 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
-???+ note "Version 2.8"
+???+ note "Version 2.9"
+
+	* December 8, 2025, API Version 2.9.0e
+		* Fix an issue where a cell with multiple MOSMIX stations displayed data randomly from either station as per [PR #457](https://github.com/Pirate-Weather/pirate-weather-code/pull/457).
+	* December 7, 2025, API Version 2.9.0d
+		* Fix an issue where DWD MOSMIX data was incorrectly offset as per [PR #456](https://github.com/Pirate-Weather/pirate-weather-code/pull/456).
+	* December 7, 2025, API Version 2.9.0c
+		* Fix an issue where DWD MOSMIX was showing in the sources for locations with no MOSMIX stations [PR #454](https://github.com/Pirate-Weather/pirate-weather-code/pull/454).
+		* Fix an issue where the precipitation type and intensity arrays were not aligned as per [PR #452](https://github.com/Pirate-Weather/pirate-weather-code/pull/452).
+		* Added falling back to another source if DWD MOSMIX has no data for that data point [PR #451](https://github.com/Pirate-Weather/pirate-weather-code/pull/451).
+			* The available data varies per station so your station may not have the full suite of data. Solar radiation and wind gusts are primarily available for European stations.
+	* December 4, 2025, API Version 2.9.0b
+		* Fix an issue where some v2 fields were displaying in v1 requests as per [PR #450](https://github.com/Pirate-Weather/pirate-weather-code/pull/450).
+		* Add support for DWD MOSMIX forecats where available as per [PR #449](https://github.com/Pirate-Weather/pirate-weather-code/pull/449).
+	* December 4, 2025, API Version 2.9.0a
+		* Refactor the codebase to break out the functions and simplify the code as [PR #438](https://github.com/Pirate-Weather/pirate-weather-code/pull/438).
+
+??? note "Version 2.8"
 
 	* December 4, 2025, API Version 2.8.5
 		* Fix an issue that caused alerts to be duplicated as per [PR #439](https://github.com/Pirate-Weather/pirate-weather-code/pull/439).
@@ -45,7 +62,6 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Added solar and CAPE to API response when version>1 as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
 		* Updated `apparentTemperature` calculation to use solar radiation as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
 		* Fixed an crash when `nearestSubNational` is missing as per [PR #323](https://github.com/Pirate-Weather/pirate-weather-code/pull/323)
-
 
 ??? note "Version 2.7"
 

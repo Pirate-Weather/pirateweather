@@ -44,22 +44,11 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
-## Recent Updates- Fall 2025
-Up to version 2.8! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+## Recent Updates- Winter 2025
+Up to version 2.9! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-* Fixed an issue where the day icon, hourly block icon and day/night summary icon was hardcorded to use a day icon as per [PR #362](https://github.com/Pirate-Weather/pirate-weather-code/pull/362)
-	* Locations experiencing polar night will no longer have the API return a day icon in these blocks
-	* Locations experiencing polar day will see a day icon in the night summary block
-* Refactored the codebase to use SI units throughout as per [PR #348](https://github.com/Pirate-Weather/pirate-weather-code/pull/348)
-* Added a Day/Night Forecast as per [PR #349](https://github.com/Pirate-Weather/pirate-weather-code/pull/349)
-  * The day portion of the forecast is calculated from 4am to 4pm and the night forecast is calculated from 5pm to 3am.
-* Added thunderstorm as a summary and icon per [PR #335](https://github.com/Pirate-Weather/pirate-weather-code/pull/335)
-* Added solar and CAPE to API response when version>1 as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
-* Updated `apparentTemperature` calculation to use solar radiation as per [PR #321](https://github.com/Pirate-Weather/pirate-weather-code/pull/321)
-* Fixed an crash when `nearestSubNational` is missing as per [PR #323](https://github.com/Pirate-Weather/pirate-weather-code/pull/323)
-* Added WMO alerts for global alert coverage as per [PR #320](https://github.com/Pirate-Weather/pirate-weather-code/pull/320)
-* Added the ECMWF model for better global forecasts as per [PR #317](https://github.com/Pirate-Weather/pirate-weather-code/pull/317)
-* Added the RTMA-RU model for the currently block for locations inside its domain as per [PR #311](https://github.com/Pirate-Weather/pirate-weather-code/pull/311)
+* Refactor the codebase to break out the functions and simplify the code as [PR #438](https://github.com/Pirate-Weather/pirate-weather-code/pull/438).
+* Add support for DWD MOSMIX forecats where available as per [PR #449](https://github.com/Pirate-Weather/pirate-weather-code/pull/449).
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
