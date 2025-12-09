@@ -1,4 +1,4 @@
-# Home Assistant Integration Documentaion
+# Home Assistant Integration Documentation
 
 This integration is designed to replace the defunct Dark Sky integration in Home Assistant with a modified and updated, but fully compatible version that relies on the [Pirate Weather API](https://pirateweather.net/en/latest/) instead!
 
@@ -322,3 +322,4 @@ Thanks to breel007 for posting the template [here](https://github.com/Pirate-Wea
 ### Does having multiple integrations setup result in multiple calls to the API?
 
 Yes, every time you setup a new instance of the integration it results in more queries to the API. For more information see [#243](https://github.com/Pirate-Weather/pirate-weather-ha/issues/243#issuecomment-2150104162)
+
