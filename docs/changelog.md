@@ -4,7 +4,19 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.9"
 
+	* December 17, 2025, API Version 2.9.0g
+		* Fix ERA5 Rounding for precipitation type as per [PR #477](https://github.com/Pirate-Weather/pirate-weather-code/pull/477).
+		* Revert missing interp_time_take_blend to fix broken ingest as per [PR #476](https://github.com/Pirate-Weather/pirate-weather-code/pull/476).
+	* December 15, 2025, API Version 2.9.0f
+		* Fix DWD testing station and runtime as per [PR #475](https://github.com/Pirate-Weather/pirate-weather-code/pull/475).
+		* Add ice/mixed precipitation types as per [PR #467](https://github.com/Pirate-Weather/pirate-weather-code/pull/467).
+		* Fix DWD Historic data caching as per [PR #474](https://github.com/Pirate-Weather/pirate-weather-code/pull/474).
+		* Validate DWD MOSMIX timestamps to prevent invalid sourceList entries as per [PR #473](https://github.com/Pirate-Weather/pirate-weather-code/pull/473).
+		* Fix nearest station units as per [PR #472](https://github.com/Pirate-Weather/pirate-weather-code/pull/472).
 	* December 8, 2025, API Version 2.9.0e
+		* Update DWD ingest to use nearest interpoaltion for ptype as per [PR #463](https://github.com/Pirate-Weather/pirate-weather-code/pull/463).
+		* Fix DWD MOSMIX precipitation intensity distribution and temperature validation as per [PR #462](https://github.com/Pirate-Weather/pirate-weather-code/pull/462).
+		* Change DWD to nearest within radius interpolation as per [PR #460](https://github.com/Pirate-Weather/pirate-weather-code/pull/460).
 		* Fix an issue where a cell with multiple MOSMIX stations displayed data randomly from either station as per [PR #457](https://github.com/Pirate-Weather/pirate-weather-code/pull/457).
 	* December 7, 2025, API Version 2.9.0d
 		* Fix an issue where DWD MOSMIX data was incorrectly offset as per [PR #456](https://github.com/Pirate-Weather/pirate-weather-code/pull/456).
