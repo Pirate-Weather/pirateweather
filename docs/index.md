@@ -15,6 +15,8 @@
   * Including recently updated self hosting instructions and docker images!
 * [Changelog](https://pirateweather.net/en/latest/changelog/)
 * [Status page](https://pirateweather.xitoring.io/)
+* [Development version of documentation](https://pirateweather.net/en/dev/)
+  * See documentation for upcoming API version features available on the dev endpoint
 
 #### Publications and Press
 * [AWS blog post](https://aws.amazon.com/blogs/publicsector/making-weather-forecasts-accessible-serverless-infrastructure-open-data-aws/)
@@ -31,6 +33,7 @@
 
 ## Libraries
 - [python-pirate-weather](https://github.com/cloneofghosts/python-pirate-weather) - A thin Python Wrapper for the Pirate Weather API forked from the [forecastio python library](https://github.com/ZeevG/python-forecast.io).
+- [pirate-weather-python](https://github.com/Pirate-Weather/pirate-weather-python)
 
 Do you use PirateWeather? Open a [pull request](https://github.com/Pirate-Weather/pirateweather/compare) to add it to the list.
 
