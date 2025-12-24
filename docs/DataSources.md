@@ -2,7 +2,7 @@
 This page serves as the documentation for the underlying data source algorithm for the Pirate Weather API- in sort, it explains which parameter comes from where. Since the goal of this API to to provide raw model data with as little processing as possible, results from the API should very closely match the model described in this document, with some minor differences due to interpolation. 
 
 ## Data sources
-Several models are used to produce the forecast. All but ERA5 are hosted on [AWS's Open Data Platform](https://registry.opendata.aws/collab/noaa/), and the fantastic [Herbie package](https://github.com/blaylockbk/Herbie) is used to download and perform initial processing for all of them.    
+Several models are used to produce the forecast. Most are hosted on [AWS's Open Data Platform](https://registry.opendata.aws/collab/noaa/), and the fantastic [Herbie package](https://github.com/blaylockbk/Herbie) is used to download and perform initial processing for many of them.    
 
 #### RTMA Rapid Update
 The Real-Time Mesoscale Analysis Rapid Update [(RTMA-RU)](https://emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/rtma.php) provides real time analysis for the continental US and parts of Canada. The model runs every 15-minutes and combines the HRRR first guess with observations from satellites and station observations.
@@ -124,4 +124,4 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | HRRR- 18h/ SubHourly | 0-24            | 1:45  | 1:45-00:45        	 |
 | RTMA-RU              | 0-24            | 0:25  | :25,:40,:55,:10       |
 | ECMWF IFS            | 0,12            | 8:00  | 8,20                  |
-| DWD MOSMIX           | 0-24            | 1:00  | 1:00-25:00            |
+| DWD MOSMIX           | 0-24            | 1:00  | 1:00-0:00             |
