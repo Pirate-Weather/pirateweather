@@ -8,14 +8,14 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 	* December 24, 2025, API Version 2.9.0
 		* Added more fallback ingest sources as per [PR #483](https://github.com/Pirate-Weather/pirate-weather-code/pull/483).
-		* Add a NaN check for solar radiation to fix an `apparentTemperature` of -999 in [PR #482](https://github.com/Pirate-Weather/pirate-weather-code/pull/482).
+		* Add a NaN check for solar radiation to fix an `apparentTemperature` of -999 as per [PR #482](https://github.com/Pirate-Weather/pirate-weather-code/pull/482).
 		* Fix ERA5 Rounding for precipitation type as per [PR #477](https://github.com/Pirate-Weather/pirate-weather-code/pull/477).
 		* Add ice/mixed precipitation types as per [PR #467](https://github.com/Pirate-Weather/pirate-weather-code/pull/467).
 			* This adds `mixed` as a valid icon returned by the API.
 			* The `ice` type will continue to use `sleet` as the icon.
 		* Fix an issue where some v2 fields were displaying in v1 requests as per [PR #450](https://github.com/Pirate-Weather/pirate-weather-code/pull/450).
 		* Add support for DWD MOSMIX forecasts where available as per [PR #449](https://github.com/Pirate-Weather/pirate-weather-code/pull/449).
-			* DWD MOSMIX only shows in the sources list for locations with MOSMIX stations in [PR #454](https://github.com/Pirate-Weather/pirate-weather-code/pull/454).
+			* DWD MOSMIX only shows in the sources list for locations with MOSMIX stations as per [PR #454](https://github.com/Pirate-Weather/pirate-weather-code/pull/454).
 			* Locations with multiple stations will use data from the nearest station as per [PR #457](https://github.com/Pirate-Weather/pirate-weather-code/pull/457).
 			* Note: In North America, DWD MOSMIX data is prioritized below GFS data due to occasional inconsistencies in its forecasts. Added in [PR #464](https://github.com/Pirate-Weather/pirate-weather-code/pull/464).
 			* If DWD MOSMIX has no data for that data point then it will fallback to using other sources as per [PR #451](https://github.com/Pirate-Weather/pirate-weather-code/pull/451).
