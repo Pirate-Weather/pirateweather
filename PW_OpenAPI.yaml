@@ -1137,8 +1137,7 @@ components:
               description: The time the GEFS model was last updated.
               example: 2025-11-09 12Z
         nearest-station:
-          type: integer
-          format: int32
+          type: number
           description: Distance to the closest DWD MOSMIX station to your location in kilometres or miles depending on the units. If there are no stations for your location this will return -999.
           example: 15.68
         units:
@@ -1323,3 +1322,4 @@ components:
           description: The name of the closest state or province to your location. Only returned when version>1.
 
           example: Missouri
+
