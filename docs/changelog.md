@@ -4,31 +4,21 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.9"
 
-	* December 17, 2025, API Version 2.9.0g
+	Version 2.9 is still in active development and was moved to the live endpoint to fix an Internal Server error caused by the GFS ingest failing.
+
+	* December 24, 2025, API Version 2.9.0
+		* Added more fallback ingest sources as per [PR #483](https://github.com/Pirate-Weather/pirate-weather-code/pull/483).
 		* Fix ERA5 Rounding for precipitation type as per [PR #477](https://github.com/Pirate-Weather/pirate-weather-code/pull/477).
-		* Revert missing interp_time_take_blend to fix broken ingest as per [PR #476](https://github.com/Pirate-Weather/pirate-weather-code/pull/476).
-	* December 15, 2025, API Version 2.9.0f
-		* Fix DWD testing station and runtime as per [PR #475](https://github.com/Pirate-Weather/pirate-weather-code/pull/475).
 		* Add ice/mixed precipitation types as per [PR #467](https://github.com/Pirate-Weather/pirate-weather-code/pull/467).
-		* Fix DWD Historic data caching as per [PR #474](https://github.com/Pirate-Weather/pirate-weather-code/pull/474).
-		* Validate DWD MOSMIX timestamps to prevent invalid sourceList entries as per [PR #473](https://github.com/Pirate-Weather/pirate-weather-code/pull/473).
-		* Fix nearest station units as per [PR #472](https://github.com/Pirate-Weather/pirate-weather-code/pull/472).
-	* December 8, 2025, API Version 2.9.0e
-		* Update DWD ingest to use nearest interpoaltion for ptype as per [PR #463](https://github.com/Pirate-Weather/pirate-weather-code/pull/463).
-		* Fix DWD MOSMIX precipitation intensity distribution and temperature validation as per [PR #462](https://github.com/Pirate-Weather/pirate-weather-code/pull/462).
-		* Change DWD to nearest within radius interpolation as per [PR #460](https://github.com/Pirate-Weather/pirate-weather-code/pull/460).
-		* Fix an issue where a cell with multiple MOSMIX stations displayed data randomly from either station as per [PR #457](https://github.com/Pirate-Weather/pirate-weather-code/pull/457).
-	* December 7, 2025, API Version 2.9.0d
-		* Fix an issue where DWD MOSMIX data was incorrectly offset as per [PR #456](https://github.com/Pirate-Weather/pirate-weather-code/pull/456).
-	* December 7, 2025, API Version 2.9.0c
-		* Fix an issue where DWD MOSMIX was showing in the sources for locations with no MOSMIX stations [PR #454](https://github.com/Pirate-Weather/pirate-weather-code/pull/454).
-		* Fix an issue where the precipitation type and intensity arrays were not aligned as per [PR #452](https://github.com/Pirate-Weather/pirate-weather-code/pull/452).
-		* Added falling back to another source if DWD MOSMIX has no data for that data point [PR #451](https://github.com/Pirate-Weather/pirate-weather-code/pull/451).
-			* The available data varies per station so your station may not have the full suite of data. Solar radiation and wind gusts are primarily available for European stations.
-	* December 4, 2025, API Version 2.9.0b
+			* This adds `mixed` as a valid icon returned by the API.
 		* Fix an issue where some v2 fields were displaying in v1 requests as per [PR #450](https://github.com/Pirate-Weather/pirate-weather-code/pull/450).
 		* Add support for DWD MOSMIX forecats where available as per [PR #449](https://github.com/Pirate-Weather/pirate-weather-code/pull/449).
-	* December 4, 2025, API Version 2.9.0a
+			* DWD MOSMIX only shows in the sources list for locations with MOSMIX stations [PR #454](https://github.com/Pirate-Weather/pirate-weather-code/pull/454).
+			* Locations with multiple stations will use data from the nearest station as per [PR #457](https://github.com/Pirate-Weather/pirate-weather-code/pull/457).
+			* Note: In North America, DWD MOSMIX data is prioritized below GFS data due to occasional inconsistencies in its forecasts. Added in [PR #464](https://github.com/Pirate-Weather/pirate-weather-code/pull/464).
+			* If DWD MOSMIX has no data for that data point then it will fallback to using other sources as [PR #451](https://github.com/Pirate-Weather/pirate-weather-code/pull/451).
+				* The available data varies per station so your station may not have the full suite of data. Solar radiation and wind gusts are primarily available for European stations.
+		* Updated `nearest-station` flag to calculate the distance to the closest MOSMIX station as per [PR #463](https://github.com/Pirate-Weather/pirate-weather-code/pull/463).
 		* Refactor the codebase to break out the functions and simplify the code as [PR #438](https://github.com/Pirate-Weather/pirate-weather-code/pull/438).
 
 ??? note "Version 2.8"

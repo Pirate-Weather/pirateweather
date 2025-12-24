@@ -926,7 +926,7 @@ The time in UTC when the model was last updated.
 The X,Y coordinate and the lat, lon coordinate for the grid cell used for each model used to generate the forecast.
 
 #### nearest-station
-Not implemented, and will always return 0.
+Distance to the closest DWD MOSMIX station to your location in kilometres or miles depending on the units. If there are no stations for your location this will return -999.
 
 #### units
 Indicates which units were used in the forecasts.

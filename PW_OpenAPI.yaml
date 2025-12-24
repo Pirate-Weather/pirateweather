@@ -55,6 +55,7 @@ paths:
               - gefs
               - rtma_ru
               - ecmwf_ifs
+              - dwd_mosmix
         - name: extend
           in: query
           description: Fetch the next 168 hours (7 days) worth of hourly data, instead of the next 24.
@@ -1115,6 +1116,10 @@ components:
               type: string
               description: The time the NBM fire model was last updated.
               example: 2025-11-09 12Z
+            dwd_mosmix:
+              type: string
+              description: The time the DWD MOSMIX model was last updated.
+              example: 2025-11-09 13Z
             ecmwf_ifs:
               type: string
               description: The time the ECMWF IFS model was last updated.
@@ -1134,8 +1139,8 @@ components:
         nearest-station:
           type: integer
           format: int32
-          description: The distance to the nearest station (not implemented, always returns 0).
-          example: 0
+          description: Distance to the closest DWD MOSMIX station to your location in kilometres or miles depending on the units. If there are no stations for your location this will return -999.
+          example: 15.68
         units:
           type: string
           description: The units used in the forecasts.
@@ -1211,6 +1216,28 @@ components:
                   type: number
                   description: The longitude coordinate for the ECMWF IFS model.
                   example: -89.5
+            dwd_mosmix:
+              type: object
+              properties:
+                stations:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The id of the DWD MOSMIX station.
+                      example: "72530"
+                    name:
+                      type: string
+                      description: The name of the DWD MOSMIX station.
+                      example: "CHICAGO"
+                    lat:
+                      type: number
+                      description: The latitude coordinate for the DWD MOSMIX station.
+                      example: 41.98
+                    long:
+                      type: number
+                      description: The longitude coordinate for the DWD MOSMIX station.
+                      example: -87.9
             rtma_ru:
               type: object
               properties:
