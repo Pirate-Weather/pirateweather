@@ -39,7 +39,7 @@ To provide historic weather data, the [Google European Reanalysis 5 Dataset](htt
 ## Forecast element sources
 Every Pirate Weather forecast element for each time block (`currently`, `minutely`, `hourly`, or `daily`) is included in the table below, along with the primary, secondary, and tertiary data sources. Fallback sources are used if model data is intentionally excluded, the request point is outside of the primary model coverage area, or if there's some sort of data interruption. 
 
-At a high level, the general approach is to use NBM first, then HRRR, then DWD_MOSMIX, then ECMWF_IFS, then GEFS, and finally GFS. However, for currently and minutely blocks, data from the sub-hourly (15-minute) HRRR and the RTMA-RU models are preferred when available
+At a high level, the general approach is to use NBM first, then HRRR, then DWD_MOSMIX, then ECMWF_IFS, then GEFS, and finally GFS. However, for currently and minutely blocks, data from the sub-hourly (15-minute) HRRR and the RTMA-RU models are preferred when available.
 
 ### Currently
 | Parameter | Global/Standard Priority | North America Priority |

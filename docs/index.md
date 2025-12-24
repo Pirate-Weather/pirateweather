@@ -54,7 +54,7 @@ Up to version 2.9! As always, details are available in the [changelog](https://p
 * Fix ERA5 Rounding for precipitation type as per [PR #477](https://github.com/Pirate-Weather/pirate-weather-code/pull/477).
 * Add ice/mixed precipitation types as per [PR #467](https://github.com/Pirate-Weather/pirate-weather-code/pull/467).
 * Fix an issue where some v2 fields were displaying in v1 requests as per [PR #450](https://github.com/Pirate-Weather/pirate-weather-code/pull/450).
-* Add support for DWD MOSMIX forecats where available as per [PR #449](https://github.com/Pirate-Weather/pirate-weather-code/pull/449).
+* Add support for DWD MOSMIX forecasts where available as per [PR #449](https://github.com/Pirate-Weather/pirate-weather-code/pull/449).
 * Refactor the codebase to break out the functions and simplify the code as [PR #438](https://github.com/Pirate-Weather/pirate-weather-code/pull/438).
 
 ## Background
