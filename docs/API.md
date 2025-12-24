@@ -92,6 +92,7 @@ Some models can also be excluded, which will force data from the fallback source
 *  `gfs`
 *  `rtma_ru`
 *  `ecmwf_ifs`
+*  `dwd_mosmix`
 
 #### Extend
 If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.   
@@ -361,9 +362,9 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 			"gfs": "2025-11-09 12Z",
 			"gefs": "2025-11-09 12Z"
 		},
-		"nearest-station": 0,
+		"nearest-station": -999,
 		"units": "ca",
-		"version": "V2.8.5"
+		"version": "V2.9.0"
   	}
 ```
 
@@ -485,7 +486,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sourceTimes": {},
 	"nearest-station": 0,
 	"units": "ca",
-	"version": "V2.8.5"
+	"version": "V2.9.0"
 	}
 }
 ```
@@ -620,7 +621,7 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
-`clear-day, clear-night, thunderstorm, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `hail` or `mixed` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
+`clear-day, clear-night, thunderstorm, rain, snow, sleet, mixed, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `hail` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
 
 If `icon=pirate` is added as a query string parameter the icon set is expanded to include:
 
@@ -779,7 +780,7 @@ The probability of precipitation occurring expressed as a decimal between 0 and 
 You can get a probability >0 with no precipitation. It's because they're sometimes coming from different sources or different models, and the ensemble will sometimes show a chance of something but not confident in any amount. Basically, one is probabilistic, the other deterministic. 
 
 #### precipType
-The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow. For the `daily` block, the following process is used to assess a type when multiple precipitation types are expected:
+The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow`, `sleet`, `ice` or `mixed` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow. For the `daily` block, the following process is used to assess a type when multiple precipitation types are expected:
 
 1. If more than 1 mm of ice is forecast, then ice. Otherwise:
 2. If there is more than 5 cm of snow, then snow. Otherwise:
@@ -925,7 +926,7 @@ The time in UTC when the model was last updated.
 The X,Y coordinate and the lat, lon coordinate for the grid cell used for each model used to generate the forecast.
 
 #### nearest-station
-Not implemented, and will always return 0.
+Distance to the closest DWD MOSMIX station to your location in kilometres or miles depending on the units. If there are no stations for your location this will return -999.
 
 #### units
 Indicates which units were used in the forecasts.
@@ -987,4 +988,5 @@ You may encounter this error if your API key has hit the quota for the month.
 
 #### 500 Internal Server Error
 If the API returns a 500 error you can retry the request to see if the API will return a 500 error again. If the issue persists please check the [GitHub issues](https://github.com/Pirate-Weather/pirateweather/issues) to see if the issue has been reported otherwise create a [bug report](https://github.com/Pirate-Weather/pirateweather/issues/new?assignees=&labels=bug%2CNeeds+Review&projects=&template=report_bug.yml) and the issue will be investigated.
+
 
