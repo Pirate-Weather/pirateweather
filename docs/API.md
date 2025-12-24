@@ -362,7 +362,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 			"gfs": "2025-11-09 12Z",
 			"gefs": "2025-11-09 12Z"
 		},
-		"nearest-station": 0,
+		"nearest-station": -999,
 		"units": "ca",
 		"version": "V2.9.0"
   	}
@@ -988,4 +988,5 @@ You may encounter this error if your API key has hit the quota for the month.
 
 #### 500 Internal Server Error
 If the API returns a 500 error you can retry the request to see if the API will return a 500 error again. If the issue persists please check the [GitHub issues](https://github.com/Pirate-Weather/pirateweather/issues) to see if the issue has been reported otherwise create a [bug report](https://github.com/Pirate-Weather/pirateweather/issues/new?assignees=&labels=bug%2CNeeds+Review&projects=&template=report_bug.yml) and the issue will be investigated.
+
 
