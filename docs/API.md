@@ -621,7 +621,7 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
-`clear-day, clear-night, thunderstorm, rain, snow, sleet, mixed, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `hail` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
+`clear-day, clear-night, thunderstorm, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day and partly-cloudy-night` and may include `hail` in the future. In some rare cases the API may return `none` as an icon which could be defined as Not Available.
 
 If `icon=pirate` is added as a query string parameter the icon set is expanded to include:
 
@@ -654,6 +654,7 @@ If `icon=pirate` is added as a query string parameter the icon set is expanded t
 * `mist`
 * `haze`
 * `smoke`
+* `mixed`
 
 Note that `smoke` and `haze` may be moved to the default icon set in the future, at which point they will be removed from this expanded list.
 
@@ -780,12 +781,14 @@ The probability of precipitation occurring expressed as a decimal between 0 and 
 You can get a probability >0 with no precipitation. It's because they're sometimes coming from different sources or different models, and the ensemble will sometimes show a chance of something but not confident in any amount. Basically, one is probabilistic, the other deterministic. 
 
 #### precipType
-The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow`, `sleet`, `ice` or `mixed` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow. For the `daily` block, the following process is used to assess a type when multiple precipitation types are expected:
+The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow. For the `daily` block, the following process is used to assess a type when multiple precipitation types are expected:
 
 1. If more than 1 mm of ice is forecast, then ice. Otherwise:
 2. If there is more than 5 cm of snow, then snow. Otherwise:
 3. If there is more than 10 mm of rain, then rain Otherwise:
 4. Use the most common precipitation type.
+
+If querying the API with `version>1` then the precipitation types are expanded to include `ice` and `mixed`. The `ice` precipitation type is defined as freezing rain and `mixed` is defined as `rain`, `snow` and `ice` precipitation occurring.
 
 See [this issue](https://github.com/Pirate-Weather/pirateweather/issues/413) for additional discussion.
 
