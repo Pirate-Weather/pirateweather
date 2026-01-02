@@ -781,7 +781,7 @@ The probability of precipitation occurring expressed as a decimal between 0 and 
 You can get a probability >0 with no precipitation. It's because they're sometimes coming from different sources or different models, and the ensemble will sometimes show a chance of something but not confident in any amount. Basically, one is probabilistic, the other deterministic. 
 
 #### precipType
-The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow` or `sleet` otherwise the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow. For the `daily` block, the following process is used to assess a type when multiple precipitation types are expected:
+The type of precipitation occurring. If `precipIntensity` is greater than zero this property will have one of the following values: `rain`, `snow`, or `sleet`. For requests with `version>1`, `ice` and `mixed` are also possible values. If `precipIntensity` is zero, the value will be `none`. `sleet` is defined as any precipitation which is neither rain nor snow. For the `daily` block, the following process is used to assess a type when multiple precipitation types are expected:
 
 1. If more than 1 mm of ice is forecast, then ice. Otherwise:
 2. If there is more than 5 cm of snow, then snow. Otherwise:
