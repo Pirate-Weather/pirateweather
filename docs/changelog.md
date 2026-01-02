@@ -4,9 +4,13 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.9"
 
-	Version 2.9 is still in active development and was moved to the live endpoint to fix an Internal Server error caused by the GFS ingest failing.
-
+	* December 30, 2025, API Version 2.9.1
+		* Prevent Fog/Smoke/Haze summary and icon from showing during windy conditions in [PR #491](https://github.com/Pirate-Weather/pirate-weather-code/pull/491).
+		* Fixed `smoke` check failing when `smoke` is NaN in [PR #490](https://github.com/Pirate-Weather/pirate-weather-code/pull/490).
+		* Fixed `mixed` and `ice` types being available in Version 1 requests in [PR #489](https://github.com/Pirate-Weather/pirate-weather-code/pull/489).
+		* Fixed `mixed` icon being part of the default icon set in [PR #489](https://github.com/Pirate-Weather/pirate-weather-code/pull/489).
 	* December 24, 2025, API Version 2.9.0
+		* Fix daily text generation issue with ice precipitation as per [PR #487](https://github.com/Pirate-Weather/pirate-weather-code/pull/487).
 		* Added more fallback ingest sources as per [PR #483](https://github.com/Pirate-Weather/pirate-weather-code/pull/483).
 		* Add a NaN check for solar radiation to fix an `apparentTemperature` of -999 as per [PR #482](https://github.com/Pirate-Weather/pirate-weather-code/pull/482).
 		* Fix ERA5 Rounding for precipitation type as per [PR #477](https://github.com/Pirate-Weather/pirate-weather-code/pull/477).
