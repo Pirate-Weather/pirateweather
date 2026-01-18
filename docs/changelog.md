@@ -4,7 +4,11 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.9"
 
+	* January 13, 2026, API Version 2.9.2b
+		* Change snow_a constant value in DBZ_CONST from 600.0 to 300.0 in [PR #515](https://github.com/Pirate-Weather/pirate-weather-code/pull/515).
+		* Fix "slee" truncation bug and refactor precipitation type handling in [PR #514](https://github.com/Pirate-Weather/pirate-weather-code/pull/514).
 	* January 2, 2026, API Version 2.9.2a
+		* Fix precipitation type logic: preserve ice/sleet distinction, add freezing rain detection, and derive missing intensity in [PR #506](https://github.com/Pirate-Weather/pirate-weather-code/pull/506).
 		* Update the translations module to the latest version in [PR #500](https://github.com/Pirate-Weather/pirate-weather-code/pull/500).
 			* The translations were updated to sound more natural compared to previous versions.
 	* December 30, 2025, API Version 2.9.1
