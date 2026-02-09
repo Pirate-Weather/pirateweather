@@ -4,10 +4,12 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.9"
 
-	* January 13, 2026, API Version 2.9.2b
+	* February 9, 2026, API Version 2.9.2
+		* Fix issues with failing NBM, GEFS and NWS alert ingest in [PR #542](https://github.com/Pirate-Weather/pirate-weather-code/pull/542).
+		* Change NWS alert URI to link to a human-friendly version of the alert instead of the JSON response in [PR #542](https://github.com/Pirate-Weather/pirate-weather-code/pull/542).
 		* Change snow_a constant value in DBZ_CONST from 600.0 to 300.0 in [PR #515](https://github.com/Pirate-Weather/pirate-weather-code/pull/515).
+			* This means that currently/minutely snow instensity will be higher then the previous version.
 		* Fix "slee" truncation bug and refactor precipitation type handling in [PR #514](https://github.com/Pirate-Weather/pirate-weather-code/pull/514).
-	* January 2, 2026, API Version 2.9.2a
 		* Fix precipitation type logic: preserve ice/sleet distinction, add freezing rain detection, and derive missing intensity in [PR #506](https://github.com/Pirate-Weather/pirate-weather-code/pull/506).
 		* Update the translations module to the latest version in [PR #500](https://github.com/Pirate-Weather/pirate-weather-code/pull/500).
 			* The translations were updated to sound more natural compared to previous versions.
