@@ -5,6 +5,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ???+ note "Version 2.9"
 
 	* February 9, 2026, API Version 2.9.2
+		* Add automatic model excluding if the ingested data is stale in [PR #543](https://github.com/Pirate-Weather/pirate-weather-code/pull/543).
+			* NBM and NBM fire will be excluded if last run is 2 days or more old.
+			* GFS, GEFS and ECMWF IFS data will be excluded if last run is 5 days or more old.
 		* Fix issues with failing NBM, GEFS and NWS alert ingest in [PR #542](https://github.com/Pirate-Weather/pirate-weather-code/pull/542).
 		* Change NWS alert URI to link to a human-friendly version of the alert instead of the JSON response in [PR #542](https://github.com/Pirate-Weather/pirate-weather-code/pull/542).
 		* Change snow_a constant value in DBZ_CONST from 600.0 to 300.0 in [PR #515](https://github.com/Pirate-Weather/pirate-weather-code/pull/515).
