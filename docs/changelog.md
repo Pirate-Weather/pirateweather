@@ -4,14 +4,14 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.9"
 
-	* February 9, 2026, API Version 2.9.2
+	* February 12, 2026, API Version 2.9.2
 		* Add automatic model exclusion when ingested data is stale in [PR #543](https://github.com/Pirate-Weather/pirate-weather-code/pull/543).
 			* NBM and NBM fire will be excluded if last run is 2 days or more old.
 			* GFS, GEFS and ECMWF IFS data will be excluded if last run is 5 days or more old.
 		* Fix issues with failing NBM, GEFS and NWS alert ingest in [PR #542](https://github.com/Pirate-Weather/pirate-weather-code/pull/542).
 		* Change NWS alert URI to link to a human-friendly version of the alert instead of the JSON response in [PR #542](https://github.com/Pirate-Weather/pirate-weather-code/pull/542).
 		* Change snow_a constant value in DBZ_CONST from 600.0 to 300.0 in [PR #515](https://github.com/Pirate-Weather/pirate-weather-code/pull/515).
-			* This means that currently/minutely snow instensity will be higher than the previous version.
+			* This means that currently/minutely snow intensity will be higher than the previous version.
 		* Fix "slee" truncation bug and refactor precipitation type handling in [PR #514](https://github.com/Pirate-Weather/pirate-weather-code/pull/514).
 		* Fix precipitation type logic: preserve ice/sleet distinction, add freezing rain detection, and derive missing intensity in [PR #506](https://github.com/Pirate-Weather/pirate-weather-code/pull/506).
 		* Update the translations module to the latest version in [PR #500](https://github.com/Pirate-Weather/pirate-weather-code/pull/500).
@@ -554,4 +554,5 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 	* Fixed an issue where a combination of a time zone glitch and an issue with dates that were the last day of a month, since they required two separate calls to the archive.
  	* Fixed a couple other issues pertaining to rain/snow units
   	* These issues were reported in [#3](https://github.com/alexander0042/alexander0042.github.io/issues/3) 
+
 
