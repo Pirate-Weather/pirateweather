@@ -12,11 +12,9 @@
 * [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
 * [API repo](https://github.com/alexander0042/pirateweather)
 * [Open Source code repo](https://github.com/Pirate-Weather/pirate-weather-code)
-  * Including recently updated self hosting instructions and docker images!
 * [Changelog](https://pirateweather.net/en/latest/changelog/)
 * [Status page](https://pirateweather.xitoring.io/)
-* [Development version of documentation](https://pirateweather.net/en/dev/)
-  * See documentation for upcoming API version features available on the dev endpoint
+
 
 #### Publications and Press
 * [AWS blog post](https://aws.amazon.com/blogs/publicsector/making-weather-forecasts-accessible-serverless-infrastructure-open-data-aws/)
