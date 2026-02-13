@@ -16,6 +16,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Fix precipitation type logic: preserve ice/sleet distinction, add freezing rain detection, and derive missing intensity in [PR #506](https://github.com/Pirate-Weather/pirate-weather-code/pull/506).
 		* Update the translations module to the latest version in [PR #500](https://github.com/Pirate-Weather/pirate-weather-code/pull/500).
 			* The translations were updated to sound more natural compared to previous versions.
+		* Update dependencies to use Pandas 3.0/ eccodes 2.45.0/ wgrib2-3.7.0
 	* December 30, 2025, API Version 2.9.1
 		* Prevent Fog/Smoke/Haze summary and icon from showing during windy conditions in [PR #491](https://github.com/Pirate-Weather/pirate-weather-code/pull/491).
 		* Fixed `smoke` check failing when `smoke` is NaN in [PR #490](https://github.com/Pirate-Weather/pirate-weather-code/pull/490).
