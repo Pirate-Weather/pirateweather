@@ -2,6 +2,13 @@
 
 Weather data is critical for many applications, and accordingly, Pirate Weather takes uptime very seriously. This page will be updated with details on any outage, along with lessons learned and next steps.
 
+
+???+ note "December 24, 2025"
+
+	* Unfortunately, this was the most significant outage in several years, with a four hour prod outage. To explain the root cause, a bit of background on Pirate Weather's AWS infrastructure is required, and is all detailed in a new blog post here: <https://pirateweather.net/en/latest/Blog/Infrastructure2026/>.
+
+
+
 ???+ note "November 28, 2025"
 
 	* The production file synchronization location was not defined in the zip_sync script, resulting in the transfer failing on new EC2 instances. 
