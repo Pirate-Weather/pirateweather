@@ -5,7 +5,7 @@ Weather data is critical for many applications, and accordingly, Pirate Weather 
 
 ???+ note "December 24, 2025"
 
-	* Unfortunately, this was the most significant outage in several years, with a four hour prod outage. To explain the root cause, a bit of background on Pirate Weather's AWS infrastructure is required, and is all detailed in a new blog post here: <../Infrastructure2026/#december-24-2025-downtime-incident>.
+	* Unfortunately, this was the most significant outage in several years, with a four hour prod outage. To explain the root cause, a bit of background on Pirate Weather's AWS infrastructure is required, and is all detailed in a new blog post here: <a href="/Infrastructure2026/#december-24-2025-downtime-incident">December 24, 2025 downtime incident</a>.
 
 
 
