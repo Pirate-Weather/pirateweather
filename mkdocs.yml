@@ -37,10 +37,11 @@ nav:
   - 'Issue Tracker': 'https://github.com/Pirate-Weather/pirateweather/issues'
   - 'Terms of Service' : 'https://pirate-weather.apiable.io/terms'
   - Blog:
-    - 'Indident Reports': 'Blog/IncidentReports.md'  
+    - 'Incident Reports': 'Blog/IncidentReports.md'  
     - 'CloudWatch Insights': 'Blog/CloudWatchInsights.md'
     - 'Kong Gateway': 'Blog/KongGatewayInfrastructure.md'
-    - 'Infrastructure Overview': 'Blog/InfrastructureOverview.md'
+    - 'Infrastructure Overview': 'Blog/Infrastructure2026.md'     
+    - 'Previous Infrastructure': 'Blog/InfrastructureOverview.md'
     - 'Previous Versions- v0.1': 'Blog/indexv01.md'
     
     
