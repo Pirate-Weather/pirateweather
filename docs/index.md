@@ -28,7 +28,7 @@
 - [PW-forecast](https://github.com/ktrue/PW-forecast) and [https://saratoga-weather.org/scripts-PWforecast.php](https://saratoga-weather.org/scripts-PWforecast.php)
 - [Breezy Weather](https://github.com/breezy-weather/breezy-weather)
 - [Weathergraph](https://weathergraph.app/) - Graphical hour-by-hour forecast & widget for iOS, Apple Watch and mac
-- [pirateWeather](https://github.com/txhammer68/pirateWeather) - KDE Plasma 6 weather widget
+- [Pirate Weather for KDE Plasma](https://github.com/txhammer68/pirateWeather) - KDE Plasma 6 weather widget
 
 ## Libraries
 - [python-pirate-weather](https://github.com/cloneofghosts/python-pirate-weather) - A thin Python Wrapper for the Pirate Weather API forked from the [forecastio python library](https://github.com/ZeevG/python-forecast.io).
