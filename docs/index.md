@@ -28,6 +28,7 @@
 - [PW-forecast](https://github.com/ktrue/PW-forecast) and [https://saratoga-weather.org/scripts-PWforecast.php](https://saratoga-weather.org/scripts-PWforecast.php)
 - [Breezy Weather](https://github.com/breezy-weather/breezy-weather)
 - [Weathergraph](https://weathergraph.app/) - Graphical hour-by-hour forecast & widget for iOS, Apple Watch and mac
+- [pirateWeather](https://github.com/txhammer68/pirateWeather) - KDE Plasma 6 weather widget
 
 ## Libraries
 - [python-pirate-weather](https://github.com/cloneofghosts/python-pirate-weather) - A thin Python Wrapper for the Pirate Weather API forked from the [forecastio python library](https://github.com/ZeevG/python-forecast.io).
@@ -65,3 +66,4 @@ This API is designed to be a drop in replacement/ alternative to the Dark Sky AP
 1. It will also allow **legacy** applications to continue running after the Dark Sky shutdown, since as Home Assistant Integrations, Magic Mirror cards, and a whole host of other applications that have been developed over the years.
 2. For anyone that is interested in knowing **exactly** how your weather forecasts are generated, this is the "show me the numbers" approach, since the data returned is directly from NOAA models, and every processing step I do is [documented](https://blog.pirateweather.net/). There are [lots](https://openweathermap.org/) [of](https://www.theweathernetwork.com) [existing](https://weather.com) [services](https://www.accuweather.com/) that provide custom forecasts using their own unique technologies, which can definitely improve accuracy, but I'm an engineer, so I wanted to be able to know what's going into the forecasts I'm using. If you're the sort of person who wants a [dense 34-page PowerPoint](http://rapidrefresh.noaa.gov/pdf/Alexander_AMS_NWP_2020.pdf) about why it rained when the forecast said it wouldn't, then this might be for you.
 3. I wanted to provide a more **community focused** source of weather data. Weather is local, but I'm only in one spot, so I rely on people filing [issues](https://github.com/alexander0042/pirateweather/issues) to help improve the forecast!
+
