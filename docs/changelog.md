@@ -4,6 +4,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.9"
 
+	* February 26, 2026, API Version 2.9.3a
+		* Update the translations module to version 1.4.2 with improvments to the Greek translation.
+		* Enhance and stabilize local ingest operations as per [PR #561](https://github.com/Pirate-Weather/pirate-weather-code/pull/561)
 	* February 12, 2026, API Version 2.9.2
 		* Add automatic model exclusion when ingested data is stale in [PR #543](https://github.com/Pirate-Weather/pirate-weather-code/pull/543).
 			* NBM and NBM fire will be excluded if last run is 2 days or more old.
