@@ -3,6 +3,18 @@
 Weather data is critical for many applications, and accordingly, Pirate Weather takes uptime very seriously. This page will be updated with details on any outage, along with lessons learned and next steps.
 
 
+???+ note "March 8, 2026"
+
+	* Partial downtime incident wherever daylight savings time was observed.
+	* A indexing (it's always the indexing) bug produced nan values for hour 0, since it appeared to fall in the previous day.
+	* This nan created issues for the sunrise time index, since it couldn't find the time for that day.
+	* The issue was compounded by a monitoring failure since the bug didn't occur where monitoring was checking. 
+	* Fixes: 
+	* Bugfix released as version 2.9.3.
+	* Additional monitoring locations have been added to better catch spatially transient failures (Paris and New York): <https://pirateweather.xitoring.io/>.
+		* Add an additional test for daylight savings time dates: <https://github.com/Pirate-Weather/pirate-weather-code/issues/576>.
+
+
 ???+ note "December 24, 2025"
 
 	* Unfortunately, this was the most significant outage in several years, with a four hour prod outage. To explain the root cause, a bit of background on Pirate Weather's AWS infrastructure is required, and is all detailed in a new blog post here: [December 24, 2025 downtime incident](Infrastructure2026.md#december-24-2025-downtime-incident).
