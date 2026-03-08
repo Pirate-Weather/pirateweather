@@ -5,7 +5,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ???+ note "Version 2.9"
 
 	* March 8, 2026, API Version 2.9.3
-		* Update the translations module to version 1.4.2 with improvments to the Greek translation.
+		* Update the translations module to version 1.4.2 with improvements to the Greek translation.
 		* Enhance and stabilize local ingest operations as per [PR #561](https://github.com/Pirate-Weather/pirate-weather-code/pull/561).
 		* Fix a daylight savings time bug due to hourly-daily indexing per [PR #572](https://github.com/Pirate-Weather/pirate-weather-code/pull/572).
 		* Add additional monitoring endpoints to the status page: <https://pirateweather.xitoring.io/>.
