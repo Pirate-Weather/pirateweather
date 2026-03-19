@@ -29,6 +29,7 @@
 - [Breezy Weather](https://github.com/breezy-weather/breezy-weather)
 - [Weathergraph](https://weathergraph.app/) - Graphical hour-by-hour forecast & widget for iOS, Apple Watch and mac
 - [Pirate Weather for KDE Plasma](https://github.com/txhammer68/pirateWeather) - KDE Plasma 6 weather widget
+- [Chrome Pirate Weather Extension](https://chromewebstore.google.com/detail/pirate-weather-extension/akfgfkkfjpbpplibpcffankjdjgpkedd) - Precipitation alerts, rain probability, hourly/daily forecasts, saved locations, no ads
 
 ## Libraries
 - [python-pirate-weather](https://github.com/cloneofghosts/python-pirate-weather) - A thin Python Wrapper for the Pirate Weather API forked from the [forecastio python library](https://github.com/ZeevG/python-forecast.io).
