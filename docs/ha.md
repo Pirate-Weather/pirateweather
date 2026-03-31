@@ -60,7 +60,7 @@ The use to integration, click on the "Add Integration" button on the Integration
 
 ### YAML Configuration
 
-YAML configuration is still supported, but is depreciated and may be removed at some point in the future. If the integration detects an existing YAML integration, it will import and save it, allowing the yaml to be safely removed.
+YAML configuration is still supported, but has been deprecated by Home Assitant and may be removed at some point in the future. If the integration detects an existing YAML integration, it will import and save it, allowing the yaml to be safely removed.
 
 To use the integration via this approach, either add or edit to your `configuration.yaml` file with this block, using the new API key:
 
