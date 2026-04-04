@@ -4,6 +4,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.9"
 
+	* March 12, 2026, API Version 2.9.4a
+		* Change the daily block to use the precipitation type with the highest amount as per [PR #582](https://github.com/Pirate-Weather/pirate-weather-code/pull/582).
+		* Changes HRRR reflectivity to use 1km reflectivity instead of composite reflectivity for better currently and minutely precipitation rate as per [PR #585](https://github.com/Pirate-Weather/pirate-weather-code/pull/585)
 	* March 8, 2026, API Version 2.9.3
 		* Update the translations module to version 1.4.2 with improvements to the Greek translation.
 		* Enhance and stabilize local ingest operations as per [PR #561](https://github.com/Pirate-Weather/pirate-weather-code/pull/561).
