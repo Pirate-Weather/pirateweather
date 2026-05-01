@@ -337,9 +337,9 @@ trigger:
 action:
   - service: homeassistant.reload_config_entry
     target:
-      entity_id: weather.pirate_weather # Replace this with the name of your Pirate Weather inegration id.
+      entity_id: weather.pirate_weather # Replace this with the name of your Pirate Weather integration id.
   - delay:
       minutes: 15 # The "Cooldown" period
 ```
 
-For more information see [issue #541](https://github.com/Pirate-Weather/pirate-weather-ha/issues/534) with the template being posted [here](https://github.com/Pirate-Weather/pirate-weather-ha/issues/534#issuecomment-4322823663).
+For more information see [issue #534](https://github.com/Pirate-Weather/pirate-weather-ha/issues/534) with the template being posted [here](https://github.com/Pirate-Weather/pirate-weather-ha/issues/534#issuecomment-4322823663).
