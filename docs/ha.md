@@ -323,3 +323,23 @@ Thanks to breel007 for posting the template [here](https://github.com/Pirate-Wea
 
 Yes, every time you setup a new instance of the integration it results in more queries to the API. For more information see [#243](https://github.com/Pirate-Weather/pirate-weather-ha/issues/243#issuecomment-2150104162)
 
+### Can I get the integration to update every time my location changes?
+
+To update the integration whenever your Home Assistant location changes, use this automation. It reloads the integration upon a location change, capped at once every 15 minutes to reduce API calls and prevent exceeding your quota.
+
+```yaml
+alias: "Pirate Weather Location Update"
+description: "Reloads Pirate Weather on location change, max once every 15 minutes"
+mode: single # This ignores new triggers while the actions are running
+trigger:
+  - platform: event
+    event_type: core_config_updated
+action:
+  - service: homeassistant.reload_config_entry
+    target:
+      entity_id: weather.pirate_weather # Replace this with the name of your Pirate Weather integration id.
+  - delay:
+      minutes: 15 # The "Cooldown" period
+```
+
+For more information see [issue #534](https://github.com/Pirate-Weather/pirate-weather-ha/issues/534) with the template being posted [here](https://github.com/Pirate-Weather/pirate-weather-ha/issues/534#issuecomment-4322823663).
