@@ -9,7 +9,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Change the daily block to use the precipitation type with the highest amount as per [PR #582](https://github.com/Pirate-Weather/pirate-weather-code/pull/582).
 		* Changes HRRR reflectivity to use 1km reflectivity instead of composite reflectivity for better currently and minutely precipitation rate as per [PR #585](https://github.com/Pirate-Weather/pirate-weather-code/pull/585).
 		* Fix a number of small issues with 2.9.4 per [PR #597](https://github.com/Pirate-Weather/pirate-weather-code/pull/597):
-			* Discard DWD MODMIX variables with more than 6-hour gaps between data;
+			* Discard DWD MOSMIX variables with more than 6-hour gaps between data;
 			* Change ECMWF snow intensity to use accumulation for hourly data (align with GEFS);
 			* Add a fallback for the "feels like" temperature when solar radiation data is not available;
 			* Use a 10x factor for snow intensity for minutely data;

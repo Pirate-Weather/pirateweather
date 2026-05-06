@@ -614,7 +614,7 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 **Only on `hourly` and `daily`**. The amount of ice precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
 
 ### iceIntensity
-The intensity of ice precipitation expected to fall over an hour or a day expressed in milimetres or inches depending on the requested `units`. When using data from GEFS/ECMWF, note that for currently/ minutely blocks, modelled intensity is used directly (where available). For hourly/ daily blocks, accumulation is used as the underlying source for this field.
+The intensity of ice precipitation expected to fall over an hour or a day expressed in millimetres or inches depending on the requested `units`. When using data from GEFS/ECMWF, note that for currently/ minutely blocks, modelled intensity is used directly (where available). For hourly/ daily blocks, accumulation is used as the underlying source for this field.
 
 
 ### iceIntensityMax
@@ -800,7 +800,7 @@ See [this issue](https://github.com/Pirate-Weather/pirateweather/issues/413) for
 The sea-level pressure represented in hectopascals or millibars depending on the requested `units`.
 
 ### rainIntensity
-The intensity of rain precipitation expected to fall over an hour or a day expressed in milimetres or inches depending on the requested `units`. When using data from GEFS/ECMWF, note that for currently/ minutely blocks, modelled intensity is used directly (where available). For hourly/ daily blocks, accumulation is used as the underlying source for this field.
+The intensity of rain precipitation expected to fall over an hour or a day expressed in millimetres or inches depending on the requested `units`. When using data from GEFS/ECMWF, note that for currently/ minutely blocks, modelled intensity is used directly (where available). For hourly/ daily blocks, accumulation is used as the underlying source for this field.
 
 
 ### rainIntensityMax
