@@ -1,3 +1,4 @@
+# Pirate Weather: A Modern, Developer-Centric, Open-Source, Extensively Documented Weather API
 <div class="imageContainer">
   <div class="text-block">
     <h1 style="color: white;">Pirate Weather</h1>
@@ -22,7 +23,7 @@
 * [BoingBoing](https://boingboing.net/2023/01/10/pirate-weather-api-has-more-features.html)
 * [Hacker News Front Page](https://news.ycombinator.com/item?id=34329988)
 
-# Who is using PirateWeather?
+# Who is using Pirate Weather?
 
 - [MerrySky](https://merrysky.net) - Get a Forecast DarkSky Style
 - [PW-forecast](https://github.com/ktrue/PW-forecast) and [https://saratoga-weather.org/scripts-PWforecast.php](https://saratoga-weather.org/scripts-PWforecast.php)
@@ -34,7 +35,7 @@
 - [python-pirate-weather](https://github.com/cloneofghosts/python-pirate-weather) - A thin Python Wrapper for the Pirate Weather API forked from the [forecastio python library](https://github.com/ZeevG/python-forecast.io).
 - [pirate-weather-python](https://github.com/Pirate-Weather/pirate-weather-python)
 
-Do you use PirateWeather? Open a [pull request](https://github.com/Pirate-Weather/pirateweather/compare) to add it to the list.
+Do you use Pirate Weather? Open a [pull request](https://github.com/Pirate-Weather/pirateweather/compare) to add it to the list.
 
 # Introduction 
 Weather forecasts are primarily found using models run by government agencies, but the [outputs](https://weather.gc.ca/grib/what_is_GRIB_e.html) aren't easy to use or in formats built for the web.

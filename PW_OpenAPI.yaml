@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: "2.9.4"
+  version: "2.9.6"
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -33,7 +33,7 @@ paths:
             type: string
         - name: lat_and_long_or_time
           in: path
-          description: A single comma-delimited string containing Latitude and Longitude information. Optionally, either a UNIX timestamp, ISO 8601 date string, or number of seconds before present can be added.
+          description: A single comma-delimited string containing Latitude and Longitude information. Optionally, either a UNIX timestamp, ISO 8601 date string, or a relative negative time in either seconds (S), hours (H), or days (D). For example -48D.
           required: true
           schema:
             type: string

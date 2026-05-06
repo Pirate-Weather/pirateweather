@@ -33,6 +33,8 @@ Deutscher Wetterdienst Model Output Statistics-MIX [(DWD MOSMIX)](https://www.dw
 
 MOSMIX provides hourly forecasts for thousands of stations worldwide, though not all parameters are available at every station. Here, MOSMIX data is used wherever it is available, offering refined, observation-tuned guidance—particularly strong within Europe, where DWD’s station network is most comprehensive.
 
+Note that DWD MOSMIX uses a fairly aggressive filtering algorithm whenever confidence in the data is low or inputs are missing. If the gaps between data points are greater than 6 hours, the variable will be discarded from DWD MOSMIX and a fallback source used instead. 
+
 ### ERA5
 To provide historic weather data, the [Google European Reanalysis 5 Dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/arco-era5) is used, specifically their `full_37-1h-0p25deg-chunk-1.zarr-v3` product. Details on the Google implementation are available in [their repository](https://github.com/google-research/arco-era5). In the medium term, I'll be exploring adding a local copy of this repository, which would significantly improve performance.
 

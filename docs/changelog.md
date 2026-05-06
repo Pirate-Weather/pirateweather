@@ -3,10 +3,17 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.9"
-
-	* March 12, 2026, API Version 2.9.4a
+	* May 6, 2026, API Version 2.9.5
+		* Allow relative times to be specified with units per [PR #607](https://github.com/Pirate-Weather/pirate-weather-code/pull/607).
+	* May 6, 2026, API Version 2.9.4
 		* Change the daily block to use the precipitation type with the highest amount as per [PR #582](https://github.com/Pirate-Weather/pirate-weather-code/pull/582).
-		* Changes HRRR reflectivity to use 1km reflectivity instead of composite reflectivity for better currently and minutely precipitation rate as per [PR #585](https://github.com/Pirate-Weather/pirate-weather-code/pull/585)
+		* Changes HRRR reflectivity to use 1km reflectivity instead of composite reflectivity for better currently and minutely precipitation rate as per [PR #585](https://github.com/Pirate-Weather/pirate-weather-code/pull/585).
+		* Fix a number of small issues with 2.9.4 per [PR #597](https://github.com/Pirate-Weather/pirate-weather-code/pull/597):
+			* Discard DWD MODMIX variables with more than 6-hour gaps between data;
+			* Change ECMWF snow intensity to use accumulation for hourly data (align with GEFS);
+			* Add a fallback for the "feels like" temperature when solar radiation data is not available;
+			* Use a 10x factor for snow intensity for minutely data;
+			* Fix an issue with freezing rain summaries. 
 	* March 8, 2026, API Version 2.9.3
 		* Update the translations module to version 1.4.2 with improvements to the Greek translation.
 		* Enhance and stabilize local ingest operations as per [PR #561](https://github.com/Pirate-Weather/pirate-weather-code/pull/561).
