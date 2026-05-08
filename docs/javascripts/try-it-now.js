@@ -97,17 +97,19 @@
         if (value !== null && value !== "") return value;
       }
 
-      var fallback = null;
-      headers.forEach(function (value, key) {
+      var iterator = headers.entries();
+      var next = iterator.next();
+      while (!next.done) {
+        var key = next.value[0];
+        var value = next.value[1];
         var normalizedKey = String(key || "")
           .toLowerCase()
           .replace(/^x[-_]/, "")
           .replace(/_/g, "-");
-        if (normalizedKey === normalizedTarget && fallback === null) {
-          fallback = value;
-        }
-      });
-      return fallback;
+        if (normalizedKey === normalizedTarget) return value;
+        next = iterator.next();
+      }
+      return null;
     }
 
     function hideError() {
