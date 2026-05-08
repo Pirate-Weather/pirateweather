@@ -5,6 +5,7 @@
 </div>
 
 [Get an API key](https://pirate-weather.apiable.io/){ .md-button .md-button--primary }
+[Try It Now](TryItNow.md){ .md-button }
 
 ## Quick Links
 * To [**register for the API**](https://pirate-weather.apiable.io/)

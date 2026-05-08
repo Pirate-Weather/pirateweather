@@ -2,8 +2,8 @@
 
 Make a live forecast request straight from your browser.
 
-!!! warning "Security notice"
-    Requests are made **directly from your browser** to the Pirate Weather API — your key is never sent to any other server.
+!!! info "Privacy notice"
+    Your key is sent **directly from your browser** to the Pirate Weather API — it is never forwarded to any other server.
     Only use an API key you are comfortable entering in a browser context.
     Do not use production or high-privilege keys on shared or public computers.
 
@@ -71,8 +71,8 @@ Make a live forecast request straight from your browser.
         <div class="pw-field-group">
           <label for="pw-version">Version</label>
           <select id="pw-version">
-            <option value="">Default</option>
-            <option value="2">2</option>
+            <option value="">Default (v1)</option>
+            <option value="2" selected>2</option>
           </select>
         </div>
       </div>
