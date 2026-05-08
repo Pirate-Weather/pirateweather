@@ -101,7 +101,7 @@
             try {
               var p = JSON.parse(result.body);
               if (p && p.detail) msg += "\n" + p.detail;
-            } catch (_) {}
+            } catch (parseError) {}
             showError(msg);
             return;
           }

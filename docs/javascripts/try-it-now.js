@@ -206,7 +206,7 @@
               var units  = unitsSelect ? unitsSelect.value : "";
               renderWeatherCard(weatherCard, parsed, units);
               responseBox.textContent = JSON.stringify(parsed, null, 2);
-            } catch (_) {
+            } catch (parseError) {
               responseBox.textContent = result.body;
             }
             responseBox.style.display = "block";
@@ -252,7 +252,7 @@
         ta.style.opacity  = "0";
         document.body.appendChild(ta);
         ta.select();
-        try { document.execCommand("copy"); flashBtn(btn); } catch (_) {}
+        try { document.execCommand("copy"); flashBtn(btn); } catch (copyError) {}
         document.body.removeChild(ta);
       }
     }
