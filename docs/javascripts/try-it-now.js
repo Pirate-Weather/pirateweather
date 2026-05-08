@@ -6,7 +6,92 @@
 
 (function () {
   "use strict";
-  var SECONDS_PER_DAY = 86400;
+
+  // Emoji icon map for weather conditions
+  var WEATHER_ICONS = {
+    "clear-day":           "☀️",
+    "clear-night":         "🌙",
+    "rain":                "🌧️",
+    "snow":                "❄️",
+    "sleet":               "🌨️",
+    "wind":                "💨",
+    "fog":                 "🌫️",
+    "cloudy":              "☁️",
+    "partly-cloudy-day":   "⛅",
+    "partly-cloudy-night": "🌙",
+    "hail":                "🌨️",
+    "thunderstorm":        "⛈️",
+    "tornado":             "🌪️"
+  };
+
+  function weatherIcon(icon) {
+    return WEATHER_ICONS[icon] || "🌡️";
+  }
+
+  function tempUnit(units) {
+    return (units === "si" || units === "ca" || units === "uk") ? "°C" : "°F";
+  }
+
+  function windUnit(units) {
+    if (units === "si") return "m/s";
+    if (units === "ca") return "km/h";
+    return "mph";
+  }
+
+  function pct(val) {
+    return typeof val === "number" ? Math.round(val * 100) + "%" : "—";
+  }
+
+  function wStat(label, value) {
+    return (
+      '<div class="pw-wcard-stat">' +
+        '<span class="pw-wcard-stat-value">' + value + '</span>' +
+        '<span class="pw-wcard-stat-label">' + label + '</span>' +
+      '</div>'
+    );
+  }
+
+  function renderWeatherCard(card, data, units) {
+    var curr = data && data.currently;
+    if (!curr) {
+      card.style.display = "none";
+      return;
+    }
+
+    var tu = tempUnit(units);
+    var wu = windUnit(units);
+
+    var icon    = weatherIcon(curr.icon);
+    var summary = curr.summary || "—";
+    var temp    = curr.temperature         != null ? Math.round(curr.temperature)         + tu : "—";
+    var feels   = curr.apparentTemperature != null ? Math.round(curr.apparentTemperature) + tu : "—";
+    var humidity  = pct(curr.humidity);
+    var wind      = curr.windSpeed  != null ? (Math.round(curr.windSpeed * 10) / 10) + " " + wu : "—";
+    var uv        = curr.uvIndex    != null ? String(curr.uvIndex) : "—";
+    var precip    = pct(curr.precipProbability);
+    var cloud     = pct(curr.cloudCover);
+    var dewPoint  = curr.dewPoint  != null ? Math.round(curr.dewPoint)  + tu      : "—";
+    var pressure  = curr.pressure  != null ? Math.round(curr.pressure)  + " hPa"  : "—";
+
+    card.innerHTML =
+      '<div class="pw-wcard-main">' +
+        '<span class="pw-wcard-icon" aria-hidden="true">' + icon + '</span>' +
+        '<div class="pw-wcard-temp">' + temp + '</div>' +
+        '<div class="pw-wcard-summary">' + summary + '</div>' +
+      '</div>' +
+      '<div class="pw-wcard-grid">' +
+        wStat("Feels Like",   feels)    +
+        wStat("Humidity",     humidity) +
+        wStat("Wind",         wind)     +
+        wStat("UV Index",     uv)       +
+        wStat("Precip. Prob.", precip)  +
+        wStat("Cloud Cover",  cloud)    +
+        wStat("Dew Point",    dewPoint) +
+        wStat("Pressure",     pressure) +
+      '</div>';
+
+    card.style.display = "block";
+  }
 
   function init() {
     var form = document.getElementById("pw-try-form");
@@ -24,7 +109,8 @@
     var urlDisplay    = document.getElementById("pw-request-url");
     var statusDisplay = document.getElementById("pw-status");
     var responseBox   = document.getElementById("pw-response");
-    var rateLimitsBox = document.getElementById("pw-rate-limits");
+    var weatherCard   = document.getElementById("pw-weather-card");
+    var jsonDetails   = document.getElementById("pw-json-details");
     var errorBox      = document.getElementById("pw-error");
     var submitBtn     = document.getElementById("pw-submit");
     var copyUrlBtn    = document.getElementById("pw-copy-url");
@@ -61,55 +147,12 @@
     }
 
     function showError(msg) {
-      errorBox.textContent  = msg;
+      errorBox.textContent   = msg;
       errorBox.style.display = "block";
+      weatherCard.style.display = "none";
+      if (jsonDetails) jsonDetails.style.display = "none";
       responseBox.style.display = "none";
       statusDisplay.textContent = "";
-    }
-
-    function formatRateLimitDisplay(limit, remaining, resetSeconds) {
-      var resetDays = "n/a";
-      if (resetSeconds !== null && resetSeconds !== "") {
-        var parsedReset = Number(resetSeconds);
-        if (isFinite(parsedReset)) {
-          resetDays = (parsedReset / SECONDS_PER_DAY).toFixed(4);
-        }
-      }
-
-      return [
-        "ratelimit-limit: " + (limit || "n/a"),
-        "ratelimit-remaining: " + (remaining || "n/a"),
-        "ratelimit-reset: " + resetDays + " days"
-      ].join("\n");
-    }
-
-    function getHeaderValue(headers, headerName) {
-      var normalizedTarget = (headerName || "").toLowerCase();
-      var candidates = [
-        normalizedTarget,
-        "x-" + normalizedTarget,
-        normalizedTarget.replace(/-/g, "_"),
-        "x_" + normalizedTarget.replace(/-/g, "_")
-      ];
-
-      for (var i = 0; i < candidates.length; i += 1) {
-        var value = headers.get(candidates[i]);
-        if (value !== null) return value;
-      }
-
-      var iterator = headers.entries();
-      var next = iterator.next();
-      while (!next.done) {
-        var key = next.value[0];
-        var value = next.value[1];
-        var normalizedKey = String(key || "")
-          .toLowerCase()
-          .replace(/^x[-_]/, "")
-          .replace(/_/g, "-");
-        if (normalizedKey === normalizedTarget) return value;
-        next = iterator.next();
-      }
-      return null;
     }
 
     function hideError() {
@@ -117,17 +160,20 @@
     }
 
     function setLoading(loading) {
-      submitBtn.disabled = loading;
+      submitBtn.disabled    = loading;
       submitBtn.textContent = loading ? "Sending…" : "Send Request";
     }
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       hideError();
+      weatherCard.style.display = "none";
+      if (jsonDetails) {
+        jsonDetails.removeAttribute("open");
+        jsonDetails.style.display = "none";
+      }
       responseBox.style.display = "none";
       statusDisplay.textContent = "";
-      rateLimitsBox.style.display = "none";
-      rateLimitsBox.textContent = "";
       copyJsonBtn.style.display = "none";
 
       var url = buildUrl();
@@ -147,36 +193,24 @@
         .then(function (resp) {
           var status = resp.status;
           statusDisplay.textContent = "HTTP " + status + " " + (resp.statusText || "");
-          statusDisplay.className = "pw-status " + (status === 200 ? "pw-status-ok" : "pw-status-err");
-          var rateLimitLimit = getHeaderValue(resp.headers, "ratelimit-limit");
-          var rateLimitRemaining = getHeaderValue(resp.headers, "ratelimit-remaining");
-          var rateLimitReset = getHeaderValue(resp.headers, "ratelimit-reset");
+          statusDisplay.className   = "pw-status " + (status === 200 ? "pw-status-ok" : "pw-status-err");
           return resp.text().then(function (body) {
-            return {
-              status: status,
-              body: body,
-              rateLimitLimit: rateLimitLimit,
-              rateLimitRemaining: rateLimitRemaining,
-              rateLimitReset: rateLimitReset
-            };
+            return { status: status, body: body };
           });
         })
         .then(function (result) {
           setLoading(false);
-          rateLimitsBox.textContent = formatRateLimitDisplay(
-            result.rateLimitLimit,
-            result.rateLimitRemaining,
-            result.rateLimitReset
-          );
-          rateLimitsBox.style.display = "block";
           if (result.status === 200) {
             try {
               var parsed = JSON.parse(result.body);
+              var units  = unitsSelect ? unitsSelect.value : "";
+              renderWeatherCard(weatherCard, parsed, units);
               responseBox.textContent = JSON.stringify(parsed, null, 2);
             } catch (_) {
               responseBox.textContent = result.body;
             }
             responseBox.style.display = "block";
+            if (jsonDetails) jsonDetails.style.display = "block";
             copyJsonBtn.style.display = "inline-block";
           } else {
             showError("Request failed with status " + result.status + ".\n" + result.body);
@@ -215,7 +249,7 @@
         var ta = document.createElement("textarea");
         ta.value = text;
         ta.style.position = "fixed";
-        ta.style.opacity = "0";
+        ta.style.opacity  = "0";
         document.body.appendChild(ta);
         ta.select();
         try { document.execCommand("copy"); flashBtn(btn); } catch (_) {}

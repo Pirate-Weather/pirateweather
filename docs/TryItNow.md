@@ -123,18 +123,26 @@ Make a live forecast request straight from your browser.
     </div>
     <div id="pw-request-url" class="pw-url-display"></div>
 
-    <div class="pw-result-header" style="margin-top:0.75rem;">
+    <div style="margin-top:0.75rem;">
       <span id="pw-status" class="pw-status"></span>
-      <button id="pw-copy-json" class="pw-btn-secondary" style="display:none;" type="button">Copy JSON</button>
     </div>
-
-    <div class="pw-result-header" style="margin-top:0.75rem;">
-      <span class="pw-result-label">Rate limit headers</span>
-    </div>
-    <pre id="pw-rate-limits" class="pw-meta-box" style="display:none;"></pre>
 
     <div id="pw-error" class="pw-error-box" style="display:none;"></div>
-    <pre id="pw-response" class="pw-response-box" style="display:none;"></pre>
+
+    <!-- Current conditions card -->
+    <div id="pw-weather-card" class="pw-weather-card" style="display:none;"></div>
+
+    <!-- Raw JSON (collapsible) -->
+    <details id="pw-json-details" style="display:none; margin-top:1rem;">
+      <summary class="pw-section-label" style="cursor:pointer; user-select:none;">
+        Raw JSON response <span class="pw-caret">▸</span>
+      </summary>
+      <div class="pw-result-header" style="margin-top:0.5rem;">
+        <span></span>
+        <button id="pw-copy-json" class="pw-btn-secondary" style="display:none;" type="button">Copy JSON</button>
+      </div>
+      <pre id="pw-response" class="pw-response-box" style="display:none;"></pre>
+    </details>
 
   </div>
 

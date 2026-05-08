@@ -30,6 +30,7 @@ nav:
   - Introduction: 'index.md'
   - 'API': 'API.md'
   - 'Try It Now': 'TryItNow.md'
+  - 'Check API Usage': 'CheckUsage.md'
   - 'OpenAPI Specification': 'Specification.md'
   - 'Home Assistant': 'ha.md'
   - 'Data Sources' : 'DataSources.md'
@@ -59,6 +60,7 @@ extra_javascript:
   - javascripts/extra.js
   - javascripts/mathjax.js
   - javascripts/try-it-now.js
+  - javascripts/check-usage.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
    
 extra_css:
