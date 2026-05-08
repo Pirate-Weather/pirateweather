@@ -83,6 +83,33 @@
       ].join("\n");
     }
 
+    function getHeaderValue(headers, headerName) {
+      var normalizedTarget = (headerName || "").toLowerCase();
+      var candidates = [
+        normalizedTarget,
+        "x-" + normalizedTarget,
+        normalizedTarget.replace(/-/g, "_"),
+        "x_" + normalizedTarget.replace(/-/g, "_")
+      ];
+
+      for (var i = 0; i < candidates.length; i += 1) {
+        var value = headers.get(candidates[i]);
+        if (value !== null && value !== "") return value;
+      }
+
+      var fallback = null;
+      headers.forEach(function (value, key) {
+        var normalizedKey = String(key || "")
+          .toLowerCase()
+          .replace(/^x[-_]/, "")
+          .replace(/_/g, "-");
+        if (normalizedKey === normalizedTarget && fallback === null) {
+          fallback = value;
+        }
+      });
+      return fallback;
+    }
+
     function hideError() {
       errorBox.style.display = "none";
     }
@@ -119,9 +146,9 @@
           var status = resp.status;
           statusDisplay.textContent = "HTTP " + status + " " + (resp.statusText || "");
           statusDisplay.className = "pw-status " + (status === 200 ? "pw-status-ok" : "pw-status-err");
-          var rateLimitLimit = resp.headers.get("ratelimit-limit");
-          var rateLimitRemaining = resp.headers.get("ratelimit-remaining");
-          var rateLimitReset = resp.headers.get("ratelimit-reset");
+          var rateLimitLimit = getHeaderValue(resp.headers, "ratelimit-limit");
+          var rateLimitRemaining = getHeaderValue(resp.headers, "ratelimit-remaining");
+          var rateLimitReset = getHeaderValue(resp.headers, "ratelimit-reset");
           return resp.text().then(function (body) {
             return {
               status: status,
