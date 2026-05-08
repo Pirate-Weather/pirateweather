@@ -6,6 +6,7 @@
 
 (function () {
   "use strict";
+  var SECONDS_PER_DAY = 86400;
 
   function init() {
     var form = document.getElementById("pw-try-form");
@@ -66,12 +67,12 @@
       statusDisplay.textContent = "";
     }
 
-    function formatRateLimits(limit, remaining, resetSeconds) {
+    function formatRateLimitDisplay(limit, remaining, resetSeconds) {
       var resetDays = "n/a";
       if (resetSeconds !== null && resetSeconds !== "") {
         var parsedReset = Number(resetSeconds);
         if (isFinite(parsedReset)) {
-          resetDays = (parsedReset / 86400).toFixed(4);
+          resetDays = (parsedReset / SECONDS_PER_DAY).toFixed(4);
         }
       }
 
@@ -133,7 +134,7 @@
         })
         .then(function (result) {
           setLoading(false);
-          rateLimitsBox.textContent = formatRateLimits(
+          rateLimitsBox.textContent = formatRateLimitDisplay(
             result.rateLimitLimit,
             result.rateLimitRemaining,
             result.rateLimitReset
