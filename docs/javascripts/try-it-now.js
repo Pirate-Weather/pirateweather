@@ -94,7 +94,7 @@
 
       for (var i = 0; i < candidates.length; i += 1) {
         var value = headers.get(candidates[i]);
-        if (value !== null && value !== "") return value;
+        if (value !== null) return value;
       }
 
       var iterator = headers.entries();
