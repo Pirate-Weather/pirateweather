@@ -128,6 +128,11 @@ Make a live forecast request straight from your browser.
       <button id="pw-copy-json" class="pw-btn-secondary" style="display:none;" type="button">Copy JSON</button>
     </div>
 
+    <div class="pw-result-header" style="margin-top:0.75rem;">
+      <span class="pw-result-label">Rate limit headers</span>
+    </div>
+    <pre id="pw-rate-limits" class="pw-meta-box" style="display:none;"></pre>
+
     <div id="pw-error" class="pw-error-box" style="display:none;"></div>
     <pre id="pw-response" class="pw-response-box" style="display:none;"></pre>
 

@@ -23,6 +23,7 @@
     var urlDisplay    = document.getElementById("pw-request-url");
     var statusDisplay = document.getElementById("pw-status");
     var responseBox   = document.getElementById("pw-response");
+    var rateLimitsBox = document.getElementById("pw-rate-limits");
     var errorBox      = document.getElementById("pw-error");
     var submitBtn     = document.getElementById("pw-submit");
     var copyUrlBtn    = document.getElementById("pw-copy-url");
@@ -65,6 +66,22 @@
       statusDisplay.textContent = "";
     }
 
+    function formatRateLimits(limit, remaining, resetSeconds) {
+      var resetDays = "n/a";
+      if (resetSeconds !== null && resetSeconds !== "") {
+        var parsedReset = Number(resetSeconds);
+        if (isFinite(parsedReset)) {
+          resetDays = (parsedReset / 86400).toFixed(4);
+        }
+      }
+
+      return [
+        "ratelimit-limit: " + (limit || "n/a"),
+        "ratelimit-remaining: " + (remaining || "n/a"),
+        "ratelimit-reset: " + resetDays + " days"
+      ].join("\n");
+    }
+
     function hideError() {
       errorBox.style.display = "none";
     }
@@ -79,6 +96,8 @@
       hideError();
       responseBox.style.display = "none";
       statusDisplay.textContent = "";
+      rateLimitsBox.style.display = "none";
+      rateLimitsBox.textContent = "";
       copyJsonBtn.style.display = "none";
 
       var url = buildUrl();
@@ -99,12 +118,27 @@
           var status = resp.status;
           statusDisplay.textContent = "HTTP " + status + " " + (resp.statusText || "");
           statusDisplay.className = "pw-status " + (status === 200 ? "pw-status-ok" : "pw-status-err");
+          var rateLimitLimit = resp.headers.get("ratelimit-limit");
+          var rateLimitRemaining = resp.headers.get("ratelimit-remaining");
+          var rateLimitReset = resp.headers.get("ratelimit-reset");
           return resp.text().then(function (body) {
-            return { status: status, body: body };
+            return {
+              status: status,
+              body: body,
+              rateLimitLimit: rateLimitLimit,
+              rateLimitRemaining: rateLimitRemaining,
+              rateLimitReset: rateLimitReset
+            };
           });
         })
         .then(function (result) {
           setLoading(false);
+          rateLimitsBox.textContent = formatRateLimits(
+            result.rateLimitLimit,
+            result.rateLimitRemaining,
+            result.rateLimitReset
+          );
+          rateLimitsBox.style.display = "block";
           if (result.status === 200) {
             try {
               var parsed = JSON.parse(result.body);
