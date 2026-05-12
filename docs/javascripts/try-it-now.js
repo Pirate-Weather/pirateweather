@@ -171,6 +171,12 @@
       var lon  = (lonInput.value  || "").trim();
       if (!key || !lat || !lon) return null;
 
+      var latNum = parseFloat(lat);
+      var lonNum = parseFloat(lon);
+      if (isNaN(latNum) || isNaN(lonNum) ||
+          latNum < -90  || latNum > 90   ||
+          lonNum < -180 || lonNum > 180) return null;
+
       var endpoint = endpointSelect ? endpointSelect.value : "api";
       var host = endpoint === "dev" ? "dev.pirateweather.net" : "api.pirateweather.net";
       var base = "https://" + host + "/forecast/" + key + "/" + lat + "," + lon;
@@ -230,7 +236,14 @@
 
       var url = buildUrl();
       if (!url) {
-        showError("Please fill in all required fields (API key, latitude, longitude).");
+        var key = (apiKeyInput.value || "").trim();
+        var lat = (latInput.value  || "").trim();
+        var lon = (lonInput.value  || "").trim();
+        if (!key || !lat || !lon) {
+          showError("Please fill in all required fields (API key, latitude, longitude).");
+        } else {
+          showError("Please enter valid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180.");
+        }
         return;
       }
 

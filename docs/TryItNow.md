@@ -35,20 +35,24 @@ Make a live forecast request straight from your browser.
         <label for="pw-lat">Latitude</label>
         <input
           id="pw-lat"
-          type="number"
-          step="any"
-          placeholder="e.g. 45.42"
+          type="text"
           inputmode="decimal"
+          pattern="-?\d+\.?\d*"
+          placeholder="e.g. 45.42"
+          autocomplete="off"
+          spellcheck="false"
         />
       </div>
       <div class="pw-field-group">
         <label for="pw-lon">Longitude</label>
         <input
           id="pw-lon"
-          type="number"
-          step="any"
-          placeholder="e.g. -75.69"
+          type="text"
           inputmode="decimal"
+          pattern="-?\d+\.?\d*"
+          placeholder="e.g. -75.69"
+          autocomplete="off"
+          spellcheck="false"
         />
       </div>
     </div>
