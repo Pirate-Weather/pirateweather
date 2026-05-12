@@ -7,25 +7,28 @@
 (function () {
   "use strict";
 
-  // Emoji icon map for weather conditions
+  // Weather Icons class map for weather conditions
   var WEATHER_ICONS = {
-    "clear-day":           "☀️",
-    "clear-night":         "🌙",
-    "rain":                "🌧️",
-    "snow":                "❄️",
-    "sleet":               "🌨️",
-    "wind":                "💨",
-    "fog":                 "🌫️",
-    "cloudy":              "☁️",
-    "partly-cloudy-day":   "⛅",
-    "partly-cloudy-night": "🌙",
-    "hail":                "🌨️",
-    "thunderstorm":        "⛈️",
-    "tornado":             "🌪️"
+    "clear-day":           "wi-day-sunny",
+    "clear-night":         "wi-night-clear",
+    "rain":                "wi-rain",
+    "snow":                "wi-snow",
+    "sleet":               "wi-sleet",
+    "wind":                "wi-strong-wind",
+    "fog":                 "wi-fog",
+    "cloudy":              "wi-cloudy",
+    "partly-cloudy-day":   "wi-day-cloudy",
+    "partly-cloudy-night": "wi-night-alt-cloudy",
+    "hail":                "wi-hail",
+    "thunderstorm":        "wi-thunderstorm",
+    "tornado":             "wi-tornado"
   };
 
+  var CARDINAL_DIRS = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+
   function weatherIcon(icon) {
-    return WEATHER_ICONS[icon] || "🌡️";
+    var cls = WEATHER_ICONS[icon] || "wi-thermometer";
+    return '<i class="wi ' + cls + '"></i>';
   }
 
   function tempUnit(units) {
@@ -36,6 +39,12 @@
     if (units === "si") return "m/s";
     if (units === "ca") return "km/h";
     return "mph";
+  }
+
+  function toCardinal(bearing) {
+    if (typeof bearing !== "number") return "";
+    var idx = Math.round(((bearing % 360) + 360) % 360 / 22.5) % 16;
+    return CARDINAL_DIRS[idx];
   }
 
   function pct(val) {
@@ -49,6 +58,13 @@
         '<span class="pw-wcard-stat-label">' + label + '</span>' +
       '</div>'
     );
+  }
+
+  function formatDayLabel(unixTime) {
+    var d = new Date(unixTime * 1000);
+    var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate();
   }
 
   function renderWeatherCard(card, data, units) {
@@ -66,8 +82,9 @@
     var temp    = curr.temperature         != null ? Math.round(curr.temperature)         + tu : "—";
     var feels   = curr.apparentTemperature != null ? Math.round(curr.apparentTemperature) + tu : "—";
     var humidity  = pct(curr.humidity);
-    var wind      = curr.windSpeed  != null ? (Math.round(curr.windSpeed * 10) / 10) + " " + wu : "—";
-    var uv        = curr.uvIndex    != null ? String(curr.uvIndex) : "—";
+    var cardinal  = toCardinal(curr.windBearing);
+    var wind      = curr.windSpeed  != null ? Math.round(curr.windSpeed) + " " + wu + (cardinal ? " " + cardinal : "") : "—";
+    var uv        = curr.uvIndex    != null ? String(Math.round(curr.uvIndex)) : "—";
     var precip    = pct(curr.precipProbability);
     var cloud     = pct(curr.cloudCover);
     var dewPoint  = curr.dewPoint  != null ? Math.round(curr.dewPoint)  + tu      : "—";
@@ -93,23 +110,55 @@
     card.style.display = "block";
   }
 
+  function renderForecastCard(forecastEl, data, units) {
+    if (!forecastEl) return;
+    var daily = data && data.daily && data.daily.data;
+    if (!daily || daily.length === 0) {
+      forecastEl.style.display = "none";
+      return;
+    }
+
+    var tu = tempUnit(units);
+    var days = daily.slice(0, 3);
+    var rows = days.map(function (day) {
+      var label   = day.time != null ? formatDayLabel(day.time) : "—";
+      var icon    = weatherIcon(day.icon);
+      var summary = day.summary || "";
+      var hi      = day.temperatureHigh != null ? Math.round(day.temperatureHigh) + tu : "—";
+      var lo      = day.temperatureLow  != null ? Math.round(day.temperatureLow)  + tu : "—";
+      return (
+        '<div class="pw-fcast-row">' +
+          '<span class="pw-fcast-date">' + label + '</span>' +
+          '<span class="pw-fcast-icon" aria-hidden="true">' + icon + '</span>' +
+          '<span class="pw-fcast-summary">' + summary + '</span>' +
+          '<span class="pw-fcast-temps">' + hi + ' / ' + lo + '</span>' +
+        '</div>'
+      );
+    });
+
+    forecastEl.innerHTML = rows.join("");
+    forecastEl.style.display = "block";
+  }
+
   function init() {
     var form = document.getElementById("pw-try-form");
     if (!form) return; // not on the Try It Now page
 
-    var apiKeyInput   = document.getElementById("pw-api-key");
-    var latInput      = document.getElementById("pw-lat");
-    var lonInput      = document.getElementById("pw-lon");
-    var unitsSelect   = document.getElementById("pw-units");
-    var langInput     = document.getElementById("pw-lang");
-    var excludeInputs = document.querySelectorAll(".pw-exclude");
-    var extendCheck   = document.getElementById("pw-extend");
-    var versionSelect = document.getElementById("pw-version");
+    var apiKeyInput    = document.getElementById("pw-api-key");
+    var latInput       = document.getElementById("pw-lat");
+    var lonInput       = document.getElementById("pw-lon");
+    var unitsSelect    = document.getElementById("pw-units");
+    var langInput      = document.getElementById("pw-lang");
+    var excludeInputs  = document.querySelectorAll(".pw-exclude");
+    var extendCheck    = document.getElementById("pw-extend");
+    var versionSelect  = document.getElementById("pw-version");
+    var endpointSelect = document.getElementById("pw-endpoint");
 
     var urlDisplay    = document.getElementById("pw-request-url");
     var statusDisplay = document.getElementById("pw-status");
     var responseBox   = document.getElementById("pw-response");
     var weatherCard   = document.getElementById("pw-weather-card");
+    var forecastCard  = document.getElementById("pw-forecast-card");
     var jsonDetails   = document.getElementById("pw-json-details");
     var errorBox      = document.getElementById("pw-error");
     var submitBtn     = document.getElementById("pw-submit");
@@ -123,7 +172,9 @@
       var lon  = (lonInput.value  || "").trim();
       if (!key || !lat || !lon) return null;
 
-      var base = "https://api.pirateweather.net/forecast/" + key + "/" + lat + "," + lon;
+      var endpoint = endpointSelect ? endpointSelect.value : "api";
+      var host = endpoint === "dev" ? "dev.pirateweather.net" : "api.pirateweather.net";
+      var base = "https://" + host + "/forecast/" + key + "/" + lat + "," + lon;
 
       var params = [];
       var units = unitsSelect.value;
@@ -150,6 +201,7 @@
       errorBox.textContent   = msg;
       errorBox.style.display = "block";
       weatherCard.style.display = "none";
+      if (forecastCard) forecastCard.style.display = "none";
       if (jsonDetails) jsonDetails.style.display = "none";
       responseBox.style.display = "none";
       statusDisplay.textContent = "";
@@ -168,6 +220,7 @@
       e.preventDefault();
       hideError();
       weatherCard.style.display = "none";
+      if (forecastCard) forecastCard.style.display = "none";
       if (jsonDetails) {
         jsonDetails.removeAttribute("open");
         jsonDetails.style.display = "none";
@@ -205,6 +258,7 @@
               var parsed = JSON.parse(result.body);
               var units  = unitsSelect ? unitsSelect.value : "";
               renderWeatherCard(weatherCard, parsed, units);
+              renderForecastCard(forecastCard, parsed, units);
               responseBox.textContent = JSON.stringify(parsed, null, 2);
             } catch (parseError) {
               responseBox.textContent = result.body;
