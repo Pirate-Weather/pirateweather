@@ -35,20 +35,24 @@ Make a live forecast request straight from your browser.
         <label for="pw-lat">Latitude</label>
         <input
           id="pw-lat"
-          type="number"
-          step="any"
-          placeholder="e.g. 45.42"
+          type="text"
           inputmode="decimal"
+          pattern="-?(\d+\.?\d*|\.\d+)"
+          placeholder="e.g. 45.42"
+          autocomplete="off"
+          spellcheck="false"
         />
       </div>
       <div class="pw-field-group">
         <label for="pw-lon">Longitude</label>
         <input
           id="pw-lon"
-          type="number"
-          step="any"
-          placeholder="e.g. -75.69"
+          type="text"
           inputmode="decimal"
+          pattern="-?(\d+\.?\d*|\.\d+)"
+          placeholder="e.g. -75.69"
+          autocomplete="off"
+          spellcheck="false"
         />
       </div>
     </div>
@@ -123,6 +127,10 @@ Make a live forecast request straight from your browser.
   <!-- Result area -->
   <div id="pw-result-section" style="display:none;">
     <hr class="pw-divider" />
+
+    <div class="pw-demo-notice">
+      ⚠️ <strong>Demonstration only.</strong> For a full forecast experience, visit <a href="https://merrysky.net" target="_blank" rel="noopener">MerrySky</a>.
+    </div>
 
     <div class="pw-result-header">
       <span class="pw-result-label">Request URL</span>

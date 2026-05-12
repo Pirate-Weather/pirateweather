@@ -62,9 +62,8 @@
 
   function formatDayLabel(unixTime) {
     var d = new Date(unixTime * 1000);
-    var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    return days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate();
+    return months[d.getMonth()] + " " + d.getDate();
   }
 
   function renderWeatherCard(card, data, units) {
@@ -130,7 +129,7 @@
         '<div class="pw-fcast-row">' +
           '<span class="pw-fcast-date">' + label + '</span>' +
           '<span class="pw-fcast-icon" aria-hidden="true">' + icon + '</span>' +
-          '<span class="pw-fcast-summary">' + summary + '</span>' +
+          '<span class="pw-fcast-summary" title="' + summary + '">' + summary + '</span>' +
           '<span class="pw-fcast-temps">' + hi + ' / ' + lo + '</span>' +
         '</div>'
       );
@@ -171,6 +170,14 @@
       var lat  = (latInput.value  || "").trim();
       var lon  = (lonInput.value  || "").trim();
       if (!key || !lat || !lon) return null;
+
+      var latNum = parseFloat(lat);
+      var lonNum = parseFloat(lon);
+      var coordRe = /^-?(\d+\.?\d*|\.\d+)$/;
+      if (!coordRe.test(lat) || !coordRe.test(lon) ||
+          isNaN(latNum) || isNaN(lonNum) ||
+          latNum < -90  || latNum > 90   ||
+          lonNum < -180 || lonNum > 180) return null;
 
       var endpoint = endpointSelect ? endpointSelect.value : "api";
       var host = endpoint === "dev" ? "dev.pirateweather.net" : "api.pirateweather.net";
@@ -231,7 +238,14 @@
 
       var url = buildUrl();
       if (!url) {
-        showError("Please fill in all required fields (API key, latitude, longitude).");
+        var key = (apiKeyInput.value || "").trim();
+        var lat = (latInput.value  || "").trim();
+        var lon = (lonInput.value  || "").trim();
+        if (!key || !lat || !lon) {
+          showError("Please fill in all required fields (API key, latitude, longitude).");
+        } else {
+          showError("Please enter valid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180.");
+        }
         return;
       }
 
