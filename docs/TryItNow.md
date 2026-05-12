@@ -124,6 +124,10 @@ Make a live forecast request straight from your browser.
   <div id="pw-result-section" style="display:none;">
     <hr class="pw-divider" />
 
+    <div class="pw-demo-notice">
+      ⚠️ <strong>Demonstration only.</strong> For a full forecast experience, visit <a href="https://merrysky.net" target="_blank" rel="noopener">MerrySky</a>.
+    </div>
+
     <div class="pw-result-header">
       <span class="pw-result-label">Request URL</span>
       <button id="pw-copy-url" class="pw-btn-secondary" style="display:none;" type="button">Copy URL</button>

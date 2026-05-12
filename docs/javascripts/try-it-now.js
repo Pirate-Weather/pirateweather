@@ -62,9 +62,8 @@
 
   function formatDayLabel(unixTime) {
     var d = new Date(unixTime * 1000);
-    var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    return days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate();
+    return months[d.getMonth()] + " " + d.getDate();
   }
 
   function renderWeatherCard(card, data, units) {
@@ -130,7 +129,7 @@
         '<div class="pw-fcast-row">' +
           '<span class="pw-fcast-date">' + label + '</span>' +
           '<span class="pw-fcast-icon" aria-hidden="true">' + icon + '</span>' +
-          '<span class="pw-fcast-summary">' + summary + '</span>' +
+          '<span class="pw-fcast-summary" title="' + summary + '">' + summary + '</span>' +
           '<span class="pw-fcast-temps">' + hi + ' / ' + lo + '</span>' +
         '</div>'
       );

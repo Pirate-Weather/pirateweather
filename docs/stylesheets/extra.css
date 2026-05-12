@@ -374,6 +374,21 @@
    3-day forecast card (Try It Now result)
    ========================================================= */
 
+.pw-demo-notice {
+  margin-bottom: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--md-admonition-bg-color, rgba(255, 193, 7, 0.1));
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: var(--md-default-fg-color, inherit);
+}
+
+.pw-demo-notice a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .pw-forecast-card {
   margin-top: 0.75rem;
   border: 1px solid var(--md-default-fg-color--lightest, rgba(0,0,0,0.12));
