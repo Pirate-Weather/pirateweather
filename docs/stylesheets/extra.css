@@ -371,6 +371,70 @@
 }
 
 /* =========================================================
+   3-day forecast card (Try It Now result)
+   ========================================================= */
+
+.pw-forecast-card {
+  margin-top: 0.75rem;
+  border: 1px solid var(--md-default-fg-color--lightest, rgba(0,0,0,0.12));
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pw-fcast-row {
+  display: grid;
+  grid-template-columns: 1fr auto 2fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest, rgba(0,0,0,0.08));
+}
+
+.pw-fcast-row:last-child {
+  border-bottom: none;
+}
+
+.pw-fcast-date {
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  color: var(--md-default-fg-color, inherit);
+}
+
+.pw-fcast-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.pw-fcast-summary {
+  font-size: 0.875rem;
+  color: var(--md-default-fg-color--light, #555);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pw-fcast-temps {
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-align: right;
+  color: var(--md-default-fg-color, inherit);
+}
+
+@media (max-width: 480px) {
+  .pw-fcast-row {
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: auto auto;
+    gap: 0.25rem 0.5rem;
+  }
+  .pw-fcast-summary {
+    grid-column: 1 / -1;
+  }
+}
+
+/* =========================================================
    Check API Usage page
    ========================================================= */
 

@@ -59,6 +59,13 @@ Make a live forecast request straight from your browser.
 
       <div class="pw-field-row">
         <div class="pw-field-group">
+          <label for="pw-endpoint">Endpoint</label>
+          <select id="pw-endpoint">
+            <option value="api" selected>Production (api.pirateweather.net)</option>
+            <option value="dev">Development (dev.pirateweather.net)</option>
+          </select>
+        </div>
+        <div class="pw-field-group">
           <label for="pw-units">Units</label>
           <select id="pw-units">
             <option value="">Default (us)</option>
@@ -131,6 +138,9 @@ Make a live forecast request straight from your browser.
 
     <!-- Current conditions card -->
     <div id="pw-weather-card" class="pw-weather-card" style="display:none;"></div>
+
+    <!-- 3-day forecast -->
+    <div id="pw-forecast-card" class="pw-forecast-card" style="display:none;"></div>
 
     <!-- Raw JSON (collapsible) -->
     <details id="pw-json-details" style="display:none; margin-top:1rem;">
