@@ -29,10 +29,16 @@ The European Centre for Medium-Range Weather Forecasts Integrated Forecasting Sy
 The ECMWF IFS underpins many operational forecasting systems worldwide, serving as a benchmark for global models due to its strong performance in forecast skill, particularly for medium-range (3–10 days) predictions and ensemble probabilistic guidance.
 
 #### ECMWF AIFS
-The ECMWF Artificial Intelligence/Integrated Forecasting System [(ECMWF AIFS)](https://www.ecmwf.int/en/about/media-centre/aifs-blog) is a machine-learning-based global weather model developed by ECMWF. Trained on ERA5 reanalysis and IFS operational data, AIFS produces deterministic medium-range forecasts at competitive accuracy to the IFS at a fraction of the computational cost. Outside of North America, AIFS is used as a fallback source above DWD MOSMIX where applicable.
+The ECMWF Artificial Intelligence/Integrated Forecasting System [(ECMWF AIFS)](https://www.ecmwf.int/en/about/media-centre/aifs-blog) is a machine-learning-based global weather model developed by ECMWF. Trained on ERA5 reanalysis and IFS operational data, AIFS produces deterministic medium-range forecasts at competitive accuracy to the IFS at a fraction of the computational cost. ECMWF AIFS provides surface temperature, dew point, wind (speed and direction), pressure, cloud cover, precipitation type, precipitation probability, mean precipitation accumulation, and precipitation spread (standard deviation). Outside of North America, AIFS is used as a fallback source above DWD MOSMIX for the parameters it supports.
+
+!!! note "Availability"
+    ECMWF AIFS is only available when enabled via a specific query parameter and may not be present for all forecast requests.
 
 #### AIGFS / AIGEFS
-The AI Global Forecast System [(AIGFS)](https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gfs.php) and AI Global Ensemble Forecast System [(AIGEFS)](https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gefs.php) are NOAA's machine-learning-based global weather prediction models. Built using deep learning techniques trained on decades of reanalysis and operational data, these models provide competitive global forecasts at reduced computational cost. Within North America, AIGFS/AIGEFS is used as a fallback source above ECMWF IFS where applicable.
+The AI Global Forecast System [(AIGFS)](https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gfs.php) and AI Global Ensemble Forecast System [(AIGEFS)](https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gefs.php) are NOAA's machine-learning-based global weather prediction models. Built using deep learning techniques trained on decades of reanalysis and operational data, these models provide competitive global forecasts at reduced computational cost. AIGFS/AIGEFS provides surface temperature, wind (speed and direction), pressure, and precipitation accumulation. Within North America, AIGFS/AIGEFS is used as a fallback source above ECMWF IFS for the parameters it supports.
+
+!!! note "Availability"
+    AIGFS/AIGEFS is only available when enabled via a specific query parameter and may not be present for all forecast requests.
 
 #### DWD MOSMIX
 Deutscher Wetterdienst Model Output Statistics-MIX [(DWD MOSMIX)](https://www.dwd.de/EN/ourservices/met_application_mosmix/met_application_mosmix.html;jsessionid=B502689E741CA864089DA8955635E33B.live21064) is a statistically post-processed forecast product produced by the German Weather Service. Rather than a single numerical model, MOSMIX blends output from several global and regional models and applies bias corrections based on historical station observations. The result is high-quality point forecasts optimized for specific locations.
@@ -45,36 +51,36 @@ To provide historic weather data, the [Google European Reanalysis 5 Dataset](htt
 ## Forecast element sources
 Every Pirate Weather forecast element for each time block (`currently`, `minutely`, `hourly`, or `daily`) is listed below, along with the ordered fallback chain for each region. Fallback sources are used if model data is intentionally excluded, the request point is outside of the primary model coverage area, or if there is some sort of data interruption.
 
-The general priority order for **North America** is: NBM → HRRR → AIGFS/AIGEFS → ECMWF IFS → GEFS → GFS → DWD MOSMIX. For **Global / Standard** (outside North America) the order is: NBM → HRRR → ECMWF AIFS → DWD MOSMIX → ECMWF IFS → GEFS → GFS. For `currently` and `minutely` blocks, sub-hourly HRRR and RTMA-RU data are preferred when available.
+For most weather elements the general approach is: NBM → HRRR → ECMWF IFS → GEFS → GFS → DWD MOSMIX. Where AI models are available they slot in above ECMWF IFS (AIGFS/AIGEFS in North America) or above DWD MOSMIX (ECMWF AIFS globally), but only for the specific parameters each model provides. For `currently` and `minutely` blocks, sub-hourly HRRR and RTMA-RU data are preferred when available.
 
 ### Currently
 
 #### North America
 | Parameter | Priority |
 | :--- | :--- |
-| apparentTemperature | RTMA-RU > HRRR_SubH > NBM > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
+| apparentTemperature | RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS > DWD MOSMIX |
 | cape | HRRR_SubH > NBM > GFS |
-| cloudCover | RTMA-RU > NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
+| cloudCover | RTMA-RU > NBM > HRRR > ECMWF IFS > GFS > DWD MOSMIX |
 | currentDayIce | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GEFS > GFS |
 | currentDayLiquid | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GEFS > GFS |
 | currentDaySnow | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GEFS > GFS |
-| dewPoint | RTMA-RU > HRRR_SubH > NBM > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
+| dewPoint | RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS > DWD MOSMIX |
 | feelsLike | NBM > GFS |
 | fireIndex | NBM |
-| humidity | RTMA-RU > HRRR > NBM > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
+| humidity | RTMA-RU > HRRR > NBM > ECMWF IFS > GFS > DWD MOSMIX |
 | nearestStormBearing | GFS |
 | nearestStormDistance | GFS |
 | ozone | GFS |
 | precipIntensity | HRRR_SubH > NBM > AIGFS/AIGEFS > ECMWF IFS > GEFS > DWD MOSMIX |
 | precipIntensityError | ECMWF IFS > GEFS |
-| precipProbability | NBM > AIGFS/AIGEFS > ECMWF IFS > GEFS |
-| precipType | HRRR_SubH > NBM > AIGFS/AIGEFS > ECMWF IFS > GEFS > DWD MOSMIX |
+| precipProbability | NBM > ECMWF IFS > GEFS |
+| precipType | HRRR_SubH > NBM > ECMWF IFS > GEFS > DWD MOSMIX |
 | pressure | HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
 | smoke | HRRR |
-| solar | HRRR_SubH > NBM > AIGFS/AIGEFS > GFS > DWD MOSMIX |
+| solar | HRRR_SubH > NBM > GFS > DWD MOSMIX |
 | temperature | RTMA-RU > HRRR_SubH > NBM > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
 | uvIndex | GFS |
-| visibility | RTMA-RU > HRRR_SubH > NBM > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
+| visibility | RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS > DWD MOSMIX |
 | windBearing | RTMA-RU > HRRR_SubH > NBM > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
 | windGust | RTMA-RU > HRRR_SubH > NBM > AIGFS/AIGEFS > GFS > DWD MOSMIX |
 | windSpeed | RTMA-RU > HRRR_SubH > NBM > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
@@ -85,9 +91,9 @@ The general priority order for **North America** is: NBM → HRRR → AIGFS/AIGE
 | apparentTemperature | RTMA-RU > HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | cape | HRRR_SubH > NBM > GFS |
 | cloudCover | RTMA-RU > NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
-| currentDayIce | NBM > HRRR > ECMWF IFS > GEFS > GFS |
-| currentDayLiquid | NBM > HRRR > ECMWF IFS > GEFS > GFS |
-| currentDaySnow | NBM > HRRR > ECMWF IFS > GEFS > GFS |
+| currentDayIce | NBM > HRRR > ECMWF AIFS > ECMWF IFS > GEFS > GFS |
+| currentDayLiquid | NBM > HRRR > ECMWF AIFS > ECMWF IFS > GEFS > GFS |
+| currentDaySnow | NBM > HRRR > ECMWF AIFS > ECMWF IFS > GEFS > GFS |
 | dewPoint | RTMA-RU > HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | feelsLike | NBM > GFS |
 | fireIndex | NBM |
@@ -96,15 +102,15 @@ The general priority order for **North America** is: NBM → HRRR → AIGFS/AIGE
 | nearestStormDistance | GFS |
 | ozone | GFS |
 | precipIntensity | HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS |
-| precipIntensityError | ECMWF IFS > GEFS |
-| precipProbability | NBM > ECMWF IFS > GEFS |
+| precipIntensityError | ECMWF AIFS > ECMWF IFS > GEFS |
+| precipProbability | NBM > ECMWF AIFS > ECMWF IFS > GEFS |
 | precipType | HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS |
-| pressure | HRRR > ECMWF IFS > ECMWF AIFS > DWD MOSMIX > GFS |
+| pressure | HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | smoke | HRRR |
-| solar | HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > GFS |
+| solar | HRRR_SubH > NBM > DWD MOSMIX > GFS |
 | temperature | RTMA-RU > HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | uvIndex | GFS |
-| visibility | RTMA-RU > HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
+| visibility | RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX > ECMWF IFS > GFS |
 | windBearing | RTMA-RU > HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | windGust | RTMA-RU > HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > GFS |
 | windSpeed | RTMA-RU > HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
@@ -116,15 +122,15 @@ The general priority order for **North America** is: NBM → HRRR → AIGFS/AIGE
 | :--- | :--- |
 | precipIntensity | HRRR_SubH > NBM > AIGFS/AIGEFS > ECMWF IFS > GEFS > DWD MOSMIX |
 | precipIntensityError | ECMWF IFS > GEFS |
-| precipProbability | NBM > AIGFS/AIGEFS > ECMWF IFS > GEFS |
-| precipType | HRRR_SubH > NBM > AIGFS/AIGEFS > ECMWF IFS > GEFS > DWD MOSMIX |
+| precipProbability | NBM > ECMWF IFS > GEFS |
+| precipType | HRRR_SubH > NBM > ECMWF IFS > GEFS > DWD MOSMIX |
 
 #### Global / Standard
 | Parameter | Priority |
 | :--- | :--- |
 | precipIntensity | HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS |
-| precipIntensityError | ECMWF IFS > GEFS |
-| precipProbability | NBM > ECMWF IFS > GEFS |
+| precipIntensityError | ECMWF AIFS > ECMWF IFS > GEFS |
+| precipProbability | NBM > ECMWF AIFS > ECMWF IFS > GEFS |
 | precipType | HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS |
 
 ### Hourly / Daily / Day/Night
@@ -132,30 +138,30 @@ The general priority order for **North America** is: NBM → HRRR → AIGFS/AIGE
 #### North America
 | Parameter | Priority |
 | :--- | :--- |
-| apparentTemperature | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
+| apparentTemperature | NBM > HRRR > ECMWF IFS > GFS > DWD MOSMIX |
 | cape | NBM > HRRR > GFS |
-| cloudCover | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS |
-| dewPoint | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS |
+| cloudCover | NBM > HRRR > ECMWF IFS > GFS |
+| dewPoint | NBM > HRRR > ECMWF IFS > GFS |
 | feelsLike | NBM > GFS |
 | fireIndex | NBM |
-| humidity | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
+| humidity | NBM > HRRR > ECMWF IFS > GFS > DWD MOSMIX |
 | iceAccumulation | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GEFS > GFS > DWD MOSMIX |
 | liquidAccumulation | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GEFS > GFS > DWD MOSMIX |
-| nearestStormBearing | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GEFS > GFS > DWD MOSMIX |
+| nearestStormBearing | NBM > HRRR > ECMWF IFS > GEFS > GFS > DWD MOSMIX |
 | nearestStormDistance | GFS |
 | ozone | GFS |
 | precipAccumulation | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GEFS > GFS > DWD MOSMIX |
 | precipIntensity | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GEFS > DWD MOSMIX |
 | precipIntensityError | ECMWF IFS > GEFS |
-| precipProbability | NBM > AIGFS/AIGEFS > ECMWF IFS > GEFS |
-| precipType | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GEFS > DWD MOSMIX |
+| precipProbability | NBM > ECMWF IFS > GEFS |
+| precipType | NBM > HRRR > ECMWF IFS > GEFS > DWD MOSMIX |
 | pressure | HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
 | smoke | HRRR |
 | snowAccumulation | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GEFS > GFS > DWD MOSMIX |
-| solar | NBM > HRRR > AIGFS/AIGEFS > GFS > DWD MOSMIX |
+| solar | NBM > HRRR > GFS > DWD MOSMIX |
 | temperature | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
 | uvIndex | GFS |
-| visibility | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
+| visibility | NBM > HRRR > ECMWF IFS > GFS > DWD MOSMIX |
 | windBearing | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
 | windGust | NBM > HRRR > AIGFS/AIGEFS > GFS > DWD MOSMIX |
 | windSpeed | NBM > HRRR > AIGFS/AIGEFS > ECMWF IFS > GFS > DWD MOSMIX |
@@ -165,28 +171,28 @@ The general priority order for **North America** is: NBM → HRRR → AIGFS/AIGE
 | :--- | :--- |
 | apparentTemperature | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | cape | NBM > HRRR > GFS |
-| cloudCover | NBM > HRRR > ECMWF IFS > GFS |
-| dewPoint | NBM > HRRR > ECMWF IFS > GFS |
+| cloudCover | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
+| dewPoint | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | feelsLike | NBM > GFS |
 | fireIndex | NBM |
 | humidity | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | iceAccumulation | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS > GFS |
 | liquidAccumulation | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS > GFS |
-| nearestStormBearing | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS > GFS |
+| nearestStormBearing | NBM > HRRR > DWD MOSMIX > ECMWF IFS > GEFS > GFS |
 | nearestStormDistance | GFS |
 | ozone | GFS |
 | precipAccumulation | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS > GFS |
 | precipIntensity | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS |
-| precipIntensityError | ECMWF IFS > GEFS |
-| precipProbability | NBM > ECMWF IFS > GEFS |
+| precipIntensityError | ECMWF AIFS > ECMWF IFS > GEFS |
+| precipProbability | NBM > ECMWF AIFS > ECMWF IFS > GEFS |
 | precipType | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS |
 | pressure | HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | smoke | HRRR |
 | snowAccumulation | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS > GFS |
-| solar | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > GFS |
+| solar | NBM > HRRR > DWD MOSMIX > GFS |
 | temperature | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | uvIndex | GFS |
-| visibility | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
+| visibility | NBM > HRRR > DWD MOSMIX > ECMWF IFS > GFS |
 | windBearing | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | windGust | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > GFS |
 | windSpeed | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |

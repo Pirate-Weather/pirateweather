@@ -7,27 +7,28 @@
 (function () {
   "use strict";
 
-  // Emoji icon map for weather conditions
+  // Weather Icons class map for weather conditions
   var WEATHER_ICONS = {
-    "clear-day":           "☀️",
-    "clear-night":         "🌙",
-    "rain":                "🌧️",
-    "snow":                "❄️",
-    "sleet":               "🌨️",
-    "wind":                "💨",
-    "fog":                 "🌫️",
-    "cloudy":              "☁️",
-    "partly-cloudy-day":   "⛅",
-    "partly-cloudy-night": "🌙",
-    "hail":                "🌨️",
-    "thunderstorm":        "⛈️",
-    "tornado":             "🌪️"
+    "clear-day":           "wi-day-sunny",
+    "clear-night":         "wi-night-clear",
+    "rain":                "wi-rain",
+    "snow":                "wi-snow",
+    "sleet":               "wi-sleet",
+    "wind":                "wi-strong-wind",
+    "fog":                 "wi-fog",
+    "cloudy":              "wi-cloudy",
+    "partly-cloudy-day":   "wi-day-cloudy",
+    "partly-cloudy-night": "wi-night-alt-cloudy",
+    "hail":                "wi-hail",
+    "thunderstorm":        "wi-thunderstorm",
+    "tornado":             "wi-tornado"
   };
 
   var CARDINAL_DIRS = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
 
   function weatherIcon(icon) {
-    return WEATHER_ICONS[icon] || "🌡️";
+    var cls = WEATHER_ICONS[icon] || "wi-thermometer";
+    return '<i class="wi ' + cls + '"></i>';
   }
 
   function tempUnit(units) {
