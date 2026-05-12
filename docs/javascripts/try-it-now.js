@@ -173,7 +173,9 @@
 
       var latNum = parseFloat(lat);
       var lonNum = parseFloat(lon);
-      if (isNaN(latNum) || isNaN(lonNum) ||
+      var coordRe = /^-?(\d+\.?\d*|\.\d+)$/;
+      if (!coordRe.test(lat) || !coordRe.test(lon) ||
+          isNaN(latNum) || isNaN(lonNum) ||
           latNum < -90  || latNum > 90   ||
           lonNum < -180 || lonNum > 180) return null;
 
