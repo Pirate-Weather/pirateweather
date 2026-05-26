@@ -100,7 +100,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | dewPoint | RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX > GFS |
 | feelsLike | NBM > GFS |
 | fireIndex | NBM |
-| humidity | RTMA-RU > HRRR > NBM > DWD MOSMIX > GFS |
+| humidity | RTMA-RU > HRRR > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | nearestStormBearing | GFS |
 | nearestStormDistance | GFS |
 | ozone | GFS |
@@ -215,3 +215,6 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | RTMA-RU              | 0-24            | 0:25  | :25,:40,:55,:10       |
 | ECMWF IFS            | 0,12            | 8:00  | 8,20                  |
 | DWD MOSMIX           | 0-24            | 1:00  | 1:00-0:00             |
+| ECMWF AIFS           | 0,6,12,18       | 8:00  | 8,16,20,2             |
+| AIGFS                | 0,6,12,18       | 5:00  | 5,11,17,23            |
+| AIGEFS               | 0,6,12,18       | 7:00  | 7,13,19,1             |
