@@ -3,8 +3,13 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.9"
-	* May 6, 2026, API Version 2.9.5
+	* May 26, 2026, API Version 2.9.5
 		* Allow relative times to be specified with units per [PR #607](https://github.com/Pirate-Weather/pirate-weather-code/pull/607).
+		* Add AI models (currently hidden behind the `include=aimodels` flag) per [PR #610](https://github.com/Pirate-Weather/pirate-weather-code/pull/610);
+		* Update to Python 3.14 per [PR #628](https://github.com/Pirate-Weather/pirate-weather-code/pull/628);
+		* Extend historic data requests (Timemachine) back to 7 days using the `days=7` flag per [PR #624](https://github.com/Pirate-Weather/pirate-weather-code/pull/624);
+		* Add additional params (`blocks`, `daily_indices`, `hourly_indices`, `day_night_indices`) for a future MCP server per [PR #566 566](https://github.com/Pirate-Weather/pirate-weather-code/pull/566);
+
 	* May 6, 2026, API Version 2.9.4
 		* Change the daily block to use the precipitation type with the highest amount as per [PR #582](https://github.com/Pirate-Weather/pirate-weather-code/pull/582).
 		* Changes HRRR reflectivity to use 1km reflectivity instead of composite reflectivity for better currently and minutely precipitation rate as per [PR #585](https://github.com/Pirate-Weather/pirate-weather-code/pull/585).

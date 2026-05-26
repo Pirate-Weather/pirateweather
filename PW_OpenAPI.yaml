@@ -39,7 +39,7 @@ paths:
             type: string
         - name: exclude
           in: query
-          description: Exclude some keys (hourly, minutely, daily, flags, alerts), models (nbm, hrrr, gefs), or detailed text summaries (summary) from the Pirate Weather forecast response. 
+          description: Exclude some keys (currently, minutely, hourly, daily, day_night, flags, alerts), models (nbm, hrrr, gefs, aigefs, aigfs, aifs), or detailed text summaries (summary) from the Pirate Weather forecast response. Exclude takes precedence over include-based feature flags.
           schema:
             type: string
             enum:
@@ -48,14 +48,26 @@ paths:
               - minutely
               - hourly
               - daily
+              - day_night
               - flags
               - alerts
               - nbm
               - hrrr
               - gefs
+              - aigefs
+              - aigfs
+              - aifs
               - rtma_ru
               - ecmwf_ifs
               - dwd_mosmix
+        - name: days
+          in: query
+          description: When using the Time Machine endpoint, return up to 7 days of historic data in a single request.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 7
+            example: 7
         - name: extend
           in: query
           description: Fetch the next 168 hours (7 days) worth of hourly data, instead of the next 24.
@@ -153,17 +165,42 @@ paths:
           description: Changes the icon field to return icons which aren't part of the Dark Sky icon set.
           schema:
             type: string   
-        - name: includes 
+        - name: include
           in: query
-          description: Include extra blocks that were not part of the Dark Sky API.
+          description: Include extra blocks or model families that were not part of the Dark Sky API.
           schema:
             type: string
             enum:
               - day_night_forecast
+              - aimodels
+        - name: blocks
+          in: query
+          description: A comma-delimited allowlist of response blocks to return. Supported blocks are currently, minutely, hourly, daily, day_night, alerts, and flags.
+          schema:
+            type: string
+            example: currently,hourly
+        - name: daily_indices
+          in: query
+          description: A comma-delimited list of zero-based indices to return from daily.data.
+          schema:
+            type: string
+            example: 0,1,2
+        - name: hourly_indices
+          in: query
+          description: A comma-delimited list of zero-based indices to return from hourly.data.
+          schema:
+            type: string
+            example: 0,1,2,6
+        - name: day_night_indices
+          in: query
+          description: A comma-delimited list of zero-based indices to return from day_night.data.
+          schema:
+            type: string
+            example: 0,1
                 
       responses:
         "400":
-          description: "Bad Request. Longitude or Latitude is invalid."
+          description: "Bad Request. Longitude or Latitude is invalid, or one of the filtering query parameters is malformed."
           content:
             application/json:
               schema:
@@ -1124,6 +1161,10 @@ components:
               type: string
               description: The time the ECMWF IFS model was last updated.
               example: 2025-11-09 00Z
+            aifs:
+              type: string
+              description: The time the AIFS model was last updated.
+              example: 2025-11-09 00Z
             hrrr_18-48:
               type: string
               description: The time the HRRR model for 18-48 hours was last updated.
@@ -1132,9 +1173,17 @@ components:
               type: string
               description: The time the GFS model was last updated.
               example: 2025-11-09 12Z
+            aigfs:
+              type: string
+              description: The time the AIGFS model was last updated.
+              example: 2025-11-09 12Z
             gefs:
               type: string
               description: The time the GEFS model was last updated.
+              example: 2025-11-09 12Z
+            aigefs:
+              type: string
+              description: The time the AIGEFS model was last updated.
               example: 2025-11-09 12Z
         nearest-station:
           type: number
@@ -1215,6 +1264,27 @@ components:
                   type: number
                   description: The longitude coordinate for the ECMWF IFS model.
                   example: -89.5
+            aifs:
+              type: object
+              properties:
+                x:
+                  type: integer
+                  format: int32
+                  description: The X coordinate for the AIFS model.
+                  example: 362
+                y:
+                  type: integer
+                  format: int32
+                  description: The Y coordinate for the AIFS model.
+                  example: 211
+                lat:
+                  type: number
+                  description: The latitude coordinate for the AIFS model.
+                  example: 37.25
+                long:
+                  type: number
+                  description: The longitude coordinate for the AIFS model.
+                  example: -89.5
             dwd_mosmix:
               type: object
               properties:
@@ -1278,6 +1348,48 @@ components:
                 long:
                   type: number
                   description: The longitude coordinate for the GFS model.
+                  example: -89.5
+            aigfs:
+              type: object
+              properties:
+                x:
+                  type: integer
+                  format: int32
+                  description: The X coordinate for the AIGFS model.
+                  example: 1082
+                y:
+                  type: integer
+                  format: int32
+                  description: The Y coordinate for the AIGFS model.
+                  example: 509
+                lat:
+                  type: number
+                  description: The latitude coordinate for the AIGFS model.
+                  example: 37.25
+                long:
+                  type: number
+                  description: The longitude coordinate for the AIGFS model.
+                  example: -89.5
+            aigefs:
+              type: object
+              properties:
+                x:
+                  type: integer
+                  format: int32
+                  description: The X coordinate for the AIGEFS model.
+                  example: 1082
+                y:
+                  type: integer
+                  format: int32
+                  description: The Y coordinate for the AIGEFS model.
+                  example: 509
+                lat:
+                  type: number
+                  description: The latitude coordinate for the AIGEFS model.
+                  example: 37.25
+                long:
+                  type: number
+                  description: The longitude coordinate for the AIGEFS model.
                   example: -89.5
             etopo:
               type: object
