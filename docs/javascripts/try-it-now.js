@@ -60,10 +60,11 @@
     );
   }
 
-  function formatDayLabel(unixTime) {
-    var d = new Date(unixTime * 1000);
+  function formatDayLabel(unixTime, offset) {
+    var localSeconds = unixTime + (offset || 0) * 3600;
+    var d = new Date(localSeconds * 1000);
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    return months[d.getMonth()] + " " + d.getDate();
+    return months[d.getUTCMonth()] + " " + d.getUTCDate();
   }
 
   function renderWeatherCard(card, data, units) {
@@ -117,10 +118,11 @@
       return;
     }
 
+    var offset = data.offset || 0;
     var tu = tempUnit(units);
     var days = daily.slice(0, 3);
     var rows = days.map(function (day) {
-      var label   = day.time != null ? formatDayLabel(day.time) : "—";
+      var label   = day.time != null ? formatDayLabel(day.time, offset) : "—";
       var icon    = weatherIcon(day.icon);
       var summary = day.summary || "";
       var hi      = day.temperatureHigh != null ? Math.round(day.temperatureHigh) + tu : "—";
@@ -173,11 +175,11 @@
 
       var latNum = parseFloat(lat);
       var lonNum = parseFloat(lon);
-      var coordRe = /^-?(\d+\.?\d*|\.\d+)$/;
+      var coordRe = /^[+-]?(\d+\.?\d*|\.\d+)$/;
       if (!coordRe.test(lat) || !coordRe.test(lon) ||
           isNaN(latNum) || isNaN(lonNum) ||
           latNum < -90  || latNum > 90   ||
-          lonNum < -180 || lonNum > 180) return null;
+          lonNum < -180 || lonNum > 360) return null;
 
       var endpoint = endpointSelect ? endpointSelect.value : "api";
       var host = endpoint === "dev" ? "dev.pirateweather.net" : "api.pirateweather.net";
