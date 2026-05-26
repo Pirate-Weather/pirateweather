@@ -35,10 +35,10 @@ If you are looking for a place to figure out the latitude and longitude, [https:
 #### Time
 The time field is optional for the forecast request, but mandatory for a historic request. If present, time can be specified in one of three different ways:
 
-1. UNIX timestamp, or the number of seconds since midnight GMT on 1 Jan 1970 (this is the preferred way).
+1. UNIX timestamp, or the number of seconds since midnight GMT on 1 Jan 1970 (this is the preferred way). Note that this can be a negative number for pre-1970 dates.
 2. A datestring in the local time zone of the location being requested: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]`.
 3. A datestring in UTC time: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]Z`
-4. A time delta (in seconds) from the current time (ex. to get results for the previous day): `-86400`.
+4. A time delta (in either seconds, hours, or days) from the current time: `-86400S` will return data for the previous day. 
 
 It's worth noting that Dark Sky also allows strings with a specified time zone (ex. `+[HH][MM]`). Right now this isn't supported, but if it's important for a workflow I can try to get it working.
 If the time variable is not included, then the current time is used for the request. If a time variable is included, the request is treated as if it was requested at that time. This means that the API will return the forecast data that would have been returned then- so not quite observations, but the last forecast for that date. Results are always returned in UTC time using UNIX timestamps, and internally UNIX time is used for everything, with the exception of calculating where to begin and end the daily data. Also, for checking time format conversions, I found <https://www.silisoftware.com/tools/date.php> to be an invaluable resource.
@@ -364,7 +364,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": -999,
 		"units": "ca",
-		"version": "V2.9.3"
+		"version": "V2.9.5"
   	}
 ```
 
@@ -486,7 +486,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sourceTimes": {},
 	"nearest-station": 0,
 	"units": "ca",
-	"version": "V2.9.3"
+	"version": "V2.9.5"
 	}
 }
 ```
@@ -614,7 +614,8 @@ Relative humidity expressed as a value between 0 and 1 inclusive. This is a perc
 **Only on `hourly` and `daily`**. The amount of ice precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
 
 ### iceIntensity
-**Only on `hourly`, `day_night` and `daily`**. The intensity of ice precipitation expected to fall over an hour or a day expressed in milimetres or inches depending on the requested `units`.
+The intensity of ice precipitation expected to fall over an hour or a day expressed in millimetres or inches depending on the requested `units`. When using data from GEFS/ECMWF, note that for currently/ minutely blocks, modelled intensity is used directly (where available). For hourly/ daily blocks, accumulation is used as the underlying source for this field.
+
 
 ### iceIntensityMax
 **Only on `day_night` and `daily`**. The UNIX time the maximum ice intensity occurs.
@@ -756,6 +757,9 @@ Precipitation intensity units have been revised to reflect the Dark Sky style. T
   * See [this thread for details](https://github.com/Pirate-Weather/pirate-weather-code/pull/53#issuecomment-2661603131).
   * It is **strongly** recommended to use the type specific intensities.
 
+When using data from GEFS/ECMWF, note that for currently/ minutely blocks, modelled intensity is used directly (where available). For hourly/ daily blocks, accumulation is used as the underlying source for this field.
+
+
 #### precipIntensityError
 The standard deviation of the `precipIntensity` from the GEFS/ECMWF IFS model.
 
@@ -796,16 +800,17 @@ See [this issue](https://github.com/Pirate-Weather/pirateweather/issues/413) for
 The sea-level pressure represented in hectopascals or millibars depending on the requested `units`.
 
 ### rainIntensity
-**Only on `hourly`, `day_night` and `daily`**. The intensity of rain precipitation expected to fall over an hour or a day expressed in milimetres or inches depending on the requested `units`.
+The intensity of rain precipitation expected to fall over an hour or a day expressed in millimetres or inches depending on the requested `units`. When using data from GEFS/ECMWF, note that for currently/ minutely blocks, modelled intensity is used directly (where available). For hourly/ daily blocks, accumulation is used as the underlying source for this field.
+
 
 ### rainIntensityMax
 **Only on `day_night` and `daily`**. The UNIX time the maximum rain intensity occurs.
 
 #### snowAccumulation
-**Only on `hourly`, `day_night` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
+**Only on `hourly`, `day_night` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For hourly/ daily blocks, accumulation is used as the underlying source for this field. For minutely and currently blocks, a 10x liquid-water factor is used, while a [physics based approach](https://github.com/Pirate-Weather/pirate-weather-code/blob/87b3a25e8cc614794f552fa327740cabd53fcb41/API/PirateTextHelper.py#L757) is used for the other blocks.
 
 ### snowIntensity
-**Only on `hourly`, `day_night` and `daily`**. The intensity of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`.
+The intensity of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. When using data from GEFS/ECMWF, note that for currently/ minutely blocks, modelled intensity is used directly (where available). For hourly/ daily blocks, accumulation is used as the underlying source for this field. For minutely and currently blocks, a 10x liquid-water factor is used, while a physics based approach is used for the other blocks.
 
 ### snowIntensityMax
 **Only on `day_night` and `daily`**. The UNIX time the maximum snow intensity occurs.

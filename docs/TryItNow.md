@@ -35,20 +35,24 @@ Make a live forecast request straight from your browser.
         <label for="pw-lat">Latitude</label>
         <input
           id="pw-lat"
-          type="number"
-          step="any"
-          placeholder="e.g. 45.42"
+          type="text"
           inputmode="decimal"
+          pattern="[+-]?(\d+\.?\d*|\.\d+)"
+          placeholder="e.g. 45.42"
+          autocomplete="off"
+          spellcheck="false"
         />
       </div>
       <div class="pw-field-group">
         <label for="pw-lon">Longitude</label>
         <input
           id="pw-lon"
-          type="number"
-          step="any"
-          placeholder="e.g. -75.69"
+          type="text"
           inputmode="decimal"
+          pattern="[+-]?(\d+\.?\d*|\.\d+)"
+          placeholder="e.g. -75.69"
+          autocomplete="off"
+          spellcheck="false"
         />
       </div>
     </div>
@@ -58,6 +62,13 @@ Make a live forecast request straight from your browser.
       <summary class="pw-section-label">Optional parameters <span class="pw-caret">▸</span></summary>
 
       <div class="pw-field-row">
+        <div class="pw-field-group">
+          <label for="pw-endpoint">Endpoint</label>
+          <select id="pw-endpoint">
+            <option value="api" selected>Production (api.pirateweather.net)</option>
+            <option value="dev">Development (dev.pirateweather.net)</option>
+          </select>
+        </div>
         <div class="pw-field-group">
           <label for="pw-units">Units</label>
           <select id="pw-units">
@@ -117,6 +128,10 @@ Make a live forecast request straight from your browser.
   <div id="pw-result-section" style="display:none;">
     <hr class="pw-divider" />
 
+    <div class="pw-demo-notice">
+      ⚠️ <strong>Demonstration only.</strong> For a full forecast experience, visit <a href="https://merrysky.net" target="_blank" rel="noopener">MerrySky</a>.
+    </div>
+
     <div class="pw-result-header">
       <span class="pw-result-label">Request URL</span>
       <button id="pw-copy-url" class="pw-btn-secondary" style="display:none;" type="button">Copy URL</button>
@@ -131,6 +146,9 @@ Make a live forecast request straight from your browser.
 
     <!-- Current conditions card -->
     <div id="pw-weather-card" class="pw-weather-card" style="display:none;"></div>
+
+    <!-- 3-day forecast -->
+    <div id="pw-forecast-card" class="pw-forecast-card" style="display:none;"></div>
 
     <!-- Raw JSON (collapsible) -->
     <details id="pw-json-details" style="display:none; margin-top:1rem;">
