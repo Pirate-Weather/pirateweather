@@ -19,24 +19,13 @@
 * [Status page](https://pirateweather.xitoring.io/)
 
 
-## MCP Server
-Pirate Weather exposes a hosted MCP server for apps and agents that support remote streamable HTTP MCP servers. Add it to your MCP client with this URL:
-
-```
-https://mcp.pirateweather.net/mcp?apikey=<APIKEY>
-```
-
-Replace `<APIKEY>` with your Pirate Weather API key. The MCP server uses the same API key as regular forecast requests, returns Pirate Weather API version 2 style responses, and adds a `timeISO` field next to returned UNIX `time` fields for easier reading.
-
-The available tools include forecast, current weather, hourly forecast, minutely forecast, tomorrow forecast, daily forecast, alerts, historical weather, weather summary, API connection status, and subscription status helpers. Most forecast tools accept `units` and `lang`; supported units are `auto`, `us`, `si`, `ca`, `uk`, and `uk2`.
-
 #### Publications and Press
 * [AWS blog post](https://aws.amazon.com/blogs/publicsector/making-weather-forecasts-accessible-serverless-infrastructure-open-data-aws/)
 * [TLDR Newsletter](https://tldr.tech/tech/2023-01-11)
 * [BoingBoing](https://boingboing.net/2023/01/10/pirate-weather-api-has-more-features.html)
 * [Hacker News Front Page](https://news.ycombinator.com/item?id=34329988)
 
-# Who is using Pirate Weather?
+## Who is using Pirate Weather?
 
 - [MerrySky](https://merrysky.net) - Get a Forecast DarkSky Style
 - [PW-forecast](https://github.com/ktrue/PW-forecast) and [https://saratoga-weather.org/scripts-PWforecast.php](https://saratoga-weather.org/scripts-PWforecast.php)
@@ -71,6 +60,16 @@ Up to version 2.9.6! As always, details are available in the [changelog](https:/
 * Added AI models behind the `include=aimodels` flag as per [PR #610](https://github.com/Pirate-Weather/pirate-weather-code/pull/610).
 * Extended historic data requests back to 7 days using the `days=7` flag as per [PR #624](https://github.com/Pirate-Weather/pirate-weather-code/pull/624).
 
+## MCP Server
+In addition to the main REST endpoint, Pirate Weather exposes a new, hosted MCP server for apps and agents that support remote streamable HTTP MCP servers. Add it to your MCP client with this URL:
+
+```
+https://mcp.pirateweather.net/mcp?apikey=<APIKEY>
+```
+
+Replace `<APIKEY>` with your Pirate Weather API key. The MCP server uses the same API key as regular forecast requests, returns Pirate Weather API version 2 style responses, and adds a `timeISO` field next to returned UNIX `time` fields for easier reading.
+
+The available tools include forecast, current weather, hourly forecast, minutely forecast, tomorrow forecast, daily forecast, alerts, historical weather, weather summary, API connection status, and subscription status helpers. Most forecast tools accept `units` and `lang`; supported units are `auto`, `us`, `si`, `ca`, `uk`, and `uk2`.
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
