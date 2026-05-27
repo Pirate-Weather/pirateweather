@@ -8,13 +8,14 @@ The minimum structure for every request to this service is the same:
 ```
 https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude]
 ``` 
-This specifies the service (either `api`, `dev` or `timemachine`), root url (`pirateweather.net/forecast`), the api key used in the request (`[apikey]`), and the location (`[latitude],[longitude]`). There are many other ways to customize this request, but this is the minimum requirement! Calling the API with this request will return a JSON data structure (described below) with the requested weather information!
+This specifies the service (either `api`, `dev` or `timemachine`), root url (`pirateweather.net/forecast`), the api key used in the request (`[apikey]`), and the location (`[latitude],[longitude]`). You can also request a location by city and country using `[city],[country]`. There are many other ways to customize this request, but this is the minimum requirement! Calling the API with this request will return a JSON data structure (described below) with the requested weather information!
 All request attributes are contained within the URL. Request headers are not parsed by the API, and returned headers only contain debugging information, with all the data contained in the JSON payload. 
 
 ### Request Parameters
 The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 ```
 https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]&include=[day_night_forecast]
+https://api.pirateweather.net/forecast/[apikey]/[city],[country],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]&include=[day_night_forecast]
 ``` 
 
 #### API Key
@@ -29,6 +30,8 @@ https://api.pirateweather.net/forecast/{anythingAtAll}/{lat},{lon}
 
 #### Location
 The location is specified by a latitude (1st) and longitude (2nd) in decimal degrees (ex. `45.42,-75.69`). An unlimited number of decimal places are allowed; however, the API only returns data to the closest 13 km model square, so there's no benefit after 3 digits. While the recommended way to format this field is with positive (North/East) and negative (South/West) degrees, results should be valid when submitting longitudes from 0 to 360, instead of -180 to 180. 
+
+Alternatively, location can be specified by city and country using `[city],[country]` (ex. `Ottawa,Canada`, `New%20York,US` or `Paris,France,1704067200` with a time). Spaces and other special characters in the city name should be URL encoded. The country can be a supported country name or alias, an ISO 3166-1 alpha-2 code such as `US`, `CA`, `GB`, `FR`, or `AU`, or a supported alpha-3 alias. City/country requests use offline geocoding and may be slower or less precise than latitude/longitude requests, so latitude/longitude is still recommended when exact coordinates are available.
 
 If you are looking for a place to figure out the latitude and longitude, [https://www.latlong.net/](https://www.latlong.net/) is a good starting point.
 
@@ -364,7 +367,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 		},
 		"nearest-station": -999,
 		"units": "ca",
-		"version": "V2.9.5"
+		"version": "V2.9.6"
   	}
 ```
 
@@ -373,6 +376,7 @@ The Time Machine uses either archived 1-hour model results (last 10 days) or the
 
 ```
       https://timemachine.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]
+      https://timemachine.pirateweather.net/forecast/[apikey]/[city],[country],[time]?exclude=[excluded]&units=[unit]
 ```
 
 Crucially, there's now three different ways a request could be handled:
@@ -486,7 +490,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sourceTimes": {},
 	"nearest-station": 0,
 	"units": "ca",
-	"version": "V2.9.5"
+	"version": "V2.9.6"
 	}
 }
 ```
@@ -599,13 +603,13 @@ The point in which the air temperature needs (assuming constant pressure) in ord
 The apparent temperature from the GFS or NBM models.
 
 #### fireIndex
-**Only on `currently` and `hourly`.** **Only available for the US and parts of Canada. Outside of these locations this will return -999.** The [Fosburg fire index](https://www.spc.noaa.gov/exper/firecomp/INFO/fosbinfo.html). Notably, this 0-100 index deals only with conditions, not fuels, and so a high index area is not necessarily high risk for fires.
+**Only on `currently` and `hourly`.** The [Fosberg Fire Weather Index](https://www.spc.noaa.gov/exper/firecomp/INFO/fosbinfo.html), calculated from temperature, relative humidity, and wind speed. The API converts these inputs internally to the units used by the Fosberg formula, applies the equilibrium moisture model, and returns a 0-100 style index clipped to the API's normal fire index bounds. This index deals only with weather conditions, not fuels, and so a high index area is not necessarily high risk for fires. If any required input is unavailable, this may return -999.
 
 #### fireIndexMax
-**Only on `daily`.** The maximum `fireIndex` for the given day.
+**Only on `daily`.** The maximum hourly `fireIndex` for the given day.
 
 #### fireIndexMaxTime
-**Only on `daily`.** the time in which the maximum `fireIndex` occurs represented in UNIX time.
+**Only on `daily`.** The time when the maximum hourly `fireIndex` occurs represented in UNIX time.
 
 #### humidity
 Relative humidity expressed as a value between 0 and 1 inclusive. This is a percentage of the actual water vapour in the air compared to the total amount of water vapour that can exist at the current temperature. [See this resource for more information.](https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/relative-humidity)

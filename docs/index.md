@@ -5,11 +5,12 @@
   </div>
 </div>
 
-[Get an API key](https://pirate-weather.apiable.io/){ .md-button .md-button--primary }
+[Get an API key](https://pirate-weather.apiable.io/products/weather-data/plans){ .md-button .md-button--primary }
 [Try It Now](TryItNow.md){ .md-button }
 
 ## Quick Links
 * To [**register for the API**](https://pirate-weather.apiable.io/)
+* [Connect the Pirate Weather MCP server](#mcp-server)
 * [Get a weather forecast in the Dark Sky style](https://merrysky.net/)
 * [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
 * [API repo](https://github.com/alexander0042/pirateweather)
@@ -17,6 +18,17 @@
 * [Changelog](https://pirateweather.net/en/latest/changelog/)
 * [Status page](https://pirateweather.xitoring.io/)
 
+
+## MCP Server
+Pirate Weather exposes a hosted MCP server for apps and agents that support remote streamable HTTP MCP servers. Add it to your MCP client with this URL:
+
+```
+https://mcp.pirateweather.net/mcp?apikey=<APIKEY>
+```
+
+Replace `<APIKEY>` with your Pirate Weather API key. The MCP server uses the same API key as regular forecast requests, returns Pirate Weather API version 2 style responses, and adds a `timeISO` field next to returned UNIX `time` fields for easier reading.
+
+The available tools include forecast, current weather, hourly forecast, minutely forecast, tomorrow forecast, daily forecast, alerts, historical weather, weather summary, API connection status, and subscription status helpers. Most forecast tools accept `units` and `lang`; supported units are `auto`, `us`, `si`, `ca`, `uk`, and `uk2`.
 
 #### Publications and Press
 * [AWS blog post](https://aws.amazon.com/blogs/publicsector/making-weather-forecasts-accessible-serverless-infrastructure-open-data-aws/)
@@ -50,15 +62,15 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
-## Recent Updates- Winter 2025
-Up to version 2.9! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+## Recent Updates- Spring 2026
+Up to version 2.9.6! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-* Added more fallback ingest sources as per [PR #483](https://github.com/Pirate-Weather/pirate-weather-code/pull/483).
-* Fix ERA5 Rounding for precipitation type as per [PR #477](https://github.com/Pirate-Weather/pirate-weather-code/pull/477).
-* Add ice/mixed precipitation types as per [PR #467](https://github.com/Pirate-Weather/pirate-weather-code/pull/467).
-* Fix an issue where some v2 fields were displaying in v1 requests as per [PR #450](https://github.com/Pirate-Weather/pirate-weather-code/pull/450).
-* Add support for DWD MOSMIX forecasts where available as per [PR #449](https://github.com/Pirate-Weather/pirate-weather-code/pull/449).
-* Refactor the codebase to break out the functions and simplify the code as [PR #438](https://github.com/Pirate-Weather/pirate-weather-code/pull/438).
+* Added the hosted MCP server as per [PR #638](https://github.com/Pirate-Weather/pirate-weather-code/pull/638) and [PR #641](https://github.com/Pirate-Weather/pirate-weather-code/pull/641).
+* Added city/country location requests such as `Ottawa,Canada` or `New%20York,US` as per [PR #642](https://github.com/Pirate-Weather/pirate-weather-code/pull/642).
+* Changed `fireIndex` to be calculated from temperature, humidity, and wind speed wherever those inputs are available as per [PR #643](https://github.com/Pirate-Weather/pirate-weather-code/pull/643).
+* Added AI models behind the `include=aimodels` flag as per [PR #610](https://github.com/Pirate-Weather/pirate-weather-code/pull/610).
+* Extended historic data requests back to 7 days using the `days=7` flag as per [PR #624](https://github.com/Pirate-Weather/pirate-weather-code/pull/624).
+
 
 ## Background
 This project started from two points: as part of my [PhD](https://coastlines.engineering.queensu.ca/dunexrt), I had to become very familiar with working with NOAA forecast results (<https://orcid.org/0000-0003-4725-3251>). Separately, an old tablet set up as a "Magic Mirror,” and was using a [weather module](https://github.com/jclarke0000/MMM-DarkSkyForecast) that relied on the Dark Sky API, as well as my [Home Assistant](https://www.home-assistant.io/) setup. So when I heard that it was [shutting down](https://blog.darksky.net/dark-sky-has-a-new-home/), I thought, "I wonder if I could do this.” Plus, I love learning new things (<http://alexanderrey.ca/>), and I had been looking for a project to learn Python on, so this seemed like the perfect opportunity!
