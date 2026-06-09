@@ -3,7 +3,7 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.9"
-	* May 27, 2026, API Version 2.9.6
+	* June 9, 2026, API Version 2.9.6
 		* Add the hosted Pirate Weather MCP server for apps and agents using remote streamable HTTP MCP servers per [PR #638](https://github.com/Pirate-Weather/pirate-weather-code/pull/638).
 			* The MCP server uses the same Pirate Weather API key and is available at `https://mcp.pirateweather.net/mcp?apikey=<APIKEY>`.
 			* Forecast, current weather, hourly, minutely, daily, alerts, historical weather, summary, connection status, and subscription status tools are available.
@@ -13,6 +13,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 			* City/country requests use offline geocoding and may be slower or less precise than latitude/longitude requests.
 		* Change `fireIndex` to calculate the Fosberg Fire Weather Index from temperature, relative humidity, and wind speed in the currently and hourly pipelines per [PR #643](https://github.com/Pirate-Weather/pirate-weather-code/pull/643).
 			* This removes the runtime dependency on NBM Fire data for `fireIndex`, so it is available wherever the required inputs exist.
+		* Change HRRR sub-hourly reflectivity to 1km reflectivity from composite reflectivity per [PR #648](https://github.com/Pirate-Weather/pirate-weather-code/pull/648).
 
 	* May 26, 2026, API Version 2.9.5
 		* Allow relative times to be specified with units per [PR #607](https://github.com/Pirate-Weather/pirate-weather-code/pull/607).
