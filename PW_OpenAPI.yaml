@@ -33,15 +33,15 @@ paths:
             type: string
         - name: lat_and_long_or_time
           in: path
-          description: A single comma-delimited location string. Use either latitude,longitude or city,country. Optionally append a UNIX timestamp, ISO 8601 date string, or relative negative time in seconds (S), hours (H), or days (D). Examples include 45.42,-75.69, Ottawa,Canada, New%20York,US, and Paris,France,1704067200.
+          description: A single comma-delimited location string. Use either latitude,longitude or city,country. Optionally append a UNIX timestamp, ISO 8601 date string, or relative negative time in seconds (S), hours (H), or days (D). Examples include '45.42,-75.69', 'Ottawa,Canada', 'New%20York,US', and 'Paris,France,1704067200'.
           required: true
           schema:
             type: string
             examples:
-              - 45.42,-75.69
-              - Ottawa,Canada
-              - New%20York,US
-              - Paris,France,1704067200
+              - '45.42,-75.69'
+              - 'Ottawa,Canada'
+              - 'New%20York,US'
+              - 'Paris,France,1704067200'
         - name: exclude
           in: query
           description: Exclude some keys (currently, minutely, hourly, daily, day_night, flags, alerts), models (nbm, hrrr, gefs, aigefs, aigfs, aifs), or detailed text summaries (summary) from the Pirate Weather forecast response. Exclude takes precedence over include-based feature flags.
