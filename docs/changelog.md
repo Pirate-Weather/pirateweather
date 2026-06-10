@@ -3,7 +3,7 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.9"
-	* June 9, 2026, API Version 2.9.6
+	* June 10, 2026, API Version 2.9.6
 		* Add the hosted Pirate Weather MCP server for apps and agents using remote streamable HTTP MCP servers per [PR #638](https://github.com/Pirate-Weather/pirate-weather-code/pull/638).
 			* The MCP server uses the same Pirate Weather API key and is available at `https://mcp.pirateweather.net/mcp?apikey=<APIKEY>`.
 			* Forecast, current weather, hourly, minutely, daily, alerts, historical weather, summary, connection status, and subscription status tools are available.
