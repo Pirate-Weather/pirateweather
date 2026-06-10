@@ -3,12 +3,24 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.9"
+	* June 10, 2026, API Version 2.9.6
+		* Add the hosted Pirate Weather MCP server for apps and agents using remote streamable HTTP MCP servers per [PR #638](https://github.com/Pirate-Weather/pirate-weather-code/pull/638).
+			* The MCP server uses the same Pirate Weather API key and is available at `https://mcp.pirateweather.net/mcp?apikey=<APIKEY>`.
+			* Forecast, current weather, hourly, minutely, daily, alerts, historical weather, summary, connection status, and subscription status tools are available.
+		* Fix MCP path and URL mapping per [PR #639](https://github.com/Pirate-Weather/pirate-weather-code/pull/639) and [PR #640](https://github.com/Pirate-Weather/pirate-weather-code/pull/640).
+		* Add additional MCP tool details, typed parameters, compact forecast output, and `timeISO` fields alongside returned UNIX `time` fields per [PR #641](https://github.com/Pirate-Weather/pirate-weather-code/pull/641).
+		* Add city/country location requests such as `Ottawa,Canada`, `New%20York,US`, and `Paris,France,1704067200` per [PR #642](https://github.com/Pirate-Weather/pirate-weather-code/pull/642).
+			* City/country requests use offline geocoding and may be slower or less precise than latitude/longitude requests.
+		* Change `fireIndex` to calculate the Fosberg Fire Weather Index from temperature, relative humidity, and wind speed in the currently and hourly pipelines per [PR #643](https://github.com/Pirate-Weather/pirate-weather-code/pull/643).
+			* This removes the runtime dependency on NBM Fire data for `fireIndex`, so it is available wherever the required inputs exist.
+		* Change HRRR sub-hourly reflectivity to 1km reflectivity from composite reflectivity per [PR #648](https://github.com/Pirate-Weather/pirate-weather-code/pull/648).
+
 	* May 26, 2026, API Version 2.9.5
 		* Allow relative times to be specified with units per [PR #607](https://github.com/Pirate-Weather/pirate-weather-code/pull/607).
 		* Add AI models (currently hidden behind the `include=aimodels` flag) per [PR #610](https://github.com/Pirate-Weather/pirate-weather-code/pull/610);
 		* Update to Python 3.14 per [PR #628](https://github.com/Pirate-Weather/pirate-weather-code/pull/628);
 		* Extend historic data requests (Timemachine) back to 7 days using the `days=7` flag per [PR #624](https://github.com/Pirate-Weather/pirate-weather-code/pull/624);
-		* Add additional params (`blocks`, `daily_indices`, `hourly_indices`, `day_night_indices`) for a future MCP server per [PR #566](https://github.com/Pirate-Weather/pirate-weather-code/pull/566);
+		* Add additional params (`blocks`, `daily_indices`, `hourly_indices`, `day_night_indices`) for compact API and MCP responses per [PR #566](https://github.com/Pirate-Weather/pirate-weather-code/pull/566);
 
 	* May 6, 2026, API Version 2.9.4
 		* Change the daily block to use the precipitation type with the highest amount as per [PR #582](https://github.com/Pirate-Weather/pirate-weather-code/pull/582).

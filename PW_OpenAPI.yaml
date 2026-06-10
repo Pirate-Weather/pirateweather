@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: "2.9.5"
+  version: "2.9.6"
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -23,7 +23,7 @@ paths:
         - Weather
       operationId: Weather
       summary: Make a request to Pirate Weather
-      description: Fetch a weather forecast or get historical weather data based on input latitude and longitude.
+      description: Fetch a weather forecast or get historical weather data based on latitude/longitude or city/country input.
       parameters:
         - name: api_key
           in: path
@@ -33,10 +33,15 @@ paths:
             type: string
         - name: lat_and_long_or_time
           in: path
-          description: A single comma-delimited string containing Latitude and Longitude information. Optionally, either a UNIX timestamp, ISO 8601 date string, or a relative negative time in either seconds (S), hours (H), or days (D). For example -48D.
+          description: A single comma-delimited location string. Use either latitude,longitude or city,country. Optionally append a UNIX timestamp, ISO 8601 date string, or relative negative time in seconds (S), hours (H), or days (D). Examples include '45.42,-75.69', 'Ottawa,Canada', 'New%20York,US', and 'Paris,France,1704067200'.
           required: true
           schema:
             type: string
+            examples:
+              - '45.42,-75.69'
+              - 'Ottawa,Canada'
+              - 'New%20York,US'
+              - 'Paris,France,1704067200'
         - name: exclude
           in: query
           description: Exclude some keys (currently, minutely, hourly, daily, day_night, flags, alerts), models (nbm, hrrr, gefs, aigefs, aigfs, aifs), or detailed text summaries (summary) from the Pirate Weather forecast response. Exclude takes precedence over include-based feature flags.
@@ -421,7 +426,7 @@ components:
           example: 0.34
         fireIndex:
           type: number
-          description: The Fosburg fire index. Only returned when version>1.
+          description: The Fosberg Fire Weather Index, derived from temperature, relative humidity, and wind speed. Only returned when version>1.
           example: 27.58
         feelsLike:
           type: number
@@ -644,7 +649,7 @@ components:
                 example: 127
               fireIndex:
                 type: number
-                description: The Fosburg fire index. Only returned when version>1.
+                description: The Fosberg Fire Weather Index, derived from temperature, relative humidity, and wind speed. Only returned when version>1.
                 example: 27.2
               feelsLike:
                 type: number
@@ -800,7 +805,7 @@ components:
                 example: 0
               fireIndex:
                 type: number
-                description: The Fosburg fire index. Only returned when version>1.
+                description: The Fosberg Fire Weather Index, derived from temperature, relative humidity, and wind speed. Only returned when version>1.
                 example: 22.08
               solar:
                 type: number
@@ -1055,12 +1060,12 @@ components:
                 example: 0
               fireIndexMax:
                 type: number
-                description: The maximum Fosburg fire index. Only returned when version>1.
+                description: The maximum hourly Fosberg Fire Weather Index for the day. Only returned when version>1.
                 example: 29.2
               fireIndexMaxTime:
                 type: integer
                 format: int32
-                description: The time when the maximum Fosburg fire index occurs in UNIX format. Only returned when version>1.
+                description: The time when the maximum hourly Fosberg Fire Weather Index occurs in UNIX format. Only returned when version>1.
                 example: 1762732800
               solar:
                 type: number
@@ -1196,7 +1201,7 @@ components:
         version:
           type: string
           description: The version of Pirate Weather used to generate the forecast.
-          example: V2.9.5
+          example: V2.9.6
         sourceIDX:
           type: object
           description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>1.

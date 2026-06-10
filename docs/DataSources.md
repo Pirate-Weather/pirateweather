@@ -69,7 +69,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | currentDaySnow | NBM > HRRR > AIGEFS > ECMWF IFS > GEFS > GFS |
 | dewPoint | RTMA-RU > HRRR_SubH > NBM > ECMWF IFS > GFS > DWD MOSMIX |
 | feelsLike | NBM > GFS |
-| fireIndex | NBM |
+| fireIndex | Derived from temperature, humidity, and windSpeed |
 | humidity | RTMA-RU > HRRR > NBM > ECMWF IFS > GFS > DWD MOSMIX |
 | nearestStormBearing | GFS |
 | nearestStormDistance | GFS |
@@ -99,7 +99,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | currentDaySnow | NBM > HRRR > ECMWF AIFS > ECMWF IFS > GEFS > GFS |
 | dewPoint | RTMA-RU > HRRR_SubH > NBM > DWD MOSMIX > GFS |
 | feelsLike | NBM > GFS |
-| fireIndex | NBM |
+| fireIndex | Derived from temperature, humidity, and windSpeed |
 | humidity | RTMA-RU > HRRR > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | nearestStormBearing | GFS |
 | nearestStormDistance | GFS |
@@ -146,7 +146,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | cloudCover | NBM > HRRR > ECMWF IFS > GFS |
 | dewPoint | NBM > HRRR > ECMWF IFS > GFS |
 | feelsLike | NBM > GFS |
-| fireIndex | NBM |
+| fireIndex | Derived from temperature, humidity, and windSpeed |
 | humidity | NBM > HRRR > ECMWF IFS > GFS > DWD MOSMIX |
 | iceAccumulation | NBM > HRRR > AIGEFS > ECMWF IFS > GEFS > GFS > DWD MOSMIX |
 | liquidAccumulation | NBM > HRRR > AIGEFS > ECMWF IFS > GEFS > GFS > DWD MOSMIX |
@@ -177,7 +177,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | cloudCover | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | dewPoint | NBM > HRRR > DWD MOSMIX > GFS |
 | feelsLike | NBM > GFS |
-| fireIndex | NBM |
+| fireIndex | Derived from temperature, humidity, and windSpeed |
 | humidity | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | iceAccumulation | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS > GFS |
 | liquidAccumulation | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS > GFS |
