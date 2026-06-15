@@ -35,6 +35,7 @@
 - [Chrome Pirate Weather Extension](https://chromewebstore.google.com/detail/pirate-weather-extension/akfgfkkfjpbpplibpcffankjdjgpkedd) - Chrome extension for precipitation alerts, forecasts, and saved locations.
 - [AccessiWeather](https://github.com/Orinks/AccessiWeather) - Accessible cross-platform weather app with screen-reader-friendly forecasts, alerts, and Pirate Weather support.
 - [Temperature Report](https://temperature.report/) - Weather website designed to make it easy to see an overview of upcoming weather.
+
 ## Libraries
 - [python-pirate-weather](https://github.com/cloneofghosts/python-pirate-weather) - A thin Python Wrapper for the Pirate Weather API forked from the [forecastio python library](https://github.com/ZeevG/python-forecast.io).
 - [pirate-weather-python](https://github.com/Pirate-Weather/pirate-weather-python)
