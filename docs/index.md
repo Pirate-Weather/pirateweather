@@ -51,14 +51,13 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
-## Recent Updates- Spring 2026
-Up to version 2.9.6! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+## Recent Updates- Summer 2026
+Up to version 2.9.7! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-* Added the hosted MCP server as per [PR #638](https://github.com/Pirate-Weather/pirate-weather-code/pull/638) and [PR #641](https://github.com/Pirate-Weather/pirate-weather-code/pull/641).
-* Added city/country location requests such as `Ottawa,Canada` or `New%20York,US` as per [PR #642](https://github.com/Pirate-Weather/pirate-weather-code/pull/642).
-* Changed `fireIndex` to be calculated from temperature, humidity, and wind speed wherever those inputs are available as per [PR #643](https://github.com/Pirate-Weather/pirate-weather-code/pull/643).
-* Added AI models behind the `include=aimodels` flag as per [PR #610](https://github.com/Pirate-Weather/pirate-weather-code/pull/610).
-* Extended historic data requests back to 7 days using the `days=7` flag as per [PR #624](https://github.com/Pirate-Weather/pirate-weather-code/pull/624).
+* Fix GFS ingest issues per [PR #666](https://github.com/Pirate-Weather/pirate-weather-code/pull/666)
+* Add chaching to ERA5 requests to avoid rate limit errors per [PR #664](https://github.com/Pirate-Weather/pirate-weather-code/pull/664)
+* Refactor the GFS ingest scripts to fix changes made in xarray-spatial per [PR #661](https://github.com/Pirate-Weather/pirate-weather-code/pull/661)
+* Allow for longer historic data requests per [PR #660](https://github.com/Pirate-Weather/pirate-weather-code/pull/660)
 
 ## MCP Server
 In addition to the main REST endpoint, Pirate Weather exposes a new, hosted MCP server for apps and agents that support remote streamable HTTP MCP servers. Add it to your MCP client with this URL:
