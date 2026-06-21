@@ -4,10 +4,12 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.9"
 	* June 17, 2026, API Version 2.9.7
-		* Fix GFS ingest issues per [PR #666](https://github.com/Pirate-Weather/pirate-weather-code/pull/666)
-		* Add chaching to ERA5 requests to avoid rate limit errors per [PR #664](https://github.com/Pirate-Weather/pirate-weather-code/pull/664)
-		* Refactor the GFS ingest scripts to fix changes made in xarray-spatial per [PR #661](https://github.com/Pirate-Weather/pirate-weather-code/pull/661)
-		* Allow for longer historic data requests per [PR #660](https://github.com/Pirate-Weather/pirate-weather-code/pull/660)
+		* Fix GFS ingest issues per [PR #666](https://github.com/Pirate-Weather/pirate-weather-code/pull/666).
+		* Add chaching to ERA5 requests to avoid rate limit errors per [PR #664](https://github.com/Pirate-Weather/pirate-weather-code/pull/664).
+		* Remove possible heavy summaries from weekly summaris per [PR #662](https://github.com/Pirate-Weather/pirate-weather-code/pull/662).
+			* This removes rain and possible heavy rain and similar summaries from generating in the weekly summaries.
+		* Refactor the GFS ingest scripts to fix changes made in xarray-spatial per [PR #661](https://github.com/Pirate-Weather/pirate-weather-code/pull/661).
+		* Allow for longer historic data requests per [PR #660](https://github.com/Pirate-Weather/pirate-weather-code/pull/660).
 
 	* June 10, 2026, API Version 2.9.6
 		* Add the hosted Pirate Weather MCP server for apps and agents using remote streamable HTTP MCP servers per [PR #638](https://github.com/Pirate-Weather/pirate-weather-code/pull/638).
