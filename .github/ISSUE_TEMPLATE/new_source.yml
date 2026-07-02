@@ -23,7 +23,7 @@ body:
   - type: input
     id: source-documentation
     attributes:
-      label: Source Location
+      label: Source Documentation
       description: The URL where the source documentation is located.
       placeholder: |
         Example: "https://rapidrefresh.noaa.gov/hrrr/"
