@@ -51,6 +51,8 @@ MOSMIX provides hourly forecasts for thousands of stations worldwide, though not
 ### ERA5
 To provide historic weather data, the [Google European Reanalysis 5 Dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/arco-era5) is used, specifically their `full_37-1h-0p25deg-chunk-1.zarr-v3` product. Details on the Google implementation are available in [their repository](https://github.com/google-research/arco-era5). In the medium term, I'll be exploring adding a local copy of this repository, which would significantly improve performance.
 
+**Looking for a weather model that's not listed?** Check the [existing model requests](https://github.com/Pirate-Weather/pirateweather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22new%20source%22) first. If it hasn't already been requested, submit a [new source request](https://github.com/Pirate-Weather/pirateweather/issues/new?template=new_source.yml).
+
 ## Forecast element sources
 Every Pirate Weather forecast element for each time block (`currently`, `minutely`, `hourly`, or `daily`) is listed below, along with the ordered fallback chain for each region. Fallback sources are used if model data is intentionally excluded, the request point is outside of the primary model coverage area, or if there is some sort of data interruption.
 
