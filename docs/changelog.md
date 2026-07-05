@@ -3,7 +3,8 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.9"
-	* June 17, 2026, API Version 2.9.7
+	* July 4, 2026, API Version 2.9.7
+		* Fix a few issues with thunderstorm summaries being shown incorrectly per [PR #676](https://github.com/Pirate-Weather/pirate-weather-code/pull/676) and [PR #677](https://github.com/Pirate-Weather/pirate-weather-code/pull/677).
 		* Fix GFS ingest issues per [PR #666](https://github.com/Pirate-Weather/pirate-weather-code/pull/666).
 		* Add chaching to ERA5 requests to avoid rate limit errors per [PR #664](https://github.com/Pirate-Weather/pirate-weather-code/pull/664).
 		* Remove possible heavy summaries from weekly summaris per [PR #662](https://github.com/Pirate-Weather/pirate-weather-code/pull/662).
