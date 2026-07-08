@@ -820,7 +820,7 @@ The intensity of snow precipitation expected to fall over an hour or a day expre
 **Only on `day_night` and `daily`**. The UNIX time the maximum snow intensity occurs.
 
 #### smoke
-**Only on `currently`, `hourly` and `day_night`**. **Only available for the US and parts of Canada. Only returns data for the next 36-hours. If there is no data this will return -999.** The amount of near-surface (8 m) smoke represented in µg/m<sup>3</sup>.
+The amount of near-surface (8 m) smoke represented in µg/m<sup>3</sup>.
 
 #### smokeMax
 **Only on `daily`.** The maximum `smoke` for the given day.
