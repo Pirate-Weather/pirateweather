@@ -14,8 +14,8 @@ All request attributes are contained within the URL. Request headers are not par
 ### Request Parameters
 The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 ```
-https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]&include=[day_night_forecast]
-https://api.pirateweather.net/forecast/[apikey]/[city],[country],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]&include=[day_night_forecast]
+https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]&include=[include]
+https://api.pirateweather.net/forecast/[apikey]/[city],[country],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]&include=[include]
 ``` 
 
 #### API Key
@@ -96,12 +96,17 @@ Some models can also be excluded, which will force data from the fallback source
 *  `rtma_ru`
 *  `ecmwf_ifs`
 *  `dwd_mosmix`
+*  `ecmwf_aifs`
+*  `aigefs`
+*  `aigfs`
+*  `raqdps`
+*  `silam`
 
 #### Extend
 If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.   
 
 #### Version
-If `version>1` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime`, `duskTime`, `currentDayIce`, `currentDayLiquid`, `currentDaySnow`, `processTime`, `ingestVersion`, `nearestCity`, `nearestCountry`, `nearestSubNational`, `cape`, `solar`, `capeMax`, `solarMax`, `rainIntensity`, `snowIntensity`, `iceIntensity`, `rainIntensityMax`, `snowIntensityMax`, `iceIntensityMax`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
+If `version>1` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime`, `duskTime`, `currentDayIce`, `currentDayLiquid`, `currentDaySnow`, `processTime`, `ingestVersion`, `nearestCity`, `nearestCountry`, `nearestSubNational`, `cape`, `solar`, `capeMax`, `solarMax`, `rainIntensity`, `snowIntensity`, `iceIntensity`, `rainIntensityMax`, `snowIntensityMax`, `iceIntensityMax` and `airQualityIndex`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
 
 #### Language
 Added as part of the V2.5 release, this parameter allows you to sepecify what language the text summaries use. The possible values for language may be:
@@ -175,7 +180,16 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 `extraVars=` is used to show additional parameters that are not required for most users and may cause confusion. Currently, only `stationPressure` is allowed, but others may be added in the future. 
 
 #### Include
-`include=` is used to add additional data blocks not available in the Dark Sky API.  Currently, only `day_night_forecast` is allowed, but others may be added in the future. 
+`include=` is used to add additional data blocks not available in the Dark Sky API.  Currently, `day_night_forecast` and `airqualitydetails` are allowed, but others may be added in the future.
+
+If `airqualitydetails` is added as an include flag the API will return full pollutant details for the following pollutants:
+
+- `coConcentration`
+- `no2Concentration`
+- `ozoneConcentration`
+- `so2Concentration`
+- `pm10`
+- `pm25`
 
 ### API Response Example
 ```
@@ -897,6 +911,81 @@ The wind gust in kilometres per hour or miles per hour depending on the requeste
 
 #### windSpeed
 The current wind speed in kilometres per hour or miles per hour depending on the requested `units`.
+
+### Air Quality Elements
+
+#### airQualityIndex
+The air quality index for the requested location. The specific index format used automatically updates depending on the requested units:
+
+- **US / Default:** Uses the [United States Environmental Protection Agency Air Quality Index (AQI)](https://www.airnow.gov/aqi/aqi-basics/).
+- **CA:** Uses the [ECCC Air Quality Health Index (AQHI)](https://www.canada.ca/en/environment-climate-change/services/air-quality-health-index/about.html).
+- **SI / UK:** Uses the [EU Common Air Quality Index (CAQI)](https://www.airqualitynow.eu/about_indices_definition.php).
+
+*How they are calculated:*
+*   **US EPA AQI:** Calculated using a 12-hour Nowcast (where the most recent hours are weighted more heavily) for $PM_{2.5}$ and $PM_{10}$, an 8-hour average for $O_3$ and $CO$, and a 1-hour average for $NO_2$ and $SO_2$. The overall index value matches whichever individual pollutant has the highest score.
+*   **ECCC AQHI:** Calculated using a formula based on 3-hour rolling averages of $PM_{2.5}$, $O_3$, and $NO_2$. Unlike the US index, these three values are combined into a single health risk calculation rather than just taking the maximum.
+*   **EU CAQI:** Calculated using hourly (1-hour) averages for $PM_{2.5}$, $PM_{10}$, $O_3$, and $NO_2$. The overall index value represents the maximum value among all four sub-indices.
+
+#### airQualityIndexMax
+**Only on `daily`**. The maximum air quality index forecasted for the day, represented in the appropriate scale depending on the requested units.
+
+#### airQualityIndexMin
+**Only on `daily`**. The minimum air quality index forecasted for the day, represented in the appropriate scale depending on the requested units.
+
+#### coConcentration
+The carbon monoxide concentration represented in parts per billion (ppb).
+
+#### no2Concentration
+The nitrogen dioxide concentration represented in parts per billion (ppb).
+
+#### ozoneConcentration
+The ozone concentration represented in parts per billion (ppb).
+
+#### pm25
+The fine particulate matter concentration represented in micrograms per cubic meter (µg/m³).
+
+#### pm10
+The coarse particulate matter concentration represented in micrograms per cubic meter (µg/m³).
+
+#### so2Concentration
+The sulfur dioxide concentration represented in parts per billion (ppb).
+
+### Index Reference Ranges
+
+Because each regional index uses unique breakpoints, severities, and data scales, use the respective tables below to map UI labels and alert colors based on your query's `units` parameter.
+
+#### US EPA AQI (Default / US Units)
+Scale ranges from **0 to 500+**. 
+
+| AQI Value | Severity Label | Suggested UI Color |
+| :--- | :--- | :--- |
+| **0 - 50** | Good | Green |
+| **51 - 100** | Moderate | Yellow |
+| **101 - 150** | Unhealthy for Sensitive Groups | Orange |
+| **151 - 200** | Unhealthy | Red |
+| **201 - 300** | Very Unhealthy | Purple |
+| **301 - 500+** | Hazardous | Maroon |
+
+#### ECCC AQHI (Canada / CA Units)
+Scale ranges from **1 to 10+**.
+
+| AQHI Value | Risk Level | Suggested UI Color |
+| :--- | :--- | :--- |
+| **1 - 3** | Low Risk | Blue |
+| **4 - 6** | Moderate Risk | Yellow |
+| **7 - 10** | High Risk | Red |
+| **10+** | Very High Risk | Dark Burgundy |
+
+#### EU CAQI (SI / UK Units)
+Scale ranges from **0 to 100+**.
+
+| CAQI Value | Index Level | Suggested UI Color |
+| :--- | :--- | :--- |
+| **0 - 25** | Very Low | Green |
+| **26 - 50** | Low | Light Green / Yellow-Green |
+| **51 - 75** | Medium | Yellow |
+| **76 - 100** | High | Orange |
+| **100+** | Very High | Red |
 
 ### Alerts
 

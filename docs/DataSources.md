@@ -52,10 +52,10 @@ MOSMIX provides hourly forecasts for thousands of stations worldwide, though not
 To provide historic weather data, the [Google European Reanalysis 5 Dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/arco-era5) is used, specifically their `full_37-1h-0p25deg-chunk-1.zarr-v3` product. Details on the Google implementation are available in [their repository](https://github.com/google-research/arco-era5). In the medium term, I'll be exploring adding a local copy of this repository, which would significantly improve performance.
 
 ### RAQDPS
-[Regional Air Quality Deterministic Prediction System](https://eccc-msc.github.io/open-data/msc-data/nwp_raqdps/readme_raqdps_en/) is an air quality model covering North America with 10km coverage.
+[Regional Air Quality Deterministic Prediction System](https://eccc-msc.github.io/open-data/msc-data/nwp_raqdps/readme_raqdps_en/) is maintained by Environment and Climate Change Canada (ECCC) and provides high-resolution regional chemical weather forecasts over North America. It runs twice daily, offering hourly forecasts at a 10 km resolution for up to 72 hours. This model is highly effective for projects needing to track the localized transport, diffusion, and chemical transformation of surface pollutants-specifically ground-level Ozone ($O_3$), Nitrogen Dioxide ($NO_2$), and fine particulate matter ($PM_{2.5}$)-making it a great fit for calculating regional Air Quality Health Indices (AQHI) or tracking active wildfire smoke plumes.
 
 ### SILAM
-[System for Integrated modeLling of Atmospheric coMposition](https://silam.fmi.fi) is an air quality model with global with 10km coverage.
+[System for Integrated modeLling of Atmospheric coMposition](https://silam.fmi.fi) is a global-to-meso-scale dispersion model developed by the Finnish Meteorological Institute (FMI). It provides global coverage at a 20 km resolution, modeling over 100 chemical species and aerosols across the troposphere and stratosphere. Because it utilizes a hybrid Eulerian-Lagrangian approach, SILAM excels at simulating long-range, transboundary transport. It's uniquely suited for projects that need to account for dynamic, natural emissions alongside human ones-such as tracking desert dust storms, sea salt dispersion, global aviation safety risks, or real-time wildland fire emissions on a macro scale.
 
 ## Forecast element sources
 Every Pirate Weather forecast element for each time block (`currently`, `minutely`, `hourly`, or `daily`) is listed below, along with the ordered fallback chain for each region. Fallback sources are used if model data is intentionally excluded, the request point is outside of the primary model coverage area, or if there is some sort of data interruption.
@@ -210,7 +210,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | Parameter | Priority |
 | :--- | :--- |
 | airQualityIndex | RAQDPS > SILAM |
-| coConcentration | RAQDPS > SILAM |
+| coConcentration | SILAM |
 | no2Concentration | RAQDPS > SILAM |
 | ozoneConcentration | RAQDPS > SILAM |
 | so2Concentration | RAQDPS > SILAM |
