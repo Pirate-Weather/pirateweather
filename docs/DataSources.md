@@ -51,6 +51,12 @@ MOSMIX provides hourly forecasts for thousands of stations worldwide, though not
 ### ERA5
 To provide historic weather data, the [Google European Reanalysis 5 Dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/arco-era5) is used, specifically their `full_37-1h-0p25deg-chunk-1.zarr-v3` product. Details on the Google implementation are available in [their repository](https://github.com/google-research/arco-era5). In the medium term, I'll be exploring adding a local copy of this repository, which would significantly improve performance.
 
+### RAQDPS
+[Regional Air Quality Deterministic Prediction System](https://eccc-msc.github.io/open-data/msc-data/nwp_raqdps/readme_raqdps_en/) is an air quality model covering North America with 10km coverage.
+
+### SILAM
+[System for Integrated modeLling of Atmospheric coMposition](https://silam.fmi.fi) is an air quality model with global with 10km coverage.
+
 ## Forecast element sources
 Every Pirate Weather forecast element for each time block (`currently`, `minutely`, `hourly`, or `daily`) is listed below, along with the ordered fallback chain for each region. Fallback sources are used if model data is intentionally excluded, the request point is outside of the primary model coverage area, or if there is some sort of data interruption.
 
@@ -79,7 +85,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | precipProbability | NBM > AIGEFS > ECMWF IFS > GEFS |
 | precipType | HRRR_SubH > NBM > AIGEFS > ECMWF IFS > GEFS > DWD MOSMIX |
 | pressure | HRRR > AIGFS > ECMWF IFS > GFS > DWD MOSMIX |
-| smoke | HRRR |
+| smoke | HRRR > SILAM |
 | solar | HRRR_SubH > NBM > GFS > DWD MOSMIX |
 | temperature | RTMA-RU > HRRR_SubH > NBM > AIGFS > ECMWF IFS > GFS > DWD MOSMIX |
 | uvIndex | GFS |
@@ -109,7 +115,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | precipProbability | NBM > ECMWF AIFS > ECMWF IFS > GEFS |
 | precipType | HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS |
 | pressure | HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
-| smoke | HRRR |
+| smoke | HRRR > SILAM |
 | solar | HRRR_SubH > NBM > DWD MOSMIX > GFS |
 | temperature | RTMA-RU > HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | uvIndex | GFS |
@@ -159,7 +165,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | precipProbability | NBM > AIGEFS > ECMWF IFS > GEFS |
 | precipType | NBM > HRRR > AIGEFS > ECMWF IFS > GEFS > DWD MOSMIX |
 | pressure | HRRR > AIGFS > ECMWF IFS > GFS > DWD MOSMIX |
-| smoke | HRRR |
+| smoke | HRRR > SILAM |
 | snowAccumulation | NBM > HRRR > AIGEFS > ECMWF IFS > GEFS > GFS > DWD MOSMIX |
 | solar | NBM > HRRR > GFS > DWD MOSMIX |
 | temperature | NBM > HRRR > AIGFS > ECMWF IFS > GFS > DWD MOSMIX |
@@ -190,7 +196,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | precipProbability | NBM > ECMWF AIFS > ECMWF IFS > GEFS |
 | precipType | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS |
 | pressure | HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
-| smoke | HRRR |
+| smoke | HRRR > SILAM |
 | snowAccumulation | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS > GFS |
 | solar | NBM > HRRR > DWD MOSMIX > GFS |
 | temperature | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
@@ -199,6 +205,17 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | windBearing | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | windGust | NBM > HRRR > DWD MOSMIX > GFS |
 | windSpeed | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
+
+### Air Quality
+| Parameter | Priority |
+| :--- | :--- |
+| airQualityIndex | RAQDPS > SILAM |
+| coConcentration | RAQDPS > SILAM |
+| no2Concentration | RAQDPS > SILAM |
+| ozoneConcentration | RAQDPS > SILAM |
+| so2Concentration | RAQDPS > SILAM |
+| pm10 | RAQDPS > SILAM |
+| pm25 | RAQDPS > SILAM |
 
 ## Data Pipeline
 
@@ -218,3 +235,6 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | ECMWF AIFS           | 0,6,12,18       | 8:00  | 8,16,20,2             |
 | AIGFS                | 0,6,12,18       | 5:00  | 5,11,17,23            |
 | AIGEFS               | 0,6,12,18       | 7:00  | 7,13,19,1             |
+| AIGEFS               | 0,6,12,18       | 7:00  | 7,13,19,1             |
+| RAQDPS               | 0,12            | x:xx  | x:xx                  |
+| SILAM                | 0               | x:xx  | x:xx                  |
