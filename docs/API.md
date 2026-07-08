@@ -922,9 +922,9 @@ The air quality index for the requested location. The specific index format used
 - **SI / UK:** Uses the [EU Common Air Quality Index (CAQI)](https://www.airqualitynow.eu/about_indices_definition.php).
 
 *How they are calculated:*
-*   **US EPA AQI:** Calculated using a 12-hour Nowcast (where the most recent hours are weighted more heavily) for $PM_{2.5}$ and $PM_{10}$, an 8-hour average for $O_3$ and $CO$, and a 1-hour average for $NO_2$ and $SO_2$. The overall index value matches whichever individual pollutant has the highest score.
-*   **ECCC AQHI:** Calculated using a formula based on 3-hour rolling averages of $PM_{2.5}$, $O_3$, and $NO_2$. Unlike the US index, these three values are combined into a single health risk calculation rather than just taking the maximum.
-*   **EU CAQI:** Calculated using hourly (1-hour) averages for $PM_{2.5}$, $PM_{10}$, $O_3$, and $NO_2$. The overall index value represents the maximum value among all four sub-indices.
+-   **US EPA AQI:** Calculated using a 12-hour Nowcast (where the most recent hours are weighted more heavily) for $PM_{2.5}$ and $PM_{10}$, an 8-hour average for $O_3$ and $CO$, and a 1-hour average for $NO_2$ and $SO_2$. The overall index value matches whichever individual pollutant has the highest score.
+-   **ECCC AQHI:** Calculated using a formula based on 3-hour rolling averages of $PM_{2.5}$, $O_3$, and $NO_2$. Unlike the US index, these three values are combined into a single health risk calculation rather than just taking the maximum.
+-  **EU CAQI:** Calculated using hourly (1-hour) averages for $PM_{2.5}$, $PM_{10}$, $O_3$, and $NO_2$. The overall index value represents the maximum value among all four sub-indices.
 
 #### airQualityIndexMax
 **Only on `daily`**. The maximum air quality index forecasted for the day, represented in the appropriate scale depending on the requested units.
