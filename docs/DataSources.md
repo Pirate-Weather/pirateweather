@@ -51,6 +51,12 @@ MOSMIX provides hourly forecasts for thousands of stations worldwide, though not
 ### ERA5
 To provide historic weather data, the [Google European Reanalysis 5 Dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/arco-era5) is used, specifically their `full_37-1h-0p25deg-chunk-1.zarr-v3` product. Details on the Google implementation are available in [their repository](https://github.com/google-research/arco-era5). In the medium term, I'll be exploring adding a local copy of this repository, which would significantly improve performance.
 
+### RAQDPS
+[Regional Air Quality Deterministic Prediction System](https://eccc-msc.github.io/open-data/msc-data/nwp_raqdps/readme_raqdps_en/) is maintained by Environment and Climate Change Canada (ECCC) and provides high-resolution regional chemical weather forecasts over North America. It runs twice daily, offering hourly forecasts at a 10 km resolution for up to 72 hours. This model is highly effective for projects needing to track the localized transport, diffusion, and chemical transformation of surface pollutants-specifically ground-level Ozone (O<sub>3</sub>), Nitrogen Dioxide (NO<sub>2</sub>), and fine particulate matter (PM<sub>2.5</sub>)-making it a great fit for calculating regional Air Quality Health Indices (AQHI) or tracking active wildfire smoke plumes.
+
+### SILAM
+[System for Integrated modeLling of Atmospheric coMposition](https://silam.fmi.fi) is a global-to-meso-scale dispersion model developed by the Finnish Meteorological Institute (FMI). It provides global coverage at a 20 km resolution, modeling over 100 chemical species and aerosols across the troposphere and stratosphere. Because it utilizes a hybrid Eulerian-Lagrangian approach, SILAM excels at simulating long-range, transboundary transport. It's uniquely suited for projects that need to account for dynamic, natural emissions alongside human ones-such as tracking desert dust storms, sea salt dispersion, global aviation safety risks, or real-time wildland fire emissions on a macro scale.
+
 **Looking for a weather model that's not listed?** Check the [existing model requests](https://github.com/Pirate-Weather/pirateweather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22new%20source%22) first. If it hasn't already been requested, submit a [new source request](https://github.com/Pirate-Weather/pirateweather/issues/new?template=new_source.yml).
 
 ## Forecast element sources
@@ -81,7 +87,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | precipProbability | NBM > AIGEFS > ECMWF IFS > GEFS |
 | precipType | HRRR_SubH > NBM > AIGEFS > ECMWF IFS > GEFS > DWD MOSMIX |
 | pressure | HRRR > AIGFS > ECMWF IFS > GFS > DWD MOSMIX |
-| smoke | HRRR |
+| smoke | HRRR > SILAM |
 | solar | HRRR_SubH > NBM > GFS > DWD MOSMIX |
 | temperature | RTMA-RU > HRRR_SubH > NBM > AIGFS > ECMWF IFS > GFS > DWD MOSMIX |
 | uvIndex | GFS |
@@ -111,7 +117,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | precipProbability | NBM > ECMWF AIFS > ECMWF IFS > GEFS |
 | precipType | HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS |
 | pressure | HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
-| smoke | HRRR |
+| smoke | HRRR > SILAM |
 | solar | HRRR_SubH > NBM > DWD MOSMIX > GFS |
 | temperature | RTMA-RU > HRRR_SubH > NBM > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | uvIndex | GFS |
@@ -161,7 +167,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | precipProbability | NBM > AIGEFS > ECMWF IFS > GEFS |
 | precipType | NBM > HRRR > AIGEFS > ECMWF IFS > GEFS > DWD MOSMIX |
 | pressure | HRRR > AIGFS > ECMWF IFS > GFS > DWD MOSMIX |
-| smoke | HRRR |
+| smoke | HRRR > SILAM |
 | snowAccumulation | NBM > HRRR > AIGEFS > ECMWF IFS > GEFS > GFS > DWD MOSMIX |
 | solar | NBM > HRRR > GFS > DWD MOSMIX |
 | temperature | NBM > HRRR > AIGFS > ECMWF IFS > GFS > DWD MOSMIX |
@@ -192,7 +198,7 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | precipProbability | NBM > ECMWF AIFS > ECMWF IFS > GEFS |
 | precipType | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS |
 | pressure | HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
-| smoke | HRRR |
+| smoke | HRRR > SILAM |
 | snowAccumulation | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GEFS > GFS |
 | solar | NBM > HRRR > DWD MOSMIX > GFS |
 | temperature | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
@@ -201,6 +207,17 @@ For most weather elements the general approach is: NBM → HRRR → ECMWF IFS �
 | windBearing | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
 | windGust | NBM > HRRR > DWD MOSMIX > GFS |
 | windSpeed | NBM > HRRR > ECMWF AIFS > DWD MOSMIX > ECMWF IFS > GFS |
+
+### Air Quality
+| Parameter | Priority |
+| :--- | :--- |
+| airQualityIndex | RAQDPS > SILAM |
+| coConcentration | SILAM |
+| no2Concentration | RAQDPS > SILAM |
+| ozoneConcentration | RAQDPS > SILAM |
+| so2Concentration | RAQDPS > SILAM |
+| pm10 | RAQDPS > SILAM |
+| pm25 | RAQDPS > SILAM |
 
 ## Data Pipeline
 
@@ -219,4 +236,5 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | DWD MOSMIX           | 0-24            | 1:00  | 1:00-0:00             |
 | ECMWF AIFS           | 0,6,12,18       | 8:00  | 8,16,20,2             |
 | AIGFS                | 0,6,12,18       | 5:00  | 5,11,17,23            |
-| AIGEFS               | 0,6,12,18       | 7:00  | 7,13,19,1             |
+| RAQDPS               | 0,12            | 4:15  | 4:15,16:15            |
+| SILAM                | 0               | 7:00  | 7                     |

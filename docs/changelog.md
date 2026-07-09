@@ -3,6 +3,18 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.9"
+	* July 9, 2026, API Version 2.9.7
+		* Add in a long requested feature to add an air quality index to the API per [issue #92](https://github.com/Pirate-Weather/pirateweather/issues/92).
+		* Fix an issue where dawn was before dusk as reported in [issue #648](https://github.com/Pirate-Weather/pirateweather/issues/648).
+		* Fix a few issues with thunderstorm summaries being shown incorrectly per [PR #676](https://github.com/Pirate-Weather/pirate-weather-code/pull/676) and [PR #677](https://github.com/Pirate-Weather/pirate-weather-code/pull/677).
+		* Fix GFS ingest issues per [PR #666](https://github.com/Pirate-Weather/pirate-weather-code/pull/666).
+		* Add caching to ERA5 requests to avoid rate limit errors per [PR #664](https://github.com/Pirate-Weather/pirate-weather-code/pull/664).
+			* This should make multiple ERA5 requests for different points at similar times much faster.
+		* Remove possible heavy summaries from weekly summaries per [PR #662](https://github.com/Pirate-Weather/pirate-weather-code/pull/662).
+			* This removes rain and possible heavy rain and similar summaries from generating in the weekly summaries.
+		* Refactor the GFS ingest scripts to fix changes made in xarray-spatial per [PR #661](https://github.com/Pirate-Weather/pirate-weather-code/pull/661).
+		* Allow for longer historic data requests per [PR #660](https://github.com/Pirate-Weather/pirate-weather-code/pull/660).
+
 	* June 10, 2026, API Version 2.9.6
 		* Add the hosted Pirate Weather MCP server for apps and agents using remote streamable HTTP MCP servers per [PR #638](https://github.com/Pirate-Weather/pirate-weather-code/pull/638).
 			* The MCP server uses the same Pirate Weather API key and is available at `https://mcp.pirateweather.net/mcp?apikey=<APIKEY>`.
