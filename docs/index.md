@@ -58,8 +58,8 @@ Up to version 2.9.7! As always, details are available in the [changelog](https:/
 * Add in a long requested feature to add an air quality index to the API per [issue #92](https://github.com/Pirate-Weather/pirateweather/issues/92).
 * Fix an issue where dawn was before dusk as reported in [issue #648](https://github.com/Pirate-Weather/pirateweather/issues/648).
 * Fix GFS ingest issues per [PR #666](https://github.com/Pirate-Weather/pirate-weather-code/pull/666).
-* Add chaching to ERA5 requests to avoid rate limit errors per [PR #664](https://github.com/Pirate-Weather/pirate-weather-code/pull/664).
-* Remove possible heavy summaries from weekly summaris per [PR #662](https://github.com/Pirate-Weather/pirate-weather-code/pull/662).
+* Add caching to ERA5 requests to avoid rate limit errors per [PR #664](https://github.com/Pirate-Weather/pirate-weather-code/pull/664).
+* Remove possible heavy summaries from weekly summaries per [PR #662](https://github.com/Pirate-Weather/pirate-weather-code/pull/662).
   * This removes rain and possible heavy rain and similar summaries from generating in the weekly summaries.
 * Refactor the GFS ingest scripts to fix changes made in xarray-spatial per [PR #661](https://github.com/Pirate-Weather/pirate-weather-code/pull/661).
 * Allow for longer historic data requests per [PR #660](https://github.com/Pirate-Weather/pirate-weather-code/pull/660).
