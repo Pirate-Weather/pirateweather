@@ -929,9 +929,11 @@ The air quality index for the requested location. The specific index format used
 - **SI / UK:** Uses the [EU Common Air Quality Index (CAQI)](https://www.airqualitynow.eu/about_indices_definition.php).
 
 *How they are calculated:*
--   US EPA AQI: Calculated using a 12-hour Nowcast (where the most recent hours are weighted more heavily) for PM<sub>2.5</sub> and PM<sub>10</sub>, an 8-hour average for O<sub>3</sub> and CO, and a 1-hour average for NO<sub>2</sub> and SO<sub>2</sub>. The overall index value matches whichever individual pollutant has the highest score.
--   ECCC AQHI: Calculated using a formula based on 3-hour rolling averages of PM<sub>2.5</sub>, O<sub>3</sub>, and NO<sub>2</sub>. Unlike the US index, these three values are combined into a single health risk calculation rather than just taking the maximum.
--  EU CAQI: Calculated using hourly (1-hour) averages for PM<sub>2.5</sub>, PM<sub>10</sub>, O<sub>3</sub>, and NO<sub>2</sub>. The overall index value represents the maximum value among all four sub-indices.
+<ul>
+<li><strong>US EPA AQI</strong>: Calculated using a 12-hour Nowcast (where the most recent hours are weighted more heavily) for PM<sub>2.5</sub> and PM<sub>10</sub>, an 8-hour average for O<sub>3</sub> and CO, and a 1-hour average for NO<sub>2</sub> and SO<sub>2</sub>. The overall index value matches whichever individual pollutant has the highest score.</li>
+<li><strong>ECCC AQHI</strong>: Calculated using a formula based on 3-hour rolling averages of PM<sub>2.5</sub>, O<sub>3</sub>, and NO<sub>2</sub>. Unlike the US index, these three values are combined into a single health risk calculation rather than just taking the maximum.</li>
+<li><strong>EU CAQI</strong>: Calculated using hourly (1-hour) averages for PM<sub>2.5</sub>, PM<sub>10</sub>, O<sub>3</sub>, and NO<sub>2</sub>. The overall index value represents the maximum value among all four sub-indices.</li>
+</ul>
 
 #### airQualityIndexMax
 **Only on `daily`**. The maximum air quality index forecasted for the day, represented in the appropriate scale depending on the requested units.
