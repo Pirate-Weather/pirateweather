@@ -3,7 +3,7 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.9"
-	* July 8, 2026, API Version 2.9.7
+	* July 9, 2026, API Version 2.9.7
 		* Add in a long requested feature to add an air quality index to the API per [issue #92](https://github.com/Pirate-Weather/pirateweather/issues/92).
 		* Fix an issue where dawn was before dusk as reported in [issue #648](https://github.com/Pirate-Weather/pirateweather/issues/648).
 		* Fix a few issues with thunderstorm summaries being shown incorrectly per [PR #676](https://github.com/Pirate-Weather/pirate-weather-code/pull/676) and [PR #677](https://github.com/Pirate-Weather/pirate-weather-code/pull/677).

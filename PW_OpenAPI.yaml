@@ -44,7 +44,7 @@ paths:
               - 'Paris,France,1704067200'
         - name: exclude
           in: query
-          description: Exclude some keys (currently, minutely, hourly, daily, day_night, flags, alerts), models (nbm, hrrr, gefs, gfs, aigefs, aigfs, aifs, raqdps, silam), or detailed text summaries (summary) from the Pirate Weather forecast response. Exclude takes precedence over include-based feature flags.
+          description: Exclude some keys (currently, minutely, hourly, daily, day_night, flags, alerts), models (nbm, hrrr, gefs, gfs, ecmwf_ifs, dwd_mosmix, rtma_ru, aigefs, aigfs, ecmwf_aifs, raqdps, silam), or detailed text summaries (summary) from the Pirate Weather forecast response. Exclude takes precedence over include-based feature flags.
           schema:
             type: string
             enum:
@@ -62,7 +62,7 @@ paths:
               - gfs
               - aigefs
               - aigfs
-              - aifs
+              - ecmwf_aifs
               - raqdps
               - silam
               - rtma_ru
@@ -1290,7 +1290,7 @@ components:
               type: string
               description: The time the ECMWF IFS model was last updated.
               example: 2025-11-09 00Z
-            aifs:
+            ecmwf_aifs:
               type: string
               description: The time the AIFS model was last updated.
               example: 2025-11-09 00Z
@@ -1393,7 +1393,7 @@ components:
                   type: number
                   description: The longitude coordinate for the ECMWF IFS model.
                   example: -89.5
-            aifs:
+            ecmwf_aifs:
               type: object
               properties:
                 x:
