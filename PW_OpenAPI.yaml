@@ -44,7 +44,7 @@ paths:
               - 'Paris,France,1704067200'
         - name: exclude
           in: query
-          description: Exclude some keys (currently, minutely, hourly, daily, day_night, flags, alerts), models (nbm, hrrr, gefs, aigefs, aigfs, aifs), or detailed text summaries (summary) from the Pirate Weather forecast response. Exclude takes precedence over include-based feature flags.
+          description: Exclude some keys (currently, minutely, hourly, daily, day_night, flags, alerts), models (nbm, hrrr, gefs, gfs, aigefs, aigfs, aifs, raqdps, silam), or detailed text summaries (summary) from the Pirate Weather forecast response. Exclude takes precedence over include-based feature flags.
           schema:
             type: string
             enum:
@@ -59,9 +59,12 @@ paths:
               - nbm
               - hrrr
               - gefs
+              - gfs
               - aigefs
               - aigfs
               - aifs
+              - raqdps
+              - silam
               - rtma_ru
               - ecmwf_ifs
               - dwd_mosmix
@@ -157,7 +160,7 @@ paths:
             type: string
         - name: version
           in: query
-          description: Include fields which were not part of the Dark Sky API but were introduced in API version 2.
+          description: Include fields which were not part of the Dark Sky API but were introduced in API version 2, including airQualityIndex and the daily airQualityIndexMax and airQualityIndexMin fields.
           schema:
             type: integer
         - name: tmextra
@@ -172,12 +175,13 @@ paths:
             type: string   
         - name: include
           in: query
-          description: Include extra blocks or model families that were not part of the Dark Sky API.
+          description: Include extra blocks or model families that were not part of the Dark Sky API. Use airqualitydetails to include detailed pollutant concentrations.
           schema:
             type: string
             enum:
               - day_night_forecast
               - aimodels
+              - airqualitydetails
         - name: blocks
           in: query
           description: A comma-delimited allowlist of response blocks to return. Supported blocks are currently, minutely, hourly, daily, day_night, alerts, and flags.
@@ -420,6 +424,34 @@ components:
           type: number
           description: The ozone concentration in Dobson units.
           example: 321.45
+        airQualityIndex:
+          type: number
+          description: The air quality index for the requested location. The index scale follows the requested units; US/default uses US EPA AQI, CA uses ECCC AQHI, and SI/UK uses EU CAQI. Only returned when version>1.
+          example: 42
+        coConcentration:
+          type: number
+          description: The carbon monoxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+          example: 126.4
+        no2Concentration:
+          type: number
+          description: The nitrogen dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+          example: 2.8
+        ozoneConcentration:
+          type: number
+          description: The ozone concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+          example: 36.5
+        so2Concentration:
+          type: number
+          description: The sulfur dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+          example: 0.4
+        pm10:
+          type: number
+          description: The coarse particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+          example: 8.7
+        pm25:
+          type: number
+          description: The fine particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+          example: 4.6
         smoke:
           type: number
           description: The amount of near-surface smoke in ug/m^3. Only returned when version>1.
@@ -622,6 +654,34 @@ components:
                 type: number
                 description: The ozone concentration in Dobson units.
                 example: 319.3
+              airQualityIndex:
+                type: number
+                description: The air quality index for the requested location. The index scale follows the requested units; US/default uses US EPA AQI, CA uses ECCC AQHI, and SI/UK uses EU CAQI. Only returned when version>1.
+                example: 42
+              coConcentration:
+                type: number
+                description: The carbon monoxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 126.4
+              no2Concentration:
+                type: number
+                description: The nitrogen dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 2.8
+              ozoneConcentration:
+                type: number
+                description: The ozone concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 36.5
+              so2Concentration:
+                type: number
+                description: The sulfur dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 0.4
+              pm10:
+                type: number
+                description: The coarse particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+                example: 8.7
+              pm25:
+                type: number
+                description: The fine particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+                example: 4.6
               smoke:
                 type: number
                 description: The amount of near-surface smoke in ug/m3. Only returned when version>1.
@@ -787,6 +847,34 @@ components:
                 type: number
                 description: The ozone concentration in Dobson units.
                 example: 317.12
+              airQualityIndex:
+                type: number
+                description: The air quality index for the requested location. The index scale follows the requested units; US/default uses US EPA AQI, CA uses ECCC AQHI, and SI/UK uses EU CAQI. Only returned when version>1.
+                example: 42
+              coConcentration:
+                type: number
+                description: The carbon monoxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 126.4
+              no2Concentration:
+                type: number
+                description: The nitrogen dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 2.8
+              ozoneConcentration:
+                type: number
+                description: The ozone concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 36.5
+              so2Concentration:
+                type: number
+                description: The sulfur dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 0.4
+              pm10:
+                type: number
+                description: The coarse particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+                example: 8.7
+              pm25:
+                type: number
+                description: The fine particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+                example: 4.6
               smoke:
                 type: number
                 description: The amount of near-surface smoke in ug/m3. Only returned when version>1.
@@ -1001,6 +1089,42 @@ components:
                 type: number
                 description: The visibility in kilometers.
                 example: 9.68
+              airQualityIndex:
+                type: number
+                description: The air quality index for the requested location. The index scale follows the requested units; US/default uses US EPA AQI, CA uses ECCC AQHI, and SI/UK uses EU CAQI. Only returned when version>1.
+                example: 42
+              airQualityIndexMax:
+                type: number
+                description: The maximum air quality index forecasted for the day. The index scale follows the requested units. Only returned when version>1.
+                example: 58
+              airQualityIndexMin:
+                type: number
+                description: The minimum air quality index forecasted for the day. The index scale follows the requested units. Only returned when version>1.
+                example: 31
+              coConcentration:
+                type: number
+                description: The carbon monoxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 126.4
+              no2Concentration:
+                type: number
+                description: The nitrogen dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 2.8
+              ozoneConcentration:
+                type: number
+                description: The ozone concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 36.5
+              so2Concentration:
+                type: number
+                description: The sulfur dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                example: 0.4
+              pm10:
+                type: number
+                description: The coarse particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+                example: 8.7
+              pm25:
+                type: number
+                description: The fine particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+                example: 4.6
               temperatureMin:
                 type: number
                 description: The minimum temperature.

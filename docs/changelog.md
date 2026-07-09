@@ -9,6 +9,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 		* Fix a few issues with thunderstorm summaries being shown incorrectly per [PR #676](https://github.com/Pirate-Weather/pirate-weather-code/pull/676) and [PR #677](https://github.com/Pirate-Weather/pirate-weather-code/pull/677).
 		* Fix GFS ingest issues per [PR #666](https://github.com/Pirate-Weather/pirate-weather-code/pull/666).
 		* Add caching to ERA5 requests to avoid rate limit errors per [PR #664](https://github.com/Pirate-Weather/pirate-weather-code/pull/664).
+			* This should make multiple ERA5 requests for different points at similar times much faster.
 		* Remove possible heavy summaries from weekly summaries per [PR #662](https://github.com/Pirate-Weather/pirate-weather-code/pull/662).
 			* This removes rain and possible heavy rain and similar summaries from generating in the weekly summaries.
 		* Refactor the GFS ingest scripts to fix changes made in xarray-spatial per [PR #661](https://github.com/Pirate-Weather/pirate-weather-code/pull/661).

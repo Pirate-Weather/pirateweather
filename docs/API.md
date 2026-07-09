@@ -77,6 +77,8 @@ For compatibility with Dark Sky, `us` (Imperial units) are the default if nothin
 | pressure | Hectopascals | Hectopascals | Hectopascals | Millibars |
 | visibility | Kilometres | Kilometres | Kilometres | Miles |
 
+Note that changing the units will also change the formula for how the air quality index (AQI) is calculated.
+
 #### Exclude
 Added as part of the V1.0 release, this parameter removes some of the data blocks from the reply. This can speed up the requests (especially if alerts are not needed!), and reduce the reply size. Exclude parameters can be added as a comma-separated list, with the options being:
 
@@ -180,7 +182,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 `extraVars=` is used to show additional parameters that are not required for most users and may cause confusion. Currently, only `stationPressure` is allowed, but others may be added in the future. 
 
 #### Include
-`include=` is used to add additional data blocks not available in the Dark Sky API.  Currently, `day_night_forecast` and `airqualitydetails` are allowed, but others may be added in the future.
+`include=` is used to add additional data blocks not available in the Dark Sky API.  Currently, `day_night_forecast`, `aimodlels` and `airqualitydetails` are allowed, but others may be added in the future.
 
 If `airqualitydetails` is added as an include flag the API will return full pollutant details for the following pollutants:
 
@@ -190,6 +192,11 @@ If `airqualitydetails` is added as an include flag the API will return full poll
 - `so2Concentration`
 - `pm10`
 - `pm25`
+
+If `day_night_forecast` is added as an include flag then the twice-daily forecast will be included.
+
+If `aimodels` is added then results from the AI driven models (AIGFS/AIGEFS/ECMWR-AIFS) will be included.
+
 
 ### API Response Example
 ```

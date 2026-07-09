@@ -56,6 +56,7 @@ To provide historic weather data, the [Google European Reanalysis 5 Dataset](htt
 
 ### SILAM
 [System for Integrated modeLling of Atmospheric coMposition](https://silam.fmi.fi) is a global-to-meso-scale dispersion model developed by the Finnish Meteorological Institute (FMI). It provides global coverage at a 20 km resolution, modeling over 100 chemical species and aerosols across the troposphere and stratosphere. Because it utilizes a hybrid Eulerian-Lagrangian approach, SILAM excels at simulating long-range, transboundary transport. It's uniquely suited for projects that need to account for dynamic, natural emissions alongside human ones-such as tracking desert dust storms, sea salt dispersion, global aviation safety risks, or real-time wildland fire emissions on a macro scale.
+
 **Looking for a weather model that's not listed?** Check the [existing model requests](https://github.com/Pirate-Weather/pirateweather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22new%20source%22) first. If it hasn't already been requested, submit a [new source request](https://github.com/Pirate-Weather/pirateweather/issues/new?template=new_source.yml).
 
 ## Forecast element sources
@@ -235,6 +236,5 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | DWD MOSMIX           | 0-24            | 1:00  | 1:00-0:00             |
 | ECMWF AIFS           | 0,6,12,18       | 8:00  | 8,16,20,2             |
 | AIGFS                | 0,6,12,18       | 5:00  | 5,11,17,23            |
-| RAQDPS               | 0,12            | x:xx  | x:xx                  |
-| SILAM                | 0               | x:xx  | x:xx                  |
-| SILAM                | 0               | x:xx  | x:xx                  |
+| RAQDPS               | 0,12            | 4:15  | 4:15,16:15            |
+| SILAM                | 0               | 7:00  | 7                     |
