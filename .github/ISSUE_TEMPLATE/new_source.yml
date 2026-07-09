@@ -1,0 +1,39 @@
+name: New Model Source
+description: Request a new model to be added to the Pirate Weather API
+labels: ["enhancement", "new source", "Needs Review"]
+body:
+
+  - type: textarea
+    id: describe-the-source
+    attributes:
+      label: Describe the source
+    validations:
+      required: true
+
+  - type: input
+    id: source-location
+    attributes:
+      label: Source Location
+      description: The URL where the source is located.
+      placeholder: |
+        Example: "https://registry.opendata.aws/noaa-hrrr-pds/"
+    validations:
+      required: true
+
+  - type: input
+    id: source-documentation
+    attributes:
+      label: Source Documentation
+      description: The URL where the source documentation is located.
+      placeholder: |
+        Example: "https://rapidrefresh.noaa.gov/hrrr/"
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: I have searched this repository and [Home Assistant Repository](https://github.com/alexander0042/pirate-weather-ha) to see if the feature has already been requested.
+          required: true
+        - label: I have written an informative title.
+          required: true

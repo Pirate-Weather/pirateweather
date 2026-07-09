@@ -56,6 +56,7 @@ To provide historic weather data, the [Google European Reanalysis 5 Dataset](htt
 
 ### SILAM
 [System for Integrated modeLling of Atmospheric coMposition](https://silam.fmi.fi) is a global-to-meso-scale dispersion model developed by the Finnish Meteorological Institute (FMI). It provides global coverage at a 20 km resolution, modeling over 100 chemical species and aerosols across the troposphere and stratosphere. Because it utilizes a hybrid Eulerian-Lagrangian approach, SILAM excels at simulating long-range, transboundary transport. It's uniquely suited for projects that need to account for dynamic, natural emissions alongside human ones-such as tracking desert dust storms, sea salt dispersion, global aviation safety risks, or real-time wildland fire emissions on a macro scale.
+**Looking for a weather model that's not listed?** Check the [existing model requests](https://github.com/Pirate-Weather/pirateweather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22new%20source%22) first. If it hasn't already been requested, submit a [new source request](https://github.com/Pirate-Weather/pirateweather/issues/new?template=new_source.yml).
 
 ## Forecast element sources
 Every Pirate Weather forecast element for each time block (`currently`, `minutely`, `hourly`, or `daily`) is listed below, along with the ordered fallback chain for each region. Fallback sources are used if model data is intentionally excluded, the request point is outside of the primary model coverage area, or if there is some sort of data interruption.
