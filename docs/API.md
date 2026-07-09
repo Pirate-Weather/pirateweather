@@ -195,7 +195,7 @@ If `airqualitydetails` is added as an include flag the API will return full poll
 
 If `day_night_forecast` is added as an include flag then the twice-daily forecast will be included.
 
-If `aimodels` is added then results from the AI driven models (AIGFS/AIGEFS/ECMWR-AIFS) will be included.
+If `aimodels` is added then results from the AI driven models (AIGFS/AIGEFS/ECMWF-AIFS) will be included.
 
 
 ### API Response Example
