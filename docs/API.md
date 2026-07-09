@@ -14,8 +14,8 @@ All request attributes are contained within the URL. Request headers are not par
 ### Request Parameters
 The forecast request can be extended in several ways by adding parameters to the URL. The full set of URL options is:
 ```
-https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]&include=[include]
-https://api.pirateweather.net/forecast/[apikey]/[city],[country],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]&include=[include]
+https://api.pirateweather.net/forecast/[apikey]/[latitude],[longitude],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]&include=[included]
+https://api.pirateweather.net/forecast/[apikey]/[city],[country],[time]?exclude=[excluded]&units=[unit]&extend=[hourly]&version=[2]&lang=[lang]&extraVars=[stationPressure]&include=[included]
 ``` 
 
 #### API Key
@@ -106,7 +106,7 @@ Some models can also be excluded, which will force data from the fallback source
 If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.   
 
 #### Version
-If `version>1` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime`, `duskTime`, `currentDayIce`, `currentDayLiquid`, `currentDaySnow`, `processTime`, `ingestVersion`, `nearestCity`, `nearestCountry`, `nearestSubNational`, `cape`, `solar`, `capeMax`, `solarMax`, `rainIntensity`, `snowIntensity`, `iceIntensity`, `rainIntensityMax`, `snowIntensityMax`, `iceIntensityMax` and `airQualityIndex`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
+If `version>1` is included fields which were not part of the Dark Sky API will be included. These fields are `smoke`, `smokeMax`, `smokeMaxTime`, `fireIndex`, `fireIndexMax`, `fireIndexMaxTime`, `liquidAccumulation`, `snowAccumulation`, `iceAccumulation`, `dawnTime`, `duskTime`, `currentDayIce`, `currentDayLiquid`, `currentDaySnow`, `processTime`, `ingestVersion`, `nearestCity`, `nearestCountry`, `nearestSubNational`, `cape`, `solar`, `capeMax`, `solarMax`, `rainIntensity`, `snowIntensity`, `iceIntensity`, `rainIntensityMax`, `snowIntensityMax`, `iceIntensityMax`, `airQualityIndex`, `airQualityIndexMax` and `airQualityIndexMin`. It also includes `nearestStormDistance` and `nearestStormBearing` to each of the hourly blocks and `sourceIDX` where you can see the X/Y and lat/long coordinate for each returned model.
 
 #### Language
 Added as part of the V2.5 release, this parameter allows you to sepecify what language the text summaries use. The possible values for language may be:
@@ -922,9 +922,9 @@ The air quality index for the requested location. The specific index format used
 - **SI / UK:** Uses the [EU Common Air Quality Index (CAQI)](https://www.airqualitynow.eu/about_indices_definition.php).
 
 *How they are calculated:*
--   **US EPA AQI:** Calculated using a 12-hour Nowcast (where the most recent hours are weighted more heavily) for $PM_{2.5}$ and $PM_{10}$, an 8-hour average for $O_3$ and $CO$, and a 1-hour average for $NO_2$ and $SO_2$. The overall index value matches whichever individual pollutant has the highest score.
--   **ECCC AQHI:** Calculated using a formula based on 3-hour rolling averages of $PM_{2.5}$, $O_3$, and $NO_2$. Unlike the US index, these three values are combined into a single health risk calculation rather than just taking the maximum.
--  **EU CAQI:** Calculated using hourly (1-hour) averages for $PM_{2.5}$, $PM_{10}$, $O_3$, and $NO_2$. The overall index value represents the maximum value among all four sub-indices.
+-   **US EPA AQI:** Calculated using a 12-hour Nowcast (where the most recent hours are weighted more heavily) for PM<sub>2.5</sub> and PM<sub>10</sub>, an 8-hour average for O<sub>3</sub> and CO, and a 1-hour average for NO<sub>2</sub> and SO<sub>2</sub>. The overall index value matches whichever individual pollutant has the highest score.
+-   **ECCC AQHI:** Calculated using a formula based on 3-hour rolling averages of PM<sub>2.5</sub>, O<sub>3</sub>, and NO<sub>2</sub>. Unlike the US index, these three values are combined into a single health risk calculation rather than just taking the maximum.
+-  **EU CAQI:** Calculated using hourly (1-hour) averages for PM<sub>2.5</sub>, PM<sub>10</sub>, O<sub>3</sub>, and NO<sub>2</sub>. The overall index value represents the maximum value among all four sub-indices.
 
 #### airQualityIndexMax
 **Only on `daily`**. The maximum air quality index forecasted for the day, represented in the appropriate scale depending on the requested units.

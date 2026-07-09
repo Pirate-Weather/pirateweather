@@ -52,7 +52,7 @@ MOSMIX provides hourly forecasts for thousands of stations worldwide, though not
 To provide historic weather data, the [Google European Reanalysis 5 Dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/arco-era5) is used, specifically their `full_37-1h-0p25deg-chunk-1.zarr-v3` product. Details on the Google implementation are available in [their repository](https://github.com/google-research/arco-era5). In the medium term, I'll be exploring adding a local copy of this repository, which would significantly improve performance.
 
 ### RAQDPS
-[Regional Air Quality Deterministic Prediction System](https://eccc-msc.github.io/open-data/msc-data/nwp_raqdps/readme_raqdps_en/) is maintained by Environment and Climate Change Canada (ECCC) and provides high-resolution regional chemical weather forecasts over North America. It runs twice daily, offering hourly forecasts at a 10 km resolution for up to 72 hours. This model is highly effective for projects needing to track the localized transport, diffusion, and chemical transformation of surface pollutants-specifically ground-level Ozone ($O_3$), Nitrogen Dioxide ($NO_2$), and fine particulate matter ($PM_{2.5}$)-making it a great fit for calculating regional Air Quality Health Indices (AQHI) or tracking active wildfire smoke plumes.
+[Regional Air Quality Deterministic Prediction System](https://eccc-msc.github.io/open-data/msc-data/nwp_raqdps/readme_raqdps_en/) is maintained by Environment and Climate Change Canada (ECCC) and provides high-resolution regional chemical weather forecasts over North America. It runs twice daily, offering hourly forecasts at a 10 km resolution for up to 72 hours. This model is highly effective for projects needing to track the localized transport, diffusion, and chemical transformation of surface pollutants-specifically ground-level Ozone (O<sub>3</sub>), Nitrogen Dioxide (NO<sub>2</sub>), and fine particulate matter (PM<sub>2.5</sub>)-making it a great fit for calculating regional Air Quality Health Indices (AQHI) or tracking active wildfire smoke plumes.
 
 ### SILAM
 [System for Integrated modeLling of Atmospheric coMposition](https://silam.fmi.fi) is a global-to-meso-scale dispersion model developed by the Finnish Meteorological Institute (FMI). It provides global coverage at a 20 km resolution, modeling over 100 chemical species and aerosols across the troposphere and stratosphere. Because it utilizes a hybrid Eulerian-Lagrangian approach, SILAM excels at simulating long-range, transboundary transport. It's uniquely suited for projects that need to account for dynamic, natural emissions alongside human ones-such as tracking desert dust storms, sea salt dispersion, global aviation safety risks, or real-time wildland fire emissions on a macro scale.
@@ -235,7 +235,6 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | DWD MOSMIX           | 0-24            | 1:00  | 1:00-0:00             |
 | ECMWF AIFS           | 0,6,12,18       | 8:00  | 8,16,20,2             |
 | AIGFS                | 0,6,12,18       | 5:00  | 5,11,17,23            |
-| AIGEFS               | 0,6,12,18       | 7:00  | 7,13,19,1             |
-| AIGEFS               | 0,6,12,18       | 7:00  | 7,13,19,1             |
 | RAQDPS               | 0,12            | x:xx  | x:xx                  |
+| SILAM                | 0               | x:xx  | x:xx                  |
 | SILAM                | 0               | x:xx  | x:xx                  |
