@@ -2,7 +2,13 @@
 
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
-???+ note "Version 2.9"
+???+ note "Version 2.10"
+	* July 16, 2026, API Version 2.10.0b1
+		* Raise the minimum height in FMI SILAM `smoke` calculations for better `smoke` values per [PR #698](https://github.com/Pirate-Weather/pirate-weather-code/pull/698).
+		* Fix FMI SILAM ingest memory leak and ERA5 cache per [PR #696](https://github.com/Pirate-Weather/pirate-weather-code/pull/696).
+		* Fix an issue where hourly UV Index was an integer instead of being rounded to two decimal places per [PR #692](https://github.com/Pirate-Weather/pirate-weather-code/pull/692).
+
+??? note "Version 2.9"
 	* July 9, 2026, API Version 2.9.7
 		* Add in a long requested feature to add an air quality index to the API per [issue #92](https://github.com/Pirate-Weather/pirateweather/issues/92).
 		* Fix an issue where dawn was before dusk as reported in [issue #648](https://github.com/Pirate-Weather/pirateweather/issues/648).

@@ -388,7 +388,7 @@ If `aimodels` is added then results from the AI driven models (AIGFS/AIGEFS/ECMW
 		},
 		"nearest-station": -999,
 		"units": "ca",
-		"version": "V2.9.7"
+		"version": "V2.10.0"
   	}
 ```
 
@@ -511,7 +511,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sourceTimes": {},
 	"nearest-station": 0,
 	"units": "ca",
-	"version": "V2.9.7"
+	"version": "V2.10.0"
 	}
 }
 ```
