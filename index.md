@@ -38,7 +38,7 @@ feature_row:
     btn_label: "Check status"
     btn_class: "btn--primary"
 feature_row_mcp:
-  - image_path: /docs/images/pw_favicon.png
+  - image_path: https://raw.githubusercontent.com/Pirate-Weather/pirateweather/main/docs/images/pw_favicon.png
     image_caption: "REST and MCP access from one weather platform"
     alt: "Pirate Weather logo"
     title: "Weather data for developers—and agents"
