@@ -1,7 +1,7 @@
 # Pirate Weather Repo
 This is the primary repository for the Pirate Weather API, a free and open API designed to serve weather forecast data using the same syntax as Dark Sky. 
 
-To sign up, a free API key can be requested at [https://pirate-weather.apiable.io/](https://pirate-weather.apiable.io/). API Documentation is at [https://pirateweather.net/en/latest/API/](https://pirateweather.net/en/latest/API/), a front end is available at [https://merrysky.net](https://merrysky.net) and the status page is available at https://pirateweather.xitoring.io/
+To sign up, a free API key can be requested at [https://pirate-weather.apiable.io/](https://pirate-weather.apiable.io/). API Documentation is at [https://docs.pirateweather.net/en/latest/]([https://pirateweather.net/](https://docs.pirateweather.net/en/latest/), a front end is available at [https://merrysky.net](https://merrysky.net) and the status page is available at https://pirateweather.xitoring.io/
 
 The API source code is now publicly available here: https://github.com/Pirate-Weather/pirate-weather-code! You're now able to self-host your own instance of the Pirate Weather API or just browse through the code if you're curious on how the API works.
 
@@ -15,8 +15,6 @@ In this repository, I've included:
 
 * API Documentation:
   * <https://github.com/alexander0042/pirateweather/tree/main/docs>
-* The full API source code is available at 
-  * https://github.com/Pirate-Weather/pirate-weather-code
 
 ## Support
 Keeping this free and running isn't free, so [donations to support this project](https://github.com/sponsors/alexander0042) are greatly appreciated! Plus, recurring monthly donations let me raise a API limit, allowing more frequent weather refreshes! 
