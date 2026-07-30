@@ -11,7 +11,7 @@ remote_theme: "mmistakes/minimal-mistakes@4.28.0"
 minimal_mistakes_skin: dark
 
 locale: en-US
-logo: /docs/images/pw_favicon.png
+logo: https://raw.githubusercontent.com/Pirate-Weather/pirateweather/main/docs/images/pw_favicon.png
 masthead_title: Pirate Weather
 breadcrumbs: false
 search: false
@@ -40,7 +40,12 @@ atom_feed:
 include:
   - _pages
 
+# This Pages site is only the marketing landing page. The existing docs and
+# developer portal are built by their own toolchains and contain Jinja syntax
+# that Jekyll would otherwise attempt to parse as Liquid.
 exclude:
+  - docs
+  - DevPortal
   - Gemfile
   - Gemfile.lock
   - node_modules
