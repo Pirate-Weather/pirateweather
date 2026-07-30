@@ -27,9 +27,9 @@ feature_row:
     url: "https://docs.pirateweather.net/en/latest/API/"
     btn_label: "Explore the API"
     btn_class: "btn--primary"
-  - icon: "fas fa-eye"
-    title: "Transparent forecasts"
-    excerpt: "Public model data, documented processing, and open-source code make it possible to see how forecasts are built."
+  - icon: "fas fa-globe"
+    title: "Global Coverage"
+    excerpt: "Forecasts combine global and regional model guidance from NOAA, ECMWF, FMI, and CMC."
     url: "https://docs.pirateweather.net/en/latest/DataSources/"
     btn_label: "View data sources"
     btn_class: "btn--primary"
@@ -38,6 +38,18 @@ feature_row:
     excerpt: "Hosted infrastructure provides dependable access for apps, dashboards, automations, and community projects."
     url: "https://pirateweather.xitoring.io/"
     btn_label: "Check status"
+    btn_class: "btn--primary"
+  - icon: "fas fa-users"
+    title: "Community driven"
+    excerpt: "Development is guided by real-world use cases, public discussion, bug reports, and contributions from the community."
+    url: "https://github.com/Pirate-Weather/pirate-weather-code/issues"
+    btn_label: "Report an issue"
+    btn_class: "btn--primary"
+  - icon: "fas fa-robot"
+    title: "AI ready"
+    excerpt: "New AI-based forecast guidance includes NOAA AIGFS and ECMWF AIFS models alongside established numerical weather prediction sources."
+    url: "https://docs.pirateweather.net/en/latest/DataSources/#aigfs-aigefs"
+    btn_label: "Explore AI models"
     btn_class: "btn--primary"
 feature_row_mcp:
   - image_path: https://raw.githubusercontent.com/Pirate-Weather/pirateweather/main/docs/images/pw_favicon.png
@@ -85,7 +97,7 @@ feature_row_ecosystem:
 <section id="features" class="pw-section">
   <p class="pw-kicker">Built for practical integration</p>
   <h2>A weather API that shows its work.</h2>
-  <p class="pw-lede">Pirate Weather combines a familiar developer experience with transparent data sources and community-led improvement.</p>
+  <p class="pw-lede">Pirate Weather combines a familiar developer experience with global model coverage, AI-based guidance, and community-led improvement.</p>
 </section>
 
 {% include feature_row %}
