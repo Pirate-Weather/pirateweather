@@ -1,0 +1,68 @@
+title: Pirate Weather
+subtitle: Open weather data for developers
+description: >-
+  An open-source, developer-focused weather API with Dark Sky-compatible
+  responses, transparent data sources, and hosted REST and MCP access.
+url: https://pirate-weather.github.io
+baseurl: /pirateweather
+repository: Pirate-Weather/pirateweather
+
+remote_theme: "mmistakes/minimal-mistakes@4.28.0"
+minimal_mistakes_skin: dark
+
+locale: en-US
+logo: https://raw.githubusercontent.com/Pirate-Weather/pirateweather/main/docs/images/pw_favicon.png
+masthead_title: Pirate Weather
+breadcrumbs: false
+search: false
+
+plugins:
+  - jekyll-include-cache
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+footer:
+  links:
+    - label: GitHub
+      icon: fab fa-fw fa-github
+      url: https://github.com/Pirate-Weather
+    - label: Status
+      icon: fas fa-fw fa-signal
+      url: https://pirateweather.xitoring.io/
+    - label: Sponsor
+      icon: fas fa-fw fa-heart
+      url: https://github.com/sponsors/alexander0042
+
+atom_feed:
+  hide: true
+
+include:
+  - _pages
+
+# This Pages site is only the marketing landing page. The existing docs and
+# developer portal are built by their own toolchains and contain Jinja syntax
+# that Jekyll would otherwise attempt to parse as Liquid.
+exclude:
+  - docs
+  - DevPortal
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: single
+      author_profile: false
+      read_time: false
+      comments: false
+      share: false
+      related: false
