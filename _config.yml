@@ -3,11 +3,11 @@ subtitle: Open weather data for developers
 description: >-
   An open-source, developer-focused weather API with Dark Sky-compatible
   responses, transparent data sources, and hosted REST and MCP access.
-url: https://pirateweather.net
-baseurl: ""
+url: https://pirate-weather.github.io
+baseurl: /pirateweather
 repository: Pirate-Weather/pirateweather
 
-remote_theme: mmistakes/minimal-mistakes
+remote_theme: "mmistakes/minimal-mistakes@4.28.0"
 minimal_mistakes_skin: dark
 
 locale: en-US
