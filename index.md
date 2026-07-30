@@ -17,19 +17,19 @@ header:
       url: "https://docs.pirateweather.net/"
   caption: "Open source · Developer focused · Weather without the black box"
 excerpt: >-
-  Forecast data you can inspect, integrate, and trust. Pirate Weather turns
-  public weather-model data into a fast, documented API with familiar
-  Dark Sky-compatible responses and modern REST and MCP access.
+  Weather you can inspect, integrate, and trust. Pirate Weather turns public
+  data into a fast, documented API with familiar Dark Sky-compatible responses
+  and modern REST and MCP access.
 feature_row:
   - icon: "fas fa-code"
     title: "Familiar API"
-    excerpt: "A practical Dark Sky-compatible JSON interface for existing applications and new integrations."
+    excerpt: "A practical Dark Sky-compatible JSON interface for existing applications and new integrations, with readable text summaries available in any supported language."
     url: "https://docs.pirateweather.net/en/latest/API/"
     btn_label: "Explore the API"
     btn_class: "btn--primary"
   - icon: "fas fa-globe"
     title: "Global Coverage"
-    excerpt: "Forecasts combine global and regional model guidance from NOAA, ECMWF, FMI, and CMC."
+    excerpt: "Global and regional forecast guidance from NOAA, ECMWF, FMI, and CMC provides broad coverage with local detail where available."
     url: "https://docs.pirateweather.net/en/latest/DataSources/"
     btn_label: "View data sources"
     btn_class: "btn--primary"
@@ -47,9 +47,15 @@ feature_row:
     btn_class: "btn--primary"
   - icon: "fas fa-robot"
     title: "AI ready"
-    excerpt: "New AI-based forecast guidance includes NOAA AIGFS and ECMWF AIFS models alongside established numerical weather prediction sources."
+    excerpt: "Optionally include NOAA AIGFS/AIGEFS or ECMWF AIFS machine-learning guidance alongside established numerical weather models."
     url: "https://docs.pirateweather.net/en/latest/DataSources/#aigfs-aigefs"
     btn_label: "Explore AI models"
+    btn_class: "btn--primary"
+  - icon: "fas fa-history"
+    title: "Historic data"
+    excerpt: "Request ERA5 reanalysis data from 1940 onward through the same familiar API format used for current forecasts."
+    url: "https://docs.pirateweather.net/en/latest/API/#time-machine-request"
+    btn_label: "Explore historic data"
     btn_class: "btn--primary"
 feature_row_mcp:
   - image_path: https://raw.githubusercontent.com/Pirate-Weather/pirateweather/main/docs/images/pw_favicon.png
@@ -97,7 +103,7 @@ feature_row_ecosystem:
 <section id="features" class="pw-section">
   <p class="pw-kicker">Built for practical integration</p>
   <h2>A weather API that shows its work.</h2>
-  <p class="pw-lede">Pirate Weather combines a familiar developer experience with global model coverage, AI-based guidance, and community-led improvement.</p>
+  <p class="pw-lede">Pirate Weather combines a familiar developer experience with global model coverage, optional AI-based guidance, historical data, and community-led improvement.</p>
 </section>
 
 {% include feature_row %}
@@ -106,7 +112,7 @@ feature_row_ecosystem:
   <div>
     <p class="pw-kicker">Straightforward by design</p>
     <h2>One request. A complete forecast.</h2>
-    <p>Request current conditions plus minutely, hourly, and daily forecasts through a predictable JSON response.</p>
+    <p>Request current conditions, minute-by-minute precipitation, hourly and daily forecasts, and active weather alerts through a predictable JSON response.</p>
     <a href="https://docs.pirateweather.net/en/latest/TryItNow/" class="btn btn--primary">Make a test request</a>
   </div>
   <pre><code>GET /forecast/&lt;API_KEY&gt;/45.42,-75.69
@@ -118,8 +124,19 @@ feature_row_ecosystem:
     "temperature": 23.4,
     "windSpeed": 11.2
   },
+  "minutely": {
+    "summary": "Rain starting in 15 minutes.",
+    "data": [ ... ]
+  },
   "hourly": { ... },
-  "daily": { ... }
+  "daily": { ... },
+  "alerts": [
+    {
+      "title": "Rainfall Warning",
+      "severity": "warning",
+      "description": "Heavy rain is expected."
+    }
+  ]
 }</code></pre>
 </section>
 
