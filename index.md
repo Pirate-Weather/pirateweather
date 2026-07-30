@@ -12,7 +12,9 @@ header:
     - label: "Get an API key"
       url: "https://pirate-weather.apiable.io/products/weatherdata/plans"
     - label: "Try the API"
-      url: "https://pirateweather.net/en/latest/TryItNow/"
+      url: "https://docs.pirateweather.net/en/latest/TryItNow/"
+    - label: "Read the docs"
+      url: "https://docs.pirateweather.net/"
   caption: "Open source · Developer focused · Weather without the black box"
 excerpt: >-
   Forecast data you can inspect, integrate, and trust. Pirate Weather turns
@@ -22,13 +24,13 @@ feature_row:
   - icon: "fas fa-code"
     title: "Familiar API"
     excerpt: "A practical Dark Sky-compatible JSON interface for existing applications and new integrations."
-    url: "https://pirateweather.net/en/latest/API/"
+    url: "https://docs.pirateweather.net/en/latest/API/"
     btn_label: "Explore the API"
     btn_class: "btn--primary"
   - icon: "fas fa-eye"
     title: "Transparent forecasts"
     excerpt: "Public model data, documented processing, and open-source code make it possible to see how forecasts are built."
-    url: "https://pirateweather.net/en/latest/DataSources/"
+    url: "https://docs.pirateweather.net/en/latest/DataSources/"
     btn_label: "View data sources"
     btn_class: "btn--primary"
   - icon: "fas fa-cloud"
@@ -47,7 +49,7 @@ feature_row_mcp:
       agents to the hosted MCP server. Forecast, current, hourly, minutely,
       daily, alert, historical, summary, and subscription tools are available
       through a remote streamable HTTP endpoint.
-    url: "https://pirateweather.net/en/latest/#mcp-server"
+    url: "https://docs.pirateweather.net/en/latest/#mcp-server"
     btn_label: "Connect the MCP server"
     btn_class: "btn--primary"
 feature_row_ecosystem:
@@ -66,13 +68,18 @@ feature_row_ecosystem:
     url: "https://weathergraph.app/"
     btn_label: "Visit Weathergraph"
     btn_class: "btn--inverse"
+  - title: "Home Assistant"
+    excerpt: "A Dark Sky-compatible custom integration for Home Assistant, available through HACS."
+    url: "https://github.com/Pirate-Weather/pirate-weather-ha"
+    btn_label: "View integration"
+    btn_class: "btn--inverse"
 ---
 
 <div class="pw-proof" aria-label="Pirate Weather platform highlights">
   <div><strong>REST API</strong><span>Forecast and historical weather</span></div>
   <div><strong>MCP Server</strong><span>Tools for applications and agents</span></div>
   <div><strong>10,000</strong><span>Free calls each month</span></div>
-  <div><strong>Open Source</strong><span>Documented processing pipeline</span></div>
+  <div><strong>Open Source</strong><span>Run locally or use our cloud endpoint</span></div>
 </div>
 
 <section id="features" class="pw-section">
@@ -88,7 +95,7 @@ feature_row_ecosystem:
     <p class="pw-kicker">Straightforward by design</p>
     <h2>One request. A complete forecast.</h2>
     <p>Request current conditions plus minutely, hourly, and daily forecasts through a predictable JSON response.</p>
-    <a href="https://pirateweather.net/en/latest/TryItNow/" class="btn btn--primary">Make a test request</a>
+    <a href="https://docs.pirateweather.net/en/latest/TryItNow/" class="btn btn--primary">Make a test request</a>
   </div>
   <pre><code>GET /forecast/&lt;API_KEY&gt;/45.42,-75.69
 
@@ -113,6 +120,7 @@ feature_row_ecosystem:
   <p class="pw-kicker">A growing ecosystem</p>
   <h2>Powering weather apps, dashboards, and automations.</h2>
   <p class="pw-lede">Pirate Weather already supports projects across mobile, desktop, browser extensions, Home Assistant, and custom workflows.</p>
+  <p class="pw-lede">The service has been featured by the <a href="https://aws.amazon.com/blogs/publicsector/making-weather-forecasts-accessible-serverless-infrastructure-open-data-aws/">AWS Public Sector Blog</a>, <a href="https://tldr.tech/tech/2023-01-11">TLDR</a>, <a href="https://boingboing.net/2023/01/10/pirate-weather-api-has-more-features.html">Boing Boing</a>, and the <a href="https://news.ycombinator.com/item?id=34329988">Hacker News community</a>.</p>
 </section>
 
 {% include feature_row id="feature_row_ecosystem" %}
@@ -120,7 +128,7 @@ feature_row_ecosystem:
 <section class="pw-final-cta">
   <p class="pw-kicker">Start building</p>
   <h2>Open weather data with familiar interfaces.</h2>
-  <p>Build with the hosted API, review the source, or support the free tier.</p>
+  <p>Build with the hosted API, review the source, or support the project with a paid subscription.</p>
   <p>
     <a href="https://pirate-weather.apiable.io/products/weatherdata/plans" class="btn btn--primary btn--large">Create an API key</a>
     <a href="https://github.com/Pirate-Weather/pirate-weather-code" class="btn btn--inverse btn--large">View the source</a>
