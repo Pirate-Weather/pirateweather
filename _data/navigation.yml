@@ -6,6 +6,6 @@ main:
   - title: MCP Server
     url: /#mcp
   - title: Documentation
-    url: https://pirateweather.net/en/latest/
+    url: https://docs.pirateweather.net/
   - title: Get an API Key
     url: https://pirate-weather.apiable.io/products/weatherdata/plans
