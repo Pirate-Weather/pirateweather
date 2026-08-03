@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/stale@v10
+    - uses: actions/stale@v11
       with:
         exempt-issue-assignees: 'alexander0042'
         exempt-pr-assignees: 'alexander0042'
