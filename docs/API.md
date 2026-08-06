@@ -197,6 +197,13 @@ If `day_night_forecast` is added as an include flag then the twice-daily forecas
 
 If `aimodels` is added then results from the AI driven models (AIGFS/AIGEFS/ECMWF-AIFS) will be included.
 
+#### AQI Unit Override
+`aqiunits=` is used to override the default AQI scale for your selected units. The following values are accepted:
+
+- `eu` for the modified EAQI scale
+- `ca` for the AQHI scale
+- `us` for the US EPA scale
+
 
 ### API Response Example
 ```
@@ -932,7 +939,7 @@ The air quality index for the requested location. The specific index format used
 <ul>
 <li><strong>US EPA AQI</strong>: Calculated using a 12-hour Nowcast (where the most recent hours are weighted more heavily) for PM<sub>2.5</sub> and PM<sub>10</sub>, an 8-hour average for O<sub>3</sub> and CO, and a 1-hour average for NO<sub>2</sub> and SO<sub>2</sub>. The overall index value matches whichever individual pollutant has the highest score.</li>
 <li><strong>ECCC AQHI</strong>: Calculated using a formula based on 3-hour rolling averages of PM<sub>2.5</sub>, O<sub>3</sub>, and NO<sub>2</sub>. Unlike the US index, these three values are combined into a single health risk calculation rather than just taking the maximum.</li>
-<li><strong>EU CAQI</strong>: Calculated using hourly (1-hour) averages for PM<sub>2.5</sub>, PM<sub>10</sub>, O<sub>3</sub>, and NO<sub>2</sub>. The overall index value represents the maximum value among all four sub-indices.</li>
+<li><strong>EU EAQI</strong>: Calculated using hourly (1-hour) averages for PM<sub>2.5</sub>, PM<sub>10</sub>, O<sub>3</sub>, NO<sub>2</sub>, and SO<sub>2</sub>. The overall index value represents the maximum value among all four sub-indices.</li>
 </ul>
 
 #### airQualityIndexMax
@@ -961,10 +968,10 @@ The sulfur dioxide concentration represented in parts per billion (ppb).
 
 ### Index Reference Ranges
 
-Because each regional index uses unique breakpoints, severities, and data scales, use the respective tables below to map UI labels and alert colors based on your query's `units` parameter.
+Because each regional index uses unique breakpoints, severities, and data scales, use the respective tables below to map UI labels and alert colors based on your query's `units` parameter or the `aqiunits` override parameter.
 
 #### US EPA AQI (Default / US Units)
-Scale ranges from **0 to 500+**. 
+Scale ranges from **0 to 500**. 
 
 | AQI Value | Severity Label | Suggested UI Color |
 | :--- | :--- | :--- |
@@ -973,7 +980,7 @@ Scale ranges from **0 to 500+**.
 | **101 - 150** | Unhealthy for Sensitive Groups | Orange |
 | **151 - 200** | Unhealthy | Red |
 | **201 - 300** | Very Unhealthy | Purple |
-| **301 - 500+** | Hazardous | Maroon |
+| **301 - 500** | Hazardous | Maroon |
 
 #### ECCC AQHI (Canada / CA Units)
 Scale ranges from **1 to 10+**.
@@ -983,18 +990,20 @@ Scale ranges from **1 to 10+**.
 | **1 - 3** | Low Risk | Blue |
 | **4 - 6** | Moderate Risk | Yellow |
 | **7 - 10** | High Risk | Red |
-| **10+** | Very High Risk | Dark Burgundy |
+| **10** | Very High Risk | Dark Burgundy |
 
-#### EU CAQI (SI / UK Units)
-Scale ranges from **0 to 100+**.
+#### EU EAQI (SI / UK Units)
+Scale ranges from **0 to 100**.
 
-| CAQI Value | Index Level | Suggested UI Color |
+**Note**: The eaqi field is a normalized 0-100 representation of the European Air Quality Index rather than the official EAQI index. This format was adopted to maintain backward compatibility with earlier versions of the API that returned CAQI values on a 0-100 scale, allowing existing applications to transition to EAQI without changes to their UI thresholds or color mappings.
+
+| EAQI Value | Index Level | Suggested UI Color |
 | :--- | :--- | :--- |
-| **0 - 25** | Very Low | Green |
-| **26 - 50** | Low | Light Green / Yellow-Green |
-| **51 - 75** | Medium | Yellow |
-| **76 - 100** | High | Orange |
-| **100+** | Very High | Red |
+| **0 - 20** | Good | Green |
+| **21 - 40** | Fair | Light Green / Yellow-Green |
+| **41 - 60** | Moderate | Yellow |
+| **61 - 80** | Poor | Orange |
+| **81 - 100** | Very poor | Red |
 
 ### Alerts
 

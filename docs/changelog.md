@@ -4,7 +4,9 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.10"
 	* July 16, 2026, API Version 2.10.0b1
-		* Raise the minimum height in FMI SILAM `smoke` calculations for better `smoke` values per [PR #698](https://github.com/Pirate-Weather/pirate-weather-code/pull/698).
+		* Add `aqiunits` query parameter to override AQI unit system per [PR #709](https://github.com/Pirate-Weather/pirate-weather-code/pull/709).
+		* Change CAQI to Normalized EAQI using the CAQI 0-100 scale per [PR #705](https://github.com/Pirate-Weather/pirate-weather-code/pull/705).
+		* Update the `smoke` calculations for better `smoke` values using better BLH estimates and PM2.5 scaling per [PR #703](https://github.com/Pirate-Weather/pirate-weather-code/pull/703).
 		* Fix FMI SILAM ingest memory leak and ERA5 cache per [PR #696](https://github.com/Pirate-Weather/pirate-weather-code/pull/696).
 		* Fix an issue where hourly UV Index was an integer instead of being rounded to two decimal places per [PR #692](https://github.com/Pirate-Weather/pirate-weather-code/pull/692).
 
