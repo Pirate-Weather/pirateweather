@@ -4,6 +4,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.10"
 	* July 16, 2026, API Version 2.10.0b1
+		* Added support for the UK DAQI for `uk` units per [PR #710](https://github.com/Pirate-Weather/pirate-weather-code/pull/710).
 		* Add `aqiunits` query parameter to override AQI unit system per [PR #709](https://github.com/Pirate-Weather/pirate-weather-code/pull/709).
 		* Change CAQI to Normalized EAQI using the CAQI 0-100 scale per [PR #705](https://github.com/Pirate-Weather/pirate-weather-code/pull/705).
 		* Update the `smoke` calculations for better `smoke` values using better BLH estimates and PM2.5 scaling per [PR #703](https://github.com/Pirate-Weather/pirate-weather-code/pull/703).
