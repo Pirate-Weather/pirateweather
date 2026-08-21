@@ -1,5 +1,15 @@
 # API Docs
-This page serves as the documentation for the Pirate Weather API call and response format. Since this service is designed to be a drop in replacement for the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs), the goal is to match that as closely as possible, and any disagreement between their service and Pirate Weather will be treated as a bug. However, as Pirate Weather continues to evolve, I plan on adding small, non-breaking additions where I can, and they will be documented here! Plus, always better to have my own (open source and editable) version of the docs!
+This section documents the Pirate Weather API. Since this service is designed to be a drop in replacement for the [Dark Sky API](https://web.archive.org/web/20200723173936/https://darksky.net/dev/docs), the goal is to match that as closely as possible, and any disagreement between their service and Pirate Weather will be treated as a bug. However, as Pirate Weather continues to evolve, I plan on adding small, non-breaking additions where I can, and they will be documented here! Plus, always better to have my own (open source and editable) version of the docs!
+
+The API documentation is split across several pages:
+
+- **[Request](index.md)** – How to structure a request, all URL parameters, and the AQI unit override.
+- **[Response Examples](response-example.md)** – Full JSON examples for forecast and Time Machine responses.
+- **[Data Blocks](data-blocks.md)** – Description of every field returned in the JSON response.
+- **[Air Quality](air-quality.md)** – Air quality index elements and regional index reference tables.
+- **[Alerts, Flags & Errors](alerts-flags-errors.md)** – Alert fields, flag fields, response headers, and error codes.
+
+This page covers how to structure a request to the API.
 
 <!-- An alpha [Swagger UI](https://github.com/swagger-api/swagger-ui) for the API is also available at <https://api.pirateweather.net/docs>. -->
 

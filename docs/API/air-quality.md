@@ -1,3 +1,7 @@
+# Air Quality
+
+This page documents the air quality fields returned by the Pirate Weather API and provides reference tables for the regional air quality indexes used by each unit system. The index applied depends on the `units` parameter (or the `aqiunits` override), with separate indexes for US, Canadian, UK, and European standards.
+
 ### Air Quality Elements
 
 #### airQualityIndex

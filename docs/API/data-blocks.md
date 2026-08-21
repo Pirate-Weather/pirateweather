@@ -1,3 +1,7 @@
+# Data Blocks
+
+This page describes every field returned in the Pirate Weather API JSON response, including all top-level data blocks and the individual data point properties available within them.
+
 ### Data Block
 The API returns a JSON object with the following properties
 

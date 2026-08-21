@@ -1,3 +1,7 @@
+# Alerts, Flags & Errors
+
+This page describes the fields returned in the `alerts` and `flags` blocks, the response headers included in every API response, and the error codes the API may return.
+
 ### Alerts
 
 #### title

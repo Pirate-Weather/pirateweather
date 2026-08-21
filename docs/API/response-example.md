@@ -1,3 +1,7 @@
+# Response Examples
+
+This page shows full JSON response examples for both the forecast API and the Time Machine API, so you can see what the complete payload looks like before integrating with the API.
+
 ### API Response Example
 ```
 	GET https://api.pirateweather.net/forecast/1234567890abcdefghijklmnopqrstuvwxyz/45.42,-74.30?&units=ca
