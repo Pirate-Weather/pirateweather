@@ -1,0 +1,39 @@
+name: Air Quality Index Request
+description: Request a new Air Quality Index to be added to the PirateWeather API
+labels: ["enhancement", "Needs Review", "air quality index"]
+body:
+
+  - type: textarea
+    id: describe-the-index
+    attributes:
+      label: Describe the air quality index
+    validations:
+      required: true
+
+  - type: input
+    id: index-documentation
+    attributes:
+      label: Air quality index documentation
+      description: A URL which shows the different breakpoints for the different pollutants and how to calculate the index.
+      placeholder: |
+        Example: "https://aqihub.info/indices/us"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: I have checked [the existing issues](https://github.com/Pirate-Weather/pirateweather/issues?q=state%3Aopen%20label%3A%22air%20quality%20index%22) to see if the index has already been requested.
+          required: true
+        - label: I have checked [the documentation](https://docs.pirateweather.net/en/latest/API/#index-reference-ranges) to see if the Air Quality index has already been implemented. 
+          required: true
+        - label: The air quality index link I provided shows how the index is calcualted and the pollutant breakpoints for the different values.
+          required: true
+        - label: I can provide a translation for the provided URL if the language is not English.
+          required: true
+        - label: I have written an informative title.
+          required: true
+        - label: I have written my request in English.
+          required: true

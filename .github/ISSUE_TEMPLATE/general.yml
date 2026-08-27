@@ -23,3 +23,5 @@ body:
           required: true
         - label: I have written an informative title.
           required: true
+        - label: I have written my request in English.
+          required: true
