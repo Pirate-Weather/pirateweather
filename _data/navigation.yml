@@ -1,0 +1,11 @@
+main:
+  - title: Features
+    url: /#features
+  - title: Ecosystem
+    url: /#ecosystem
+  - title: MCP Server
+    url: /#mcp
+  - title: Documentation
+    url: https://docs.pirateweather.net/
+  - title: Get an API Key
+    url: https://pirate-weather.apiable.io/products/weatherdata/plans
