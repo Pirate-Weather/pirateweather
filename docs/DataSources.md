@@ -28,6 +28,18 @@ The European Centre for Medium-Range Weather Forecasts Integrated Forecasting Sy
 
 The ECMWF IFS underpins many operational forecasting systems worldwide, serving as a benchmark for global models due to its strong performance in forecast skill, particularly for medium-range (3–10 days) predictions and ensemble probabilistic guidance.
 
+#### HRDPS
+The High Resolution Deterministic Prediction System (HRDPS) is maintained by Environment and Climate Change Canada (ECCC). It carries out detailed physics calculations to provide high-resolution deterministic forecasts of atmospheric elements—such as temperature, precipitation, cloud cover, and wind—across most of Canada at a horizontal resolution of about 2.5 km. Operating out to 48 hours, the HRDPS runs up to four times daily, providing localized, high-fidelity regional weather data.
+
+#### REPS
+The Regional Ensemble Prediction System ([REPS](https://eccc-msc.github.io/open-data/msc-data/nwp_reps/readme_reps_en/)) is ECCC's regional probabilistic prediction system. Covering Canada and the United States at a 10 km resolution, REPS runs four times daily out to 3 days. It generates forecasts using a control member alongside 20 perturbed ensemble members (incorporating initial/boundary conditions and physical tendency perturbations) to model atmospheric uncertainty and deliver robust probabilistic weather insights.
+
+#### GDPS
+The Global Deterministic Prediction System ([GDPS](https://eccc-msc.github.io/open-data/msc-data/nwp_gdps/readme_gdps_en/)) is Canada's primary global numerical weather prediction system, operated by ECCC. Utilizing a coupled atmosphere (GEM), ocean, and sea ice (NEMO-CICE) framework, the GDPS provides global deterministic forecasts at a ~15 km resolution out to 10 days. Running twice daily, it supplies large-scale global meteorological guidance and boundary conditions that feed into regional and high-resolution Canadian modeling pipelines.
+
+#### GEPS
+The Global Ensemble Prediction System ([GEPS](https://eccc-msc.github.io/open-data/msc-data/nwp_geps/readme_geps_en/)) is ECCC's global ensemble model, designed to estimate forecast uncertainties driven by the chaotic behavior of the atmosphere. Running twice daily, the GEPS produces global probabilistic forecasts out to 16 days (and up to 39 days twice weekly) using a control member and 20 ensemble members perturbed via stochastic parameter methods. It provides widespread probabilistic guidance on temperature, precipitation, wind, and humidity.
+
 #### ECMWF AIFS
 The ECMWF Artificial Intelligence/Integrated Forecasting System [(ECMWF AIFS)](https://www.ecmwf.int/en/about/media-centre/aifs-blog) is a machine-learning-based global weather model developed by ECMWF. Trained on ERA5 reanalysis and IFS operational data, AIFS produces deterministic medium-range forecasts at competitive accuracy to the IFS at a fraction of the computational cost.
 
@@ -234,6 +246,10 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | RTMA-RU              | 0-24            | 0:25  | :25,:40,:55,:10       |
 | ECMWF IFS            | 0,12            | 8:00  | 8,20                  |
 | DWD MOSMIX           | 0-24            | 1:00  | 1:00-0:00             |
+| HRDPS                | 0,6,12,18       | x:xx  | x,x,x,x               |
+| REPS                 | 0,6,12,18       | x:xx  | x,x,x,x               |
+| GDPS                 | 0,12            | x:xx  | x,x                   |
+| GEPS                 | 0,12            | x:xx  | x,x                   |
 | ECMWF AIFS           | 0,6,12,18       | 8:00  | 8,16,20,2             |
 | AIGFS                | 0,6,12,18       | 5:00  | 5,11,17,23            |
 | RAQDPS               | 0,12            | 4:15  | 4:15,16:15            |
