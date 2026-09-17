@@ -1,8 +1,8 @@
 # Databases for days
 
-Databases have always been one of the parts of Pirate Weather's infrastructure that I try not to touch unless I absolutely have to. There's plenty of weater data to worry about without adding user data on top of it, and user data is much higher stakes to make sure it's handlled correctly. Weather data is relatively straightforward: download some files, process them, save them somewhere fast, and read them when someone makes an API request. User accounts, API keys, rate limits, subscriptions, and authentication state are a little different.
+Databases have always been one of the parts of Pirate Weather's infrastructure that I try not to touch unless I absolutely have to. There's plenty of weather data to worry about without adding user data on top of it, and user data is much higher stakes to make sure it's handled correctly. Weather data is relatively straightforward: download some files, process them, save them somewhere fast, and read them when someone makes an API request. User accounts, API keys, rate limits, subscriptions, and authentication state are a little different.
 
-Those need a database; however, the good news is that Kong and Apibale do all of this for me, happily interfacing with PostgreSQL to keep track of everything. Until August 27, when several long-time Pirate Weather users suddenly started receiving `403 Unauthorized` responses from the API. Their Apibale subscriptions were showing as expired and, more concerningly, their API keys had been revoked.
+Those need a database; however, the good news is that Kong and Apiable do all of this for me, happily interfacing with PostgreSQL to keep track of everything. Until August 27, when several long-time Pirate Weather users suddenly started receiving `403 Unauthorized` responses from the API. Their Apiable subscriptions were showing as expired and, more concerningly, their API keys had been revoked.
 
 This ultimately turned into one of the stranger Pirate Weather incidents in a while. After checking with Apiable, around 140 subscriptions had unexpectedly been removed due to a glitch in how their cleanup scripts responded to manual actions I had taken, requiring me to recover their Kong consumers, API keys, access-control settings, and rate limits from a backup database without overwriting anything that had legitimately changed in production (mostly new signups).
 
@@ -19,7 +19,7 @@ Behind Kong is a PostgreSQL database running on Amazon RDS. This database stores
 * Rate-limit configuration; and
 * Other gateway metadata.
 
-Apibale sits on top of this and handles the user-facing registration and subscription process. When someone signs up, the relevant configuration goes into Kong, and Kong uses that information to decide whether an incoming request should be allowed.
+Apiable sits on top of this and handles the user-facing registration and subscription process. When someone signs up, the relevant configuration goes into Kong, and Kong uses that information to decide whether an incoming request should be allowed.
 
 ### RDS
 
