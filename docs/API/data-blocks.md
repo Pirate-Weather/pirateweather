@@ -30,7 +30,7 @@ A block containing the minute-by-minute precipitation intensity for the 60 minut
 A block containing the hour-by-hour forecasted conditions for the next 48 hours. If `extend=hourly` is used then the hourly block gives hour-by-hour forecasted conditions for the next 168 hours.
 
 ### day_night
-A block containing a day and night forecast for the next 7 days. The day portion of the forecast is calculated from 4:00 am to 4:59 pm and the night portion is calculated from 5:00 pm to 3:59 am. The data is included as a 16 item list, alternating between the day and night forecast starting from the current day.
+A block containing a day and night forecast for today and the next 7 days. The day portion of the forecast is calculated from 4:00 am to 4:59 pm and the night portion is calculated from 5:00 pm to 3:59 am. The data is included as a 16 item list, alternating between the day and night forecast starting from the current day.
 
 ### daily
 A block containing the day-by-day forecasted conditions for the next 7 days.

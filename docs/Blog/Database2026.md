@@ -23,7 +23,7 @@ Apiable sits on top of this and handles the user-facing registration and subscri
 
 ### RDS
 
-Pirate Weather’s Kong database runs on Amazon Aurora PostgreSQL through RDS, using an Aurora Serverless v2 writer instance. Aurora separates the logical database cluster from the underlying database instance, so Kong connects to the cluster while AWS manages the actual compute and storage underneath it. For Pirate Weather, I just use a single writer instance rather than a larger multi-instance or read-replica setup, since Kong’s database load is relatively small and there isn’t much benefit to adding additional database capacity just for the sake of it. Kong also continues if there's a hiccup in the database connection, so it's not a mission critical part of the stack.
+Pirate Weather’s Kong database runs on Amazon Aurora PostgreSQL through RDS, using an Aurora Serverless v2 writer instance. Aurora separates the logical database cluster from the underlying database instance, so Kong connects to the cluster while AWS manages the actual compute and storage underneath it. For Pirate Weather, I just use a single writer instance rather than a larger multi-instance or read-replica setup, since Kong’s database load is relatively small and there isn’t much benefit to adding additional database capacity just for the sake of it. Kong can continue serving during a database connection hiccup, but the database remains critical to the stack..
 
 The database instance itself uses Aurora Serverless v2, configured to scale between 0.5 and 3 Aurora Capacity Units (ACUs). AWS roughly maps that to about 1–6 GB of memory, along with proportional CPU and networking capacity. This is a particularly good fit for Pirate Weather because the database is important, but it is not continuously busy. Most API requests are handled by Kong and the weather API containers without generating heavy database activity, while things like user registrations, subscription changes, API-key management, and administrative operations create comparatively short bursts of work. Serverless v2 means I can keep the baseline database very small (and cost effective) most of the time, while still allowing it to scale automatically if there is suddenly more activity. It also avoids me having to pick a fixed EC2-style database instance size and then either pay for unused capacity or discover at an inconvenient time that I picked something too small.
 
@@ -67,7 +67,7 @@ User E
 
 In this example, `User B` was accidentally deleted, while `User E` legitimately registered after the backup was taken. 
 
-Restoring the backup fixes User B but deletes User E, so this was more off a diff and merge operation than restore. So the backup was still required, but not in a "restore the backup" sort of way.
+Restoring the backup fixes User B but deletes User E, so this was more of a diff and merge operation than restore. So the backup was still required, but not in a "restore the backup" sort of way.
 
 ### Comparing production against the backup
 
@@ -87,7 +87,7 @@ So the recovery process expanded to:
 4. Restore their rate-limit configuration.
 5. Restore their key-auth credentials.
 
-Importantly, this was all additive. Existing production consumers weren't overwritten or recreated. so no risk to expanding the outage. A dozen lines of Python later and all the consumers and keys were back, I could spin down the backup database, and things returned more or less to normal.
+Importantly, this was all additive. Existing production consumers weren't overwritten or recreated so there was no risk of expanding the outage. A dozen lines of Python later and all the consumers and keys were back, I could spin down the backup database, and things returned more or less to normal.
 
 ## Lessons learned 
 

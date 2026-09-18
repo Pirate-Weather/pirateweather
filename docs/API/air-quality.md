@@ -86,7 +86,7 @@ Each index is shown in a collapsible section below. As more regional indexes are
     | **1 - 3** | Low Risk | Blue |
     | **4 - 6** | Moderate Risk | Yellow |
     | **7 - 10** | High Risk | Red |
-    | **10** | Very High Risk | Dark Burgundy |
+    | **10+** | Very High Risk | Dark Burgundy |
 
 ??? note "UK DAQI (UK Units)"
 

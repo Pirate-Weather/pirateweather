@@ -46,7 +46,7 @@ Alternatively, location can be specified by city and country using `[city],[coun
 If you are looking for a place to figure out the latitude and longitude, [https://www.latlong.net/](https://www.latlong.net/) is a good starting point.
 
 #### Time
-The time field is optional for the forecast request, but mandatory for a historic request. If present, time can be specified in one of three different ways:
+The time field is optional for the forecast request, but mandatory for a historic request. If present, time can be specified in one of four different ways:
 
 1. UNIX timestamp, or the number of seconds since midnight GMT on 1 Jan 1970 (this is the preferred way). Note that this can be a negative number for pre-1970 dates.
 2. A datestring in the local time zone of the location being requested: `[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS]`.
@@ -192,7 +192,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 `extraVars=` is used to show additional parameters that are not required for most users and may cause confusion. Currently, only `stationPressure` is allowed, but others may be added in the future. 
 
 #### Include
-`include=` is used to add additional data blocks not available in the Dark Sky API.  Currently, `day_night_forecast`, `aimodlels` and `airqualitydetails` are allowed, but others may be added in the future.
+`include=` is used to add additional data blocks not available in the Dark Sky API.  Currently, `day_night_forecast`, `aimodels` and `airqualitydetails` are allowed, but others may be added in the future.
 
 If `airqualitydetails` is added as an include flag the API will return full pollutant details for the following pollutants:
 

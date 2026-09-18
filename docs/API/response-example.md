@@ -1,6 +1,6 @@
 # Response Examples
 
-This page shows full JSON response examples for both the forecast API and the Time Machine API, so you can see what the complete payload looks like before integrating with the API.
+This page shows a sample JSON response examples for both the forecast API and the Time Machine API, so you can see what the complete payload looks like before integrating with the API.
 
 ### API Response Example
 ```
