@@ -44,41 +44,60 @@ paths:
               - 'Paris,France,1704067200'
         - name: exclude
           in: query
-          description: Exclude some keys (currently, minutely, hourly, daily, day_night, flags, alerts), models (nbm, hrrr, gefs, gfs, ecmwf_ifs, dwd_mosmix, rtma_ru, aigefs, aigfs, ecmwf_aifs, raqdps, silam), or detailed text summaries (summary) from the Pirate Weather forecast response. Exclude takes precedence over include-based feature flags.
+          description: A comma-separated list of keys to exclude (currently, minutely, hourly, daily, day_night, flags, alerts), models (nbm, hrrr, gefs, gfs, ecmwf_ifs, dwd_mosmix, rtma_ru, aigefs, aigfs, ecmwf_aifs, raqdps, silam, hrdps, gdps, geps, reps), or detailed text summaries (summary) from the Pirate Weather forecast response. Use cmc or cmcmodels to exclude all four Canadian models. Exclude takes precedence over include-based feature flags.
+          style: form
+          explode: false
           schema:
-            type: string
-            enum:
-              - summary
-              - currently
-              - minutely
-              - hourly
-              - daily
-              - day_night
-              - flags
-              - alerts
-              - nbm
-              - hrrr
-              - gefs
-              - gfs
-              - aigefs
-              - aigfs
-              - ecmwf_aifs
-              - raqdps
-              - silam
-              - rtma_ru
-              - ecmwf_ifs
-              - dwd_mosmix
+            type: array
+            items:
+              type: string
+              enum:
+                - summary
+                - currently
+                - minutely
+                - hourly
+                - daily
+                - day_night
+                - flags
+                - alerts
+                - nbm
+                - hrrr
+                - gefs
+                - gfs
+                - aigefs
+                - aigfs
+                - ecmwf_aifs
+                - raqdps
+                - silam
+                - rtma_ru
+                - ecmwf_ifs
+                - dwd_mosmix
+                - hrdps
+                - gdps
+                - geps
+                - reps
+                - cmc
+                - cmcmodels
         - name: days
           in: query
-          description: When using the Time Machine endpoint, return up to 7 days of historic data in a single request.
+          description: For historical requests, return 1 to 8 days of daily data. Defaults to 1 day. Hourly output defaults to days multiplied by 24 unless hours is supplied.
           schema:
             type: integer
             minimum: 1
-            maximum: 7
-            example: 7
+            maximum: 8
+            default: 1
+            example: 8
+        - name: hours
+          in: query
+          description: For historical requests, return 1 to 192 hours of hourly data. Defaults to days multiplied by 24. This overrides the hourly output length without changing the requested number of daily entries. Ignored for forecast requests.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 192
+            example: 48
         - name: extend
           in: query
-          description: Fetch the next 168 hours (7 days) worth of hourly data, instead of the next 24.
+          description: Fetch the next 168 hours (7 days) worth of hourly data, instead of the next 48.
           schema:
             type: string
             enum:
@@ -158,6 +177,23 @@ paths:
           description: Return the weather forecast data in the requested unit system.
           schema:
             type: string
+        - name: aqiunits
+          in: query
+          description: Override the air quality index scale independently of weather units. Values are case-insensitive. ca selects Canadian AQHI; us selects US EPA AQI; eu selects normalized EAQI on the legacy CAQI scale; uk selects UK DAQI; hk, ie, il, id, cn, my, and vn select the local indexes for Hong Kong, Ireland, Israel, Indonesia, China, Malaysia, and Vietnam. Missing or unrecognized values use the index associated with units.
+          schema:
+            type: string
+            examples:
+              - ca
+              - us
+              - eu
+              - uk
+              - hk
+              - ie
+              - il
+              - id
+              - cn
+              - my
+              - vn
         - name: version
           in: query
           description: Include fields which were not part of the Dark Sky API but were introduced in API version 2, including airQualityIndex and the daily airQualityIndexMax and airQualityIndexMin fields.
@@ -175,13 +211,17 @@ paths:
             type: string   
         - name: include
           in: query
-          description: Include extra blocks or model families that were not part of the Dark Sky API. Use airqualitydetails to include detailed pollutant concentrations.
+          description: A comma-separated list of extra blocks or model families. Use airqualitydetails with version>=2 to include detailed pollutant concentrations in currently and hourly. Use aimodels to prefer supported AI values and exclude the Canadian models (HRDPS, GDPS, GEPS, and REPS).
+          style: form
+          explode: false
           schema:
-            type: string
-            enum:
-              - day_night_forecast
-              - aimodels
-              - airqualitydetails
+            type: array
+            items:
+              type: string
+              enum:
+                - day_night_forecast
+                - aimodels
+                - airqualitydetails
         - name: blocks
           in: query
           description: A comma-delimited allowlist of response blocks to return. Supported blocks are currently, minutely, hourly, daily, day_night, alerts, and flags.
@@ -426,31 +466,31 @@ components:
           example: 321.45
         airQualityIndex:
           type: number
-          description: The air quality index for the requested location. The index scale follows the requested units; US/default uses US EPA AQI, CA uses ECCC AQHI, and SI/UK uses EU CAQI. Only returned when version>1.
+          description: The air quality index for the requested location. The scale follows aqiunits when supplied; otherwise us/default uses US EPA AQI, ca uses ECCC AQHI, uk uses UK DAQI, and si uses normalized EAQI on the legacy CAQI scale. Only returned when version>1.
           example: 42
         coConcentration:
           type: number
-          description: The carbon monoxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+          description: The carbon monoxide concentration in parts per billion (ppb). Only returned when version>=2 and include contains airqualitydetails.
           example: 126.4
         no2Concentration:
           type: number
-          description: The nitrogen dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+          description: The nitrogen dioxide concentration in parts per billion (ppb). Only returned when version>=2 and include contains airqualitydetails.
           example: 2.8
         ozoneConcentration:
           type: number
-          description: The ozone concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+          description: The ozone concentration in parts per billion (ppb). Only returned when version>=2 and include contains airqualitydetails.
           example: 36.5
         so2Concentration:
           type: number
-          description: The sulfur dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+          description: The sulfur dioxide concentration in parts per billion (ppb). Only returned when version>=2 and include contains airqualitydetails.
           example: 0.4
         pm10:
           type: number
-          description: The coarse particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+          description: The coarse particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when version>=2 and include contains airqualitydetails.
           example: 8.7
         pm25:
           type: number
-          description: The fine particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+          description: The fine particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when version>=2 and include contains airqualitydetails.
           example: 4.6
         smoke:
           type: number
@@ -535,9 +575,9 @@ components:
                 type: number
                 description: The intensity of snow precipitation. Only returned when version>1.
                 example: 0
-              iceIntensity:
+              sleetIntensity:
                 type: number
-                description: The intensity of ice precipitation. Only returned when version>1.
+                description: The intensity of sleet precipitation. Only returned when version>1.
                 example: 0
     hourly:
       type: object
@@ -656,31 +696,31 @@ components:
                 example: 319.3
               airQualityIndex:
                 type: number
-                description: The air quality index for the requested location. The index scale follows the requested units; US/default uses US EPA AQI, CA uses ECCC AQHI, and SI/UK uses EU CAQI. Only returned when version>1.
+                description: The air quality index for the requested location. The scale follows aqiunits when supplied; otherwise us/default uses US EPA AQI, ca uses ECCC AQHI, uk uses UK DAQI, and si uses normalized EAQI on the legacy CAQI scale. Only returned when version>1.
                 example: 42
               coConcentration:
                 type: number
-                description: The carbon monoxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                description: The carbon monoxide concentration in parts per billion (ppb). Only returned when version>=2 and include contains airqualitydetails.
                 example: 126.4
               no2Concentration:
                 type: number
-                description: The nitrogen dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                description: The nitrogen dioxide concentration in parts per billion (ppb). Only returned when version>=2 and include contains airqualitydetails.
                 example: 2.8
               ozoneConcentration:
                 type: number
-                description: The ozone concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                description: The ozone concentration in parts per billion (ppb). Only returned when version>=2 and include contains airqualitydetails.
                 example: 36.5
               so2Concentration:
                 type: number
-                description: The sulfur dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
+                description: The sulfur dioxide concentration in parts per billion (ppb). Only returned when version>=2 and include contains airqualitydetails.
                 example: 0.4
               pm10:
                 type: number
-                description: The coarse particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+                description: The coarse particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when version>=2 and include contains airqualitydetails.
                 example: 8.7
               pm25:
                 type: number
-                description: The fine particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
+                description: The fine particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when version>=2 and include contains airqualitydetails.
                 example: 4.6
               smoke:
                 type: number
@@ -726,7 +766,7 @@ components:
                 example: 0
     day_night:
       type: object
-      description: A block containing day and night forecasts for the next 7 days.
+      description: A block containing day and night forecasts for today and the next 7 days (up to 16 entries). Returned when include contains day_night_forecast or blocks requests day_night; not returned for historical requests.
       properties:
         data:
           type: array
@@ -781,10 +821,6 @@ components:
               precipProbability:
                 type: number
                 description: The probability of precipitation.
-                example: 0
-              precipIntensityError:
-                type: number
-                description: The standard deviation of the precipitation intensity.
                 example: 0
               precipAccumulation:
                 type: number
@@ -847,34 +883,6 @@ components:
                 type: number
                 description: The ozone concentration in Dobson units.
                 example: 317.12
-              airQualityIndex:
-                type: number
-                description: The air quality index for the requested location. The index scale follows the requested units; US/default uses US EPA AQI, CA uses ECCC AQHI, and SI/UK uses EU CAQI. Only returned when version>1.
-                example: 42
-              coConcentration:
-                type: number
-                description: The carbon monoxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
-                example: 126.4
-              no2Concentration:
-                type: number
-                description: The nitrogen dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
-                example: 2.8
-              ozoneConcentration:
-                type: number
-                description: The ozone concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
-                example: 36.5
-              so2Concentration:
-                type: number
-                description: The sulfur dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
-                example: 0.4
-              pm10:
-                type: number
-                description: The coarse particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
-                example: 8.7
-              pm25:
-                type: number
-                description: The fine particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
-                example: 4.6
               smoke:
                 type: number
                 description: The amount of near-surface smoke in ug/m3. Only returned when version>1.
@@ -906,7 +914,7 @@ components:
                 example: 4
     daily:
       type: object
-      description: A block containing day-by-day forecasted conditions for the next 7 days.
+      description: A block containing daily forecasted conditions for today and the next 7 days (8 entries). Historical requests use the days parameter to control the number of entries.
       properties:
         summary:
           type: string
@@ -1054,6 +1062,10 @@ components:
                 type: number
                 description: The air pressure.
                 example: 1021.84
+              stationPressure:
+                type: number
+                description: The mean station pressure for the day, in hectopascals. Only returned when extraVars contains stationPressure.
+                example: 1011.72
               windSpeed:
                 type: number
                 description: The wind speed.
@@ -1091,40 +1103,26 @@ components:
                 example: 9.68
               airQualityIndex:
                 type: number
-                description: The air quality index for the requested location. The index scale follows the requested units; US/default uses US EPA AQI, CA uses ECCC AQHI, and SI/UK uses EU CAQI. Only returned when version>1.
+                description: The air quality index for the requested location. The scale follows aqiunits when supplied; otherwise us/default uses US EPA AQI, ca uses ECCC AQHI, uk uses UK DAQI, and si uses normalized EAQI on the legacy CAQI scale. Only returned when version>1.
                 example: 42
               airQualityIndexMax:
                 type: number
-                description: The maximum air quality index forecasted for the day. The index scale follows the requested units. Only returned when version>1.
+                description: The maximum air quality index forecasted for the day. The scale follows aqiunits when supplied, otherwise the requested units. Only returned when version>1.
                 example: 58
+              airQualityIndexMaxTime:
+                type: integer
+                format: int64
+                description: The time when the maximum air quality index occurs, in UNIX seconds. Only returned when version>1.
+                example: 1789704000
               airQualityIndexMin:
                 type: number
-                description: The minimum air quality index forecasted for the day. The index scale follows the requested units. Only returned when version>1.
+                description: The minimum air quality index forecasted for the day. The scale follows aqiunits when supplied, otherwise the requested units. Only returned when version>1.
                 example: 31
-              coConcentration:
-                type: number
-                description: The carbon monoxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
-                example: 126.4
-              no2Concentration:
-                type: number
-                description: The nitrogen dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
-                example: 2.8
-              ozoneConcentration:
-                type: number
-                description: The ozone concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
-                example: 36.5
-              so2Concentration:
-                type: number
-                description: The sulfur dioxide concentration in parts per billion (ppb). Only returned when include contains airqualitydetails.
-                example: 0.4
-              pm10:
-                type: number
-                description: The coarse particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
-                example: 8.7
-              pm25:
-                type: number
-                description: The fine particulate matter concentration in micrograms per cubic meter (ug/m^3). Only returned when include contains airqualitydetails.
-                example: 4.6
+              airQualityIndexMinTime:
+                type: integer
+                format: int64
+                description: The time when the minimum air quality index occurs, in UNIX seconds. Only returned when version>1.
+                example: 1789740000
               temperatureMin:
                 type: number
                 description: The minimum temperature.
@@ -1191,25 +1189,25 @@ components:
                 format: int32
                 description: The time when the maximum hourly Fosberg Fire Weather Index occurs in UNIX format. Only returned when version>1.
                 example: 1762732800
-              solar:
-                type: number
-                description: The Downward Short-Wave Radiation Flux measured in W/m^2. Only returned when version>1.
-                example: 558.76
               solarMax:
+                type: number
+                description: The maximum hourly downward short-wave radiation flux for the day, in W/m^2. Only returned when version>1.
+                example: 757.88
+              solarMaxTime:
                 type: integer
-                format: int32
-                description: The time when the maximum solar occurs in UNIX format. Only returned when version>1.
-                example: 1762714800
-              cape:
-                type: integer
-                format: int32
-                description: The Convective Available Potential Energy measured in J/kg. Only returned when version>1.
-                example: 19
+                format: int64
+                description: The time when the maximum solar radiation occurs, in UNIX seconds. Only returned when version>1.
+                example: 1789750800
               capeMax:
                 type: integer
                 format: int32
-                description: The time when the maximum CAPE occurs in UNIX format. Only returned when version>1.
-                example: 1762707600
+                description: The maximum hourly Convective Available Potential Energy for the day, in J/kg. Only returned when version>1.
+                example: 20
+              capeMaxTime:
+                type: integer
+                format: int64
+                description: The time when the maximum CAPE occurs, in UNIX seconds. Only returned when version>1.
+                example: 1789747200
     alerts:
       type: array
       description: A block containing any severe weather alerts for the current location.
@@ -1254,7 +1252,7 @@ components:
       properties:
         sources:
           type: array
-          description: The models used to generate the forecast.
+          description: The models available to the request. This list does not identify which source supplied each forecast element and timestamp.
           items:
             type: string
             example: ETOPO1
@@ -1314,6 +1312,30 @@ components:
               type: string
               description: The time the AIGEFS model was last updated.
               example: 2025-11-09 12Z
+            hrdps:
+              type: string
+              description: The time the HRDPS model was last updated.
+              example: 2026-09-18 12Z
+            gdps:
+              type: string
+              description: The time the GDPS model was last updated.
+              example: 2026-09-18 12Z
+            geps:
+              type: string
+              description: The time the GEPS model was last updated.
+              example: 2026-09-18 00Z
+            reps:
+              type: string
+              description: The time the REPS model was last updated.
+              example: 2026-09-18 12Z
+            raqdps:
+              type: string
+              description: The time the RAQDPS model was last updated.
+              example: 2026-09-18 12Z
+            silam:
+              type: string
+              description: The time the SILAM model was last updated.
+              example: 2026-09-16 00Z
         nearest-station:
           type: number
           description: Distance to the closest DWD MOSMIX station to your location in kilometres or miles depending on the units. If there are no stations for your location this will return -999.
@@ -1328,7 +1350,7 @@ components:
           example: V2.10.0
         sourceIDX:
           type: object
-          description: The X, Y coordinate and the lat/long coordinate for each model used to generate the forecast. Only returned when version>1.
+          description: The grid indices and latitude/longitude for available model data, or station metadata for DWD MOSMIX. Only returned when version>1.
           properties:
             hrrr:
               type: object
@@ -1347,7 +1369,7 @@ components:
                   type: number
                   description: The latitude coordinate for the HRRR model.
                   example: 37.31
-                long:
+                lon:
                   type: number
                   description: The longitude coordinate for the HRRR model.
                   example: -89.53
@@ -1368,7 +1390,7 @@ components:
                   type: number
                   description: The latitude coordinate for the NBM model.
                   example: 37.31
-                long:
+                lon:
                   type: number
                   description: The longitude coordinate for the NBM model.
                   example: -89.53
@@ -1389,7 +1411,7 @@ components:
                   type: number
                   description: The latitude coordinate for the ECMWF IFS model.
                   example: 37.25
-                long:
+                lon:
                   type: number
                   description: The longitude coordinate for the ECMWF IFS model.
                   example: -89.5
@@ -1410,7 +1432,7 @@ components:
                   type: number
                   description: The latitude coordinate for the AIFS model.
                   example: 37.25
-                long:
+                lon:
                   type: number
                   description: The longitude coordinate for the AIFS model.
                   example: -89.5
@@ -1418,24 +1440,26 @@ components:
               type: object
               properties:
                 stations:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      description: The id of the DWD MOSMIX station.
-                      example: "72530"
-                    name:
-                      type: string
-                      description: The name of the DWD MOSMIX station.
-                      example: "CHICAGO"
-                    lat:
-                      type: number
-                      description: The latitude coordinate for the DWD MOSMIX station.
-                      example: 41.98
-                    long:
-                      type: number
-                      description: The longitude coordinate for the DWD MOSMIX station.
-                      example: -87.9
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The id of the DWD MOSMIX station.
+                        example: "72530"
+                      name:
+                        type: string
+                        description: The name of the DWD MOSMIX station.
+                        example: "CHICAGO"
+                      lat:
+                        type: number
+                        description: The latitude coordinate for the DWD MOSMIX station.
+                        example: 41.98
+                      lon:
+                        type: number
+                        description: The longitude coordinate for the DWD MOSMIX station.
+                        example: -87.9
             rtma_ru:
               type: object
               properties:
@@ -1453,7 +1477,7 @@ components:
                   type: number
                   description: The latitude coordinate for the RTMA-RU model.
                   example: 37.31
-                long:
+                lon:
                   type: number
                   description: The longitude coordinate for the RTMA-RU model.
                   example: -89.53
@@ -1474,7 +1498,7 @@ components:
                   type: number
                   description: The latitude coordinate for the GFS model.
                   example: 37.25
-                long:
+                lon:
                   type: number
                   description: The longitude coordinate for the GFS model.
                   example: -89.5
@@ -1495,7 +1519,7 @@ components:
                   type: number
                   description: The latitude coordinate for the AIGFS model.
                   example: 37.25
-                long:
+                lon:
                   type: number
                   description: The longitude coordinate for the AIGFS model.
                   example: -89.5
@@ -1516,10 +1540,58 @@ components:
                   type: number
                   description: The latitude coordinate for the AIGEFS model.
                   example: 37.25
-                long:
+                lon:
                   type: number
                   description: The longitude coordinate for the AIGEFS model.
                   example: -89.5
+            hrdps:
+              $ref: "#/components/schemas/modelGridPoint"
+              description: The grid point used for HRDPS.
+              example:
+                x: 1852
+                y: 488
+                lat: 45.01
+                lon: -75.0
+            gdps:
+              $ref: "#/components/schemas/modelGridPoint"
+              description: The grid point used for GDPS.
+              example:
+                x: 1900
+                y: 900
+                lat: 45.0
+                lon: -75.0
+            geps:
+              $ref: "#/components/schemas/modelGridPoint"
+              description: The grid point used for GEPS.
+              example:
+                x: 570
+                y: 270
+                lat: 45.0
+                lon: -75.0
+            reps:
+              $ref: "#/components/schemas/modelGridPoint"
+              description: The grid point used for REPS.
+              example:
+                x: 657
+                y: 364
+                lat: 44.96
+                lon: -75.01
+            raqdps:
+              $ref: "#/components/schemas/modelGridPoint"
+              description: The grid point used for RAQDPS.
+              example:
+                x: 578
+                y: 225
+                lat: 45.01
+                lon: -74.98
+            silam:
+              $ref: "#/components/schemas/modelGridPoint"
+              description: The grid point used for SILAM.
+              example:
+                x: 524
+                y: 673
+                lat: 45.0
+                lon: -75.0
             etopo:
               type: object
               properties:
@@ -1537,30 +1609,47 @@ components:
                   type: number
                   description: The latitude coordinate for the ETOPO model.
                   example: 37.3
-                long:
+                lon:
                   type: number
                   description: The longitude coordinate for the ETOPO model.
                   example: -89.5166
         processTime:
           type: integer
           format: int32
-          description: The time taken to process the request in milliseconds. Only returned when version>1.
+          description: Processing-time diagnostic in microseconds. API 2.10.0 returns the microseconds component of the elapsed duration, excluding whole seconds. Only returned when version>1.
           example: 12026
         ingestVersion:
           type: string
           description: The ingest version of Pirate Weather used to generate the forecast. Only returned when version>1.
-          example: v29
+          example: v30
         nearestCity:
-          type: string
-          description: The name of the closest city to your location. Only returned when version>1.
+          type: [string, "null"]
+          description: The name of the closest city to your location, or null if unavailable. Only returned when version>1.
           example: Cape Girardeau
         nearestCountry:
-          type: string
-          description: The name of the closest country to your location. Only returned when version>1.
+          type: [string, "null"]
+          description: The name of the closest country to your location, or null if unavailable. Only returned when version>1.
           example: United States
         nearestSubNational:
-          type: string
-          description: The name of the closest state or province to your location. Only returned when version>1.
+          type: [string, "null"]
+          description: The name of the closest state or province to your location, or null if unavailable. Only returned when version>1.
 
           example: Missouri
-
+    modelGridPoint:
+      type: object
+      description: The selected model grid point for the requested location.
+      properties:
+        x:
+          type: integer
+          format: int32
+          description: The X grid index.
+        y:
+          type: integer
+          format: int32
+          description: The Y grid index.
+        lat:
+          type: number
+          description: The grid point latitude in degrees.
+        lon:
+          type: number
+          description: The grid point longitude in degrees.
