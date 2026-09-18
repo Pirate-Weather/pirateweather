@@ -54,16 +54,20 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
 ## Recent Updates- Summer 2026
-Up to version 2.9.7! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+Up to version 2.10! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-* Add in a long requested feature to add an air quality index to the API per [issue #92](https://github.com/Pirate-Weather/pirateweather/issues/92).
-* Fix an issue where dawn was before dusk as reported in [issue #648](https://github.com/Pirate-Weather/pirateweather/issues/648).
-* Fix GFS ingest issues per [PR #666](https://github.com/Pirate-Weather/pirate-weather-code/pull/666).
-* Add caching to ERA5 requests to avoid rate limit errors per [PR #664](https://github.com/Pirate-Weather/pirate-weather-code/pull/664).
-* Remove possible heavy summaries from weekly summaries per [PR #662](https://github.com/Pirate-Weather/pirate-weather-code/pull/662).
-  * This removes rain and possible heavy rain and similar summaries from generating in the weekly summaries.
-* Refactor the GFS ingest scripts to fix changes made in xarray-spatial per [PR #661](https://github.com/Pirate-Weather/pirate-weather-code/pull/661).
-* Allow for longer historic data requests per [PR #660](https://github.com/Pirate-Weather/pirate-weather-code/pull/660).
+* Added support for the Canadian models per [PR #603](https://github.com/Pirate-Weather/pirate-weather-code/pull/603).
+	* The Canadian models have the highest priority for Canada outside of the RTMA-RU and HRRR subhourly models for the currently and minutely block.
+* Added support for more local Air Quality indexes per [PR #713](https://github.com/Pirate-Weather/pirate-weather-code/pull/713).
+* Added support for the UK DAQI for `uk` units per [PR #710](https://github.com/Pirate-Weather/pirate-weather-code/pull/710).
+* Add `aqiunits` query parameter to override AQI unit system per [PR #709](https://github.com/Pirate-Weather/pirate-weather-code/pull/709).
+* Fixed an issue where the hourly precipitation accumulation was using the wrong prioirty function per [PR #736](https://github.com/Pirate-Weather/pirate-weather-code/pull/736).
+* Updated the freshness checks for various models to make them more consistent per [PR #733](https://github.com/Pirate-Weather/pirate-weather-code/pull/733).
+* Updated the US alert description to have double line breaks to keep it consistent with the WMO Alerts per [PR #732](https://github.com/Pirate-Weather/pirate-weather-code/pull/732)
+* Change CAQI to Normalized EAQI using the CAQI 0-100 scale per [PR #705](https://github.com/Pirate-Weather/pirate-weather-code/pull/705).
+* Update the `smoke` calculations for better `smoke` values using better BLH estimates and PM2.5 scaling per [PR #703](https://github.com/Pirate-Weather/pirate-weather-code/pull/703).
+* Fix FMI SILAM ingest memory leak and ERA5 cache per [PR #696](https://github.com/Pirate-Weather/pirate-weather-code/pull/696).
+* Fixed an issue where hourly UV Index was an integer instead of being rounded to two decimal places per [PR #692](https://github.com/Pirate-Weather/pirate-weather-code/pull/692).
 
 ## MCP Server
 In addition to the main REST endpoint, Pirate Weather exposes a new, hosted MCP server for apps and agents that support remote streamable HTTP MCP servers. Add it to your MCP client with this URL:
