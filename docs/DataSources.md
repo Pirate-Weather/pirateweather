@@ -4,6 +4,8 @@ This page serves as the documentation for the underlying data source algorithm f
 ## Data sources
 Several models are used to produce the forecast. Most are hosted on [AWS's Open Data Platform](https://registry.opendata.aws/collab/noaa/), and the fantastic [Herbie package](https://github.com/blaylockbk/Herbie) is used to download and perform initial processing for many of them.    
 
+### NOAA
+
 #### RTMA Rapid Update
 The Real-Time Mesoscale Analysis Rapid Update [(RTMA-RU)](https://emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/rtma.php) provides real time analysis for the continental US and parts of Canada. The model runs every 15-minutes and combines the HRRR first guess with observations from satellites and station observations.
 
@@ -20,13 +22,32 @@ The Global Forecast System [(GFS)](https://www.ncdc.noaa.gov/data-access/model-d
 
 The GFS model also underpins the Global Ensemble Forecast System [(GEFS)](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs), which is the 30-member ensemble (the website says 21, but there are 30 data files) version of the GFS. This means that 30 different "versions" of the model are run, each with slightly different starting assumptions. The API uses the GEFS to get precipitation type, quantity, and probability, since it seemed like the most accurate way of determining this. I have no idea how Dark Sky did it, and I am very open to feedback about other ways it could be assigned, since getting the precipitation probability number turned out to be one of the most complex parts of the entire setup! 
 
+#### AIGFS / AIGEFS
+The AI Global Forecast System [(AIGFS)](https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gfs.php) and AI Global Ensemble Forecast System [(AIGEFS)](https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gefs.php) are NOAA's machine-learning-based global weather prediction models. Built using deep learning techniques trained on decades of reanalysis and operational data, these models provide competitive global forecasts at reduced computational cost.
+
+!!! info "Availability"
+    AIGFS/AIGEFS is only available when enabled via a specific query parameter and may not be present for all forecast requests.
+
 #### GEFS
 The Global Ensemble Forecast System [(GEFS)](https://www.ncei.noaa.gov/products/weather-climate-models/global-ensemble-forecast) is the ensemble version of NOAA's GFS model. By running different variations parameters and inputs, 30 different versions of this model are run at the same time, providing 3-hour forecasts out to 240 hours. The API uses the GEFS to get precipitation type, quantity, and probability, since it seemed like the most accurate way of determining this. I have no idea how Dark Sky did it, and I am very open to feedback about other ways it could be assigned, since getting the precipitation probability number turned out to be one of the most complex parts of the entire setup! 
+
+### ECMWF
 
 #### ECMWF IFS
 The European Centre for Medium-Range Weather Forecasts Integrated Forecasting System [(ECMWF IFS)](https://www.ecmwf.int/en/forecasts/documentation-and-support/changes-ecmwf-model) is a global numerical weather prediction model used for medium-range to long-range atmospheric forecasting. It combines a spectral atmospheric model, an ocean model, and advanced data assimilation techniques to produce some of the most accurate weather forecasts in the world. Probability results are also included from the Ensemble version of this forecast.
 
 The ECMWF IFS underpins many operational forecasting systems worldwide, serving as a benchmark for global models due to its strong performance in forecast skill, particularly for medium-range (3–10 days) predictions and ensemble probabilistic guidance.
+
+#### ECMWF AIFS
+The ECMWF Artificial Intelligence/Integrated Forecasting System [(ECMWF AIFS)](https://www.ecmwf.int/en/about/media-centre/aifs-blog) is a machine-learning-based global weather model developed by ECMWF. Trained on ERA5 reanalysis and IFS operational data, AIFS produces deterministic medium-range forecasts at competitive accuracy to the IFS at a fraction of the computational cost.
+
+!!! info "Availability"
+    ECMWF AIFS is only available when enabled via a specific query parameter and may not be present for all forecast requests.
+
+### ERA5
+To provide historic weather data, the [Google European Reanalysis 5 Dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/arco-era5) is used, specifically their `full_37-1h-0p25deg-chunk-1.zarr-v3` product. Details on the Google implementation are available in [their repository](https://github.com/google-research/arco-era5). In the medium term, I'll be exploring adding a local copy of this repository, which would significantly improve performance.
+
+### CMC
 
 #### HRDPS
 The High Resolution Deterministic Prediction System (HRDPS) is maintained by Environment and Climate Change Canada (ECCC). It carries out detailed physics calculations to provide high-resolution deterministic forecasts of atmospheric elements—such as temperature, precipitation, cloud cover, and wind—across most of Canada at a horizontal resolution of about 2.5 km. Operating out to 48 hours, the HRDPS runs up to four times daily, providing localized, high-fidelity regional weather data.
@@ -40,17 +61,10 @@ The Global Deterministic Prediction System ([GDPS](https://eccc-msc.github.io/op
 #### GEPS
 The Global Ensemble Prediction System ([GEPS](https://eccc-msc.github.io/open-data/msc-data/nwp_geps/readme_geps_en/)) is ECCC's global ensemble model, designed to estimate forecast uncertainties driven by the chaotic behavior of the atmosphere. Running twice daily, the GEPS produces global probabilistic forecasts out to 16 days (and up to 39 days twice weekly) using a control member and 20 ensemble members perturbed via stochastic parameter methods. It provides widespread probabilistic guidance on temperature, precipitation, wind, and humidity.
 
-#### ECMWF AIFS
-The ECMWF Artificial Intelligence/Integrated Forecasting System [(ECMWF AIFS)](https://www.ecmwf.int/en/about/media-centre/aifs-blog) is a machine-learning-based global weather model developed by ECMWF. Trained on ERA5 reanalysis and IFS operational data, AIFS produces deterministic medium-range forecasts at competitive accuracy to the IFS at a fraction of the computational cost.
+### RAQDPS
+[Regional Air Quality Deterministic Prediction System](https://eccc-msc.github.io/open-data/msc-data/nwp_raqdps/readme_raqdps_en/) is maintained by Environment and Climate Change Canada (ECCC) and provides high-resolution regional chemical weather forecasts over North America. It runs twice daily, offering hourly forecasts at a 10 km resolution for up to 72 hours. This model is highly effective for projects needing to track the localized transport, diffusion, and chemical transformation of surface pollutants-specifically ground-level Ozone (O<sub>3</sub>), Nitrogen Dioxide (NO<sub>2</sub>), and fine particulate matter (PM<sub>2.5</sub>)-making it a great fit for calculating regional Air Quality Health Indices (AQHI) or tracking active wildfire smoke plumes.
 
-!!! info "Availability"
-    ECMWF AIFS is only available when enabled via a specific query parameter and may not be present for all forecast requests.
-
-#### AIGFS / AIGEFS
-The AI Global Forecast System [(AIGFS)](https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gfs.php) and AI Global Ensemble Forecast System [(AIGEFS)](https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gefs.php) are NOAA's machine-learning-based global weather prediction models. Built using deep learning techniques trained on decades of reanalysis and operational data, these models provide competitive global forecasts at reduced computational cost.
-
-!!! info "Availability"
-    AIGFS/AIGEFS is only available when enabled via a specific query parameter and may not be present for all forecast requests.
+### DWD
 
 #### DWD MOSMIX
 Deutscher Wetterdienst Model Output Statistics-MIX [(DWD MOSMIX)](https://www.dwd.de/EN/ourservices/met_application_mosmix/met_application_mosmix.html;jsessionid=B502689E741CA864089DA8955635E33B.live21064) is a statistically post-processed forecast product produced by the German Weather Service. Rather than a single numerical model, MOSMIX blends output from several global and regional models and applies bias corrections based on historical station observations. The result is high-quality point forecasts optimized for specific locations.
@@ -60,13 +74,9 @@ MOSMIX provides hourly forecasts for thousands of stations worldwide, though not
 !!! note "Note"
     DWD MOSMIX uses a fairly aggressive filtering algorithm whenever confidence in the data is low or inputs are missing. If the gaps between data points are greater than 6 hours, the variable will be discarded from DWD MOSMIX and a fallback source used instead. 
 
-### ERA5
-To provide historic weather data, the [Google European Reanalysis 5 Dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/arco-era5) is used, specifically their `full_37-1h-0p25deg-chunk-1.zarr-v3` product. Details on the Google implementation are available in [their repository](https://github.com/google-research/arco-era5). In the medium term, I'll be exploring adding a local copy of this repository, which would significantly improve performance.
+### FMI
 
-### RAQDPS
-[Regional Air Quality Deterministic Prediction System](https://eccc-msc.github.io/open-data/msc-data/nwp_raqdps/readme_raqdps_en/) is maintained by Environment and Climate Change Canada (ECCC) and provides high-resolution regional chemical weather forecasts over North America. It runs twice daily, offering hourly forecasts at a 10 km resolution for up to 72 hours. This model is highly effective for projects needing to track the localized transport, diffusion, and chemical transformation of surface pollutants-specifically ground-level Ozone (O<sub>3</sub>), Nitrogen Dioxide (NO<sub>2</sub>), and fine particulate matter (PM<sub>2.5</sub>)-making it a great fit for calculating regional Air Quality Health Indices (AQHI) or tracking active wildfire smoke plumes.
-
-### SILAM
+#### SILAM
 [System for Integrated modeLling of Atmospheric coMposition](https://silam.fmi.fi) is a global-to-meso-scale dispersion model developed by the Finnish Meteorological Institute (FMI). It provides global coverage at a 20 km resolution, modeling over 100 chemical species and aerosols across the troposphere and stratosphere. Because it utilizes a hybrid Eulerian-Lagrangian approach, SILAM excels at simulating long-range, transboundary transport. It's uniquely suited for projects that need to account for dynamic, natural emissions alongside human ones-such as tracking desert dust storms, sea salt dispersion, global aviation safety risks, or real-time wildland fire emissions on a macro scale.
 
 **Looking for a weather model that's not listed?** Check the [existing model requests](https://github.com/Pirate-Weather/pirateweather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22new%20source%22) first. If it hasn't already been requested, submit a [new source request](https://github.com/Pirate-Weather/pirateweather/issues/new?template=new_source.yml).
