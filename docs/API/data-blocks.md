@@ -129,7 +129,7 @@ The intensity of ice precipitation expected to fall over an hour or a day expres
 
 
 ### iceIntensityMax
-**Only on `day_night` and `daily`**. The UNIX time the maximum ice intensity occurs.
+**Only on `day_night` and `daily`**. The maximum ice intensity for the given day.
 
 #### icon
 One of a set of icons to provide a visual display of what's happening. This could be one of: 
@@ -315,7 +315,7 @@ The intensity of rain precipitation expected to fall over an hour or a day expre
 
 
 ### rainIntensityMax
-**Only on `day_night` and `daily`**. The UNIX time the maximum rain intensity occurs.
+**Only on `day_night` and `daily`**. The maximum rain intensity for the given day.
 
 #### snowAccumulation
 **Only on `hourly`, `day_night` and `daily`**. The amount of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. For hourly/ daily blocks, accumulation is used as the underlying source for this field. For minutely and currently blocks, a 10x liquid-water factor is used, while a [physics based approach](https://github.com/Pirate-Weather/pirate-weather-code/blob/87b3a25e8cc614794f552fa327740cabd53fcb41/API/PirateTextHelper.py#L757) is used for the other blocks.
@@ -324,7 +324,7 @@ The intensity of rain precipitation expected to fall over an hour or a day expre
 The intensity of snow precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. When using data from GEFS/ECMWF, note that for currently/ minutely blocks, modelled intensity is used directly (where available). For hourly/ daily blocks, accumulation is used as the underlying source for this field. For minutely and currently blocks, a 10x liquid-water factor is used, while a physics based approach is used for the other blocks.
 
 ### snowIntensityMax
-**Only on `day_night` and `daily`**. The UNIX time the maximum snow intensity occurs.
+**Only on `day_night` and `daily`**. The maximum snow intensity for the given day.
 
 #### smoke
 The amount of near-surface (8 m) smoke represented in µg/m<sup>3</sup>.
@@ -397,11 +397,11 @@ The visibility in kilometres or miles depending on the requested units. In the `
 The direction in which the wind is blowing in degrees with 0° representing true north. To convert degrees to a cardinal direction you can refer [to this table](http://snowfence.umn.edu/Components/winddirectionanddegrees.htm).
 
 #### windGust
-The wind gust in kilometres per hour or miles per hour depending on the requested `units`.
+The wind gust in kilometres per hour or miles per hour or metres per second depending on the requested `units`.
 
 #### windGustTime
 **Only on `daily`**. The time in which the maximum wind gust occurs during the day represented in UNIX time.
 
 #### windSpeed
-The current wind speed in kilometres per hour or miles per hour depending on the requested `units`.
+The current wind speed in kilometres per hour or miles per hour or metres per second depending on the requested `units`.
 

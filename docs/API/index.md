@@ -113,6 +113,11 @@ Some models can also be excluded, which will force data from the fallback source
 *  `aigfs`
 *  `raqdps`
 *  `silam`
+*  `hrdps`
+*  `gdps`
+*  `reps`
+*  `geps`
+*  `cmc`
 
 #### Extend
 If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.   
@@ -212,7 +217,14 @@ If `aimodels` is added then results from the AI driven models (AIGFS/AIGEFS/ECMW
 
 - `uk` for the UK DAQI scale
 - `eu` for the modified EAQI scale
-- `ca` for the AQHI scale
+- `ca` for the Canadian AQHI scale
 - `us` for the US EPA scale
+- `hk` for the Hong Kong AQHI scale
+- `ie` for the Ireland AQIH scale
+- `il` for the the Israel AQHI scale
+- `id` for the Indonesia SPU scale
+- `cn` for the China AQI scale
+- `my` for the Malaysia API scale
+- `vn` for the Vietnam AQI scale
 
 
