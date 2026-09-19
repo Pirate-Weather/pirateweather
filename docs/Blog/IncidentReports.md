@@ -2,6 +2,11 @@
 
 Weather data is critical for many applications, and accordingly, Pirate Weather takes uptime very seriously. This page will be updated with details on any outage, along with lessons learned and next steps.
 
+???+ note "August 27, 2026"
+
+	* Downtime incident impacting a very small number of API keys. 
+	* Detailed in a new blog post here: [August 27, 2026 localized downtime incident](Database2026.md). 
+
 
 ???+ note "March 8, 2026"
 

@@ -28,7 +28,12 @@ theme:
     
 nav:
   - Introduction: 'index.md'
-  - 'API': 'API.md'
+  - API:
+    - 'Request': 'API/index.md'
+    - 'Response Examples': 'API/response-example.md'
+    - 'Data Blocks': 'API/data-blocks.md'
+    - 'Air Quality': 'API/air-quality.md'
+    - 'Alerts, Flags & Errors': 'API/alerts-flags-errors.md'
   - 'Try It Now': 'TryItNow.md'
   - 'Check API Usage': 'CheckUsage.md'
   - 'OpenAPI Specification': 'Specification.md'
