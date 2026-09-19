@@ -5,11 +5,11 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 ???+ note "Version 2.10"
 	* September 18, 2026, API Version 2.10.0
 		* Added support for the Canadian models per [PR #603](https://github.com/Pirate-Weather/pirate-weather-code/pull/603).
-			* The Canadian models have the highest priority for Canada outside of the RTMA-RU and HRRR subhourly models for the currently and minutely block.
+			* The Canadian models have the highest priority for Canada outside of the RTMA-RU and HRRR subhourly models for the currently and minutely blocks.
 		* Added support for more local Air Quality indexes per [PR #713](https://github.com/Pirate-Weather/pirate-weather-code/pull/713).
 		* Added support for the UK DAQI for `uk` units per [PR #710](https://github.com/Pirate-Weather/pirate-weather-code/pull/710).
 		* Add `aqiunits` query parameter to override AQI unit system per [PR #709](https://github.com/Pirate-Weather/pirate-weather-code/pull/709).
-		* Fixed an issue where the hourly precipitation accumulation was using the wrong prioirty function per [PR #736](https://github.com/Pirate-Weather/pirate-weather-code/pull/736).
+		* Fixed an issue where the hourly precipitation accumulation was using the wrong priority function per [PR #736](https://github.com/Pirate-Weather/pirate-weather-code/pull/736).
 		* Updated the freshness checks for various models to make them more consistent per [PR #733](https://github.com/Pirate-Weather/pirate-weather-code/pull/733).
 		* Updated the US alert description to have double line breaks to keep it consistent with the WMO Alerts per [PR #732](https://github.com/Pirate-Weather/pirate-weather-code/pull/732)
 		* Change CAQI to Normalized EAQI using the CAQI 0-100 scale per [PR #705](https://github.com/Pirate-Weather/pirate-weather-code/pull/705).
