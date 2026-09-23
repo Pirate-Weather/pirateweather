@@ -6,7 +6,7 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 	* September 23, 2026, API Version 2.10.2
 		* Fixed broken WMO alerts ingest per [PR #757](https://github.com/Pirate-Weather/pirate-weather-code/pull/757).
 	* September 22, 2026, API Version 2.10.1
-		* Fixed SILAM and RAQDPS showing in the `sourceList` for requests more than 48 hours in the past per [PR #752](https://github.com/Pirate-Weather/pirate-weather-code/pull/752).
+		* Fixed SILAM and RAQDPS showing in the `sourceList` for requests more than 48 hours since the last run per [PR #752](https://github.com/Pirate-Weather/pirate-weather-code/pull/752).
 		* Add URMA for short-term historic requests per [PR #746](https://github.com/Pirate-Weather/pirate-weather-code/pull/746).
 		* Removed legacy NBM Fire ingest script per [PR #751](https://github.com/Pirate-Weather/pirate-weather-code/pull/751).
 		* Fixed issues with ECMWF and GEFS ingest per [PR #751](https://github.com/Pirate-Weather/pirate-weather-code/pull/751) and [PR #755](https://github.com/Pirate-Weather/pirate-weather-code/pull/755)
