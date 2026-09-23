@@ -192,7 +192,7 @@ This page shows a sample JSON response examples for both the forecast API and th
 		},
 		"nearest-station": -999,
 		"units": "ca",
-		"version": "V2.10.0"
+		"version": "V2.10.2"
   	}
 ```
 
@@ -315,7 +315,7 @@ GET https://timemachine.pirateweather.net/forecast/1234567890abcdefghijklmnopqrs
 	"sourceTimes": {},
 	"nearest-station": 0,
 	"units": "ca",
-	"version": "V2.10.0"
+	"version": "V2"
 	}
 }
 ```

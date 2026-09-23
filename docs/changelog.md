@@ -3,6 +3,12 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.10"
+	* September 23, 2026, API Version 2.10.2
+		* Fixed broken WMO alerts ingest per [PR #757](https://github.com/Pirate-Weather/pirate-weather-code/pull/757).
+	* September 22, 2026, API Version 2.10.1
+		* Fixed SILAM and RAQDPS showing in the `sourceList` for requests more than 48 hours in the past per [PR #752](https://github.com/Pirate-Weather/pirate-weather-code/pull/752).
+		* Removed legacy NBM Fire ingest script per [PR #751](https://github.com/Pirate-Weather/pirate-weather-code/pull/751).
+		* Fixed issues with ECMWF and GEFS ingest per [PR #751](https://github.com/Pirate-Weather/pirate-weather-code/pull/751) and [PR #755](https://github.com/Pirate-Weather/pirate-weather-code/pull/755)
 	* September 18, 2026, API Version 2.10.0
 		* Added support for the Canadian models per [PR #603](https://github.com/Pirate-Weather/pirate-weather-code/pull/603).
 			* The Canadian models have the highest priority for Canada outside of the RTMA-RU and HRRR subhourly models for the currently and minutely blocks.
