@@ -242,7 +242,7 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | HRRR- 48h            | 0,6,12,18       | 2:30  | 2:30,8:30,14:30,20:30 |
 | HRRR- 18h/ SubHourly | 0-24            | 1:45  | 1:45-00:45        	 |
 | RTMA-RU              | 0-24            | 0:25  | :25,:40,:55,:10       |
-| URMA                 | -24             | 0:15  | :15 every hour        | 
+| URMA                 | 0-24            | 0:15  | :15 every hour        | 
 | ECMWF IFS            | 0,12            | 8:00  | 8,20                  |
 | DWD MOSMIX           | 0-24            | 1:00  | 1:00-0:00             |
 | HRDPS                | 0,6,12,18       | 4:00  | 4,10,16,22            |

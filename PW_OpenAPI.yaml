@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: "2.10.0"
+  version: "2.10.2"
   title: Pirate Weather API
   description: Pirate Weather provides an open, free, and documented source of government weather data.
   termsOfService: https://pirate-weather.apiable.io/terms
@@ -1347,7 +1347,7 @@ components:
         version:
           type: string
           description: The version of Pirate Weather used to generate the forecast.
-          example: V2.10.0
+          example: V2.10.2
         sourceIDX:
           type: object
           description: The grid indices and latitude/longitude for available model data, or station metadata for DWD MOSMIX. Only returned when version>1.
