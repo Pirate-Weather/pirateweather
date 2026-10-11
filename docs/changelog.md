@@ -3,6 +3,10 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.10"
+	* October 10, 2026, API Version 2.10.3
+		* Updated thunderstorm text generation function to use additional parameters per [PR #745](https://github.com/Pirate-Weather/pirate-weather-code/pull/745).
+			* The updated function takes into consideration lifted index, vertical velocity, convective inhibition, K-Index and dew point depression to determine if a thunderstorm is likely to occur.
+			* Currently lifted index, vertical velocity, convective inhibition and K-Index are only available from the Canadian models but support for the other models will be added in a future update.
 	* September 23, 2026, API Version 2.10.2
 		* Fixed broken WMO alerts ingest per [PR #757](https://github.com/Pirate-Weather/pirate-weather-code/pull/757).
 	* September 22, 2026, API Version 2.10.1
