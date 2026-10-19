@@ -4,8 +4,8 @@ For a RSS feed of these changes, subscribe using this link: <https://github.com/
 
 ???+ note "Version 2.10"
 	* October 19, 2026, API Version 2.10.3
-		* Removed thundertsorm summaries from the minutely text generation per [PR #777](https://github.com/Pirate-Weather/pirate-weather-code/pull/777).
-		* Fixed assorited ingest issues per [PR #772](https://github.com/Pirate-Weather/pirate-weather-code/pull/772).
+		* Removed thunderstorm summaries from the minutely text generation per [PR #777](https://github.com/Pirate-Weather/pirate-weather-code/pull/777).
+		* Fixed assorted ingest issues per [PR #772](https://github.com/Pirate-Weather/pirate-weather-code/pull/772).
 		* Updated thunderstorm text generation function to use additional parameters per [PR #745](https://github.com/Pirate-Weather/pirate-weather-code/pull/745).
 			* The updated function takes into consideration lifted index, vertical velocity, convective inhibition, K-Index and dew point depression to determine if a thunderstorm is likely to occur.
 			* Currently lifted index, vertical velocity, convective inhibition and K-Index are only available from the Canadian models but support for the other models will be added in a future update.

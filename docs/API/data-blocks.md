@@ -222,7 +222,7 @@ The precipitation icon logic is as follows:
 
 The precipitation with the most accumulation forecasted is generally the icon which is shown unless:
 
-* `thunderstorm` uses a combination of CAPE, lifted index, vertical velocity, convective inhibition, K-index and dew point depression to ccalculate whether or not a thunderstorm is likely to occur. Full code can be viewed [here](https://github.com/Pirate-Weather/pirate-weather-code/blob/71f281c68fd29775000e7a63ee03b88f192bcb10/API/PirateTextHelper.py#L665).
+* `thunderstorm` uses a combination of CAPE, lifted index, vertical velocity, convective inhibition, K-index and dew point depression to calculate whether or not a thunderstorm is likely to occur. Full code can be viewed in the [thunderstorm prediction implementation](https://github.com/Pirate-Weather/pirate-weather-code/blob/71f281c68fd29775000e7a63ee03b88f192bcb10/API/PirateTextHelper.py#L665).
 * If more than 10 mm of rain is forecast, then `rain`
 * If more than 5 mm of snow is forecast, then `snow`
 * Else, if more than 1 mm of ice is forecast, then `sleet`
@@ -253,10 +253,10 @@ For additional details, see [issue #3](https://github.com/alexander0042/piratewe
 **Only on `currently`, `hourly` and `day_night`**. The K-Index (KI) in °C.
 
 #### kIndexMax
-**Only on `daily`**. The minimum K-Index for the day.
+**Only on `daily`**. The maximum K-Index for the day.
 
 #### kIndexMaxTime
-**Only on `daily`**. The point in which the maximum `kIndex` occurs represented in UNIX time.
+**Only on `daily`**. The time at which the maximum K-Index for the day occurs, represented in UNIX time.
 
 #### liftedIndex
 **Only on `currently`, `hourly` and `day_night`**. The lifted index (LI) in °C.
