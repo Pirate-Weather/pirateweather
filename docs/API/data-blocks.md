@@ -82,11 +82,24 @@ The time of the minimum "feels like" temperature during the daytime, from 6:00 a
 #### cape
 The Convective Available Potential Energy measured in J/kg.
 
+#### capeMax
+**Only on `daily`.** The maximum `cape` for the day.
+
 #### capeMaxTime
-**Only on `daily`.** the time in which the maximum `cape` occurs represented in UNIX time.
+**Only on `daily`.** The time in which the maximum `cape` occurs represented in UNIX time.
+
+#### convectiveInhibition
+**Only on `currently`, `hourly` and `day_night`**. The convective inhibition (CIN) in J/kg.
+
+#### convectiveInhibitionMax
+**Only on `daily`.** The maximum (least inhibiting) `convectiveInhibition` for the day.
+
+#### convectiveInhibitionMaxTime
+**Only on `daily`.** The time in which the maximum `convectiveInhibition` occurs represented in UNIX time.
+
 
 #### cloudCover
-Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive. Calculated from the the [GFS (#650)](https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.1p00.f003.shtml) or [HRRR (#115)](https://rapidrefresh.noaa.gov/hrrr/HRRRv4_GRIB2_WRFTWO.txt) `TCDC` variable for the entire atmosphere.
+Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive.
 
 #### currentDayIce
 **Only on `currently`**. The ice precipitation that has accumulated so far during the day, from midnight until the forecast request time.
@@ -209,7 +222,7 @@ The precipitation icon logic is as follows:
 
 The precipitation with the most accumulation forecasted is generally the icon which is shown unless:
 
-* If maximum CAPE (with precipitation) is greater than 2500J/kg then `thunderstorm`.
+* `thunderstorm` uses a combination of CAPE, lifted index, vertical velocity, convective inhibition, K-index and dew point depression to ccalculate whether or not a thunderstorm is likely to occur. Full code can be viewed [here](https://github.com/Pirate-Weather/pirate-weather-code/blob/71f281c68fd29775000e7a63ee03b88f192bcb10/API/PirateTextHelper.py#L665).
 * If more than 10 mm of rain is forecast, then `rain`
 * If more than 5 mm of snow is forecast, then `snow`
 * Else, if more than 1 mm of ice is forecast, then `sleet`
@@ -235,6 +248,24 @@ The cloud cover icon thresholds are the following:
 * If cloud cover is less than 37.5%, then `clear`.
 
 For additional details, see [issue #3](https://github.com/alexander0042/pirateweather/issues/3).
+
+#### kIndex
+**Only on `currently`, `hourly` and `day_night`**. The K-Index (KI) in °C.
+
+#### kIndexMax
+**Only on `daily`**. The minimum K-Index for the day.
+
+#### kIndexMaxTime
+**Only on `daily`**. The point in which the maximum `kIndex` occurs represented in UNIX time.
+
+#### liftedIndex
+**Only on `currently`, `hourly` and `day_night`**. The lifted index (LI) in °C.
+
+#### liftedIndexMin
+**Only on `daily`**. The minimum lifted index for the day.
+
+#### liftedIndexMinTime
+**Only on `daily`**. The point in which the minimum `liftedIndex` occurs represented in UNIX time.
 
 #### liquidAccumulation
 **Only on `hourly` and `daily`**. The amount of liquid precipitation expected to fall over an hour or a day expressed in centimetres or inches depending on the requested `units`. 
@@ -389,6 +420,15 @@ The measure of UV radiation as represented as an index starting from 0. `0` to `
 
 #### uvIndexTime
 **Only on `daily`**. The time in which the maximum `uvIndex` occurs during the day.
+
+#### verticalVelocity
+**Only on `currently`, `hourly` and `day_night`**. The vertical pressure velocity in Pa/s. Negative values indicate upward motion; positive values indicate downward motion.
+
+#### verticalVelocityMin
+**Only on `daily`.** The minimum `verticalVelocity` for the day.
+
+#### verticalVelocityMinTime
+**Only on `daily`.** The time in which the minimum `verticalVelocity` occurs represented in UNIX time.
 
 #### visibility
 The visibility in kilometres or miles depending on the requested units. In the `daily` block the visibility is the average visibility for the day. This value is capped at 16 kilometres or 10 miles depending on the requested `units`.
