@@ -1294,15 +1294,15 @@ components:
                 format: int64
                 description: The time when the minimum VVEL occurs, in UNIX seconds. Only returned when version>1.
                 example: 1789747200
-              convectiveInhibitionMin:
+              convectiveInhibitionMax:
                 type: integer
                 format: int32
-                description: The minimum hourly convective inhibition (CIN) for the day, in J/kg. Only returned when version>1.
+                description: The maximum hourly convective inhibition (CIN) for the day, in J/kg. Only returned when version>1.
                 example: 0
-              convectiveInhibitionMinTime:
+              convectiveInhibitionMaxTime:
                 type: integer
                 format: int64
-                description: The time when the minimum CIN occurs, in UNIX seconds. Only returned when version>1.
+                description: The time when the maximum CIN occurs, in UNIX seconds. Only returned when version>1.
                 example: 1789747200
     alerts:
       type: array
