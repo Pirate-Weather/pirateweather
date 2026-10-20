@@ -97,7 +97,6 @@ The Convective Available Potential Energy measured in J/kg.
 #### convectiveInhibitionMaxTime
 **Only on `daily`.** The time in which the maximum `convectiveInhibition` occurs represented in UNIX time.
 
-
 #### cloudCover
 Percentage of the sky that is covered in clouds. This value will be between 0 and 1 inclusive.
 
@@ -422,7 +421,7 @@ The measure of UV radiation as represented as an index starting from 0. `0` to `
 **Only on `daily`**. The time in which the maximum `uvIndex` occurs during the day.
 
 #### verticalVelocity
-**Only on `currently`, `hourly` and `day_night`**. The vertical pressure velocity in Pa/s. Negative values indicate upward motion; positive values indicate downward motion.
+**Only on `currently`, `hourly` and `day_night`**. The vertical pressure velocity (VVEL) in Pa/s. Negative values indicate upward motion; positive values indicate downward motion.
 
 #### verticalVelocityMin
 **Only on `daily`.** The minimum `verticalVelocity` for the day.

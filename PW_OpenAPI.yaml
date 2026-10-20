@@ -528,7 +528,26 @@ components:
           type: integer
           format: int32
           description: The Convective Available Potential Energy measured in J/kg. Only returned when version>1.
-          example: 3            
+          example: 3
+        liftedIndex:
+          type: integer
+          format: int32
+          description: The lifted index (LI) in °C. Only returned when version>1.
+          example: 15
+        kIndex:
+          type: integer
+          format: int32
+          description: The K-Index (KI) in °C. Only returned when version>1.
+          example: -42
+        verticalVelocity:
+          type: number
+          description: The vertical pressure velocity in Pa/s. Negative values indicate upward motion; positive values indicate downward motion. Only returned when version>1.
+          example: 0.09
+        convectiveInhibition:
+          type: integer
+          format: int32
+          description: The convective inhibition (CIN) in J/kg. Only returned when version>1.
+          example: 0
     minutely:
       type: object
       description: A block containing minute-by-minute precipitation intensity for the next 60 minutes.
@@ -764,6 +783,25 @@ components:
                 format: int32
                 description: The Convective Available Potential Energy measured in J/kg. Only returned when version>1.
                 example: 0
+              liftedIndex:
+                type: integer
+                format: int32
+                description: The lifted index (LI) in °C. Only returned when version>1.
+                example: 15
+              kIndex:
+                type: integer
+                format: int32
+                description: The K-Index (KI) in °C. Only returned when version>1.
+                example: -42
+              verticalVelocity:
+                type: number
+                description: The vertical pressure velocity in Pa/s. Negative values indicate upward motion; positive values indicate downward motion. Only returned when version>1.
+                example: 0.15
+              convectiveInhibition:
+                type: integer
+                format: int32
+                description: The convective inhibition (CIN) in J/kg. Only returned when version>1.
+                example: 0
     day_night:
       type: object
       description: A block containing day and night forecasts for today and the next 7 days (up to 16 entries). Returned when include contains day_night_forecast or blocks requests day_night; not returned for historical requests.
@@ -912,6 +950,25 @@ components:
                 format: int32
                 description: The Convective Available Potential Energy measured in J/kg. Only returned when version>1.
                 example: 4
+              liftedIndex:
+                type: integer
+                format: int32
+                description: The lifted index (LI) in °C. Only returned when version>1.
+                example: 18
+              kIndex:
+                type: integer
+                format: int32
+                description: The K-Index (KI) in °C. Only returned when version>1.
+                example: -44
+              verticalVelocity:
+                type: number
+                description: The vertical pressure velocity in Pa/s. Negative values indicate upward motion; positive values indicate downward motion. Only returned when version>1.
+                example: 0.17
+              convectiveInhibition:
+                type: integer
+                format: int32
+                description: The convective inhibition (CIN) in J/kg. Only returned when version>1.
+                example: 0
     daily:
       type: object
       description: A block containing daily forecasted conditions for today and the next 7 days (8 entries). Historical requests use the days parameter to control the number of entries.
@@ -1207,6 +1264,45 @@ components:
                 type: integer
                 format: int64
                 description: The time when the maximum CAPE occurs, in UNIX seconds. Only returned when version>1.
+                example: 1789747200
+              liftedIndexMin:
+                type: integer
+                format: int32
+                description: The minimum hourly lifted index (LI) for the day, in °C. Only returned when version>1.
+                example: 15
+              liftedIndexMinTime:
+                type: integer
+                format: int64
+                description: The time when the minimum LI occurs, in UNIX seconds. Only returned when version>1.
+                example: 1789747200
+              kIndexMax:
+                type: integer
+                format: int32
+                description: The maximum hourly K-Index (KI) for the day, in °C. Only returned when version>1.
+                example: 42
+              kIndexMaxTime:
+                type: integer
+                format: int64
+                description: The time when the maximum KI occurs, in UNIX seconds. Only returned when version>1.
+                example: 1789747200
+              verticalVelocityMin:
+                type: number
+                description: The minimum hourly vertical pressure velocity (VVEL) for the day, in Pa/s. Negative values indicate upward motion; positive values indicate downward motion. Only returned when version>1.
+                example: 0.09
+              verticalVelocityMinTime:
+                type: integer
+                format: int64
+                description: The time when the minimum VVEL occurs, in UNIX seconds. Only returned when version>1.
+                example: 1789747200
+              convectiveInhibitionMin:
+                type: integer
+                format: int32
+                description: The minimum hourly convective inhibition (CIN) for the day, in J/kg. Only returned when version>1.
+                example: 0
+              convectiveInhibitionMinTime:
+                type: integer
+                format: int64
+                description: The time when the minimum CIN occurs, in UNIX seconds. Only returned when version>1.
                 example: 1789747200
     alerts:
       type: array

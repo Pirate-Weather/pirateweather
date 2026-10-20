@@ -3,7 +3,7 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.10"
-	* October 19, 2026, API Version 2.10.3
+	* October 20, 2026, API Version 2.10.3
 		* Removed thunderstorm summaries from the minutely text generation per [PR #777](https://github.com/Pirate-Weather/pirate-weather-code/pull/777).
 		* Fixed assorted ingest issues per [PR #772](https://github.com/Pirate-Weather/pirate-weather-code/pull/772).
 		* Updated thunderstorm text generation function to use additional parameters per [PR #745](https://github.com/Pirate-Weather/pirate-weather-code/pull/745).
