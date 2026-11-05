@@ -3,7 +3,7 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 2.10"
-	* November 1, 2026, API Version 2.10.4
+	* November 5, 2026, API Version 2.10.4
 		* chore: Update timezone data to 2026f to fix an incorrect timezone in Cuba per [PR #790](https://github.com/Pirate-Weather/pirate-weather-code/pull/790).
 		* fix: HTTP 500 error when WMO Alerts is missing per [PR #789](https://github.com/Pirate-Weather/pirate-weather-code/pull/789).
 	* October 21, 2026, API Version 2.10.3
