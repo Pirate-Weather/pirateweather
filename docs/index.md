@@ -54,10 +54,29 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
 ## Recent Updates- Fall 2026
-Up to version 2.10.4! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+Up to version 3.0.0! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-* chore: Update timezone data to 2026f to fix an incorrect timezone in Cuba per [PR #790](https://github.com/Pirate-Weather/pirate-weather-code/pull/790).
-* fix: HTTP 500 error when WMO Alerts is missing per [PR #789](https://github.com/Pirate-Weather/pirate-weather-code/pull/789).
+* Changed the Canadaian source priority to only include Canada per [PR #805](https://github.com/Pirate-Weather/pirate-weather-code/pull/805).
+* Fixed an issue where the daily `sleet` type was being overridden per [PR #805](https://github.com/Pirate-Weather/pirate-weather-code/pull/805).
+* Fixed a few daylight savings bugs per [PR #806](https://github.com/Pirate-Weather/pirate-weather-code/pull/806).
+* Fixed a few issues with the wind direction handling per [PR #806](https://github.com/Pirate-Weather/pirate-weather-code/pull/806).
+* Changed the weekly summaries to state other notable conditions if no precipitation is forecast per [PR #806](https://github.com/Pirate-Weather/pirate-weather-code/pull/806).
+* Changed the current day summary to only consider upcoming hours for the summaries per [PR #806](https://github.com/Pirate-Weather/pirate-weather-code/pull/806).
+	* Conditions that start from current hour and run until the end of the day will use for the rest of the day. If the current time is 1pm and rain is forecast for the rest of the day instead of stating it will start during the afternoon it will use for the rest of the day.
+* Updated the ECMWF ingest to use the new 0.1 degree data per [PR #803](https://github.com/Pirate-Weather/pirate-weather-code/pull/803).
+* Changed the Time Machine data source to use our own ERA5 archive per [PR #802](https://github.com/Pirate-Weather/pirate-weather-code/pull/802).
+* Added experimental support for the Rapid Refresh Forecast System behind the `include=rrfs` flag.
+* Added LibreWXR as a global precipitation source for the currently and minutely forecasts.
+* Added support for the new summary texts added in version two of the translations repository per [PR #781](https://github.com/Pirate-Weather/pirate-weather-code/pull/781).
+	* There have been new summaries added to help make the summary text less awkward to read.
+* Changed the weekly precipitation summaries to be more in-line with the daily precipitation icons. The possible precipitation text is also based on the maximum weekly PoP where there is precipitation.
+* Changed the daily summaries to run from 6am to 6am like the daily high and low temperatures do.
+	* This means that morning is from 6am to 12pm, afternoon 12pm to 6pm, evening 6pm to 12am and overnight from 12am to 6am the next day.
+* Changed the minutely summary to read no precipitation for the hour instead of stating that the current condition will persist for the next hour.
+* Performance improvements for the summary generation code.
+* Added thunderstorm indicies to GFS and GDPS models. 
+* Added RTMA for 48 hour short term history with support for the precipitation product for better current day precipitation.
+* Various improvements to the ingest code.
 
 ## MCP Server
 In addition to the main REST endpoint, Pirate Weather exposes a new, hosted MCP server for apps and agents that support remote streamable HTTP MCP servers. Add it to your MCP client with this URL:

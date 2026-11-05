@@ -118,6 +118,7 @@ Some models can also be excluded, which will force data from the fallback source
 *  `reps`
 *  `geps`
 *  `cmc`
+*  `librewxr`
 
 #### Extend
 If `extend=hourly` is included, hourly data for the next 168 hours will be included, instead of the standard 48! This adds some time (~0.3s) to the response, since additional processing is required.   
@@ -197,7 +198,7 @@ If you add `icon=pirate` to the list of parameters you can get an expanded icon 
 `extraVars=` is used to show additional parameters that are not required for most users and may cause confusion. Currently, only `stationPressure` is allowed, but others may be added in the future. 
 
 #### Include
-`include=` is used to add additional data blocks not available in the Dark Sky API.  Currently, `day_night_forecast`, `aimodels` and `airqualitydetails` are allowed, but others may be added in the future.
+`include=` is used to add additional data blocks not available in the Dark Sky API.  Currently, `day_night_forecast`, `aimodels`, `airqualitydetails` and `rrfs` are allowed, but others may be added in the future.
 
 If `airqualitydetails` is added as an include flag the API will return full pollutant details for the following pollutants:
 

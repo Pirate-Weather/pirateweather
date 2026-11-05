@@ -6,10 +6,23 @@ Several models are used to produce the forecast. Most are hosted on [AWS's Open 
 
 ### NOAA
 
+#### Rapid Refresh Forecast System (RRFS)
+The Rapid Refresh Forecast System [(RRFS)](https://www.nco.ncep.noaa.gov/pmb/products/rrfs/) is NOAA's next-generation high-resolution forecast model, built on the Unified Forecast System. It runs every hour on a 3 km grid covering all of North America. The 00, 06, 12, and 18 UTC runs extend to 84 hours, and the other hourly runs extend to 18 hours. Output is provided for the continental US and Alaska at 3 km and for Hawaii and Puerto Rico at 2.5 km. Some fields are also available every 15 minutes for the first 18 hours.
+
+RRFS version 1 replaces the NAM, HiresW, SREF, and HREF. It is planned to eventually replace the HRRR and RAP as well, but NOAA has not set a date for that changeover. Until then, the HRRR continues to run alongside RRFS.
+
+!!! info "Availability"
+    RRFS is only available when enabled via a specific query parameter and may not be present for all forecast requests.
+
 #### RTMA Rapid Update
 The Real-Time Mesoscale Analysis Rapid Update [(RTMA-RU)](https://emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/rtma.php) provides real time analysis for the continental US and parts of Canada. The model runs every 15-minutes and combines the HRRR first guess with observations from satellites and station observations.
 
 RTMA-RU blends a rapidly updating HRRR first guess with whatever observations are available at each 15-minute cycle, the analyses can sometimes show noticeable jumps from one update to the next. Changes in observation availability, timing, or quality—as well as shifts in how strongly the system weights those observations relative to the HRRR first guess—can cause sudden increases or decreases in the analyzed values. These cycle-to-cycle fluctuations are a normal artifact of the rapid-update data assimilation process, and they can appear in any variable, especially in areas with sparse or intermittent observational coverage.
+
+#### RTMA
+The Real-Time Mesoscale Analysis [(RTMA)](https://emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/rtma.php) is NOAA's hourly surface weather analysis. It combines a short-range model first guess with surface and satellite-derived observations using a two-dimensional variational (2DVar) analysis. RTMA is available about an hour after the analysis time and is meant for monitoring current conditions. URMA reruns the same system six hours later to add observations that arrived late.
+
+RTMA provides analyses for the continental US, Hawaii, and Guam at 2.5 km resolution, Alaska at 3 km, and Puerto Rico at 1.25 km. Over the continental US, the first guess is a downscaled blend of the HRRR and NAM nest. Fields include temperature, dew point, wind speed and direction, gusts, surface pressure, visibility, cloud cover, ceiling, and precipitation.
 
 #### URMA
 The UnRestricted Mesoscale Analysis [(URMA)](https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc%3AC01581) is NOAA's hourly surface weather analysis, combining model background fields with conventional and satellite-derived observations. It runs six hours after the analysis time to incorporate observations that arrived too late for RTMA. NOAA uses URMA to calibrate and verify the National Blend of Models.
@@ -242,7 +255,12 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | HRRR- 48h            | 0,6,12,18       | 2:30  | 2:30,8:30,14:30,20:30 |
 | HRRR- 18h/ SubHourly | 0-24            | 1:45  | 1:45-00:45        	 |
 | RTMA-RU              | 0-24            | 0:25  | :25,:40,:55,:10       |
+| RTMA                 | 0-24            | 0:55  | :55 every hour        |
 | URMA                 | 0-24            | 0:15  | :15 every hour        | 
+| RRFS - 18h           | 0,3,6,9,12,15,18,21     | 0:20  | :20 every hour        | 
+| RRFS - SubHourly     | 0-24            | 0:50  | :50 every hour        |  
+| RRFS - 84h           | 0,6,12,18       | 0:20  | 0:20, 6:20, 12:20, 18:20        | 
+| RRFS North America   | 0,6,12,18       | 0:20  | 0:20, 6:20, 12:20, 18:20        | 
 | ECMWF IFS            | 0,12            | 8:00  | 8,20                  |
 | DWD MOSMIX           | 0-24            | 1:00  | 1:00-0:00             |
 | HRDPS                | 0,6,12,18       | 4:00  | 4,10,16,22            |
@@ -252,4 +270,5 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | ECMWF AIFS           | 0,6,12,18       | 8:00  | 8,16,20,2             |
 | AIGFS                | 0,6,12,18       | 5:00  | 5,11,17,23            |
 | RAQDPS               | 0,12            | 4:15  | 4:15,16:15            |
-| SILAM                | 0               | 7:00  | 7                     |
+| SILAM                | 0               | 12:00 | 12,19                 |
+| LibreWXR             | 0-24            | x:xx  | every x minutes       |
