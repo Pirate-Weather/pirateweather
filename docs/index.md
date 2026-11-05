@@ -54,13 +54,10 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
 ## Recent Updates- Fall 2026
-Up to version 2.10.3! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+Up to version 2.10.4! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
-* Removed thunderstorm summaries from the minutely text generation per [PR #777](https://github.com/Pirate-Weather/pirate-weather-code/pull/777).
-* Fixed assorted ingest issues per [PR #772](https://github.com/Pirate-Weather/pirate-weather-code/pull/772).
-* Updated thunderstorm text generation function to use additional parameters per [PR #745](https://github.com/Pirate-Weather/pirate-weather-code/pull/745).
-	* The updated function takes into consideration lifted index, vertical velocity, convective inhibition, K-Index and dew point depression to determine if a thunderstorm is likely to occur.
-	* Currently lifted index, vertical velocity, convective inhibition and K-Index are only available from the Canadian models but support for the other models will be added in a future update.
+* chore: Update timezone data to 2026f to fix an incorrect timezone in Cuba per [PR #790](https://github.com/Pirate-Weather/pirate-weather-code/pull/790).
+* fix: HTTP 500 error when WMO Alerts is missing per [PR #789](https://github.com/Pirate-Weather/pirate-weather-code/pull/789).
 
 ## MCP Server
 In addition to the main REST endpoint, Pirate Weather exposes a new, hosted MCP server for apps and agents that support remote streamable HTTP MCP servers. Add it to your MCP client with this URL:
