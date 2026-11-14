@@ -78,6 +78,7 @@ paths:
                 - reps
                 - cmc
                 - cmcmodels
+                - librewxr
         - name: days
           in: query
           description: For historical requests, return 1 to 8 days of daily data. Defaults to 1 day. Hourly output defaults to days multiplied by 24 unless hours is supplied.
@@ -108,7 +109,7 @@ paths:
           schema:
             type: string
             enum:
-              - stationPressure      
+              - stationPressure
         - name: lang
           in: query
           description: Returns the forecast summaries in the desired language.
@@ -222,6 +223,7 @@ paths:
                 - day_night_forecast
                 - aimodels
                 - airqualitydetails
+                - rrfs
         - name: blocks
           in: query
           description: A comma-delimited allowlist of response blocks to return. Supported blocks are currently, minutely, hourly, daily, day_night, alerts, and flags.
@@ -1432,6 +1434,11 @@ components:
               type: string
               description: The time the SILAM model was last updated.
               example: 2026-09-16 00Z
+        nextUpdate:
+          type: integer
+          format: int32
+          description: The UNIX timestamp of when the earliest expected refresh of any of the models used in the response is.
+          example: 1794689280
         nearest-station:
           type: number
           description: Distance to the closest DWD MOSMIX station to your location in kilometres or miles depending on the units. If there are no stations for your location this will return -999.

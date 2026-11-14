@@ -3,7 +3,17 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 3.0"
-	* November 5, 2026, API Version 3.0.0
+	* November 12, 2026, API Version 3.0.0
+		* Changed CFS precipitation type to be calculated based on the wet bulb temperature and estimate its visibility per [PR #836](https://github.com/Pirate-Weather/pirate-weather-code/pull/836) and [PR #837](https://github.com/Pirate-Weather/pirate-weather-code/pull/837).
+			* The wet bulb temperature is used instead of typing based on air temperature and the CFS precipitation type will be either `rain` or `snow`.
+			* The visibility is estimated based on humidity, precipitation, wind and precipitation type.
+		* Added support for the Climate Forecast System (CFS) for future forecasts per [PR #835](https://github.com/Pirate-Weather/pirate-weather-code/pull/835).
+			* GFS is used for the first 8 days of data and past that out to 6 months from the current date CFS is used.
+			* The CFS long range forecasts are for entertainment purposes only as the model only shows trends and should not be relied on for specific days.
+		* Added a timestamp which shows the earliest time the models will refresh behind the `version=2` query string per [PR #827](https://github.com/Pirate-Weather/pirate-weather-code/pull/827).
+		* Changed the API to return only the list of models that supplied data behind the `version=2` query string per [PR #826](https://github.com/Pirate-Weather/pirate-weather-code/pull/826).
+		* Changed the API to return data for future days instead of retuning a HTTP 400 error per [PR #825](https://github.com/Pirate-Weather/pirate-weather-code/pull/825).
+		* Changed the daily precipitation probability to be the share of members with measureable precipitation at any hour per [PR #819](https://github.com/Pirate-Weather/pirate-weather-code/pull/819).
 		* Changed the Canadaian source priority to only include Canada per [PR #805](https://github.com/Pirate-Weather/pirate-weather-code/pull/805).
 		* Fixed an issue where the daily `sleet` type was being overridden per [PR #805](https://github.com/Pirate-Weather/pirate-weather-code/pull/805).
 		* Fixed a few daylight savings bugs per [PR #806](https://github.com/Pirate-Weather/pirate-weather-code/pull/806).

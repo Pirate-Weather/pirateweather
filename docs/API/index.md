@@ -56,7 +56,15 @@ The time field is optional for the forecast request, but mandatory for a histori
 It's worth noting that Dark Sky also allows strings with a specified time zone (ex. `+[HH][MM]`). Right now this isn't supported, but if it's important for a workflow I can try to get it working.
 If the time variable is not included, then the current time is used for the request. If a time variable is included, the request is treated as if it was requested at that time. This means that the API will return the forecast data that would have been returned then- so not quite observations, but the last forecast for that date. Results are always returned in UTC time using UNIX timestamps, and internally UNIX time is used for everything, with the exception of calculating where to begin and end the daily data. Also, for checking time format conversions, I found <https://www.silisoftware.com/tools/date.php> to be an invaluable resource.
 
-Also worth noting that times far in the future are not supported and will return an error. Specifically, times within 1 hour of the present time will be rounded to present to account for small timing issues, with anything beyond that returning a 400 error.
+Starting in API v3 support was added for querying dates in the future instead of returning a HTTP 400 error. Data for the next 8 days is supplied by GFS and beyond that out to 6 months is provided by the CFS.
+
+!!! info "Variables"
+    CFS does not include UV index, visibility, wind gusts, ozone, smoke, CAPE, lifted index, K-index, vertical velocity, convective inhibition, air quality pollutants, or precipitation type. The API estimates four of these from other CFS fields:
+
+    * **Precipitation type** is rain or snow, based on the wet-bulb temperature.
+    * **UV index**, **visibility**, and **wind gusts** are estimated from the available data.
+
+    The other variables are not available from the CFS.
 
 #### Units
 Specifies the requested unit for the weather conditions. Options are

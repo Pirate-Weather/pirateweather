@@ -44,6 +44,9 @@ The X,Y coordinate and the lat, lon coordinate for the grid cell used for each m
 #### nearest-station
 Distance to the closest DWD MOSMIX station to your location in kilometres or miles depending on the units. If there are no stations for your location this will return -999.
 
+#### nextUpdate
+The UNIX timestamp of when the earliest expected refresh of any of the models used in the response is.
+
 #### units
 Indicates which units were used in the forecasts.
 

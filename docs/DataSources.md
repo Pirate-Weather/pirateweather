@@ -49,7 +49,20 @@ The AI Global Forecast System [(AIGFS)](https://www.emc.ncep.noaa.gov/emc/pages/
     AIGFS/AIGEFS is only available when enabled via a specific query parameter and may not be present for all forecast requests.
 
 #### GEFS
-The Global Ensemble Forecast System [(GEFS)](https://www.ncei.noaa.gov/products/weather-climate-models/global-ensemble-forecast) is the ensemble version of NOAA's GFS model. By running different variations parameters and inputs, 30 different versions of this model are run at the same time, providing 3-hour forecasts out to 240 hours. The API uses the GEFS to get precipitation type, quantity, and probability, since it seemed like the most accurate way of determining this. I have no idea how Dark Sky did it, and I am very open to feedback about other ways it could be assigned, since getting the precipitation probability number turned out to be one of the most complex parts of the entire setup! 
+The Global Ensemble Forecast System [(GEFS)](https://www.ncei.noaa.gov/products/weather-climate-models/global-ensemble-forecast) is the ensemble version of NOAA's GFS model. By running different variations parameters and inputs, 30 different versions of this model are run at the same time, providing 3-hour forecasts out to 240 hours. The API uses the GEFS to get precipitation type, quantity, and probability, since it seemed like the most accurate way of determining this. I have no idea how Dark Sky did it, and I am very open to feedback about other ways it could be assigned, since getting the precipitation probability number turned out to be one of the most complex parts of the entire setup!
+
+#### CFS
+The Climate Forecast System [(CFS)](https://www.ncei.noaa.gov/products/weather-climate-models/climate-forecast-system) is NOAA's coupled atmosphere, ocean, land, and sea ice model for seasonal forecasting. It runs four times a day and forecasts out to about nine months, at a much coarser resolution than the weather models above (about 100 km). Here, CFS data provides forecasts up to six months ahead, beyond the range of the other models.
+
+The API uses the CFS `time_series` product, which holds 6-hourly output for a subset of the full forecast variables. The CFS has four ensemble members. Rather than running for a fixed number of hours, each member runs to the end of a calendar month, so its forecast gets shorter each day until the end date moves forward. Member 1 runs well past the six months the API uses. Members 2, 3, and 4 run for only about three to four months. For example, runs started on 14 November end at 00 UTC on 1 March, which is 107 days out. Once members 2, 3, and 4 end, only one member is left, so precipitation probability and precipitation intensity error are not available past that point.
+
+!!! info "Variables"
+    The `time_series` product does not include UV index, visibility, wind gusts, ozone, smoke, CAPE, lifted index, K-index, vertical velocity, convective inhibition, air quality pollutants, or precipitation type. The API estimates four of these from other CFS fields:
+
+    * **Precipitation type** is rain or snow, based on the wet-bulb temperature.
+    * **UV index**, **visibility**, and **wind gusts** are estimated from the available data.
+
+    The other variables are not available from the CFS.
 
 ### ECMWF
 
@@ -101,6 +114,13 @@ MOSMIX provides hourly forecasts for thousands of stations worldwide, though not
 
 #### SILAM
 [System for Integrated modeLling of Atmospheric coMposition](https://silam.fmi.fi) is a global-to-meso-scale dispersion model developed by the Finnish Meteorological Institute (FMI). It provides global coverage at a 20 km resolution, modeling over 100 chemical species and aerosols across the troposphere and stratosphere. Because it utilizes a hybrid Eulerian-Lagrangian approach, SILAM excels at simulating long-range, transboundary transport. It's uniquely suited for projects that need to account for dynamic, natural emissions alongside human ones-such as tracking desert dust storms, sea salt dispersion, global aviation safety risks, or real-time wildland fire emissions on a macro scale.
+
+### Other Sources
+
+#### LibreWXR
+[LibreWXR](https://librewxr.net) is a free, open-source weather radar service. It combines national and regional radar networks, such as NOAA's MRMS in the US, ECCC's radar in Canada, and EUMETNET OPERA in Europe. Where no radar is available, it uses NOAA's satellite-based Enterprise Rain Rate (RRQPE), which covers 60°S to 70°N and updates every 10 minutes. From this observed precipitation, LibreWXR makes an 60-minute nowcast by tracking how the precipitation is moving.
+
+Here, LibreWXR is used for precipitation in the currently and minutely blocks wherever it has coverage. It can be turned off with `exclude=librewxr`.
 
 **Looking for a weather model that's not listed?** Check the [existing model requests](https://github.com/Pirate-Weather/pirateweather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22new%20source%22) first. If it hasn't already been requested, submit a [new source request](https://github.com/Pirate-Weather/pirateweather/issues/new?template=new_source.yml).
 
@@ -272,3 +292,4 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | RAQDPS               | 0,12            | 4:15  | 4:15,16:15            |
 | SILAM                | 0               | 12:00 | 12,19                 |
 | LibreWXR             | 0-24            | x:xx  | every x minutes       |
+| CFS                  | 0               | x:xx  | x:xx                  |
