@@ -3,7 +3,8 @@
 For a RSS feed of these changes, subscribe using this link: <https://github.com/Pirate-Weather/pirate-weather-code/commits/main.atom>.
 
 ???+ note "Version 3.0"
-	* November 12, 2026, API Version 3.0.0
+	* November 17, 2026, API Version 3.0.0
+		* Fix an issue where GEPS and REPS types used the air temperature for precipitation type when precipitation was below 0.5 mm/h per [PR #843](https://github.com/Pirate-Weather/pirate-weather-code/pull/843).
 		* Changed CFS precipitation type to be calculated based on the wet bulb temperature and estimate its visibility per [PR #836](https://github.com/Pirate-Weather/pirate-weather-code/pull/836) and [PR #837](https://github.com/Pirate-Weather/pirate-weather-code/pull/837).
 			* The wet bulb temperature is used instead of typing based on air temperature and the CFS precipitation type will be either `rain` or `snow`.
 			* The visibility is estimated based on humidity, precipitation, wind and precipitation type.
