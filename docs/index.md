@@ -57,6 +57,7 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 Up to version 3.0.0! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
 
 * Fix an issue where GEPS and REPS types used the air temperature for precipitation type when precipitation was below 0.5 mm/h per [PR #843](https://github.com/Pirate-Weather/pirate-weather-code/pull/843).
+* Fix an issue where the daily preipitation type defaulted to ice on days where frozen precipitation was mixed with another type per [PR #842](https://github.com/Pirate-Weather/pirate-weather-code/pull/842).
 * Changed CFS precipitation type to be calculated based on the wet bulb temperature and estimate its visibility per [PR #836](https://github.com/Pirate-Weather/pirate-weather-code/pull/836) and [PR #837](https://github.com/Pirate-Weather/pirate-weather-code/pull/837).
 	* The wet bulb temperature is used instead of typing based on air temperature and the CFS precipitation type will be either `rain` or `snow`.
 	* The visibility is estimated based on humidity, precipitation, wind and precipitation type.
