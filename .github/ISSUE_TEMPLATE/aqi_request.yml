@@ -27,7 +27,7 @@ body:
       options:
         - label: I have checked [the existing issues](https://github.com/Pirate-Weather/pirateweather/issues?q=state%3Aopen%20label%3A%22air%20quality%20index%22) to see if the index has already been requested.
           required: true
-        - label: I have checked [the documentation](https://docs.pirateweather.net/en/latest/API/#index-reference-ranges) to see if the Air Quality index has already been implemented. 
+        - label: I have checked [the documentation](https://docs.pirateweather.net/en/latest/API/air-quality/#index-reference-ranges) to see if the Air Quality index has already been implemented. 
           required: true
         - label: The air quality index link I provided shows how the index is calcualted and the pollutant breakpoints for the different values.
           required: true

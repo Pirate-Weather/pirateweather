@@ -15,7 +15,7 @@
 * [Home Assistant Integration](https://github.com/alexander0042/pirate-weather-hacs)
 * [API repo](https://github.com/alexander0042/pirateweather)
 * [Open Source code repo](https://github.com/Pirate-Weather/pirate-weather-code)
-* [Changelog](https://pirateweather.net/en/latest/changelog/)
+* [Changelog](https://docs.pirateweather.net/en/latest/changelog/)
 * [Status page](https://pirateweather.xitoring.io/)
 
 
@@ -54,7 +54,7 @@ Alternatively, I also have a GitHub Sponsorship page set up on my [profile](http
 <iframe src="https://github.com/sponsors/alexander0042/card" title="Sponsor alexander0042" height="225" width="600" style="border: 0;"></iframe>
 
 ## Recent Updates- Fall 2026
-Up to version 3.0.0! As always, details are available in the [changelog](https://pirateweather.net/en/latest/changelog/).
+Up to version 3.0.0! As always, details are available in the [changelog](https://docs.pirateweather.net/en/latest/changelog/).
 
 * Fix an issue where GEPS and REPS types used the air temperature for precipitation type when precipitation was below 0.5 mm/h per [PR #843](https://github.com/Pirate-Weather/pirate-weather-code/pull/843).
 * Fix an issue where the daily preipitation type defaulted to ice on days where frozen precipitation was mixed with another type per [PR #842](https://github.com/Pirate-Weather/pirate-weather-code/pull/842).
