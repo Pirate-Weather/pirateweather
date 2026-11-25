@@ -1,6 +1,6 @@
 # Home Assistant Integration Documentation
 
-This integration is designed to replace the defunct Dark Sky integration in Home Assistant with a modified and updated, but fully compatible version that relies on the [Pirate Weather API](https://pirateweather.net/en/latest/) instead!
+This integration is designed to replace the defunct Dark Sky integration in Home Assistant with a modified and updated, but fully compatible version that relies on the [Pirate Weather API](https://docs.pirateweather.net/en/latest/) instead!
 
 While this integration is designed to be compatible with Dark Sky, the underlying code is significantly different. This version is designed to work with more modern versions of Home Assistant, and relies on asyncio, unified data update coordinators, and setup via the UI! A [legacy branch](https://github.com/alexander0042/pirate-weather-ha/tree/Legacy-Dark-Sky) that is a 1:1 replacement for the previous Dark Sky integration is also available, but is not recommended.
 
@@ -140,7 +140,7 @@ The available sensors for the integration are:
 * Daytime High Temperature Time
 * Daily Low Temperature Time
 
-Full documentation of the different data points is available here [https://pirateweather.net/en/latest/API/#data-point](https://pirateweather.net/en/latest/API/#data-point). A full list of conditions supported by HA is available here [https://www.home-assistant.io/integrations/weather/#condition-mapping](https://www.home-assistant.io/integrations/weather/#condition-mapping).
+Full documentation of the different data points is available here [https://docs.pirateweather.net/en/latest/API/data-blocks/#data-point](https://docs.pirateweather.net/en/latest/API/data-blocks/#data-point). A full list of conditions supported by HA is available here [https://www.home-assistant.io/integrations/weather/#condition-mapping](https://www.home-assistant.io/integrations/weather/#condition-mapping).
 
 The only data point that is included in HA but not the API is a described Fire Risk Level, converting from the numeric index to a qualitative term following [this approach](https://cwfis.cfs.nrcan.gc.ca/maps/fm3?type=fwih).
 

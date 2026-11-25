@@ -54,7 +54,7 @@ feature_row:
   - icon: "fas fa-history"
     title: "Historic data"
     excerpt: "Request ERA5 reanalysis data from 1940 onward through the same familiar API format used for current forecasts."
-    url: "https://docs.pirateweather.net/en/latest/API/#time-machine-request"
+    url: "https://docs.pirateweather.net/en/latest/API/response-example/#time-machine-request"
     btn_label: "Explore historic data"
     btn_class: "btn--primary"
 feature_row_mcp:
