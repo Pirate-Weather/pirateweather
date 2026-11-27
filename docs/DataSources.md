@@ -100,6 +100,9 @@ The Global Ensemble Prediction System ([GEPS](https://eccc-msc.github.io/open-da
 ### RAQDPS
 [Regional Air Quality Deterministic Prediction System](https://eccc-msc.github.io/open-data/msc-data/nwp_raqdps/readme_raqdps_en/) is maintained by Environment and Climate Change Canada (ECCC) and provides high-resolution regional chemical weather forecasts over North America. It runs twice daily, offering hourly forecasts at a 10 km resolution for up to 72 hours. This model is highly effective for projects needing to track the localized transport, diffusion, and chemical transformation of surface pollutants-specifically ground-level Ozone (O<sub>3</sub>), Nitrogen Dioxide (NO<sub>2</sub>), and fine particulate matter (PM<sub>2.5</sub>)-making it a great fit for calculating regional Air Quality Health Indices (AQHI) or tracking active wildfire smoke plumes.
 
+### RDAQA
+[Regional Deterministic Air Quality Analysis](https://eccc-msc.github.io/open-data/msc-data/nwp_rdaqa/readme_rdaqa_en/) is Environment and Climate Change Canada (ECCC) hourly objective analysis of surface pollutants, which adjusts RAQDPS towards hourly observations from AirNow and the Canadian monitoring networks (no satellite or low-cost sensor data). Pirate Weather ingests the preliminary analysis, posted about 40 minutes after each hour. Close to a monitor it follows the monitor; between monitors it falls back towards RAQDPS.
+
 ### DWD
 
 #### DWD MOSMIX
@@ -135,9 +138,9 @@ The API selects the first non-missing value for each forecast element and timest
 ### Regions and priority modes
 
 | Region | Definition |
-| :--- | :--- |
-| Canada box | Latitude 41.7 to 83.0 and longitude -141.0 to -52.0. This is a coverage box, not a political-border lookup. |
-| North America outside the Canada box | North American coverage outside that box. |
+| --- | --- |
+| Canada | Inside Canada, including its waters: the point's time zone is one of Canada's TimeZones, so the choice follows the border. Open water takes the country of the nearest city. |
+| North America outside Canada | North American coverage outside that box. |
 | Global / standard | All other locations. |
 
 All priorities run from highest to lowest. Only sources that cover the request point and supply the requested element are eligible. Regional models such as NBM, HRRR, RTMA-RU, and HRRR SubH are not global fallbacks simply because they appear in a generic ordering. HRRR SubH denotes the sub-hourly HRRR forecast.
@@ -254,13 +257,13 @@ These hourly elements use dedicated source sets instead of the full generic regi
 
 | Parameter | Priority |
 | :--- | :--- |
-| airQualityIndex | RAQDPS > SILAM |
+| airQualityIndex | RDAQA > RAQDPS > SILAM |
 | coConcentration | SILAM |
-| no2Concentration | RAQDPS > SILAM |
-| ozoneConcentration | RAQDPS > SILAM |
-| so2Concentration | RAQDPS > SILAM |
-| pm10 | RAQDPS > SILAM |
-| pm25 | RAQDPS > SILAM |
+| no2Concentration | RDAQA > RAQDPS > SILAM |
+| ozoneConcentration | RDAQA > RAQDPS > SILAM |
+| so2Concentration | RDAQA > RAQDPS > SILAM |
+| pm10 | RDAQA > RAQDPS > SILAM |
+| pm25 | RDAQA > RAQDPS > SILAM |
 
 ## Data Pipeline
 
@@ -277,7 +280,7 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | RTMA-RU              | 0-24            | 0:25  | :25,:40,:55,:10       |
 | RTMA                 | 0-24            | 0:55  | :55 every hour        |
 | URMA                 | 0-24            | 0:15  | :15 every hour        | 
-| RRFS - 18h           | 0,3,6,9,12,15,18,21     | 0:20  | :20 every hour        | 
+| RRFS - 18h           | 0,3,6,9,12,15,18,21     | 0:50  | :50 every hour        | 
 | RRFS - SubHourly     | 0-24            | 0:50  | :50 every hour        |  
 | RRFS - 84h           | 0,6,12,18       | 0:20  | 0:20, 6:20, 12:20, 18:20        | 
 | RRFS North America   | 0,6,12,18       | 0:20  | 0:20, 6:20, 12:20, 18:20        | 
@@ -290,6 +293,10 @@ Forecasts are saved from NOAA onto the [AWS Public Cloud](https://registry.opend
 | ECMWF AIFS           | 0,6,12,18       | 8:00  | 8,16,20,2             |
 | AIGFS                | 0,6,12,18       | 5:00  | 5,11,17,23            |
 | RAQDPS               | 0,12            | 4:15  | 4:15,16:15            |
+| RDAQA                | 0-24            | 0:50  | :50 every hour        |
 | SILAM                | 0               | 12:00 | 12,19                 |
-| LibreWXR             | 0-24            | x:xx  | every x minutes       |
-| CFS                  | 0               | x:xx  | x:xx                  |
+| LibreWXR             | 0-24            | 0:10  | every 10 minutes      |
+| CFS                  | 0               | 12:30 | 12:30,15:30           |
+
+!!! info "SILAM and CFS ingest"
+    Both models have two ingests for the same run to catch late arriving files.
